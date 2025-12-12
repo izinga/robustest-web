@@ -27,6 +27,9 @@ func main() {
 	r.GET("/about", handler.AboutPage)
 	r.GET("/contact", handler.ContactPage)
 
+	// API routes
+	r.POST("/api/contact", handler.SubmitContactForm)
+
 	port := os.Getenv("PORT")
 	if port == "" {
 		port = "3000"
