@@ -28,11 +28,12 @@ templ Base(title string, description string, currentPath string) {
 			<meta property="og:title" content={ title + " | RobusTest" }/>
 			<meta property="og:description" content={ description }/>
 			<meta property="og:image" content="https://robustest.com/assets/images/og-image.png"/>
+			<meta property="og:image:width" content="1200"/>
+			<meta property="og:image:height" content="630"/>
 			<meta property="og:site_name" content="RobusTest"/>
 			<meta property="og:locale" content="en_US"/>
 			<!-- Twitter Card -->
 			<meta name="twitter:card" content="summary_large_image"/>
-			<meta name="twitter:site" content="@robustest"/>
 			<meta name="twitter:url" content={ "https://robustest.com" + currentPath }/>
 			<meta name="twitter:title" content={ title + " | RobusTest" }/>
 			<meta name="twitter:description" content={ description }/>

@@ -170,6 +170,20 @@ select:focus {
   }
 }
 
+/* Minimum touch target size for accessibility (44x44px) */
+@media (pointer: coarse) {
+  a, button, [role="button"], input, select, textarea {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Ensure clickable area for small links */
+  nav a, footer a {
+    padding: 0.5rem;
+    margin: -0.5rem;
+  }
+}
+
 /* High contrast mode support */
 @media (prefers-contrast: high) {
   *:focus-visible {
@@ -195,4 +209,32 @@ select:focus {
   nav, footer, .no-print {
     display: none !important;
   }
+}
+
+/* Forced colors mode (Windows High Contrast) */
+@media (forced-colors: active) {
+  a, button {
+    forced-color-adjust: none;
+  }
+
+  *:focus-visible {
+    outline: 3px solid CanvasText;
+  }
+}
+
+/* Better text selection */
+::selection {
+  background-color: #06B6D4;
+  color: white;
+}
+
+/* Ensure sufficient line height for readability */
+p, li {
+  line-height: 1.6;
+}
+
+/* Ensure links in body text are distinguishable */
+main a:not([class]) {
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
