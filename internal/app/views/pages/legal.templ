@@ -1,0 +1,51 @@
+package pages
+
+import "github.com/izinga/robustest-web/internal/app/views/layouts"
+
+templ LegalPage() {
+	@layouts.Base("Privacy & Terms", "Privacy Policy and Terms of Service for RobusTest enterprise mobile device lab platform.", "/legal") {
+		<!-- Hero Section -->
+		<section class="pt-28 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white py-16">
+			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+				<div class="max-w-3xl">
+					<h1 class="text-4xl md:text-5xl font-bold">Privacy & Terms</h1>
+				</div>
+			</div>
+		</section>
+		<!-- Content -->
+		<section class="py-16 bg-white">
+			<div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+				<!-- Privacy Policy -->
+				<div class="mb-12">
+					<h2 class="text-2xl font-bold text-gray-900 mb-4">Privacy Policy</h2>
+					<div class="space-y-4 text-gray-600">
+						<p>
+							RobusTest collects basic contact information (name, email, company) when you reach out to us. We use this solely to respond to your inquiries and provide product information.
+						</p>
+						<p>
+							<strong>Your test data stays with you.</strong> RobusTest is an on-premise solution—all your testing data remains on your infrastructure.
+						</p>
+						<p>
+							We use SendGrid for email delivery. For questions, contact us at <a href="mailto:hello@robustest.com" class="text-cyan-600 hover:underline">hello@robustest.com</a>.
+						</p>
+					</div>
+				</div>
+				<!-- Terms of Service -->
+				<div>
+					<h2 class="text-2xl font-bold text-gray-900 mb-4">Terms of Service</h2>
+					<div class="space-y-4 text-gray-600">
+						<p>
+							By using robustest.com, you agree to these terms. RobusTest provides on-premise mobile device lab management software for enterprises.
+						</p>
+						<p>
+							All content, trademarks, and software on this website are property of Izinga. Use our services lawfully and do not attempt unauthorized access to our systems.
+						</p>
+						<p>
+							These terms are governed by the laws of India. For questions, contact <a href="mailto:hello@robustest.com" class="text-cyan-600 hover:underline">hello@robustest.com</a>.
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+	}
+}

@@ -1,0 +1,12 @@
+# RobusTest robots.txt
+# https://robustest.com
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://robustest.com/sitemap.xml
+
+# Disallow internal paths
+Disallow: /api/
+Disallow: /health

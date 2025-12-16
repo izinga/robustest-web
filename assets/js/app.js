@@ -1,11 +1,14 @@
-// Mobile menu toggle
+// Mobile menu toggle with accessibility
 document.addEventListener('DOMContentLoaded', function() {
   const mobileMenuBtn = document.getElementById('mobile-menu-btn');
   const mobileMenu = document.getElementById('mobile-menu');
 
   if (mobileMenuBtn && mobileMenu) {
     mobileMenuBtn.addEventListener('click', function() {
+      const isHidden = mobileMenu.classList.contains('hidden');
       mobileMenu.classList.toggle('hidden');
+      // Update aria-expanded for accessibility
+      mobileMenuBtn.setAttribute('aria-expanded', isHidden ? 'true' : 'false');
     });
   }
 
@@ -13,6 +16,20 @@ document.addEventListener('DOMContentLoaded', function() {
   document.addEventListener('click', function(event) {
     if (mobileMenu && !mobileMenu.contains(event.target) && !mobileMenuBtn.contains(event.target)) {
       mobileMenu.classList.add('hidden');
+      if (mobileMenuBtn) {
+        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+      }
+    }
+  });
+
+  // Close mobile menu on Escape key
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape' && mobileMenu && !mobileMenu.classList.contains('hidden')) {
+      mobileMenu.classList.add('hidden');
+      if (mobileMenuBtn) {
+        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+        mobileMenuBtn.focus();
+      }
     }
   });
 
@@ -28,6 +45,9 @@ document.addEventListener('DOMContentLoaded', function() {
             behavior: 'smooth',
             block: 'start'
           });
+          // Set focus to target for accessibility
+          target.setAttribute('tabindex', '-1');
+          target.focus();
         }
       }
     });
@@ -48,37 +68,6 @@ document.addEventListener('DOMContentLoaded', function() {
       }
 
       lastScrollY = currentScrollY;
-    });
-  }
-
-  // Form submission handling
-  const contactForm = document.querySelector('form');
-  if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-
-      const submitBtn = contactForm.querySelector('button[type="submit"]');
-      const originalText = submitBtn.textContent;
-
-      // Show loading state
-      submitBtn.disabled = true;
-      submitBtn.innerHTML = '<span class="spinner"></span> Sending...';
-
-      // Simulate form submission (replace with actual HTMX/fetch call)
-      setTimeout(function() {
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Message Sent!';
-        submitBtn.classList.remove('bg-blue-600');
-        submitBtn.classList.add('bg-green-600');
-
-        // Reset after 3 seconds
-        setTimeout(function() {
-          submitBtn.textContent = originalText;
-          submitBtn.classList.remove('bg-green-600');
-          submitBtn.classList.add('bg-blue-600');
-          contactForm.reset();
-        }, 3000);
-      }, 1500);
     });
   }
 
@@ -110,6 +99,7 @@ document.body.addEventListener('htmx:beforeRequest', function(evt) {
   const target = evt.detail.target;
   if (target) {
     target.classList.add('opacity-50');
+    target.setAttribute('aria-busy', 'true');
   }
 });
 
@@ -118,9 +108,28 @@ document.body.addEventListener('htmx:afterRequest', function(evt) {
   const target = evt.detail.target;
   if (target) {
     target.classList.remove('opacity-50');
+    target.setAttribute('aria-busy', 'false');
   }
 });
 
 document.body.addEventListener('htmx:responseError', function(evt) {
   console.error('HTMX request failed:', evt.detail.error);
+  // Announce error to screen readers
+  const target = evt.detail.target;
+  if (target) {
+    target.setAttribute('aria-busy', 'false');
+  }
+});
+
+// Handle form success - move focus to response for accessibility
+document.body.addEventListener('htmx:afterSwap', function(evt) {
+  const target = evt.detail.target;
+  if (target && target.id === 'contact-form-container') {
+    // Focus on the response for screen reader users
+    const response = target.querySelector('[role="alert"], .success-message, .error-message');
+    if (response) {
+      response.setAttribute('tabindex', '-1');
+      response.focus();
+    }
+  }
 });
