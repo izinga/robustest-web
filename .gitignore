@@ -1,9 +1,13 @@
 # Binaries
 robustest-web
+robustest-web-linux
 *.exe
 *.dll
 *.so
 *.dylib
+
+# Build artifacts
+dist/
 
 # Test binary
 *.test

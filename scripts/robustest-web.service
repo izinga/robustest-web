@@ -1,0 +1,26 @@
+[Unit]
+Description=RobusTest Web Server
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+Group=www-data
+WorkingDirectory=/opt/robustest-web
+ExecStart=/opt/robustest-web/robustest-web-linux
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+# Environment variables
+EnvironmentFile=/opt/robustest-web/.env
+
+# Security settings
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/robustest-web
+
+[Install]
+WantedBy=multi-user.target

@@ -62,8 +62,14 @@ func main() {
 	// Add security headers middleware
 	r.Use(securityHeaders())
 
+	// Get assets path from environment or use default
+	assetsPath := os.Getenv("ASSETS_PATH")
+	if assetsPath == "" {
+		assetsPath = "./public"
+	}
+
 	// Static files with cache control
-	r.Static("/assets", "./assets")
+	r.Static("/assets", assetsPath+"/assets")
 
 	// Health check endpoint for load balancers
 	r.GET("/health", func(c *gin.Context) {
@@ -72,10 +78,10 @@ func main() {
 
 	// SEO files at root level
 	r.GET("/robots.txt", func(c *gin.Context) {
-		c.File("./assets/robots.txt")
+		c.File(assetsPath + "/robots.txt")
 	})
 	r.GET("/sitemap.xml", func(c *gin.Context) {
-		c.File("./assets/sitemap.xml")
+		c.File(assetsPath + "/sitemap.xml")
 	})
 
 	// Routes
