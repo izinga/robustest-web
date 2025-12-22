@@ -3,7 +3,7 @@
 
 # Variables
 APP_NAME := robustest-web
-VERSION := $(shell git describe --tags --always 2>/dev/null || echo "dev")
+VERSION := $(shell date +"%Y%m%d-%H%M%S")
 BUILD_TIME := $(shell date -u '+%Y-%m-%d_%H:%M:%S')
 LDFLAGS := -ldflags "-X main.Version=$(VERSION) -X main.BuildTime=$(BUILD_TIME) -s -w"
 
@@ -79,7 +79,6 @@ ui-build:
 	@mkdir -p $(PUBLIC_DIR)/assets/css
 	@echo "$(YELLOW)Building Tailwind CSS...$(NC)"
 	npx @tailwindcss/cli -i ./src/css/input.css -o $(PUBLIC_DIR)/assets/css/app.css --minify
-	@echo "$(VERSION)" > $(PUBLIC_DIR)/VERSION
 	@echo "$(GREEN)UI build complete!$(NC)"
 
 ## watch-css: Watch CSS changes and rebuild
