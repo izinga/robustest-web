@@ -12,7 +12,6 @@ SRC_DIR := ./cmd/server
 PUBLIC_DIR := ./public
 ASSETS_DIR := ./assets
 DIST_DIR := ./dist
-SCRIPTS_DIR := ./scripts
 
 # Go settings
 GOOS_LINUX := linux
@@ -52,9 +51,6 @@ help:
 	@echo "  release-mac-silicon Create macOS Silicon tarball"
 	@echo "  release-windows     Create Windows zip"
 	@echo "  release-all         Create all platform releases"
-	@echo ""
-	@echo "Deployment:"
-	@echo "  deploy-gce   Deploy to GCE instance"
 	@echo ""
 	@echo "Utilities:"
 	@echo "  clean        Remove build artifacts"
@@ -225,16 +221,6 @@ release-windows: build-windows
 release-all: release-linux release-mac-intel release-mac-silicon release-windows
 	@echo "$(GREEN)All release packages created:$(NC)"
 	@ls -lh $(DIST_DIR)/
-
-## deploy-gce: Deploy to GCE (requires gcloud configured)
-deploy-gce: release
-	@echo "$(GREEN)Deploying to GCE...$(NC)"
-	@if [ -z "$(GCE_INSTANCE)" ]; then \
-		echo "$(YELLOW)Error: GCE_INSTANCE not set$(NC)"; \
-		echo "Usage: make deploy-gce GCE_INSTANCE=instance-name GCE_ZONE=us-west1-b GCE_PROJECT=project-id"; \
-		exit 1; \
-	fi
-	@$(SCRIPTS_DIR)/deploy-gce.sh $(GCE_INSTANCE) $(GCE_ZONE) $(GCE_PROJECT)
 
 ## docker-build: Build Docker image
 docker-build:
