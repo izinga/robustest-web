@@ -179,7 +179,7 @@ release-linux: build-linux
 	tar -czvf $(DIST_DIR)/$(APP_NAME)-$(VERSION)-linux.tar.gz \
 		$(APP_NAME) \
 		$(PUBLIC_DIR) \
-		.env.example \
+		.env \
 		README.md
 	@rm -f $(APP_NAME)
 	@echo "$(GREEN)Release package created: $(DIST_DIR)/$(APP_NAME)-$(VERSION)-linux.tar.gz$(NC)"
@@ -192,7 +192,7 @@ release-mac-intel: build-mac-intel
 	tar -czvf $(DIST_DIR)/$(APP_NAME)-$(VERSION)-mac-intel.tar.gz \
 		$(APP_NAME) \
 		$(PUBLIC_DIR) \
-		.env.example \
+		.env \
 		README.md
 	@rm -f $(APP_NAME)
 	@echo "$(GREEN)Release package created: $(DIST_DIR)/$(APP_NAME)-$(VERSION)-mac-intel.tar.gz$(NC)"
@@ -205,7 +205,7 @@ release-mac-silicon: build-mac-silicon
 	tar -czvf $(DIST_DIR)/$(APP_NAME)-$(VERSION)-mac-silicon.tar.gz \
 		$(APP_NAME) \
 		$(PUBLIC_DIR) \
-		.env.example \
+		.env \
 		README.md
 	@rm -f $(APP_NAME)
 	@echo "$(GREEN)Release package created: $(DIST_DIR)/$(APP_NAME)-$(VERSION)-mac-silicon.tar.gz$(NC)"
@@ -217,7 +217,7 @@ release-windows: build-windows
 	zip -r $(DIST_DIR)/$(APP_NAME)-$(VERSION)-windows.zip \
 		$(APP_NAME).exe \
 		$(PUBLIC_DIR) \
-		.env.example \
+		.env \
 		README.md
 	@echo "$(GREEN)Release package created: $(DIST_DIR)/$(APP_NAME)-$(VERSION)-windows.zip$(NC)"
 
