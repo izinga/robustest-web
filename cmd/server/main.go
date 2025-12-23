@@ -46,9 +46,11 @@ func cacheControl() gin.HandlerFunc {
 }
 
 func main() {
-	// Load .env file if present
-	if err := godotenv.Load(); err != nil {
-		log.Println("No .env file found, using environment variables")
+	// Load .env.local first (for local development), then fall back to .env
+	if err := godotenv.Load(".env.local"); err != nil {
+		if err := godotenv.Load(); err != nil {
+			log.Println("No .env file found, using environment variables")
+		}
 	}
 
 	// Set Gin mode based on environment
