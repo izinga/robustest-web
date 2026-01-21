@@ -55,8 +55,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Header scroll effect
   const header = document.querySelector('header');
+  const headerCta = document.getElementById('header-cta');
+  const isHomePage = window.location.pathname === '/';
+
   if (header) {
     let lastScrollY = window.scrollY;
+
+    // Hide CTA on home page initially
+    if (isHomePage && headerCta) {
+      headerCta.style.opacity = '0';
+      headerCta.style.pointerEvents = 'none';
+    }
 
     window.addEventListener('scroll', function() {
       const currentScrollY = window.scrollY;
@@ -65,6 +74,17 @@ document.addEventListener('DOMContentLoaded', function() {
         header.classList.add('shadow-md');
       } else {
         header.classList.remove('shadow-md');
+      }
+
+      // Show/hide CTA button on home page based on scroll
+      if (isHomePage && headerCta) {
+        if (currentScrollY > 300) {
+          headerCta.style.opacity = '1';
+          headerCta.style.pointerEvents = 'auto';
+        } else {
+          headerCta.style.opacity = '0';
+          headerCta.style.pointerEvents = 'none';
+        }
       }
 
       lastScrollY = currentScrollY;
