@@ -76,8 +76,8 @@ make release-all        # Create all platform releases
 - `PORT` - Server port (default: 3000)
 - `GIN_MODE` - Gin mode (debug/release, default: release)
 - `SENDGRID_API_KEY` - SendGrid API key for contact form
-- `FROM_EMAIL` - Sender email address (must be verified in SendGrid)
-- `CONTACT_EMAIL` - Email address to receive contact form submissions
+- `CONTACT_FROM_EMAIL` - Sender email address (must be verified in SendGrid)
+- `CONTACT_TO_EMAIL` - Email address to receive contact form submissions
 
 ## Pages
 
