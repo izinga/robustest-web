@@ -49,7 +49,7 @@ func ContactPage() templ.Component {
 			}
 			return nil
 		})
-		templ_7745c5c3_Err = layouts.Base("Contact Us - Schedule a Consultation", "Get in touch with RobusTest for enterprise mobile device lab solutions. Schedule a consultation, get custom pricing, or speak with our mobile testing experts. Based in Hyderabad, India.", "/contact").Render(templ.WithChildren(ctx, templ_7745c5c3_Var2), templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = layouts.Base("Contact RobusTest - Get Enterprise Mobile Device Lab Quote", "Get in touch with RobusTest for enterprise mobile device lab solutions. Schedule a consultation, get custom pricing, or speak with our mobile testing experts. Based in Hyderabad, India.", "/contact").Render(templ.WithChildren(ctx, templ_7745c5c3_Var2), templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

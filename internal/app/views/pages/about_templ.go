@@ -49,7 +49,7 @@ func AboutPage() templ.Component {
 			}
 			return nil
 		})
-		templ_7745c5c3_Err = layouts.Base("About RobusTest", "RobusTest provides on-premise mobile device lab management for enterprises. 10+ years experience, 20+ enterprise customers, 10K+ devices managed. Based in India, serving globally.", "/about").Render(templ.WithChildren(ctx, templ_7745c5c3_Var2), templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = layouts.Base("About RobusTest - Enterprise Mobile Device Lab Company Since 2014", "RobusTest provides on-premise mobile device lab management for enterprises. 10+ years experience, 20+ enterprise customers, 10K+ devices managed. Based in India, serving globally.", "/about").Render(templ.WithChildren(ctx, templ_7745c5c3_Var2), templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

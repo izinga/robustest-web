@@ -49,7 +49,7 @@ func HomePage() templ.Component {
 			}
 			return nil
 		})
-		templ_7745c5c3_Err = layouts.Base("On-Premise Mobile Device Lab", "Deploy an enterprise mobile device lab on your premises. Test iOS, Android, and Smart TV apps with unlimited users and test minutes. No per-minute billing.", "/").Render(templ.WithChildren(ctx, templ_7745c5c3_Var2), templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = layouts.Base("On-Premise Mobile Device Lab for iOS, Android & Smart TV Testing", "Deploy an enterprise mobile device lab on your premises. Test iOS, Android, and Smart TV apps with unlimited users and test minutes. No per-minute billing.", "/").Render(templ.WithChildren(ctx, templ_7745c5c3_Var2), templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

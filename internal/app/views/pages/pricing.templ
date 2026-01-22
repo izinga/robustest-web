@@ -3,7 +3,7 @@ package pages
 import "github.com/izinga/robustest-web/internal/app/views/layouts"
 
 templ PricingPage() {
-	@layouts.Base("Enterprise Mobile Device Lab Pricing", "Custom pricing for enterprise mobile device labs. Unlimited users and test minutes with predictable yearly costs. Compare cloud vs on-premise testing ROI.", "/pricing") {
+	@layouts.Base("Enterprise Mobile Device Lab Pricing - Unlimited Users & Test Minutes", "Custom pricing for enterprise mobile device labs. Unlimited users and test minutes with predictable yearly costs. Compare cloud vs on-premise testing ROI.", "/pricing") {
 		<!-- Hero Section -->
 		<section class="pt-28 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white py-20">
 			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -112,5 +112,54 @@ templ PricingPage() {
 				</a>
 			</div>
 		</section>
+		<!-- FAQ Schema for Pricing Page -->
+		<script type="application/ld+json">
+		{
+			"@context": "https://schema.org",
+			"@type": "FAQPage",
+			"mainEntity": [
+				{
+					"@type": "Question",
+					"name": "How much does RobusTest enterprise mobile device lab cost?",
+					"acceptedAnswer": {
+						"@type": "Answer",
+						"text": "RobusTest offers custom enterprise pricing based on your specific requirements including number of devices, platforms needed, and support level. Contact us for a detailed quote tailored to your organization."
+					}
+				},
+				{
+					"@type": "Question",
+					"name": "Is RobusTest cheaper than cloud testing services like BrowserStack?",
+					"acceptedAnswer": {
+						"@type": "Answer",
+						"text": "For enterprise teams with significant testing needs, RobusTest typically provides substantial cost savings. Cloud services charge per-minute fees that can exceed $300,000 annually for a 15-device lab used 8 hours daily. RobusTest offers fixed yearly pricing with unlimited users and test minutes."
+					}
+				},
+				{
+					"@type": "Question",
+					"name": "What is included in the RobusTest enterprise pricing?",
+					"acceptedAnswer": {
+						"@type": "Answer",
+						"text": "RobusTest enterprise pricing includes hardware (devices and infrastructure), software licenses, on-site installation and training, ongoing support and updates, unlimited users, unlimited test minutes, and full API access. Air-gapped deployment support is also available."
+					}
+				},
+				{
+					"@type": "Question",
+					"name": "Does RobusTest have per-user or per-minute billing?",
+					"acceptedAnswer": {
+						"@type": "Answer",
+						"text": "No, RobusTest does not charge per-user or per-minute fees. You get unlimited users and unlimited test minutes with predictable yearly pricing, making it ideal for enterprise teams that need cost certainty."
+					}
+				},
+				{
+					"@type": "Question",
+					"name": "What is the ROI of on-premise device lab vs cloud testing?",
+					"acceptedAnswer": {
+						"@type": "Answer",
+						"text": "Organizations typically see 50-70% cost savings over cloud testing services within the first year. Additional benefits include complete data security (test data never leaves your network), no usage restrictions, and the ability to test on custom device configurations not available in cloud services."
+					}
+				}
+			]
+		}
+		</script>
 	}
 }

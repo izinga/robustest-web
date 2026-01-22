@@ -3,7 +3,7 @@ package pages
 import "github.com/izinga/robustest-web/internal/app/views/layouts"
 
 templ FeaturesPage() {
-	@layouts.Base("Mobile Device Lab Features", "Comprehensive mobile testing features: manual testing, test automation with Appium, Espresso, XCUITest, Smart TV testing, CI/CD integration, and performance monitoring. All on-premise.", "/features") {
+	@layouts.Base("Mobile Device Lab Features: Appium, Espresso, XCUITest & Smart TV Testing", "Comprehensive mobile testing features: manual testing, test automation with Appium, Espresso, XCUITest, Smart TV testing, CI/CD integration, and performance monitoring. All on-premise.", "/features") {
 		<!-- Hero Section -->
 		<section class="pt-28 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white py-20">
 			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -222,5 +222,54 @@ templ FeaturesPage() {
 				</a>
 			</div>
 		</section>
+		<!-- FAQ Schema for Features Page -->
+		<script type="application/ld+json">
+		{
+			"@context": "https://schema.org",
+			"@type": "FAQPage",
+			"mainEntity": [
+				{
+					"@type": "Question",
+					"name": "What test automation frameworks does RobusTest support?",
+					"acceptedAnswer": {
+						"@type": "Answer",
+						"text": "RobusTest supports all major test automation frameworks including Appium for cross-platform testing, Espresso for Android native testing, and XCUITest for iOS native testing. It also supports parallel test execution across your entire device fleet."
+					}
+				},
+				{
+					"@type": "Question",
+					"name": "Can RobusTest test Smart TV applications?",
+					"acceptedAnswer": {
+						"@type": "Answer",
+						"text": "Yes, RobusTest is one of the few platforms with comprehensive Smart TV testing support. It supports Android TV, Roku, Apple TV, and Chromecast devices with remote control simulation and live streaming capabilities."
+					}
+				},
+				{
+					"@type": "Question",
+					"name": "Does RobusTest integrate with CI/CD pipelines?",
+					"acceptedAnswer": {
+						"@type": "Answer",
+						"text": "Yes, RobusTest integrates seamlessly with popular CI/CD tools including Jenkins, GitHub Actions, GitLab CI, and more. It also supports webhooks, Slack notifications, and email integrations for test result notifications."
+					}
+				},
+				{
+					"@type": "Question",
+					"name": "What manual testing features does RobusTest offer?",
+					"acceptedAnswer": {
+						"@type": "Answer",
+						"text": "RobusTest provides real-time device streaming with ultra-low latency, touch and gesture input support, screenshot capture, and live device logs. Testers can interact with devices as if they were holding them physically."
+					}
+				},
+				{
+					"@type": "Question",
+					"name": "How does RobusTest handle device management?",
+					"acceptedAnswer": {
+						"@type": "Answer",
+						"text": "RobusTest provides a centralized dashboard for device inventory management, health monitoring with alerts, device scheduling and booking, and utilization tracking. This ensures optimal device fleet management and resource allocation."
+					}
+				}
+			]
+		}
+		</script>
 	}
 }
