@@ -68,24 +68,20 @@ var phoneRegex = regexp.MustCompile(`^[\d\s\-\+\(\)]{0,20}$`)
 
 // ContactFormRequest represents the contact form submission
 type ContactFormRequest struct {
-	FirstName string `form:"firstName" binding:"required,max=100"`
-	LastName  string `form:"lastName" binding:"required,max=100"`
-	Email     string `form:"email" binding:"required,email,max=254"`
-	Company   string `form:"company" binding:"required,max=200"`
-	Phone     string `form:"phone" binding:"max=20"`
-	Devices   string `form:"devices" binding:"max=20"`
-	Message   string `form:"message" binding:"max=2000"`
+	Name    string `form:"name" binding:"required,max=100"`
+	Email   string `form:"email" binding:"required,email,max=254"`
+	Company string `form:"company" binding:"max=200"`
+	Phone   string `form:"phone" binding:"max=20"`
+	Message string `form:"message" binding:"max=2000"`
 }
 
 // sanitize cleans and validates the contact form request
 func (req *ContactFormRequest) sanitize() error {
 	// Trim whitespace from all fields
-	req.FirstName = strings.TrimSpace(req.FirstName)
-	req.LastName = strings.TrimSpace(req.LastName)
+	req.Name = strings.TrimSpace(req.Name)
 	req.Email = strings.TrimSpace(strings.ToLower(req.Email))
 	req.Company = strings.TrimSpace(req.Company)
 	req.Phone = strings.TrimSpace(req.Phone)
-	req.Devices = strings.TrimSpace(req.Devices)
 	req.Message = strings.TrimSpace(req.Message)
 
 	// Validate email format with stricter regex
@@ -96,18 +92,6 @@ func (req *ContactFormRequest) sanitize() error {
 	// Validate phone format if provided
 	if req.Phone != "" && !phoneRegex.MatchString(req.Phone) {
 		return fmt.Errorf("invalid phone number format")
-	}
-
-	// Validate devices selection
-	validDevices := map[string]bool{
-		"":       true,
-		"1-10":   true,
-		"11-50":  true,
-		"51-100": true,
-		"100+":   true,
-	}
-	if !validDevices[req.Devices] {
-		return fmt.Errorf("invalid device range selection")
 	}
 
 	return nil
@@ -148,10 +132,8 @@ func SubmitContactForm(c *gin.Context) {
 	}
 
 	// Build email content with HTML-escaped values
-	subject := fmt.Sprintf("New Demo Request from %s %s - %s",
-		html.EscapeString(req.FirstName),
-		html.EscapeString(req.LastName),
-		html.EscapeString(req.Company))
+	subject := fmt.Sprintf("New Contact Form Submission from %s",
+		html.EscapeString(req.Name))
 
 	htmlContent := buildEmailHTML(req)
 	textContent := buildEmailText(req)
@@ -166,8 +148,13 @@ func SubmitContactForm(c *gin.Context) {
 		return
 	}
 
-	log.Printf("Contact form submitted successfully: %s %s <%s> from %s",
-		req.FirstName, req.LastName, req.Email, req.Company)
+	log.Printf("Contact form submitted successfully: %s <%s>",
+		req.Name, req.Email)
+
+	// Send confirmation email to the sender
+	if err := sendConfirmationEmail(req); err != nil {
+		log.Printf("Failed to send confirmation email to %s: %v", req.Email, err)
+	}
 
 	// Return success response
 	c.Status(http.StatusOK)
@@ -180,12 +167,10 @@ func buildEmailHTML(req ContactFormRequest) string {
 	var sb strings.Builder
 
 	// Escape all user input to prevent XSS in email clients
-	firstName := html.EscapeString(req.FirstName)
-	lastName := html.EscapeString(req.LastName)
+	name := html.EscapeString(req.Name)
 	email := html.EscapeString(req.Email)
 	company := html.EscapeString(req.Company)
 	phone := html.EscapeString(req.Phone)
-	devices := html.EscapeString(req.Devices)
 	message := html.EscapeString(req.Message)
 
 	sb.WriteString(`<!DOCTYPE html>
@@ -205,35 +190,31 @@ func buildEmailHTML(req ContactFormRequest) string {
 <body>
     <div class="container">
         <div class="header">
-            <h1 style="margin:0;">New Demo Request</h1>
+            <h1 style="margin:0;">New Contact Form Submission</h1>
         </div>
         <div class="content">
             <div class="field">
                 <div class="label">Name</div>
-                <div class="value">` + firstName + ` ` + lastName + `</div>
+                <div class="value">` + name + `</div>
             </div>
             <div class="field">
                 <div class="label">Email</div>
                 <div class="value"><a href="mailto:` + email + `">` + email + `</a></div>
-            </div>
+            </div>`)
+
+	if req.Company != "" {
+		sb.WriteString(`
             <div class="field">
                 <div class="label">Company</div>
                 <div class="value">` + company + `</div>
             </div>`)
+	}
 
 	if req.Phone != "" {
 		sb.WriteString(`
             <div class="field">
                 <div class="label">Phone</div>
                 <div class="value">` + phone + `</div>
-            </div>`)
-	}
-
-	if req.Devices != "" {
-		sb.WriteString(`
-            <div class="field">
-                <div class="label">Number of Devices</div>
-                <div class="value">` + devices + `</div>
             </div>`)
 	}
 
@@ -248,7 +229,7 @@ func buildEmailHTML(req ContactFormRequest) string {
 	sb.WriteString(`
         </div>
         <div class="footer">
-            This demo request was submitted via the RobusTest website contact form.
+            This message was sent from the contact form on robustest.com
         </div>
     </div>
 </body>
@@ -260,18 +241,17 @@ func buildEmailHTML(req ContactFormRequest) string {
 func buildEmailText(req ContactFormRequest) string {
 	var sb strings.Builder
 
-	sb.WriteString("NEW DEMO REQUEST\n")
-	sb.WriteString("================\n\n")
-	sb.WriteString(fmt.Sprintf("Name: %s %s\n", req.FirstName, req.LastName))
+	sb.WriteString("NEW CONTACT FORM SUBMISSION\n")
+	sb.WriteString("===========================\n\n")
+	sb.WriteString(fmt.Sprintf("Name: %s\n", req.Name))
 	sb.WriteString(fmt.Sprintf("Email: %s\n", req.Email))
-	sb.WriteString(fmt.Sprintf("Company: %s\n", req.Company))
+
+	if req.Company != "" {
+		sb.WriteString(fmt.Sprintf("Company: %s\n", req.Company))
+	}
 
 	if req.Phone != "" {
 		sb.WriteString(fmt.Sprintf("Phone: %s\n", req.Phone))
-	}
-
-	if req.Devices != "" {
-		sb.WriteString(fmt.Sprintf("Number of Devices: %s\n", req.Devices))
 	}
 
 	if req.Message != "" {
@@ -317,4 +297,123 @@ func sendEmail(subject, htmlContent, textContent string) error {
 
 	log.Printf("Email sent successfully, status: %d", response.StatusCode)
 	return nil
+}
+
+// sendConfirmationEmail sends a thank you email to the sender
+func sendConfirmationEmail(req ContactFormRequest) error {
+	apiKey := os.Getenv("SENDGRID_API_KEY")
+	if apiKey == "" {
+		return fmt.Errorf("SENDGRID_API_KEY environment variable not set")
+	}
+
+	fromEmail := os.Getenv("CONTACT_FROM_EMAIL")
+	if fromEmail == "" {
+		fromEmail = "noreply@robustest.com"
+	}
+
+	from := mail.NewEmail("RobusTest", fromEmail)
+	to := mail.NewEmail(req.Name, req.Email)
+	subject := "Thank you for contacting RobusTest"
+
+	htmlContent := buildConfirmationHTML(req)
+	textContent := buildConfirmationText(req)
+
+	message := mail.NewSingleEmail(from, subject, to, textContent, htmlContent)
+
+	client := sendgrid.NewSendClient(apiKey)
+	response, err := client.Send(message)
+
+	if err != nil {
+		return fmt.Errorf("sendgrid error: %w", err)
+	}
+
+	if response.StatusCode >= 400 {
+		return fmt.Errorf("sendgrid returned status %d: %s", response.StatusCode, response.Body)
+	}
+
+	log.Printf("Confirmation email sent to %s, status: %d", req.Email, response.StatusCode)
+	return nil
+}
+
+func buildConfirmationHTML(req ContactFormRequest) string {
+	name := html.EscapeString(req.Name)
+	company := html.EscapeString(req.Company)
+	message := html.EscapeString(req.Message)
+
+	var sb strings.Builder
+
+	sb.WriteString(`<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+        .header { background: #2563eb; color: white; padding: 20px; border-radius: 8px 8px 0 0; }
+        .content { background: #f9fafb; padding: 20px; border: 1px solid #e5e7eb; }
+        .message-box { background: white; padding: 15px; border-radius: 4px; border: 1px solid #e5e7eb; margin-top: 15px; }
+        .field { margin-bottom: 10px; }
+        .label { font-weight: bold; color: #6b7280; font-size: 12px; text-transform: uppercase; }
+        .value { margin-top: 4px; }
+        .footer { padding: 15px; font-size: 12px; color: #6b7280; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2 style="margin: 0;">Thank You for Contacting Us</h2>
+        </div>
+        <div class="content">
+            <p>Hi ` + name + `,</p>
+            <p>Thank you for reaching out to RobusTest. We have received your message and will get back to you soon.</p>
+            <div class="message-box">
+                <p style="margin-top: 0; font-weight: bold; color: #374151;">Your message:</p>`)
+
+	if req.Company != "" {
+		sb.WriteString(`
+                <div class="field">
+                    <div class="label">Company</div>
+                    <div class="value">` + company + `</div>
+                </div>`)
+	}
+
+	if req.Message != "" {
+		sb.WriteString(`
+                <div class="field">
+                    <div class="label">Message</div>
+                    <div class="value">` + strings.ReplaceAll(message, "\n", "<br>") + `</div>
+                </div>`)
+	}
+
+	sb.WriteString(`
+            </div>
+        </div>
+        <div class="footer">
+            RobusTest<br>
+            <a href="https://robustest.com">robustest.com</a>
+        </div>
+    </div>
+</body>
+</html>`)
+
+	return sb.String()
+}
+
+func buildConfirmationText(req ContactFormRequest) string {
+	var sb strings.Builder
+
+	sb.WriteString(fmt.Sprintf("Hi %s,\n\n", req.Name))
+	sb.WriteString("Thank you for reaching out to RobusTest. We have received your message and will get back to you soon.\n\n")
+	sb.WriteString("--- Your message ---\n\n")
+
+	if req.Company != "" {
+		sb.WriteString(fmt.Sprintf("Company: %s\n", req.Company))
+	}
+
+	if req.Message != "" {
+		sb.WriteString(fmt.Sprintf("Message: %s\n", req.Message))
+	}
+
+	sb.WriteString("\n---\nRobusTest\nhttps://robustest.com")
+
+	return sb.String()
 }

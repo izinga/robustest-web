@@ -135,7 +135,7 @@ dev:
 	@make templ
 	@mkdir -p $(PUBLIC_DIR)/assets/css
 	@npx @tailwindcss/cli -i ./src/css/input.css -o $(PUBLIC_DIR)/assets/css/app.css
-	@echo "$(YELLOW)Starting server on http://localhost:3000$(NC)"
+	@echo "$(YELLOW)Starting server...$(NC)"
 	@GIN_MODE=debug go run $(SRC_DIR)/main.go
 
 ## dev-watch: Start development with CSS watch (run in separate terminals)
