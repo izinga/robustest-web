@@ -17,6 +17,39 @@ import (
 	"github.com/sendgrid/sendgrid-go/helpers/mail"
 )
 
+// contactFormLogger is a dedicated logger for contact form submissions
+var contactFormLogger *log.Logger
+
+func init() {
+	// Open or create the contact form log file
+	logFile, err := os.OpenFile("contact_form.log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	if err != nil {
+		log.Printf("Warning: Could not open contact_form.log: %v", err)
+		contactFormLogger = log.New(os.Stdout, "[CONTACT] ", log.LstdFlags)
+	} else {
+		contactFormLogger = log.New(logFile, "", log.LstdFlags)
+	}
+}
+
+// logContactForm logs contact form submission to the dedicated log file
+func logContactForm(req ContactFormRequest, status string, emailErr error) {
+	errMsg := ""
+	if emailErr != nil {
+		errMsg = fmt.Sprintf(" | Error: %v", emailErr)
+	}
+	contactFormLogger.Printf("[%s] Name: %s | Email: %s | Company: %s | Phone: %s | Message: %s%s",
+		status, req.Name, req.Email, req.Company, req.Phone, truncateMessage(req.Message, 100), errMsg)
+}
+
+// truncateMessage truncates a message to the specified length
+func truncateMessage(msg string, maxLen int) string {
+	msg = strings.ReplaceAll(msg, "\n", " ")
+	if len(msg) > maxLen {
+		return msg[:maxLen] + "..."
+	}
+	return msg
+}
+
 // rateLimiter implements a simple in-memory rate limiter for contact form submissions
 type rateLimiter struct {
 	mu       sync.RWMutex
@@ -141,6 +174,7 @@ func SubmitContactForm(c *gin.Context) {
 	// Send email via SendGrid
 	if err := sendEmail(subject, htmlContent, textContent); err != nil {
 		log.Printf("Failed to send contact email: %v", err)
+		logContactForm(req, "FAILED", err)
 		c.Status(http.StatusInternalServerError)
 		if err := components.ContactFormError("Failed to send your request. Please try again or email us directly at hello@robustest.com").Render(c.Request.Context(), c.Writer); err != nil {
 			log.Printf("Error rendering email error response: %v", err)
@@ -150,6 +184,7 @@ func SubmitContactForm(c *gin.Context) {
 
 	log.Printf("Contact form submitted successfully: %s <%s>",
 		req.Name, req.Email)
+	logContactForm(req, "SUCCESS", nil)
 
 	// Send confirmation email to the sender
 	if err := sendConfirmationEmail(req); err != nil {
