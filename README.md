@@ -76,6 +76,8 @@ make release-all        # Create all platform releases
 - `PORT` - Server port (default: 3000)
 - `GIN_MODE` - Gin mode (debug/release, default: release)
 - `SENDGRID_API_KEY` - SendGrid API key for contact form
+- `FROM_EMAIL` - Sender email address (must be verified in SendGrid)
+- `CONTACT_EMAIL` - Email address to receive contact form submissions
 
 ## Pages
 
@@ -89,4 +91,4 @@ make release-all        # Create all platform releases
 
 ## License
 
-Copyright 2025 RobusTest. All rights reserved.
+Copyright 2026 RobusTest. All rights reserved.
