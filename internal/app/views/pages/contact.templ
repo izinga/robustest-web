@@ -3,12 +3,12 @@ package pages
 import "github.com/izinga/robustest-web/internal/app/views/layouts"
 
 templ ContactPage() {
-	@layouts.Base("Contact Us - Schedule a Consultation", "Get in touch with RobusTest for enterprise mobile device lab solutions. Schedule a consultation, get custom pricing, or speak with our mobile testing experts. Based in Hyderabad, India.", "/contact") {
+	@layouts.Base("Contact RobusTest - Get Enterprise Mobile Device Lab Quote", "Get in touch with RobusTest for enterprise mobile device lab solutions. Schedule a consultation, get custom pricing, or speak with our mobile testing experts. Based in Hyderabad, India.", "/contact") {
 		<!-- Hero Section -->
 		<section class="pt-28 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white py-20">
 			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 				<div class="max-w-3xl">
-					<h1 class="text-4xl md:text-5xl font-bold mb-6">Contact RobusTest - Schedule a Consultation</h1>
+					<h1 class="text-4xl md:text-5xl font-bold mb-6">Contact RobusTest</h1>
 					<p class="text-xl text-gray-300 leading-relaxed">
 						Ready to take control of your mobile testing? Let's discuss how RobusTest can work for your organization.
 					</p>
@@ -21,7 +21,7 @@ templ ContactPage() {
 				<div class="grid md:grid-cols-2 gap-12">
 					<!-- Contact Form -->
 					<div>
-						<h2 class="text-2xl font-bold text-gray-900 mb-6">Schedule a Consultation</h2>
+						<h2 class="text-2xl font-bold text-gray-900 mb-6">Drop Us a Note</h2>
 						<div id="contact-form-container" role="region" aria-live="polite" aria-label="Contact form">
 							<form
 								class="space-y-6"
@@ -32,37 +32,20 @@ templ ContactPage() {
 								hx-swap="innerHTML"
 								hx-indicator="#submit-indicator"
 							>
-								<div class="grid md:grid-cols-2 gap-4">
-									<div>
-										<label for="firstName" class="block text-sm font-medium text-gray-700 mb-1">
-											First Name <span class="text-red-500" aria-hidden="true">*</span>
-											<span class="sr-only">(required)</span>
-										</label>
-										<input
-											type="text"
-											id="firstName"
-											name="firstName"
-											required
-											aria-required="true"
-											autocomplete="given-name"
-											class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500"
-										/>
-									</div>
-									<div>
-										<label for="lastName" class="block text-sm font-medium text-gray-700 mb-1">
-											Last Name <span class="text-red-500" aria-hidden="true">*</span>
-											<span class="sr-only">(required)</span>
-										</label>
-										<input
-											type="text"
-											id="lastName"
-											name="lastName"
-											required
-											aria-required="true"
-											autocomplete="family-name"
-											class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500"
-										/>
-									</div>
+								<div>
+									<label for="name" class="block text-sm font-medium text-gray-700 mb-1">
+										Name <span class="text-red-500" aria-hidden="true">*</span>
+										<span class="sr-only">(required)</span>
+									</label>
+									<input
+										type="text"
+										id="name"
+										name="name"
+										required
+										aria-required="true"
+										autocomplete="name"
+										class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500"
+									/>
 								</div>
 								<div>
 									<label for="email" class="block text-sm font-medium text-gray-700 mb-1">
@@ -81,15 +64,12 @@ templ ContactPage() {
 								</div>
 								<div>
 									<label for="company" class="block text-sm font-medium text-gray-700 mb-1">
-										Company <span class="text-red-500" aria-hidden="true">*</span>
-										<span class="sr-only">(required)</span>
+										Company
 									</label>
 									<input
 										type="text"
 										id="company"
 										name="company"
-										required
-										aria-required="true"
 										autocomplete="organization"
 										class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500"
 									/>
@@ -104,22 +84,12 @@ templ ContactPage() {
 										class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500"
 									/>
 								</div>
-								<div>
-									<label for="devices" class="block text-sm font-medium text-gray-700 mb-1">Number of Devices Needed</label>
-									<select id="devices" name="devices" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500">
-										<option value="">Select range</option>
-										<option value="1-10">1-10 devices</option>
-										<option value="11-50">11-50 devices</option>
-										<option value="51-100">51-100 devices</option>
-										<option value="100+">100+ devices</option>
-									</select>
-								</div>
-								<div>
-									<label for="message" class="block text-sm font-medium text-gray-700 mb-1">Tell us about your requirements</label>
+									<div>
+									<label for="message" class="block text-sm font-medium text-gray-700 mb-1">Want to share something else?</label>
 									<textarea id="message" name="message" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500"></textarea>
 								</div>
 								<button type="submit" class="w-full bg-cyan-500 text-white px-6 py-4 rounded-lg font-semibold hover:bg-cyan-600 transition-colors flex items-center justify-center gap-2">
-									<span>Schedule Consultation</span>
+									<span>Contact Me</span>
 									<span id="submit-indicator" class="htmx-indicator" role="status" aria-live="polite">
 										<svg class="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true">
 											<circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>

@@ -71,17 +71,15 @@ templ Base(title string, description string, currentPath string) {
 			<meta property="og:url" content={ "https://robustest.com" + currentPath }/>
 			<meta property="og:title" content={ title + " | RobusTest" }/>
 			<meta property="og:description" content={ description }/>
-			<meta property="og:image" content="https://robustest.com/assets/images/og-image.png"/>
-			<meta property="og:image:width" content="1200"/>
-			<meta property="og:image:height" content="630"/>
+			<meta property="og:image" content="https://robustest.com/assets/images/logo.png"/>
 			<meta property="og:site_name" content="RobusTest"/>
 			<meta property="og:locale" content="en_US"/>
 			<!-- Twitter Card -->
-			<meta name="twitter:card" content="summary_large_image"/>
+			<meta name="twitter:card" content="summary"/>
 			<meta name="twitter:url" content={ "https://robustest.com" + currentPath }/>
 			<meta name="twitter:title" content={ title + " | RobusTest" }/>
 			<meta name="twitter:description" content={ description }/>
-			<meta name="twitter:image" content="https://robustest.com/assets/images/twitter-card.png"/>
+			<meta name="twitter:image" content="https://robustest.com/assets/images/logo.png"/>
 			<link rel="icon" type="image/png" href="/assets/images/favicon.png"/>
 			<link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png"/>
 			<link rel="stylesheet" href="/assets/css/app.css"/>
@@ -145,7 +143,7 @@ templ Header(currentPath string) {
 			<div class="flex items-center justify-between h-16">
 				<!-- Logo -->
 				<a href="/" class="inline-flex items-center">
-					<img src="/assets/images/logo-full.avif" alt="RobusTest - Enterprise Mobile Device Lab" class="h-10 w-auto mt-1" width="160" height="40" loading="eager"/>
+					<img src="/assets/images/logo-full.avif" alt="RobusTest - Enterprise Mobile Device Lab" class="h-6 w-auto" width="96" height="24" loading="eager"/>
 				</a>
 				<!-- Desktop Navigation -->
 				<div class="hidden md:flex items-center space-x-8">
@@ -193,8 +191,8 @@ templ Header(currentPath string) {
 					>Contact</a>
 				</div>
 				<!-- CTA Button -->
-				<div class="hidden md:flex items-center">
-					<a href="/contact" class="bg-cyan-500 text-white px-5 py-2 rounded-lg font-semibold hover:bg-cyan-600 transition-colors">
+				<div id="header-cta" class="hidden md:flex items-center">
+					<a href="/contact" class="bg-cyan-500 text-white px-5 py-2 rounded-lg font-semibold hover:bg-cyan-600 transition-all">
 						Schedule Consultation
 					</a>
 				</div>

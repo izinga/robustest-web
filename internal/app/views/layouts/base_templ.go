@@ -158,14 +158,14 @@ func Base(title string, description string, currentPath string) templ.Component 
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "\"><meta property=\"og:image\" content=\"https://robustest.com/assets/images/og-image.png\"><meta property=\"og:image:width\" content=\"1200\"><meta property=\"og:image:height\" content=\"630\"><meta property=\"og:site_name\" content=\"RobusTest\"><meta property=\"og:locale\" content=\"en_US\"><!-- Twitter Card --><meta name=\"twitter:card\" content=\"summary_large_image\"><meta name=\"twitter:url\" content=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "\"><meta property=\"og:image\" content=\"https://robustest.com/assets/images/logo.png\"><meta property=\"og:site_name\" content=\"RobusTest\"><meta property=\"og:locale\" content=\"en_US\"><!-- Twitter Card --><meta name=\"twitter:card\" content=\"summary\"><meta name=\"twitter:url\" content=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var8 string
 		templ_7745c5c3_Var8, templ_7745c5c3_Err = templ.JoinStringErrs("https://robustest.com" + currentPath)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/layouts/base.templ`, Line: 81, Col: 75}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/layouts/base.templ`, Line: 79, Col: 75}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var8))
 		if templ_7745c5c3_Err != nil {
@@ -178,7 +178,7 @@ func Base(title string, description string, currentPath string) templ.Component 
 		var templ_7745c5c3_Var9 string
 		templ_7745c5c3_Var9, templ_7745c5c3_Err = templ.JoinStringErrs(title + " | RobusTest")
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/layouts/base.templ`, Line: 82, Col: 62}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/layouts/base.templ`, Line: 80, Col: 62}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var9))
 		if templ_7745c5c3_Err != nil {
@@ -191,13 +191,13 @@ func Base(title string, description string, currentPath string) templ.Component 
 		var templ_7745c5c3_Var10 string
 		templ_7745c5c3_Var10, templ_7745c5c3_Err = templ.JoinStringErrs(description)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/layouts/base.templ`, Line: 83, Col: 57}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/layouts/base.templ`, Line: 81, Col: 57}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var10))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "\"><meta name=\"twitter:image\" content=\"https://robustest.com/assets/images/twitter-card.png\"><link rel=\"icon\" type=\"image/png\" href=\"/assets/images/favicon.png\"><link rel=\"apple-touch-icon\" href=\"/assets/images/apple-touch-icon.png\"><link rel=\"stylesheet\" href=\"/assets/css/app.css\"><script src=\"/assets/js/htmx.min.js\"></script><!-- JSON-LD Structured Data - Organization --><script type=\"application/ld+json\">\n\t\t\t{\n\t\t\t\t\"@context\": \"https://schema.org\",\n\t\t\t\t\"@type\": \"Organization\",\n\t\t\t\t\"name\": \"RobusTest\",\n\t\t\t\t\"url\": \"https://robustest.com\",\n\t\t\t\t\"logo\": \"https://robustest.com/assets/images/logo-full.avif\",\n\t\t\t\t\"description\": \"Enterprise on-premise mobile device lab platform for iOS, Android, and Smart TV testing\",\n\t\t\t\t\"foundingDate\": \"2014\",\n\t\t\t\t\"address\": {\n\t\t\t\t\t\"@type\": \"PostalAddress\",\n\t\t\t\t\t\"streetAddress\": \"IIIT Hyderabad, Gachibowli\",\n\t\t\t\t\t\"addressLocality\": \"Hyderabad\",\n\t\t\t\t\t\"postalCode\": \"500032\",\n\t\t\t\t\t\"addressCountry\": \"IN\"\n\t\t\t\t},\n\t\t\t\t\"contactPoint\": {\n\t\t\t\t\t\"@type\": \"ContactPoint\",\n\t\t\t\t\t\"email\": \"hello@robustest.com\",\n\t\t\t\t\t\"contactType\": \"sales\"\n\t\t\t\t},\n\t\t\t\t\"sameAs\": [\n\t\t\t\t\t\"https://www.linkedin.com/company/robustest/\"\n\t\t\t\t]\n\t\t\t}\n\t\t\t</script><!-- JSON-LD Structured Data - WebPage --><script type=\"application/ld+json\">\n\t\t\t\t@templ.Raw(webPageSchemaJSON(title, description, currentPath))\n\t\t\t</script><!-- JSON-LD Structured Data - BreadcrumbList -->")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "\"><meta name=\"twitter:image\" content=\"https://robustest.com/assets/images/logo.png\"><link rel=\"icon\" type=\"image/png\" href=\"/assets/images/favicon.png\"><link rel=\"apple-touch-icon\" href=\"/assets/images/apple-touch-icon.png\"><link rel=\"stylesheet\" href=\"/assets/css/app.css\"><script src=\"/assets/js/htmx.min.js\"></script><!-- JSON-LD Structured Data - Organization --><script type=\"application/ld+json\">\n\t\t\t{\n\t\t\t\t\"@context\": \"https://schema.org\",\n\t\t\t\t\"@type\": \"Organization\",\n\t\t\t\t\"name\": \"RobusTest\",\n\t\t\t\t\"url\": \"https://robustest.com\",\n\t\t\t\t\"logo\": \"https://robustest.com/assets/images/logo-full.avif\",\n\t\t\t\t\"description\": \"Enterprise on-premise mobile device lab platform for iOS, Android, and Smart TV testing\",\n\t\t\t\t\"foundingDate\": \"2014\",\n\t\t\t\t\"address\": {\n\t\t\t\t\t\"@type\": \"PostalAddress\",\n\t\t\t\t\t\"streetAddress\": \"IIIT Hyderabad, Gachibowli\",\n\t\t\t\t\t\"addressLocality\": \"Hyderabad\",\n\t\t\t\t\t\"postalCode\": \"500032\",\n\t\t\t\t\t\"addressCountry\": \"IN\"\n\t\t\t\t},\n\t\t\t\t\"contactPoint\": {\n\t\t\t\t\t\"@type\": \"ContactPoint\",\n\t\t\t\t\t\"email\": \"hello@robustest.com\",\n\t\t\t\t\t\"contactType\": \"sales\"\n\t\t\t\t},\n\t\t\t\t\"sameAs\": [\n\t\t\t\t\t\"https://www.linkedin.com/company/robustest/\"\n\t\t\t\t]\n\t\t\t}\n\t\t\t</script><!-- JSON-LD Structured Data - WebPage --><script type=\"application/ld+json\">\n\t\t\t\t@templ.Raw(webPageSchemaJSON(title, description, currentPath))\n\t\t\t</script><!-- JSON-LD Structured Data - BreadcrumbList -->")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -260,7 +260,7 @@ func Header(currentPath string) templ.Component {
 			templ_7745c5c3_Var11 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 16, "<header role=\"banner\" class=\"fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100\"><nav role=\"navigation\" aria-label=\"Main navigation\" class=\"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8\"><div class=\"flex items-center justify-between h-16\"><!-- Logo --><a href=\"/\" class=\"inline-flex items-center\"><img src=\"/assets/images/logo-full.avif\" alt=\"RobusTest - Enterprise Mobile Device Lab\" class=\"h-10 w-auto mt-1\" width=\"160\" height=\"40\" loading=\"eager\"></a><!-- Desktop Navigation --><div class=\"hidden md:flex items-center space-x-8\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 16, "<header role=\"banner\" class=\"fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100\"><nav role=\"navigation\" aria-label=\"Main navigation\" class=\"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8\"><div class=\"flex items-center justify-between h-16\"><!-- Logo --><a href=\"/\" class=\"inline-flex items-center\"><img src=\"/assets/images/logo-full.avif\" alt=\"RobusTest - Enterprise Mobile Device Lab\" class=\"h-6 w-auto\" width=\"96\" height=\"24\" loading=\"eager\"></a><!-- Desktop Navigation --><div class=\"hidden md:flex items-center space-x-8\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -452,7 +452,7 @@ func Header(currentPath string) templ.Component {
 				return templ_7745c5c3_Err
 			}
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 40, ">Contact</a></div><!-- CTA Button --><div class=\"hidden md:flex items-center\"><a href=\"/contact\" class=\"bg-cyan-500 text-white px-5 py-2 rounded-lg font-semibold hover:bg-cyan-600 transition-colors\">Schedule Consultation</a></div><!-- Mobile menu button --><button type=\"button\" class=\"md:hidden p-2 text-gray-600\" id=\"mobile-menu-btn\" aria-label=\"Toggle navigation menu\" aria-expanded=\"false\" aria-controls=\"mobile-menu\"><svg class=\"w-6 h-6\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\" aria-hidden=\"true\" focusable=\"false\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M4 6h16M4 12h16M4 18h16\"></path></svg></button></div><!-- Mobile Navigation --><div class=\"md:hidden hidden py-4 border-t border-gray-100\" id=\"mobile-menu\" role=\"menu\"><div class=\"flex flex-col space-y-4\"><a href=\"/\" class=\"text-gray-600 hover:text-cyan-600 font-medium\" role=\"menuitem\">Home</a> <a href=\"/features\" class=\"text-gray-600 hover:text-cyan-600 font-medium\" role=\"menuitem\">Features</a> <a href=\"/pricing\" class=\"text-gray-600 hover:text-cyan-600 font-medium\" role=\"menuitem\">Pricing</a> <a href=\"/security\" class=\"text-gray-600 hover:text-cyan-600 font-medium\" role=\"menuitem\">Security</a> <a href=\"/about\" class=\"text-gray-600 hover:text-cyan-600 font-medium\" role=\"menuitem\">About</a> <a href=\"/contact\" class=\"text-gray-600 hover:text-cyan-600 font-medium\" role=\"menuitem\">Contact</a> <a href=\"/contact\" class=\"bg-cyan-500 text-white px-5 py-2 rounded-lg font-semibold hover:bg-cyan-600 transition-colors text-center\" role=\"menuitem\">Schedule Consultation</a></div></div></nav></header>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 40, ">Contact</a></div><!-- CTA Button --><div id=\"header-cta\" class=\"hidden md:flex items-center\"><a href=\"/contact\" class=\"bg-cyan-500 text-white px-5 py-2 rounded-lg font-semibold hover:bg-cyan-600 transition-all\">Schedule Consultation</a></div><!-- Mobile menu button --><button type=\"button\" class=\"md:hidden p-2 text-gray-600\" id=\"mobile-menu-btn\" aria-label=\"Toggle navigation menu\" aria-expanded=\"false\" aria-controls=\"mobile-menu\"><svg class=\"w-6 h-6\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\" aria-hidden=\"true\" focusable=\"false\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M4 6h16M4 12h16M4 18h16\"></path></svg></button></div><!-- Mobile Navigation --><div class=\"md:hidden hidden py-4 border-t border-gray-100\" id=\"mobile-menu\" role=\"menu\"><div class=\"flex flex-col space-y-4\"><a href=\"/\" class=\"text-gray-600 hover:text-cyan-600 font-medium\" role=\"menuitem\">Home</a> <a href=\"/features\" class=\"text-gray-600 hover:text-cyan-600 font-medium\" role=\"menuitem\">Features</a> <a href=\"/pricing\" class=\"text-gray-600 hover:text-cyan-600 font-medium\" role=\"menuitem\">Pricing</a> <a href=\"/security\" class=\"text-gray-600 hover:text-cyan-600 font-medium\" role=\"menuitem\">Security</a> <a href=\"/about\" class=\"text-gray-600 hover:text-cyan-600 font-medium\" role=\"menuitem\">About</a> <a href=\"/contact\" class=\"text-gray-600 hover:text-cyan-600 font-medium\" role=\"menuitem\">Contact</a> <a href=\"/contact\" class=\"bg-cyan-500 text-white px-5 py-2 rounded-lg font-semibold hover:bg-cyan-600 transition-colors text-center\" role=\"menuitem\">Schedule Consultation</a></div></div></nav></header>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -492,7 +492,7 @@ func Footer() templ.Component {
 		var templ_7745c5c3_Var25 string
 		templ_7745c5c3_Var25, templ_7745c5c3_Err = templ.JoinStringErrs(currentYear())
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/layouts/base.templ`, Line: 313, Col: 23}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/layouts/base.templ`, Line: 311, Col: 23}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var25))
 		if templ_7745c5c3_Err != nil {

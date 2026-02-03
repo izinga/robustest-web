@@ -49,7 +49,7 @@ func SecurityPage() templ.Component {
 			}
 			return nil
 		})
-		templ_7745c5c3_Err = layouts.Base("Enterprise Mobile Testing Security", "Enterprise-grade security for mobile device labs. 100% on-premise deployment, air-gapped support, SOC2 and HIPAA compliance. Your test data never leaves your network.", "/security").Render(templ.WithChildren(ctx, templ_7745c5c3_Var2), templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = layouts.Base("Enterprise Mobile Testing Security - On-Premise, Air-Gapped, SOC2 Compliant", "Enterprise-grade security for mobile device labs. 100% on-premise deployment, air-gapped support, SOC2 and HIPAA compliance. Your test data never leaves your network.", "/security").Render(templ.WithChildren(ctx, templ_7745c5c3_Var2), templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
