@@ -424,11 +424,16 @@ templ HomePage() {
 			],
 			"offers": {
 				"@type": "Offer",
-				"price": "0",
-				"priceCurrency": "USD",
 				"availability": "https://schema.org/InStock",
-				"priceValidUntil": "2026-12-31",
-				"description": "Custom enterprise pricing - contact for quote"
+				"priceSpecification": {
+					"@type": "PriceSpecification",
+					"priceCurrency": "USD",
+					"eligibleQuantity": {
+						"@type": "QuantitativeValue",
+						"unitText": "device"
+					}
+				},
+				"description": "Custom enterprise pricing based on device count - contact for quote"
 			},
 			"provider": {
 				"@type": "Organization",
