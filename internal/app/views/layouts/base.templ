@@ -7,7 +7,7 @@ import (
 )
 
 // Helper functions for JSON-LD schema generation
-func webPageSchemaJSON(title, description, currentPath string) string {
+func webPageSchemaScript(title, description, currentPath string) string {
 	schema := map[string]interface{}{
 		"@context":    "https://schema.org",
 		"@type":       "WebPage",
@@ -25,10 +25,10 @@ func webPageSchemaJSON(title, description, currentPath string) string {
 		},
 	}
 	b, _ := json.Marshal(schema)
-	return string(b)
+	return `<script type="application/ld+json">` + string(b) + `</script>`
 }
 
-func breadcrumbSchemaJSON(title, currentPath string) string {
+func breadcrumbSchemaScript(title, currentPath string) string {
 	schema := map[string]interface{}{
 		"@context": "https://schema.org",
 		"@type":    "BreadcrumbList",
@@ -48,7 +48,7 @@ func breadcrumbSchemaJSON(title, currentPath string) string {
 		},
 	}
 	b, _ := json.Marshal(schema)
-	return string(b)
+	return `<script type="application/ld+json">` + string(b) + `</script>`
 }
 
 templ Base(title string, description string, currentPath string) {
@@ -111,15 +111,43 @@ templ Base(title string, description string, currentPath string) {
 				]
 			}
 			</script>
-			<!-- JSON-LD Structured Data - WebPage -->
+			<!-- JSON-LD Structured Data - LocalBusiness -->
 			<script type="application/ld+json">
-				@templ.Raw(webPageSchemaJSON(title, description, currentPath))
+			{
+				"@context": "https://schema.org",
+				"@type": "LocalBusiness",
+				"name": "RobusTest",
+				"image": "https://robustest.com/assets/images/logo-full.avif",
+				"url": "https://robustest.com",
+				"telephone": "",
+				"email": "hello@robustest.com",
+				"address": {
+					"@type": "PostalAddress",
+					"streetAddress": "IIIT Hyderabad, Gachibowli",
+					"addressLocality": "Hyderabad",
+					"addressRegion": "Telangana",
+					"postalCode": "500032",
+					"addressCountry": "IN"
+				},
+				"geo": {
+					"@type": "GeoCoordinates",
+					"latitude": 17.4474,
+					"longitude": 78.3491
+				},
+				"openingHoursSpecification": {
+					"@type": "OpeningHoursSpecification",
+					"dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+					"opens": "09:00",
+					"closes": "18:00"
+				},
+				"priceRange": "$$$$"
+			}
 			</script>
+			<!-- JSON-LD Structured Data - WebPage -->
+			@templ.Raw(webPageSchemaScript(title, description, currentPath))
 			<!-- JSON-LD Structured Data - BreadcrumbList -->
 			if currentPath != "/" {
-				<script type="application/ld+json">
-					@templ.Raw(breadcrumbSchemaJSON(title, currentPath))
-				</script>
+				@templ.Raw(breadcrumbSchemaScript(title, currentPath))
 			}
 		</head>
 		<body class="bg-white text-gray-900">

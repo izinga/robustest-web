@@ -3,7 +3,7 @@ module github.com/izinga/robustest-web
 go 1.23.0
 
 require (
-	github.com/a-h/templ v0.3.960
+	github.com/a-h/templ v0.3.977
 	github.com/gin-gonic/gin v1.9.1
 	github.com/joho/godotenv v1.5.1
 	github.com/sendgrid/sendgrid-go v3.14.0+incompatible
