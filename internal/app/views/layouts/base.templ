@@ -91,7 +91,7 @@ templ Base(title string, description string, currentPath string) {
 				"@type": "Organization",
 				"name": "RobusTest",
 				"url": "https://robustest.com",
-				"logo": "https://robustest.com/assets/images/logo-full.avif",
+				"logo": "https://robustest.com/assets/images/logo-full.png",
 				"description": "Enterprise on-premise mobile device lab platform for iOS, Android, and Smart TV testing",
 				"foundingDate": "2014",
 				"address": {
@@ -143,7 +143,10 @@ templ Header(currentPath string) {
 			<div class="flex items-center justify-between h-16">
 				<!-- Logo -->
 				<a href="/" class="inline-flex items-center">
-					<img src="/assets/images/logo-full.avif" alt="RobusTest - Enterprise Mobile Device Lab" class="h-6 w-auto" width="96" height="24" loading="eager"/>
+					<picture>
+						<source srcset="/assets/images/logo-full.avif" type="image/avif"/>
+						<img src="/assets/images/logo-full.png" alt="RobusTest - Enterprise Mobile Device Lab" class="h-6 w-auto" width="96" height="24" loading="eager"/>
+					</picture>
 				</a>
 				<!-- Desktop Navigation -->
 				<div class="hidden md:flex items-center space-x-8">
