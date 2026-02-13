@@ -19,7 +19,7 @@ func webPageSchemaScript(title, description, currentPath string) string {
 	schema := map[string]interface{}{
 		"@context":    "https://schema.org",
 		"@type":       "WebPage",
-		"name":        title + " | RobusTest",
+		"name":        "RobusTest",
 		"description": description,
 		"url":         "https://robustest.com" + currentPath,
 		"isPartOf": map[string]string{
@@ -80,124 +80,85 @@ func Base(title string, description string, currentPath string) templ.Component 
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<!doctype html><html lang=\"en\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><title>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<!doctype html><html lang=\"en\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><title>RobusTest</title><meta name=\"description\" content=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var2 string
-		templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.JoinStringErrs(title)
+		templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.JoinStringErrs(description)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/layouts/base.templ`, Line: 60, Col: 17}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/layouts/base.templ`, Line: 61, Col: 49}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var2))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, " | RobusTest</title><meta name=\"description\" content=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "\"><meta name=\"robots\" content=\"index, follow\"><meta name=\"author\" content=\"RobusTest\"><meta name=\"theme-color\" content=\"#06B6D4\"><link rel=\"canonical\" href=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var3 string
-		templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(description)
+		var templ_7745c5c3_Var3 templ.SafeURL
+		templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinURLErrs("https://robustest.com" + currentPath)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/layouts/base.templ`, Line: 61, Col: 49}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/layouts/base.templ`, Line: 65, Col: 69}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "\"><meta name=\"robots\" content=\"index, follow\"><meta name=\"author\" content=\"RobusTest\"><meta name=\"theme-color\" content=\"#06B6D4\"><link rel=\"canonical\" href=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "\"><!-- Preconnect for performance --><link rel=\"preconnect\" href=\"https://images.unsplash.com\"><link rel=\"dns-prefetch\" href=\"https://images.unsplash.com\"><!-- Open Graph / Facebook --><meta property=\"og:type\" content=\"website\"><meta property=\"og:url\" content=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var4 templ.SafeURL
-		templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinURLErrs("https://robustest.com" + currentPath)
+		var templ_7745c5c3_Var4 string
+		templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinStringErrs("https://robustest.com" + currentPath)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/layouts/base.templ`, Line: 65, Col: 69}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/layouts/base.templ`, Line: 71, Col: 74}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var4))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "\"><!-- Preconnect for performance --><link rel=\"preconnect\" href=\"https://images.unsplash.com\"><link rel=\"dns-prefetch\" href=\"https://images.unsplash.com\"><!-- Open Graph / Facebook --><meta property=\"og:type\" content=\"website\"><meta property=\"og:url\" content=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "\"><meta property=\"og:title\" content=\"RobusTest\"><meta property=\"og:description\" content=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var5 string
-		templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs("https://robustest.com" + currentPath)
+		templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(description)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/layouts/base.templ`, Line: 71, Col: 74}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/layouts/base.templ`, Line: 73, Col: 56}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "\"><meta property=\"og:title\" content=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "\"><meta property=\"og:image\" content=\"https://robustest.com/assets/images/logo.png\"><meta property=\"og:site_name\" content=\"RobusTest\"><meta property=\"og:locale\" content=\"en_US\"><!-- Twitter Card --><meta name=\"twitter:card\" content=\"summary\"><meta name=\"twitter:url\" content=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var6 string
-		templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinStringErrs(title + " | RobusTest")
+		templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinStringErrs("https://robustest.com" + currentPath)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/layouts/base.templ`, Line: 72, Col: 61}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/layouts/base.templ`, Line: 79, Col: 75}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var6))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "\"><meta property=\"og:description\" content=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "\"><meta name=\"twitter:title\" content=\"RobusTest\"><meta name=\"twitter:description\" content=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var7 string
 		templ_7745c5c3_Var7, templ_7745c5c3_Err = templ.JoinStringErrs(description)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/layouts/base.templ`, Line: 73, Col: 56}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/layouts/base.templ`, Line: 81, Col: 57}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var7))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "\"><meta property=\"og:image\" content=\"https://robustest.com/assets/images/logo.png\"><meta property=\"og:site_name\" content=\"RobusTest\"><meta property=\"og:locale\" content=\"en_US\"><!-- Twitter Card --><meta name=\"twitter:card\" content=\"summary\"><meta name=\"twitter:url\" content=\"")
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		var templ_7745c5c3_Var8 string
-		templ_7745c5c3_Var8, templ_7745c5c3_Err = templ.JoinStringErrs("https://robustest.com" + currentPath)
-		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/layouts/base.templ`, Line: 79, Col: 75}
-		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var8))
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "\"><meta name=\"twitter:title\" content=\"")
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		var templ_7745c5c3_Var9 string
-		templ_7745c5c3_Var9, templ_7745c5c3_Err = templ.JoinStringErrs(title + " | RobusTest")
-		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/layouts/base.templ`, Line: 80, Col: 62}
-		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var9))
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 9, "\"><meta name=\"twitter:description\" content=\"")
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		var templ_7745c5c3_Var10 string
-		templ_7745c5c3_Var10, templ_7745c5c3_Err = templ.JoinStringErrs(description)
-		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/layouts/base.templ`, Line: 81, Col: 57}
-		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var10))
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "\"><meta name=\"twitter:image\" content=\"https://robustest.com/assets/images/logo.png\"><link rel=\"icon\" type=\"image/png\" href=\"/assets/images/favicon.png\"><link rel=\"apple-touch-icon\" href=\"/assets/images/apple-touch-icon.png\"><link rel=\"stylesheet\" href=\"/assets/css/app.css\"><script src=\"/assets/js/htmx.min.js\"></script><!-- JSON-LD Structured Data - Organization --><script type=\"application/ld+json\">\n\t\t\t{\n\t\t\t\t\"@context\": \"https://schema.org\",\n\t\t\t\t\"@type\": \"Organization\",\n\t\t\t\t\"name\": \"RobusTest\",\n\t\t\t\t\"url\": \"https://robustest.com\",\n\t\t\t\t\"logo\": \"https://robustest.com/assets/images/logo-full.png\",\n\t\t\t\t\"description\": \"Enterprise on-premise mobile device lab platform for iOS, Android, and Smart TV testing\",\n\t\t\t\t\"foundingDate\": \"2014\",\n\t\t\t\t\"address\": {\n\t\t\t\t\t\"@type\": \"PostalAddress\",\n\t\t\t\t\t\"streetAddress\": \"IIIT Hyderabad, Gachibowli\",\n\t\t\t\t\t\"addressLocality\": \"Hyderabad\",\n\t\t\t\t\t\"postalCode\": \"500032\",\n\t\t\t\t\t\"addressCountry\": \"IN\"\n\t\t\t\t},\n\t\t\t\t\"contactPoint\": {\n\t\t\t\t\t\"@type\": \"ContactPoint\",\n\t\t\t\t\t\"email\": \"hello@robustest.com\",\n\t\t\t\t\t\"contactType\": \"sales\"\n\t\t\t\t},\n\t\t\t\t\"sameAs\": [\n\t\t\t\t\t\"https://www.linkedin.com/company/robustest/\"\n\t\t\t\t]\n\t\t\t}\n\t\t\t</script><!-- JSON-LD Structured Data - LocalBusiness --><script type=\"application/ld+json\">\n\t\t\t{\n\t\t\t\t\"@context\": \"https://schema.org\",\n\t\t\t\t\"@type\": \"LocalBusiness\",\n\t\t\t\t\"name\": \"RobusTest\",\n\t\t\t\t\"image\": \"https://robustest.com/assets/images/logo-full.avif\",\n\t\t\t\t\"url\": \"https://robustest.com\",\n\t\t\t\t\"telephone\": \"\",\n\t\t\t\t\"email\": \"hello@robustest.com\",\n\t\t\t\t\"address\": {\n\t\t\t\t\t\"@type\": \"PostalAddress\",\n\t\t\t\t\t\"streetAddress\": \"IIIT Hyderabad, Gachibowli\",\n\t\t\t\t\t\"addressLocality\": \"Hyderabad\",\n\t\t\t\t\t\"addressRegion\": \"Telangana\",\n\t\t\t\t\t\"postalCode\": \"500032\",\n\t\t\t\t\t\"addressCountry\": \"IN\"\n\t\t\t\t},\n\t\t\t\t\"geo\": {\n\t\t\t\t\t\"@type\": \"GeoCoordinates\",\n\t\t\t\t\t\"latitude\": 17.4474,\n\t\t\t\t\t\"longitude\": 78.3491\n\t\t\t\t},\n\t\t\t\t\"openingHoursSpecification\": {\n\t\t\t\t\t\"@type\": \"OpeningHoursSpecification\",\n\t\t\t\t\t\"dayOfWeek\": [\"Monday\", \"Tuesday\", \"Wednesday\", \"Thursday\", \"Friday\"],\n\t\t\t\t\t\"opens\": \"09:00\",\n\t\t\t\t\t\"closes\": \"18:00\"\n\t\t\t\t},\n\t\t\t\t\"priceRange\": \"$$$$\"\n\t\t\t}\n\t\t\t</script><!-- JSON-LD Structured Data - WebPage -->")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "\"><meta name=\"twitter:image\" content=\"https://robustest.com/assets/images/logo.png\"><link rel=\"icon\" type=\"image/png\" href=\"/assets/images/favicon.png\"><link rel=\"apple-touch-icon\" href=\"/assets/images/apple-touch-icon.png\"><link rel=\"stylesheet\" href=\"/assets/css/app.css\"><script src=\"/assets/js/htmx.min.js\"></script><!-- JSON-LD Structured Data - Organization --><script type=\"application/ld+json\">\n\t\t\t{\n\t\t\t\t\"@context\": \"https://schema.org\",\n\t\t\t\t\"@type\": \"Organization\",\n\t\t\t\t\"name\": \"RobusTest\",\n\t\t\t\t\"url\": \"https://robustest.com\",\n\t\t\t\t\"logo\": \"https://robustest.com/assets/images/logo-full.png\",\n\t\t\t\t\"description\": \"Enterprise on-premise mobile device lab platform for iOS, Android, and Smart TV testing\",\n\t\t\t\t\"foundingDate\": \"2014\",\n\t\t\t\t\"address\": {\n\t\t\t\t\t\"@type\": \"PostalAddress\",\n\t\t\t\t\t\"streetAddress\": \"IIIT Hyderabad, Gachibowli\",\n\t\t\t\t\t\"addressLocality\": \"Hyderabad\",\n\t\t\t\t\t\"postalCode\": \"500032\",\n\t\t\t\t\t\"addressCountry\": \"IN\"\n\t\t\t\t},\n\t\t\t\t\"contactPoint\": {\n\t\t\t\t\t\"@type\": \"ContactPoint\",\n\t\t\t\t\t\"email\": \"hello@robustest.com\",\n\t\t\t\t\t\"contactType\": \"sales\"\n\t\t\t\t},\n\t\t\t\t\"sameAs\": [\n\t\t\t\t\t\"https://www.linkedin.com/company/robustest/\"\n\t\t\t\t]\n\t\t\t}\n\t\t\t</script><!-- JSON-LD Structured Data - LocalBusiness --><script type=\"application/ld+json\">\n\t\t\t{\n\t\t\t\t\"@context\": \"https://schema.org\",\n\t\t\t\t\"@type\": \"LocalBusiness\",\n\t\t\t\t\"name\": \"RobusTest\",\n\t\t\t\t\"image\": \"https://robustest.com/assets/images/logo-full.avif\",\n\t\t\t\t\"url\": \"https://robustest.com\",\n\t\t\t\t\"telephone\": \"\",\n\t\t\t\t\"email\": \"hello@robustest.com\",\n\t\t\t\t\"address\": {\n\t\t\t\t\t\"@type\": \"PostalAddress\",\n\t\t\t\t\t\"streetAddress\": \"IIIT Hyderabad, Gachibowli\",\n\t\t\t\t\t\"addressLocality\": \"Hyderabad\",\n\t\t\t\t\t\"addressRegion\": \"Telangana\",\n\t\t\t\t\t\"postalCode\": \"500032\",\n\t\t\t\t\t\"addressCountry\": \"IN\"\n\t\t\t\t},\n\t\t\t\t\"geo\": {\n\t\t\t\t\t\"@type\": \"GeoCoordinates\",\n\t\t\t\t\t\"latitude\": 17.4474,\n\t\t\t\t\t\"longitude\": 78.3491\n\t\t\t\t},\n\t\t\t\t\"openingHoursSpecification\": {\n\t\t\t\t\t\"@type\": \"OpeningHoursSpecification\",\n\t\t\t\t\t\"dayOfWeek\": [\"Monday\", \"Tuesday\", \"Wednesday\", \"Thursday\", \"Friday\"],\n\t\t\t\t\t\"opens\": \"09:00\",\n\t\t\t\t\t\"closes\": \"18:00\"\n\t\t\t\t},\n\t\t\t\t\"priceRange\": \"$$$$\"\n\t\t\t}\n\t\t\t</script><!-- JSON-LD Structured Data - WebPage -->")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -205,7 +166,7 @@ func Base(title string, description string, currentPath string) templ.Component 
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 11, "<!-- JSON-LD Structured Data - BreadcrumbList -->")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "<!-- JSON-LD Structured Data - BreadcrumbList -->")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -215,7 +176,7 @@ func Base(title string, description string, currentPath string) templ.Component 
 				return templ_7745c5c3_Err
 			}
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 12, "</head><body class=\"bg-white text-gray-900\"><!-- Skip Navigation Link --><a href=\"#main-content\" class=\"sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[60] focus:bg-cyan-500 focus:text-white focus:px-4 focus:py-2 focus:rounded-lg focus:font-medium\">Skip to main content</a>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 9, "</head><body class=\"bg-white text-gray-900\"><!-- Skip Navigation Link --><a href=\"#main-content\" class=\"sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[60] focus:bg-cyan-500 focus:text-white focus:px-4 focus:py-2 focus:rounded-lg focus:font-medium\">Skip to main content</a>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -223,7 +184,7 @@ func Base(title string, description string, currentPath string) templ.Component 
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 13, "<main id=\"main-content\" tabindex=\"-1\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "<main id=\"main-content\" tabindex=\"-1\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -231,7 +192,7 @@ func Base(title string, description string, currentPath string) templ.Component 
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 14, "</main>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 11, "</main>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -239,7 +200,7 @@ func Base(title string, description string, currentPath string) templ.Component 
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 15, "<script src=\"/assets/js/app.js\"></script></body></html>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 12, "<script src=\"/assets/js/app.js\"></script></body></html>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -263,204 +224,204 @@ func Header(currentPath string) templ.Component {
 			}()
 		}
 		ctx = templ.InitializeContext(ctx)
-		templ_7745c5c3_Var11 := templ.GetChildren(ctx)
-		if templ_7745c5c3_Var11 == nil {
-			templ_7745c5c3_Var11 = templ.NopComponent
+		templ_7745c5c3_Var8 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var8 == nil {
+			templ_7745c5c3_Var8 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 16, "<header role=\"banner\" class=\"fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100\"><nav role=\"navigation\" aria-label=\"Main navigation\" class=\"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8\"><div class=\"flex items-center justify-between h-16\"><!-- Logo --><a href=\"/\" class=\"inline-flex items-center\"><picture><source srcset=\"/assets/images/logo-full.avif\" type=\"image/avif\"> <img src=\"/assets/images/logo-full.png\" alt=\"RobusTest - Enterprise Mobile Device Lab\" class=\"h-6 w-auto\" width=\"96\" height=\"24\" loading=\"eager\"></picture></a><!-- Desktop Navigation --><div class=\"hidden md:flex items-center space-x-8\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 13, "<header role=\"banner\" class=\"fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100\"><nav role=\"navigation\" aria-label=\"Main navigation\" class=\"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8\"><div class=\"flex items-center justify-between h-16\"><!-- Logo --><a href=\"/\" class=\"inline-flex items-center\"><picture><source srcset=\"/assets/images/logo-full.avif\" type=\"image/avif\"> <img src=\"/assets/images/logo-full.png\" alt=\"RobusTest\" class=\"h-6 w-auto\" width=\"96\" height=\"24\" loading=\"eager\"></picture></a><!-- Desktop Navigation --><div class=\"hidden md:flex items-center space-x-8\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var12 = []any{"font-medium transition-colors", templ.KV("text-cyan-600", currentPath == "/"), templ.KV("text-gray-600 hover:text-cyan-600", currentPath != "/")}
-		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var12...)
+		var templ_7745c5c3_Var9 = []any{"font-medium transition-colors", templ.KV("text-cyan-600", currentPath == "/"), templ.KV("text-gray-600 hover:text-cyan-600", currentPath != "/")}
+		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var9...)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 17, "<a href=\"/\" class=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 14, "<a href=\"/\" class=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var13 string
-		templ_7745c5c3_Var13, templ_7745c5c3_Err = templ.JoinStringErrs(templ.CSSClasses(templ_7745c5c3_Var12).String())
+		var templ_7745c5c3_Var10 string
+		templ_7745c5c3_Var10, templ_7745c5c3_Err = templ.JoinStringErrs(templ.CSSClasses(templ_7745c5c3_Var9).String())
 		if templ_7745c5c3_Err != nil {
 			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/layouts/base.templ`, Line: 1, Col: 0}
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var13))
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var10))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 18, "\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 15, "\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		if currentPath == "/" {
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 19, " aria-current=\"page\"")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 16, " aria-current=\"page\"")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 20, ">Home</a> ")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 17, ">Home</a> ")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var14 = []any{"font-medium transition-colors", templ.KV("text-cyan-600", currentPath == "/features"), templ.KV("text-gray-600 hover:text-cyan-600", currentPath != "/features")}
-		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var14...)
+		var templ_7745c5c3_Var11 = []any{"font-medium transition-colors", templ.KV("text-cyan-600", currentPath == "/features"), templ.KV("text-gray-600 hover:text-cyan-600", currentPath != "/features")}
+		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var11...)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 21, "<a href=\"/features\" class=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 18, "<a href=\"/features\" class=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var15 string
-		templ_7745c5c3_Var15, templ_7745c5c3_Err = templ.JoinStringErrs(templ.CSSClasses(templ_7745c5c3_Var14).String())
+		var templ_7745c5c3_Var12 string
+		templ_7745c5c3_Var12, templ_7745c5c3_Err = templ.JoinStringErrs(templ.CSSClasses(templ_7745c5c3_Var11).String())
 		if templ_7745c5c3_Err != nil {
 			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/layouts/base.templ`, Line: 1, Col: 0}
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var15))
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var12))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 22, "\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 19, "\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		if currentPath == "/features" {
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 23, " aria-current=\"page\"")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 20, " aria-current=\"page\"")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 24, ">Features</a> ")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 21, ">Features</a> ")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var16 = []any{"font-medium transition-colors", templ.KV("text-cyan-600", currentPath == "/pricing"), templ.KV("text-gray-600 hover:text-cyan-600", currentPath != "/pricing")}
-		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var16...)
+		var templ_7745c5c3_Var13 = []any{"font-medium transition-colors", templ.KV("text-cyan-600", currentPath == "/pricing"), templ.KV("text-gray-600 hover:text-cyan-600", currentPath != "/pricing")}
+		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var13...)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 25, "<a href=\"/pricing\" class=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 22, "<a href=\"/pricing\" class=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var17 string
-		templ_7745c5c3_Var17, templ_7745c5c3_Err = templ.JoinStringErrs(templ.CSSClasses(templ_7745c5c3_Var16).String())
+		var templ_7745c5c3_Var14 string
+		templ_7745c5c3_Var14, templ_7745c5c3_Err = templ.JoinStringErrs(templ.CSSClasses(templ_7745c5c3_Var13).String())
 		if templ_7745c5c3_Err != nil {
 			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/layouts/base.templ`, Line: 1, Col: 0}
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var17))
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var14))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 26, "\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 23, "\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		if currentPath == "/pricing" {
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 27, " aria-current=\"page\"")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 24, " aria-current=\"page\"")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 28, ">Pricing</a> ")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 25, ">Pricing</a> ")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var18 = []any{"font-medium transition-colors", templ.KV("text-cyan-600", currentPath == "/security"), templ.KV("text-gray-600 hover:text-cyan-600", currentPath != "/security")}
-		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var18...)
+		var templ_7745c5c3_Var15 = []any{"font-medium transition-colors", templ.KV("text-cyan-600", currentPath == "/security"), templ.KV("text-gray-600 hover:text-cyan-600", currentPath != "/security")}
+		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var15...)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 29, "<a href=\"/security\" class=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 26, "<a href=\"/security\" class=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var19 string
-		templ_7745c5c3_Var19, templ_7745c5c3_Err = templ.JoinStringErrs(templ.CSSClasses(templ_7745c5c3_Var18).String())
+		var templ_7745c5c3_Var16 string
+		templ_7745c5c3_Var16, templ_7745c5c3_Err = templ.JoinStringErrs(templ.CSSClasses(templ_7745c5c3_Var15).String())
 		if templ_7745c5c3_Err != nil {
 			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/layouts/base.templ`, Line: 1, Col: 0}
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var19))
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var16))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 30, "\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 27, "\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		if currentPath == "/security" {
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 31, " aria-current=\"page\"")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 28, " aria-current=\"page\"")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 32, ">Security</a> ")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 29, ">Security</a> ")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var20 = []any{"font-medium transition-colors", templ.KV("text-cyan-600", currentPath == "/about"), templ.KV("text-gray-600 hover:text-cyan-600", currentPath != "/about")}
-		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var20...)
+		var templ_7745c5c3_Var17 = []any{"font-medium transition-colors", templ.KV("text-cyan-600", currentPath == "/about"), templ.KV("text-gray-600 hover:text-cyan-600", currentPath != "/about")}
+		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var17...)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 33, "<a href=\"/about\" class=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 30, "<a href=\"/about\" class=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var21 string
-		templ_7745c5c3_Var21, templ_7745c5c3_Err = templ.JoinStringErrs(templ.CSSClasses(templ_7745c5c3_Var20).String())
+		var templ_7745c5c3_Var18 string
+		templ_7745c5c3_Var18, templ_7745c5c3_Err = templ.JoinStringErrs(templ.CSSClasses(templ_7745c5c3_Var17).String())
 		if templ_7745c5c3_Err != nil {
 			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/layouts/base.templ`, Line: 1, Col: 0}
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var21))
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var18))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 34, "\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 31, "\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		if currentPath == "/about" {
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 35, " aria-current=\"page\"")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 32, " aria-current=\"page\"")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 36, ">About</a> ")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 33, ">About</a> ")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var22 = []any{"font-medium transition-colors", templ.KV("text-cyan-600", currentPath == "/contact"), templ.KV("text-gray-600 hover:text-cyan-600", currentPath != "/contact")}
-		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var22...)
+		var templ_7745c5c3_Var19 = []any{"font-medium transition-colors", templ.KV("text-cyan-600", currentPath == "/contact"), templ.KV("text-gray-600 hover:text-cyan-600", currentPath != "/contact")}
+		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var19...)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 37, "<a href=\"/contact\" class=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 34, "<a href=\"/contact\" class=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var23 string
-		templ_7745c5c3_Var23, templ_7745c5c3_Err = templ.JoinStringErrs(templ.CSSClasses(templ_7745c5c3_Var22).String())
+		var templ_7745c5c3_Var20 string
+		templ_7745c5c3_Var20, templ_7745c5c3_Err = templ.JoinStringErrs(templ.CSSClasses(templ_7745c5c3_Var19).String())
 		if templ_7745c5c3_Err != nil {
 			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/layouts/base.templ`, Line: 1, Col: 0}
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var23))
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var20))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 38, "\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 35, "\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		if currentPath == "/contact" {
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 39, " aria-current=\"page\"")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 36, " aria-current=\"page\"")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 40, ">Contact</a></div><!-- CTA Button --><div id=\"header-cta\" class=\"hidden md:flex items-center\"><a href=\"/contact\" class=\"bg-cyan-500 text-white px-5 py-2 rounded-lg font-semibold hover:bg-cyan-600 transition-all\">Schedule Consultation</a></div><!-- Mobile menu button --><button type=\"button\" class=\"md:hidden p-2 text-gray-600\" id=\"mobile-menu-btn\" aria-label=\"Toggle navigation menu\" aria-expanded=\"false\" aria-controls=\"mobile-menu\"><svg class=\"w-6 h-6\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\" aria-hidden=\"true\" focusable=\"false\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M4 6h16M4 12h16M4 18h16\"></path></svg></button></div><!-- Mobile Navigation --><div class=\"md:hidden hidden py-4 border-t border-gray-100\" id=\"mobile-menu\" role=\"menu\"><div class=\"flex flex-col space-y-4\"><a href=\"/\" class=\"text-gray-600 hover:text-cyan-600 font-medium\" role=\"menuitem\">Home</a> <a href=\"/features\" class=\"text-gray-600 hover:text-cyan-600 font-medium\" role=\"menuitem\">Features</a> <a href=\"/pricing\" class=\"text-gray-600 hover:text-cyan-600 font-medium\" role=\"menuitem\">Pricing</a> <a href=\"/security\" class=\"text-gray-600 hover:text-cyan-600 font-medium\" role=\"menuitem\">Security</a> <a href=\"/about\" class=\"text-gray-600 hover:text-cyan-600 font-medium\" role=\"menuitem\">About</a> <a href=\"/contact\" class=\"text-gray-600 hover:text-cyan-600 font-medium\" role=\"menuitem\">Contact</a> <a href=\"/contact\" class=\"bg-cyan-500 text-white px-5 py-2 rounded-lg font-semibold hover:bg-cyan-600 transition-colors text-center\" role=\"menuitem\">Schedule Consultation</a></div></div></nav></header>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 37, ">Contact</a></div><!-- CTA Button --><div id=\"header-cta\" class=\"hidden md:flex items-center\"><a href=\"/contact\" class=\"bg-cyan-500 text-white px-5 py-2 rounded-lg font-semibold hover:bg-cyan-600 transition-all\">Schedule Consultation</a></div><!-- Mobile menu button --><button type=\"button\" class=\"md:hidden p-2 text-gray-600\" id=\"mobile-menu-btn\" aria-label=\"Toggle navigation menu\" aria-expanded=\"false\" aria-controls=\"mobile-menu\"><svg class=\"w-6 h-6\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\" aria-hidden=\"true\" focusable=\"false\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M4 6h16M4 12h16M4 18h16\"></path></svg></button></div><!-- Mobile Navigation --><div class=\"md:hidden hidden py-4 border-t border-gray-100\" id=\"mobile-menu\" role=\"menu\"><div class=\"flex flex-col space-y-4\"><a href=\"/\" class=\"text-gray-600 hover:text-cyan-600 font-medium\" role=\"menuitem\">Home</a> <a href=\"/features\" class=\"text-gray-600 hover:text-cyan-600 font-medium\" role=\"menuitem\">Features</a> <a href=\"/pricing\" class=\"text-gray-600 hover:text-cyan-600 font-medium\" role=\"menuitem\">Pricing</a> <a href=\"/security\" class=\"text-gray-600 hover:text-cyan-600 font-medium\" role=\"menuitem\">Security</a> <a href=\"/about\" class=\"text-gray-600 hover:text-cyan-600 font-medium\" role=\"menuitem\">About</a> <a href=\"/contact\" class=\"text-gray-600 hover:text-cyan-600 font-medium\" role=\"menuitem\">Contact</a> <a href=\"/contact\" class=\"bg-cyan-500 text-white px-5 py-2 rounded-lg font-semibold hover:bg-cyan-600 transition-colors text-center\" role=\"menuitem\">Schedule Consultation</a></div></div></nav></header>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -488,25 +449,25 @@ func Footer() templ.Component {
 			}()
 		}
 		ctx = templ.InitializeContext(ctx)
-		templ_7745c5c3_Var24 := templ.GetChildren(ctx)
-		if templ_7745c5c3_Var24 == nil {
-			templ_7745c5c3_Var24 = templ.NopComponent
+		templ_7745c5c3_Var21 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var21 == nil {
+			templ_7745c5c3_Var21 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 41, "<footer role=\"contentinfo\" class=\"bg-gray-900 text-gray-300\"><div class=\"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12\"><div class=\"grid grid-cols-2 md:grid-cols-6 gap-8\"><!-- Brand Column - spans 2 columns --><div class=\"col-span-2\"><a href=\"/\" class=\"inline-flex items-center gap-3 mb-4\"><img src=\"/assets/images/favicon.png\" alt=\"\" class=\"w-10 h-10\" width=\"40\" height=\"40\" loading=\"lazy\"> <span class=\"text-2xl font-bold\"><span class=\"text-cyan-400\">Robus</span><span class=\"text-white\">Test</span></span></a><p class=\"text-sm text-gray-300 mb-1\">Enterprise mobile device lab management.</p><p class=\"text-sm text-gray-300 mb-4\">Your devices, your data, your control.</p><a href=\"https://www.linkedin.com/company/robustest/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"inline-flex items-center gap-2 bg-cyan-500 hover:bg-cyan-600 text-white px-4 py-2 rounded-lg transition-colors\" aria-label=\"Follow RobusTest on LinkedIn (opens in new window)\"><svg class=\"w-5 h-5\" fill=\"currentColor\" viewBox=\"0 0 24 24\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z\"></path></svg> <span class=\"font-medium\">Follow us on LinkedIn</span></a></div><!-- Product --><div><h2 class=\"text-white font-semibold mb-4 text-base\">Product</h2><ul class=\"space-y-2\"><li><a href=\"/features\" class=\"text-sm text-gray-300 hover:text-white transition-colors\">Features</a></li><li><a href=\"/pricing\" class=\"text-sm text-gray-300 hover:text-white transition-colors\">Pricing</a></li><li><a href=\"/security\" class=\"text-sm text-gray-300 hover:text-white transition-colors\">Security</a></li><li><a href=\"/features#integrations\" class=\"text-sm text-gray-300 hover:text-white transition-colors\">Integrations</a></li></ul></div><!-- Company --><div><h2 class=\"text-white font-semibold mb-4 text-base\">Company</h2><ul class=\"space-y-2\"><li><a href=\"/about\" class=\"text-sm text-gray-300 hover:text-white transition-colors\">About Us</a></li><li><a href=\"/contact\" class=\"text-sm text-gray-300 hover:text-white transition-colors\">Contact</a></li></ul></div><!-- Contact - spans 2 columns --><div class=\"col-span-2\"><h2 class=\"text-white font-semibold mb-4 text-base\">Contact</h2><ul class=\"space-y-3\"><li class=\"flex items-start space-x-2\"><svg class=\"w-4 h-4 mt-1 flex-shrink-0\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\" aria-hidden=\"true\" focusable=\"false\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z\"></path></svg> <a href=\"mailto:hello@robustest.com\" class=\"text-sm text-gray-300 hover:text-white transition-colors\">hello@robustest.com</a></li><li class=\"flex items-start space-x-2\"><svg class=\"w-4 h-4 mt-1 flex-shrink-0\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\" aria-hidden=\"true\" focusable=\"false\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z\"></path> <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M15 11a3 3 0 11-6 0 3 3 0 016 0z\"></path></svg> <span class=\"text-sm text-gray-300\">IIIT Hyderabad,<br>Gachibowli, Hyderabad - 500032,<br>India</span></li></ul></div></div><!-- Bottom Bar --><div class=\"border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4\"><p class=\"text-sm text-gray-300\">© ")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 38, "<footer role=\"contentinfo\" class=\"bg-gray-900 text-gray-300\"><div class=\"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12\"><div class=\"grid grid-cols-2 md:grid-cols-6 gap-8\"><!-- Brand Column - spans 2 columns --><div class=\"col-span-2\"><a href=\"/\" class=\"inline-flex items-center gap-3 mb-4\"><img src=\"/assets/images/favicon.png\" alt=\"\" class=\"w-10 h-10\" width=\"40\" height=\"40\" loading=\"lazy\"> <span class=\"text-2xl font-bold\"><span class=\"text-cyan-400\">Robus</span><span class=\"text-white\">Test</span></span></a><p class=\"text-sm text-gray-300 mb-1\">Enterprise mobile device lab management.</p><p class=\"text-sm text-gray-300 mb-4\">Your devices, your data, your control.</p><a href=\"https://www.linkedin.com/company/robustest/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"inline-flex items-center gap-2 bg-cyan-500 hover:bg-cyan-600 text-white px-4 py-2 rounded-lg transition-colors\" aria-label=\"Follow RobusTest on LinkedIn (opens in new window)\"><svg class=\"w-5 h-5\" fill=\"currentColor\" viewBox=\"0 0 24 24\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z\"></path></svg> <span class=\"font-medium\">Follow us on LinkedIn</span></a></div><!-- Product --><div><h2 class=\"text-white font-semibold mb-4 text-base\">Product</h2><ul class=\"space-y-2\"><li><a href=\"/features\" class=\"text-sm text-gray-300 hover:text-white transition-colors\">Features</a></li><li><a href=\"/pricing\" class=\"text-sm text-gray-300 hover:text-white transition-colors\">Pricing</a></li><li><a href=\"/security\" class=\"text-sm text-gray-300 hover:text-white transition-colors\">Security</a></li><li><a href=\"/features#integrations\" class=\"text-sm text-gray-300 hover:text-white transition-colors\">Integrations</a></li></ul></div><!-- Company --><div><h2 class=\"text-white font-semibold mb-4 text-base\">Company</h2><ul class=\"space-y-2\"><li><a href=\"/about\" class=\"text-sm text-gray-300 hover:text-white transition-colors\">About Us</a></li><li><a href=\"/contact\" class=\"text-sm text-gray-300 hover:text-white transition-colors\">Contact</a></li></ul></div><!-- Contact - spans 2 columns --><div class=\"col-span-2\"><h2 class=\"text-white font-semibold mb-4 text-base\">Contact</h2><ul class=\"space-y-3\"><li class=\"flex items-start space-x-2\"><svg class=\"w-4 h-4 mt-1 flex-shrink-0\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\" aria-hidden=\"true\" focusable=\"false\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z\"></path></svg> <a href=\"mailto:hello@robustest.com\" class=\"text-sm text-gray-300 hover:text-white transition-colors\">hello@robustest.com</a></li><li class=\"flex items-start space-x-2\"><svg class=\"w-4 h-4 mt-1 flex-shrink-0\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\" aria-hidden=\"true\" focusable=\"false\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z\"></path> <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M15 11a3 3 0 11-6 0 3 3 0 016 0z\"></path></svg> <span class=\"text-sm text-gray-300\">IIIT Hyderabad,<br>Gachibowli, Hyderabad - 500032,<br>India</span></li></ul></div></div><!-- Bottom Bar --><div class=\"border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4\"><p class=\"text-sm text-gray-300\">© ")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var25 string
-		templ_7745c5c3_Var25, templ_7745c5c3_Err = templ.JoinStringErrs(currentYear())
+		var templ_7745c5c3_Var22 string
+		templ_7745c5c3_Var22, templ_7745c5c3_Err = templ.JoinStringErrs(currentYear())
 		if templ_7745c5c3_Err != nil {
 			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/layouts/base.templ`, Line: 342, Col: 23}
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var25))
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var22))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 42, " RobusTest. All rights reserved.</p><a href=\"/legal\" class=\"text-sm text-gray-300 hover:text-white transition-colors\">Privacy & Terms</a></div></div></footer>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 39, " RobusTest. All rights reserved.</p><a href=\"/legal\" class=\"text-sm text-gray-300 hover:text-white transition-colors\">Privacy & Terms</a></div></div></footer>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

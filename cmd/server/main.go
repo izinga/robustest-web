@@ -16,6 +16,12 @@ import (
 	"github.com/joho/godotenv"
 )
 
+// Build-time variables (injected via -ldflags)
+var (
+	Version   = "dev"
+	BuildTime = "unknown"
+)
+
 // securityHeaders middleware adds security-related HTTP headers
 func securityHeaders() gin.HandlerFunc {
 	return func(c *gin.Context) {
@@ -82,7 +88,11 @@ func main() {
 
 	// Health check endpoint for load balancers
 	r.GET("/health", func(c *gin.Context) {
-		c.JSON(http.StatusOK, gin.H{"status": "healthy"})
+		c.JSON(http.StatusOK, gin.H{
+			"status":     "healthy",
+			"version":    Version,
+			"build_time": BuildTime,
+		})
 	})
 
 	// SEO files at root level

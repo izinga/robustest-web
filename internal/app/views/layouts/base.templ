@@ -11,7 +11,7 @@ func webPageSchemaScript(title, description, currentPath string) string {
 	schema := map[string]interface{}{
 		"@context":    "https://schema.org",
 		"@type":       "WebPage",
-		"name":        title + " | RobusTest",
+		"name":        "RobusTest",
 		"description": description,
 		"url":         "https://robustest.com" + currentPath,
 		"isPartOf": map[string]string{
@@ -57,7 +57,7 @@ templ Base(title string, description string, currentPath string) {
 		<head>
 			<meta charset="UTF-8"/>
 			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-			<title>{ title } | RobusTest</title>
+			<title>RobusTest</title>
 			<meta name="description" content={ description }/>
 			<meta name="robots" content="index, follow"/>
 			<meta name="author" content="RobusTest"/>
@@ -69,7 +69,7 @@ templ Base(title string, description string, currentPath string) {
 			<!-- Open Graph / Facebook -->
 			<meta property="og:type" content="website"/>
 			<meta property="og:url" content={ "https://robustest.com" + currentPath }/>
-			<meta property="og:title" content={ title + " | RobusTest" }/>
+			<meta property="og:title" content="RobusTest"/>
 			<meta property="og:description" content={ description }/>
 			<meta property="og:image" content="https://robustest.com/assets/images/logo.png"/>
 			<meta property="og:site_name" content="RobusTest"/>
@@ -77,7 +77,7 @@ templ Base(title string, description string, currentPath string) {
 			<!-- Twitter Card -->
 			<meta name="twitter:card" content="summary"/>
 			<meta name="twitter:url" content={ "https://robustest.com" + currentPath }/>
-			<meta name="twitter:title" content={ title + " | RobusTest" }/>
+			<meta name="twitter:title" content="RobusTest"/>
 			<meta name="twitter:description" content={ description }/>
 			<meta name="twitter:image" content="https://robustest.com/assets/images/logo.png"/>
 			<link rel="icon" type="image/png" href="/assets/images/favicon.png"/>
@@ -173,7 +173,7 @@ templ Header(currentPath string) {
 				<a href="/" class="inline-flex items-center">
 					<picture>
 						<source srcset="/assets/images/logo-full.avif" type="image/avif"/>
-						<img src="/assets/images/logo-full.png" alt="RobusTest - Enterprise Mobile Device Lab" class="h-6 w-auto" width="96" height="24" loading="eager"/>
+						<img src="/assets/images/logo-full.png" alt="RobusTest" class="h-6 w-auto" width="96" height="24" loading="eager"/>
 					</picture>
 				</a>
 				<!-- Desktop Navigation -->

@@ -3,7 +3,7 @@
 
 # Variables
 APP_NAME := robustest-web
-VERSION := latest
+VERSION := $(shell git rev-parse --short HEAD)
 BUILD_TIME := $(shell date -u '+%Y-%m-%d_%H:%M:%S')
 LDFLAGS := -ldflags "-X main.Version=$(VERSION) -X main.BuildTime=$(BUILD_TIME) -s -w"
 
