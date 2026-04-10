@@ -1,10 +1,12 @@
 package handler
 
 import (
+	"encoding/json"
 	"fmt"
 	"html"
 	"log"
 	"net/http"
+	"net/url"
 	"os"
 	"regexp"
 	"strings"
@@ -130,8 +132,56 @@ func (req *ContactFormRequest) sanitize() error {
 	return nil
 }
 
+// turnstileResponse represents the Cloudflare Turnstile siteverify response
+type turnstileResponse struct {
+	Success    bool     `json:"success"`
+	ErrorCodes []string `json:"error-codes,omitempty"`
+}
+
+// verifyTurnstile validates a Turnstile token with Cloudflare's API
+func verifyTurnstile(token, remoteIP string) (bool, error) {
+	secretKey := os.Getenv("TURNSTILE_SECRET_KEY")
+	if secretKey == "" {
+		log.Println("Warning: TURNSTILE_SECRET_KEY not set, skipping Turnstile verification")
+		return true, nil
+	}
+
+	resp, err := http.PostForm("https://challenges.cloudflare.com/turnstile/v0/siteverify",
+		url.Values{
+			"secret":   {secretKey},
+			"response": {token},
+			"remoteip": {remoteIP},
+		},
+	)
+	if err != nil {
+		return false, fmt.Errorf("turnstile API request failed: %w", err)
+	}
+	defer resp.Body.Close()
+
+	var result turnstileResponse
+	if err := json.NewDecoder(resp.Body).Decode(&result); err != nil {
+		return false, fmt.Errorf("turnstile response decode failed: %w", err)
+	}
+
+	if !result.Success {
+		log.Printf("Turnstile verification failed: %v", result.ErrorCodes)
+	}
+	return result.Success, nil
+}
+
 // SubmitContactForm handles the contact form submission
 func SubmitContactForm(c *gin.Context) {
+	// Honeypot check — bots fill this hidden field, humans don't
+	if c.PostForm("website") != "" {
+		log.Printf("Honeypot triggered from IP: %s", c.ClientIP())
+		// Return fake success to avoid revealing detection
+		c.Status(http.StatusOK)
+		if err := components.ContactFormSuccess().Render(c.Request.Context(), c.Writer); err != nil {
+			log.Printf("Error rendering honeypot response: %v", err)
+		}
+		return
+	}
+
 	// Rate limiting check
 	clientIP := c.ClientIP()
 	if !contactRateLimiter.isAllowed(clientIP) {
@@ -139,6 +189,30 @@ func SubmitContactForm(c *gin.Context) {
 		c.Status(http.StatusTooManyRequests)
 		if err := components.ContactFormError("Too many requests. Please wait a few minutes before trying again.").Render(c.Request.Context(), c.Writer); err != nil {
 			log.Printf("Error rendering rate limit response: %v", err)
+		}
+		return
+	}
+
+	// Cloudflare Turnstile verification
+	turnstileToken := c.PostForm("cf-turnstile-response")
+	if turnstileToken == "" {
+		log.Printf("Missing Turnstile token from IP: %s", clientIP)
+		c.Status(http.StatusBadRequest)
+		if err := components.ContactFormError("Verification failed. Please refresh the page and try again.").Render(c.Request.Context(), c.Writer); err != nil {
+			log.Printf("Error rendering turnstile error response: %v", err)
+		}
+		return
+	}
+
+	turnstileOK, err := verifyTurnstile(turnstileToken, clientIP)
+	if err != nil {
+		log.Printf("Turnstile verification error: %v", err)
+		// Allow submission if Turnstile API is unreachable (fail open)
+	} else if !turnstileOK {
+		log.Printf("Turnstile verification failed for IP: %s", clientIP)
+		c.Status(http.StatusForbidden)
+		if err := components.ContactFormError("Verification failed. Please refresh the page and try again.").Render(c.Request.Context(), c.Writer); err != nil {
+			log.Printf("Error rendering turnstile failed response: %v", err)
 		}
 		return
 	}
