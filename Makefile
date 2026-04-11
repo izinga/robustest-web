@@ -52,6 +52,17 @@ help:
 	@echo "  release-windows     Create Windows zip"
 	@echo "  release-all         Create all platform releases"
 	@echo ""
+	@echo "Deploy:"
+	@echo "  deploy           Build and deploy to server"
+	@echo "  deploy-service   Install systemd service on server"
+	@echo "  deploy-rollback  Rollback to previous version"
+	@echo "  deploy-status    Check server status and health"
+	@echo "  deploy-logs      Tail server logs"
+	@echo ""
+	@echo "Docker:"
+	@echo "  docker-build     Build Docker image"
+	@echo "  docker-run       Run Docker container locally"
+	@echo ""
 	@echo "Utilities:"
 	@echo "  clean        Remove build artifacts"
 	@echo "  deps         Install dependencies"
@@ -227,6 +238,77 @@ docker-build:
 	@echo "$(GREEN)Building Docker image...$(NC)"
 	docker build -t $(APP_NAME):$(VERSION) .
 	docker tag $(APP_NAME):$(VERSION) $(APP_NAME):latest
+
+## docker-run: Run Docker container locally
+docker-run:
+	@echo "$(GREEN)Running Docker container...$(NC)"
+	docker run --rm -p 3000:3000 --env-file .env.local $(APP_NAME):latest
+
+# ─── Deployment ───────────────────────────────────────────────
+# Configure these for your server
+DEPLOY_HOST ?= robustest.com
+DEPLOY_USER ?= root
+DEPLOY_PATH ?= /opt/robustest-web
+DEPLOY_SSH   := $(DEPLOY_USER)@$(DEPLOY_HOST)
+SERVICE_NAME := robustest-web
+
+## deploy: Build, package, upload, and restart on the server
+deploy: release-linux
+	@echo "$(GREEN)Deploying $(APP_NAME) to $(DEPLOY_SSH):$(DEPLOY_PATH)...$(NC)"
+	@echo "$(YELLOW)Uploading release package...$(NC)"
+	scp $(DIST_DIR)/$(APP_NAME)-linux.tar.gz $(DEPLOY_SSH):/tmp/$(APP_NAME)-linux.tar.gz
+	@echo "$(YELLOW)Installing on server...$(NC)"
+	ssh $(DEPLOY_SSH) '\
+		set -e && \
+		mkdir -p $(DEPLOY_PATH) && \
+		cd $(DEPLOY_PATH) && \
+		cp $(APP_NAME) $(APP_NAME).bak 2>/dev/null || true && \
+		tar -xzf /tmp/$(APP_NAME)-linux.tar.gz && \
+		rm /tmp/$(APP_NAME)-linux.tar.gz && \
+		echo "$(APP_NAME) extracted successfully" && \
+		if systemctl is-active --quiet $(SERVICE_NAME); then \
+			systemctl restart $(SERVICE_NAME) && \
+			echo "Service restarted"; \
+		else \
+			echo "WARNING: systemd service not found. Start manually or run: make deploy-service"; \
+		fi \
+	'
+	@echo "$(GREEN)Deployment complete!$(NC)"
+
+## deploy-service: Install systemd service file on the server
+deploy-service:
+	@echo "$(GREEN)Installing systemd service on $(DEPLOY_SSH)...$(NC)"
+	scp robustest-web.service $(DEPLOY_SSH):/etc/systemd/system/$(SERVICE_NAME).service
+	ssh $(DEPLOY_SSH) '\
+		systemctl daemon-reload && \
+		systemctl enable $(SERVICE_NAME) && \
+		systemctl restart $(SERVICE_NAME) && \
+		systemctl status $(SERVICE_NAME) \
+	'
+	@echo "$(GREEN)Service installed and started!$(NC)"
+
+## deploy-rollback: Rollback to previous binary on the server
+deploy-rollback:
+	@echo "$(YELLOW)Rolling back $(APP_NAME) on $(DEPLOY_SSH)...$(NC)"
+	ssh $(DEPLOY_SSH) '\
+		cd $(DEPLOY_PATH) && \
+		if [ -f $(APP_NAME).bak ]; then \
+			mv $(APP_NAME).bak $(APP_NAME) && \
+			systemctl restart $(SERVICE_NAME) && \
+			echo "Rollback complete"; \
+		else \
+			echo "ERROR: No backup found to rollback to" && exit 1; \
+		fi \
+	'
+	@echo "$(GREEN)Rollback complete!$(NC)"
+
+## deploy-status: Check service status on the server
+deploy-status:
+	@ssh $(DEPLOY_SSH) 'systemctl status $(SERVICE_NAME) 2>/dev/null || echo "Service not found"; echo "---"; curl -sf http://localhost:3000/health 2>/dev/null || curl -sf https://localhost/health -k 2>/dev/null || echo "Health check failed"'
+
+## deploy-logs: Tail logs from the server
+deploy-logs:
+	@ssh $(DEPLOY_SSH) 'journalctl -u $(SERVICE_NAME) -f --no-pager -n 50'
 
 ## version: Show current version
 version:

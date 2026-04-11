@@ -98,6 +98,54 @@ func (rl *rateLimiter) isAllowed(ip string) bool {
 // emailRegex provides stricter email validation
 var emailRegex = regexp.MustCompile(`^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$`)
 
+// disposableEmailDomains is a list of known disposable/temporary email providers
+var disposableEmailDomains = map[string]bool{
+	"mailinator.com": true, "guerrillamail.com": true, "tempmail.com": true,
+	"throwaway.email": true, "yopmail.com": true, "sharklasers.com": true,
+	"guerrillamailblock.com": true, "grr.la": true, "dispostable.com": true,
+	"tempail.com": true, "temp-mail.org": true, "fakeinbox.com": true,
+	"trashmail.com": true, "trashmail.me": true, "trashmail.net": true,
+	"mailnesia.com": true, "maildrop.cc": true, "discard.email": true,
+	"getnada.com": true, "10minutemail.com": true, "mohmal.com": true,
+	"burnermail.io": true, "tempmailo.com": true, "emailondeck.com": true,
+	"33mail.com": true, "spam4.me": true, "trashmail.org": true,
+	"mailcatch.com": true, "inboxbear.com": true, "mintemail.com": true,
+	"mailexpire.com": true, "tmail.ws": true, "harakirimail.com": true,
+	"guerrillamail.info": true, "guerrillamail.net": true, "guerrillamail.org": true,
+	"guerrillamail.de": true, "jetable.org": true, "cuvox.de": true,
+	"mytrashmail.com": true, "mt2015.com": true, "nwldx.com": true,
+}
+
+// spamPatterns are regex patterns commonly found in spam messages
+var spamPatterns = []*regexp.Regexp{
+	regexp.MustCompile(`(?i)\b(viagra|cialis|casino|lottery|prize|winner|click\s+here|act\s+now|limited\s+time|free\s+money)\b`),
+	regexp.MustCompile(`(?i)\b(buy\s+now|order\s+now|discount\s+offer|earn\s+money|make\s+money\s+fast)\b`),
+	regexp.MustCompile(`(?i)\b(nigerian?\s+prince|inheritance|million\s+dollars|wire\s+transfer)\b`),
+	regexp.MustCompile(`(?i)(https?://\S+){3,}`), // 3+ URLs in a message
+	regexp.MustCompile(`(?i)\b(crypto|bitcoin|ethereum|investment\s+opportunity|guaranteed\s+returns)\b`),
+	regexp.MustCompile(`(?i)\b(SEO\s+services?|web\s+traffic|backlinks|rank\s+#?1|page\s+rank)\b`),
+}
+
+// isDisposableEmail checks if the email domain is a known disposable provider
+func isDisposableEmail(email string) bool {
+	parts := strings.SplitN(email, "@", 2)
+	if len(parts) != 2 {
+		return false
+	}
+	return disposableEmailDomains[strings.ToLower(parts[1])]
+}
+
+// containsSpamContent checks if the message or name contains spam patterns
+func containsSpamContent(name, message string) bool {
+	combined := name + " " + message
+	for _, pattern := range spamPatterns {
+		if pattern.MatchString(combined) {
+			return true
+		}
+	}
+	return false
+}
+
 // phoneRegex validates phone numbers (allows +, digits, spaces, dashes, parentheses)
 var phoneRegex = regexp.MustCompile(`^[\d\s\-\+\(\)]{0,20}$`)
 
@@ -207,8 +255,13 @@ func SubmitContactForm(c *gin.Context) {
 	turnstileOK, err := verifyTurnstile(turnstileToken, clientIP)
 	if err != nil {
 		log.Printf("Turnstile verification error: %v", err)
-		// Allow submission if Turnstile API is unreachable (fail open)
-	} else if !turnstileOK {
+		c.Status(http.StatusServiceUnavailable)
+		if err := components.ContactFormError("Verification service is temporarily unavailable. Please try again in a moment.").Render(c.Request.Context(), c.Writer); err != nil {
+			log.Printf("Error rendering turnstile unavailable response: %v", err)
+		}
+		return
+	}
+	if !turnstileOK {
 		log.Printf("Turnstile verification failed for IP: %s", clientIP)
 		c.Status(http.StatusForbidden)
 		if err := components.ContactFormError("Verification failed. Please refresh the page and try again.").Render(c.Request.Context(), c.Writer); err != nil {
@@ -234,6 +287,27 @@ func SubmitContactForm(c *gin.Context) {
 		c.Status(http.StatusBadRequest)
 		if err := components.ContactFormError("Please check your input and try again.").Render(c.Request.Context(), c.Writer); err != nil {
 			log.Printf("Error rendering sanitization error response: %v", err)
+		}
+		return
+	}
+
+	// Reject disposable email domains
+	if isDisposableEmail(req.Email) {
+		log.Printf("Disposable email rejected: %s from IP: %s", req.Email, clientIP)
+		c.Status(http.StatusBadRequest)
+		if err := components.ContactFormError("Please use a work email address. Temporary or disposable emails are not accepted.").Render(c.Request.Context(), c.Writer); err != nil {
+			log.Printf("Error rendering disposable email response: %v", err)
+		}
+		return
+	}
+
+	// Check for spam content in name and message
+	if containsSpamContent(req.Name, req.Message) {
+		log.Printf("Spam content detected from IP: %s, email: %s", clientIP, req.Email)
+		// Return fake success to avoid revealing detection
+		c.Status(http.StatusOK)
+		if err := components.ContactFormSuccess().Render(c.Request.Context(), c.Writer); err != nil {
+			log.Printf("Error rendering spam detection response: %v", err)
 		}
 		return
 	}

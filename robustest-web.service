@@ -1,0 +1,27 @@
+[Unit]
+Description=RobusTest Web Server
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/robustest-web
+ExecStart=/opt/robustest-web/robustest-web
+Restart=on-failure
+RestartSec=5
+LimitNOFILE=65536
+
+# Environment
+EnvironmentFile=/opt/robustest-web/.env
+
+# Graceful shutdown (matches the 30s timeout in main.go)
+TimeoutStopSec=35
+KillSignal=SIGTERM
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=robustest-web
+
+[Install]
+WantedBy=multi-user.target
