@@ -27,6 +27,27 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
+// Analytics events (no-ops if Plausible is blocked or absent)
+function track(name, props) {
+  if (typeof window.plausible === 'function') {
+    window.plausible(name, props ? { props: props } : undefined);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('a[href^="/contact"]').forEach(function (a) {
+    a.addEventListener('click', function () {
+      var isPartner = a.getAttribute('href').indexOf('type=partner') !== -1;
+      track(isPartner ? 'Partner CTA Click' : 'Demo CTA Click', { page: location.pathname });
+    });
+  });
+  document.querySelectorAll('a[href^="https://devicelab.dev"], a[href^="https://github.com/devicelab-dev"]').forEach(function (a) {
+    a.addEventListener('click', function () {
+      track('Outbound Click', { url: a.getAttribute('href') });
+    });
+  });
+});
+
 // HTMX loading states
 document.body.addEventListener('htmx:beforeRequest', function (evt) {
   const target = evt.detail.target;
@@ -53,6 +74,7 @@ document.body.addEventListener('htmx:responseError', function (evt) {
 });
 
 // After a form swap, move focus to the response for screen readers
+// and record the submission outcome.
 document.body.addEventListener('htmx:afterSwap', function (evt) {
   const target = evt.detail.target;
   if (target && target.id === 'contact-form-container') {
@@ -60,6 +82,10 @@ document.body.addEventListener('htmx:afterSwap', function (evt) {
     if (response) {
       response.setAttribute('tabindex', '-1');
       response.focus();
+    }
+    if (target.querySelector('.success-message')) {
+      var lead = location.search.indexOf('type=partner') !== -1 ? 'partner' : 'demo';
+      track('Contact Form Submitted', { lead: lead });
     }
   }
 });
