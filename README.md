@@ -78,6 +78,16 @@ make release-all        # Create all platform releases
 - `SENDGRID_API_KEY` - SendGrid API key for contact form
 - `CONTACT_FROM_EMAIL` - Sender email address (must be verified in SendGrid)
 - `CONTACT_TO_EMAIL` - Email address to receive contact form submissions
+- `TURNSTILE_SITE_KEY` / `TURNSTILE_SECRET_KEY` - Cloudflare Turnstile anti-spam
+- `TLS_CERT` / `TLS_KEY` - Serve HTTPS directly when both are set
+- `DOCS_GITHUB_TOKEN` - Read-only PAT for the private docs repo — see [DOCS.md](DOCS.md)
+
+### Documentation (/docs)
+
+Product docs are synced at runtime from the private
+`izinga/robustest_documentation_md` repo and published manually via
+`make docs-refresh`. Setup and the full publishing flow are in
+**[DOCS.md](DOCS.md)**.
 
 ## Pages
 
