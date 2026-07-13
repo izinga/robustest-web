@@ -1,487 +1,428 @@
 package pages
 
-import "github.com/izinga/robustest-web/internal/app/views/layouts"
+import (
+	"github.com/izinga/robustest-web/internal/app/views/components"
+	"github.com/izinga/robustest-web/internal/app/views/layouts"
+)
 
 templ HomePage() {
-	@layouts.Base("On-Premise Mobile Device Lab for iOS, Android & Smart TV Testing", "Deploy an enterprise mobile device lab on your premises. Test iOS, Android, and Smart TV apps with unlimited users and test minutes. No per-minute billing.", "/") {
-		<!-- New Year 2026 Offer Banner -->
-		<style>
-			@keyframes bounce-1 { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
-			@keyframes bounce-2 { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
-			@keyframes bounce-3 { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-2px); } }
-			@keyframes bounce-4 { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
-			.bounce-2 { animation: bounce-1 0.8s ease-in-out infinite; animation-delay: 0s; }
-			.bounce-0 { animation: bounce-2 0.8s ease-in-out infinite; animation-delay: 0.15s; }
-			.bounce-second-2 { animation: bounce-3 0.8s ease-in-out infinite; animation-delay: 0.3s; }
-			.bounce-6 { animation: bounce-4 0.8s ease-in-out infinite; animation-delay: 0.45s; }
-		</style>
-		<div class="bg-gradient-to-r from-purple-600 via-pink-500 to-orange-400 text-white py-3 pt-20 relative overflow-hidden">
-			<!-- Animated sparkles background - more frequent -->
-			<div class="absolute inset-0 overflow-hidden">
-				<div class="absolute w-2 h-2 bg-white rounded-full animate-ping" style="top: 20%; left: 5%; animation-delay: 0s; animation-duration: 1.2s;"></div>
-				<div class="absolute w-1.5 h-1.5 bg-yellow-200 rounded-full animate-ping" style="top: 60%; left: 12%; animation-delay: 0.3s; animation-duration: 1s;"></div>
-				<div class="absolute w-1 h-1 bg-white rounded-full animate-ping" style="top: 35%; left: 20%; animation-delay: 0.6s; animation-duration: 1.4s;"></div>
-				<div class="absolute w-2 h-2 bg-yellow-100 rounded-full animate-ping" style="top: 70%; left: 28%; animation-delay: 0.2s; animation-duration: 1.1s;"></div>
-				<div class="absolute w-1.5 h-1.5 bg-white rounded-full animate-ping" style="top: 25%; left: 35%; animation-delay: 0.8s; animation-duration: 1.3s;"></div>
-				<div class="absolute w-1 h-1 bg-yellow-200 rounded-full animate-ping" style="top: 55%; left: 42%; animation-delay: 0.1s; animation-duration: 0.9s;"></div>
-				<div class="absolute w-2 h-2 bg-white rounded-full animate-ping" style="top: 40%; left: 50%; animation-delay: 0.5s; animation-duration: 1.2s;"></div>
-				<div class="absolute w-1.5 h-1.5 bg-yellow-100 rounded-full animate-ping" style="top: 65%; left: 58%; animation-delay: 0.4s; animation-duration: 1s;"></div>
-				<div class="absolute w-1 h-1 bg-white rounded-full animate-ping" style="top: 30%; left: 65%; animation-delay: 0.7s; animation-duration: 1.1s;"></div>
-				<div class="absolute w-2 h-2 bg-yellow-200 rounded-full animate-ping" style="top: 50%; left: 72%; animation-delay: 0.2s; animation-duration: 1.3s;"></div>
-				<div class="absolute w-1.5 h-1.5 bg-white rounded-full animate-ping" style="top: 20%; left: 80%; animation-delay: 0.9s; animation-duration: 1s;"></div>
-				<div class="absolute w-1 h-1 bg-yellow-100 rounded-full animate-ping" style="top: 75%; left: 88%; animation-delay: 0.3s; animation-duration: 1.2s;"></div>
-				<div class="absolute w-2 h-2 bg-white rounded-full animate-ping" style="top: 45%; left: 95%; animation-delay: 0.6s; animation-duration: 1.1s;"></div>
-			</div>
-			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-				<!-- Large screen: single row -->
-				<div class="hidden lg:flex items-center justify-center gap-4 text-center">
-					<span class="text-lg font-bold flex items-center gap-1 whitespace-nowrap">
-						New Year
-						<span class="inline-flex">
-							<span class="bounce-2">2</span><span class="bounce-0">0</span><span class="bounce-second-2">2</span><span class="bounce-6">6</span>
-						</span>
-						Gift!
-						<svg class="w-5 h-5 text-yellow-300 ml-1 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-							<path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
-						</svg>
-					</span>
-					<span class="text-white/90">Free consultation with our experts to understand your current test strategy and suggest best options.</span>
-					<a href="/contact" class="inline-flex items-center gap-1 bg-white text-purple-600 px-4 py-1.5 rounded-full font-semibold hover:bg-yellow-100 hover:scale-105 transition-all text-sm shadow-lg whitespace-nowrap flex-shrink-0">
-						Get Started
-						<svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-						</svg>
-					</a>
-				</div>
-				<!-- Small/medium screen: two rows -->
-				<div class="flex lg:hidden flex-col items-center justify-center gap-1 text-center">
-					<div class="flex items-center gap-2">
-						<span class="text-lg font-bold flex items-center gap-1 whitespace-nowrap">
-							New Year
-							<span class="inline-flex">
-								<span class="bounce-2">2</span><span class="bounce-0">0</span><span class="bounce-second-2">2</span><span class="bounce-6">6</span>
-							</span>
-							Gift!
-							<svg class="w-5 h-5 text-yellow-300 ml-1 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-								<path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
-							</svg>
-						</span>
-						<a href="/contact" class="inline-flex items-center gap-1 bg-white text-purple-600 px-4 py-1.5 rounded-full font-semibold hover:bg-yellow-100 hover:scale-105 transition-all text-sm shadow-lg whitespace-nowrap flex-shrink-0">
-							Get Started
-							<svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-							</svg>
-						</a>
+	@layouts.Base(
+		"Enterprise On-Premise Device Lab | RobusTest",
+		"The enterprise device lab on your premises: real phones, tablets, and TVs inside your network, with automation, live manual testing, performance vitals, and network capture — no per-minute billing, nothing leaving your walls.",
+		"/",
+	) {
+		@homeHero()
+		@homeProof()
+		@homeCapabilities()
+		@homeVisuals()
+		@homeComparison()
+		@homeToolchain()
+		@homeDeployment()
+		@homePackage()
+		@homeAudiences()
+		@homeOpenSource()
+		@components.CTABand(
+			"See your own lab running in a week.",
+			"Tell us your device list and test stack. You bring the devices; we bring everything else — built in your network, handed over running, walked through live.",
+		)
+	}
+}
+
+templ homeHero() {
+	<section class="relative border-b border-line">
+		<div class="absolute inset-0 grid-paper grid-paper-fade" aria-hidden="true"></div>
+		<div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-14 md:pt-24 md:pb-20">
+			<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+				<div class="min-w-0">
+					<div class="flex items-center gap-4 mb-5">
+						<span class="tag">The enterprise device lab — on your premises</span>
+						<span class="rule" aria-hidden="true"></span>
 					</div>
-					<span class="text-white/90 text-sm">Free consultation with our experts to understand your current test strategy and suggest best options.</span>
+					<h1 class="font-display font-bold text-4xl md:text-5xl lg:text-[3.4rem] leading-[1.05] tracking-tight">
+						Test on every device you support.
+						<br/>
+						Your data never leaves your network.
+					</h1>
+					<p class="text-lg md:text-xl text-muted mt-6 max-w-xl leading-relaxed">
+						RobusTest is an enterprise device lab that runs on your premises: your own phones, tablets, TVs, and set-top boxes — racked in your office, screen and audio streamed live to any tester's browser, running your Appium and Espresso suites, capturing FPS and HAR files on every run. Air-gapped if you need it.
+					</p>
+					<div class="flex flex-wrap items-center gap-4 mt-8">
+						<a href="/contact" class="bg-signal text-paper px-6 py-3 font-semibold hover:opacity-90 transition-opacity">Book a demo</a>
+						<a href="/features" class="border border-line-strong px-6 py-3 font-semibold text-ink hover:border-ink transition-colors">Explore the platform</a>
+					</div>
+					<ul class="flex flex-wrap gap-2 mt-8" aria-label="Supported platforms">
+						@platformChip("Android")
+						@platformChip("iOS & iPadOS")
+						@platformChip("Web")
+						@platformChip("Apple TV")
+						@platformChip("Android TV & Fire TV")
+						@platformChip("Roku")
+						@platformChip("Samsung Tizen")
+						@platformChip("LG webOS")
+						@platformChip("Chromecast")
+						@platformChip("Xbox & PlayStation")
+						@platformChip("Cable boxes")
+					</ul>
+				</div>
+				@networkSchematic()
+			</div>
+			<div class="grid grid-cols-2 md:grid-cols-4 gap-3 mt-14 md:mt-20">
+				@components.Metric("Unlimited", "Users & test minutes — one flat license")
+				@components.Metric("10–20 ms", "Live-control latency")
+				@components.Metric("No SDK", "Performance vitals, zero code changes")
+				@components.Metric("100%", "Of test data stays in your network")
+			</div>
+		</div>
+	</section>
+}
+
+templ platformChip(name string) {
+	<li class="font-mono text-xs border border-line bg-surface/70 px-2.5 py-1 text-muted">{ name }</li>
+}
+
+// networkSchematic is the signature element: the lab drawn as a schematic,
+// everything inside a dashed boundary labelled YOUR NETWORK.
+templ networkSchematic() {
+	<div class="w-full min-w-0" role="img" aria-label="Schematic of a RobusTest lab: device rack, TV wall, and RobusTest server connected to your team's browsers and CI, all inside a boundary labelled your network">
+		<svg viewBox="0 0 680 440" class="block w-full max-w-full h-auto" preserveAspectRatio="xMidYMid meet" fill="none" aria-hidden="true">
+			<!-- boundary -->
+			<rect x="14" y="30" width="652" height="396" rx="10" stroke="var(--rt-line-strong)" stroke-width="1.5" stroke-dasharray="8 6"></rect>
+			<rect x="30" y="22" width="216" height="16" fill="var(--rt-paper)"></rect>
+			<text x="36" y="34" fill="var(--rt-signal)" font-size="11" letter-spacing="2" font-family="IBM Plex Mono, monospace">YOUR NETWORK · AIR-GAP READY</text>
+			<!-- device rack -->
+			<g stroke="var(--rt-line-strong)">
+				<rect x="52" y="78" width="150" height="128" fill="var(--rt-surface)" stroke-width="1.5"></rect>
+				<rect x="66" y="104" width="26" height="44" rx="3"></rect>
+				<rect x="98" y="104" width="26" height="44" rx="3"></rect>
+				<rect x="130" y="104" width="26" height="44" rx="3"></rect>
+				<rect x="162" y="104" width="26" height="44" rx="3"></rect>
+				<rect x="66" y="154" width="26" height="44" rx="3"></rect>
+				<rect x="98" y="154" width="26" height="44" rx="3"></rect>
+				<rect x="130" y="154" width="26" height="44" rx="3"></rect>
+				<rect x="162" y="154" width="26" height="44" rx="3"></rect>
+			</g>
+			<text x="60" y="94" fill="var(--rt-muted)" font-size="9" font-family="IBM Plex Mono, monospace" letter-spacing="1">RACK · ANDROID + IOS</text>
+			<!-- tv wall -->
+			<g stroke="var(--rt-line-strong)">
+				<rect x="52" y="268" width="150" height="118" fill="var(--rt-surface)" stroke-width="1.5"></rect>
+				<rect x="66" y="296" width="86" height="52" rx="2"></rect>
+				<rect x="162" y="296" width="26" height="20" rx="2"></rect>
+				<rect x="162" y="324" width="26" height="20" rx="2"></rect>
+			</g>
+			<text x="60" y="284" fill="var(--rt-muted)" font-size="9" font-family="IBM Plex Mono, monospace" letter-spacing="1">TV WALL · TIZEN + WEBOS</text>
+			<text x="66" y="372" fill="var(--rt-muted)" font-size="9" font-family="IBM Plex Mono, monospace">HDMI CAPTURE + NODE</text>
+			<!-- server -->
+			<g stroke="var(--rt-line-strong)">
+				<rect x="292" y="176" width="128" height="96" fill="var(--rt-surface)" stroke-width="1.5"></rect>
+				<line x1="304" y1="204" x2="360" y2="204"></line>
+				<line x1="304" y1="220" x2="348" y2="220"></line>
+				<line x1="304" y1="236" x2="366" y2="236"></line>
+			</g>
+			<circle cx="402" cy="194" r="4" fill="var(--rt-signal)" class="live-dot"></circle>
+			<text x="302" y="196" fill="var(--rt-ink)" font-size="10" font-family="IBM Plex Mono, monospace" letter-spacing="1.5">ROBUSTEST</text>
+			<text x="292" y="262" fill="var(--rt-muted)" font-size="9" font-family="IBM Plex Mono, monospace">ORCHESTRATION · VITALS</text>
+			<!-- team -->
+			<g stroke="var(--rt-line-strong)">
+				<rect x="506" y="96" width="124" height="76" fill="var(--rt-surface)" stroke-width="1.5"></rect>
+				<rect x="522" y="112" width="60" height="36" rx="2"></rect>
+				<line x1="522" y1="156" x2="614" y2="156"></line>
+			</g>
+			<text x="506" y="90" fill="var(--rt-muted)" font-size="9" font-family="IBM Plex Mono, monospace" letter-spacing="1">YOUR TEAM · ANY BROWSER</text>
+			<!-- ci -->
+			<g stroke="var(--rt-line-strong)">
+				<rect x="506" y="296" width="124" height="64" fill="var(--rt-surface)" stroke-width="1.5"></rect>
+				<circle cx="530" cy="328" r="8"></circle>
+				<line x1="542" y1="328" x2="560" y2="328"></line>
+				<circle cx="572" cy="328" r="8"></circle>
+				<line x1="584" y1="328" x2="602" y2="328"></line>
+			</g>
+			<text x="506" y="290" fill="var(--rt-muted)" font-size="9" font-family="IBM Plex Mono, monospace" letter-spacing="1">YOUR CI · TRIGGER API</text>
+			<!-- data paths -->
+			<g stroke="var(--rt-signal)" stroke-width="1.5">
+				<polyline points="202,142 248,142 248,206 292,206" class="flow-path"></polyline>
+				<polyline points="202,326 248,326 248,244 292,244" class="flow-path"></polyline>
+				<polyline points="420,206 462,206 462,134 506,134" class="flow-path"></polyline>
+				<polyline points="420,244 462,244 462,328 506,328" class="flow-path"></polyline>
+			</g>
+			<!-- metric chips -->
+			<g font-family="IBM Plex Mono, monospace" font-size="10" letter-spacing="1">
+				<rect x="212" y="108" width="64" height="20" fill="var(--rt-surface)" stroke="var(--rt-line-strong)"></rect>
+				<text x="224" y="122" fill="var(--rt-signal)">60 FPS</text>
+				<rect x="212" y="352" width="64" height="20" fill="var(--rt-surface)" stroke="var(--rt-line-strong)"></rect>
+				<text x="226" y="366" fill="var(--rt-signal)">HAR ✓</text>
+				<rect x="430" y="160" width="72" height="20" fill="var(--rt-surface)" stroke="var(--rt-line-strong)"></rect>
+				<text x="438" y="174" fill="var(--rt-signal)">CPU 42%</text>
+			</g>
+		</svg>
+	</div>
+}
+
+templ homeProof() {
+	<section class="border-b border-line bg-surface">
+		<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-12">
+			<div class="flex items-center gap-4 mb-6">
+				<span class="tag">In production at</span>
+				<span class="rule" aria-hidden="true"></span>
+			</div>
+			<ul class="flex flex-wrap items-baseline gap-x-10 gap-y-4" aria-label="Customers">
+				@proofName("JioHotstar")
+				@proofName("Airtel")
+				@proofName("Swiggy")
+				@proofName("BookMyShow")
+				@proofName("Yodlee")
+				@proofName("OnMobile")
+				<li class="font-mono text-xs uppercase tracking-widest text-muted self-center">+ many more</li>
+			</ul>
+			<p class="text-sm text-muted mt-6 max-w-2xl leading-relaxed">
+				Enterprise device labs in production since 2014 — including the lab behind India's largest streaming platform.
+			</p>
+		</div>
+	</section>
+}
+
+templ proofName(name string) {
+	<li class="font-display font-bold text-xl md:text-2xl tracking-tight text-muted">{ name }</li>
+}
+
+templ homeCapabilities() {
+	<section class="border-b border-line">
+		<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+			@components.SectionTag("The platform")
+			<h2 class="font-display font-bold text-3xl md:text-4xl tracking-tight max-w-2xl">Seven capabilities. One lab. Zero uploads.</h2>
+			<p class="text-muted mt-4 max-w-2xl leading-relaxed">
+				Each of these is a product in its own right — companies exist that sell just one of them. RobusTest runs them all against the same devices: the rack that hosts a tester's live session at 10 a.m. runs the nightly Appium suite at 2 a.m., and captures a performance baseline on every build in between.
+			</p>
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-line mt-10 border border-line">
+				@capabilityCard("/platform/manual-testing", "LIVE", "Manual testing", "Pick a device, see its screen in your browser, and drive it — touch, type, GPS, shell, logs — at 10–20 ms latency, straight from the browser.")
+				@capabilityCard("/platform/test-automation", "AUTO", "Test automation", "Appium hub, Espresso, XCUITest, Selenium grid, UIAutomator, and Maestro-style flows. Parallel runs across your device pool, triggered from CI.")
+				@capabilityCard("/platform/performance-testing", "PERF", "Performance testing", "Every session — manual, automated, mobile, or TV — records FPS, jank, CPU, memory, battery, and thermal by default. No SDK, no setup, compared build-over-build.")
+				@capabilityCard("/platform/tv-testing", "TV", "Smart TV & OTT", "Native drivers for Tizen and webOS, Roku automation, Apple TV, Android TV, Fire TV, Chromecast — plus consoles and cable boxes over HDMI capture, live video and audio. Even DRM playback stays visible, via optical capture.")
+				@capabilityCard("/platform/network-capture", "NET", "Network capture", "Every HTTP(S) call your app makes, captured as HAR automatically — with rewrite rules, breakpoints, and gRPC/protobuf decoding.")
+				@capabilityCard("/platform/device-lab", "LAB", "Device lab operations", "Health scoring, booking, smart power control, iOS MDM for unattended installs, and a versioned build library with OTA.")
+				@capabilityCard("/platform/integrations", "ENT", "Integrations & enterprise", "Google & Microsoft SSO, JIRA, ReportPortal, Slack, InfluxDB, JUnit output, and a documented API for your pipelines.")
+				<a href="/features" class="group bg-signal-soft p-6 flex flex-col justify-between min-h-44 gap-4">
+					<span class="tag">Overview</span>
+					<span class="font-display font-semibold text-lg leading-snug">One server. One license. Seven products' worth of work.</span>
+					<span>
+						<span class="font-display font-bold text-xl group-hover:text-signal transition-colors">The whole platform →</span>
+						<span class="block text-sm text-muted mt-2">How the pieces fit together on one rack.</span>
+					</span>
+				</a>
+			</div>
+		</div>
+	</section>
+}
+
+templ capabilityCard(href string, tag string, title string, desc string) {
+	<a href={ templ.SafeURL(href) } class="group bg-paper hover:bg-surface transition-colors p-6 flex flex-col min-h-44">
+		<div class="flex items-center justify-between">
+			<span class="tag">{ tag }</span>
+			<span class="text-line-strong group-hover:text-signal transition-colors" aria-hidden="true">→</span>
+		</div>
+		<h3 class="font-display font-bold text-xl mt-6">{ title }</h3>
+		<p class="text-sm text-muted mt-2 leading-relaxed">{ desc }</p>
+	</a>
+}
+
+templ homeVisuals() {
+	<section class="border-b border-line">
+		<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+			@components.SectionTag("See it running")
+			<h2 class="font-display font-bold text-3xl md:text-4xl tracking-tight max-w-2xl">What testers see.</h2>
+			<p class="text-muted mt-4 max-w-2xl leading-relaxed">Illustrative views of the two screens teams live in — the live session and the build comparison. Real captures replace these soon.</p>
+			<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-10">
+				<div>
+					@components.Frame("Live manual session — vitals in frame") {
+						@components.IlloLiveSession()
+					}
+					<p class="text-sm text-muted mt-3 leading-relaxed">A tester driving a rack device from the browser, with the live latency readout in frame.</p>
+				</div>
+				<div>
+					@components.Frame("Performance dashboard — build-over-build") {
+						@components.IlloPerfCompare()
+					}
+					<p class="text-sm text-muted mt-3 leading-relaxed">FPS, CPU, and memory traces captured with no SDK, compared across two builds.</p>
 				</div>
 			</div>
 		</div>
-		<!-- Hero Section -->
-		<section class="relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white overflow-hidden">
-			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32 relative">
-				<div class="max-w-3xl">
-					<h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-						<span class="block">Enterprise Mobile</span>
-						<span class="block">Device Lab</span>
-						<span class="block text-cyan-400">On Your Premises</span>
-					</h1>
-					<p class="text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed">
-						We set up and manage your in-house device lab so your team can focus on quality. Hardware, software, and expertise — delivered to your premises.
+	</section>
+}
+
+templ homeComparison() {
+	<section class="border-b border-line bg-surface">
+		<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+			@components.SectionTag("Versus cloud device farms")
+			<h2 class="font-display font-bold text-3xl md:text-4xl tracking-tight max-w-2xl">The cloud rents you minutes. This lab is yours.</h2>
+			<div class="overflow-x-auto mt-10">
+				<table class="w-full text-sm border border-line-strong">
+					<thead>
+						<tr class="border-b border-line-strong">
+							<th scope="col" class="text-left font-mono text-xs uppercase tracking-widest text-muted font-medium px-4 py-3"></th>
+							<th scope="col" class="text-left font-display font-bold text-base px-4 py-3">RobusTest on-premise</th>
+							<th scope="col" class="text-left font-display font-bold text-base px-4 py-3 text-muted">Cloud device farms</th>
+						</tr>
+					</thead>
+					<tbody class="divide-y divide-line">
+						@compareRow("Your builds & test data", "Never leave your network; air-gapped deployments supported", "Uploaded to third-party infrastructure")
+						@compareRow("Billing", "Flat yearly license — unlimited users, unlimited minutes", "Per-minute or per-parallel pricing that grows with usage")
+						@compareRow("Devices", "Your exact device list, including odd models and SIM-equipped phones", "Shared pool; popular models queue at release time")
+						@compareRow("Smart TV & OTT", "Tizen, webOS, Roku, Apple TV, Android TV, Fire TV, Chromecast, consoles, and cable boxes on real hardware", "Little to no TV coverage")
+						@compareRow("Network access", "Devices sit on your LAN — internal APIs and staging reachable natively", "Tunnels required to reach anything internal")
+						@compareRow("Performance vitals", "Built in, no SDK, on every session", "Separate product or per-minute add-on")
+						@compareRow("Hardware & setup", "Lab specced, supplied, and set up by RobusTest — or built around devices you own", "You rent access; the lab is never yours")
+						@compareRow("Support", "Enterprise support from the team that builds the product, for the life of the lab", "Ticket queues, tiered by plan")
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</section>
+}
+
+templ compareRow(label string, us string, them string) {
+	<tr>
+		<th scope="row" class="text-left align-top font-mono text-xs uppercase tracking-widest text-muted font-medium px-4 py-4 w-44">{ label }</th>
+		<td class="align-top px-4 py-4 font-medium">{ us }</td>
+		<td class="align-top px-4 py-4 text-muted">{ them }</td>
+	</tr>
+}
+
+templ homeToolchain() {
+	<section class="border-b border-line">
+		<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+			@components.SectionTag("Works with your stack")
+			<h2 class="font-display font-bold text-3xl md:text-4xl tracking-tight max-w-2xl">Keep your frameworks. Keep your pipeline.</h2>
+			<p class="text-muted mt-4 max-w-2xl leading-relaxed">
+				RobusTest speaks the protocols your tests already use — point your existing suites at the lab and they run.
+			</p>
+			<ul class="flex flex-wrap gap-2 mt-8" aria-label="Supported frameworks and integrations">
+				@toolChip("Appium")
+				@toolChip("Espresso")
+				@toolChip("XCUITest")
+				@toolChip("Selenium")
+				@toolChip("UIAutomator")
+				@toolChip("Maestro-style flows")
+				@toolChip("JUnit")
+				@toolChip("JIRA")
+				@toolChip("ReportPortal")
+				@toolChip("Slack")
+				@toolChip("InfluxDB")
+				@toolChip("Jenkins & any CI")
+				@toolChip("Google SSO")
+				@toolChip("Microsoft SSO")
+			</ul>
+		</div>
+	</section>
+}
+
+templ toolChip(name string) {
+	<li class="font-mono text-xs border border-line-strong bg-surface px-3 py-1.5 text-muted">{ name }</li>
+}
+
+templ homeDeployment() {
+	<section class="border-b border-line bg-surface">
+		<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+			@components.SectionTag("How deployment works")
+			<h2 class="font-display font-bold text-3xl md:text-4xl tracking-tight max-w-2xl">Hardware, software, and expertise — delivered to your premises.</h2>
+			<p class="text-muted mt-4 max-w-2xl leading-relaxed">
+				RobusTest isn't a download-and-good-luck product. We build the lab with you and keep it running.
+			</p>
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-line border border-line mt-10">
+				@deployStep("01", "We build the lab with you", "Use the devices you already own, or have us spec and supply everything — racks, hubs, smart power, and TV capture gear.")
+				@deployStep("02", "We install and integrate", "A self-hosted binary with its own database and no outbound dependencies, so it runs air-gapped. We wire up your Google or Microsoft sign-in and your CI. Flat yearly license sized by device count — never by minutes or users.")
+				@deployStep("03", "Your team starts testing", "Testers sign in with your identity provider, point existing Appium and Espresso suites at the lab, and run the first sessions the same week.")
+			</div>
+			<p class="text-sm text-muted mt-6 max-w-2xl leading-relaxed">
+				Transport is TLS end to end, sign-in is your identity provider, and managed devices authenticate with certificates. The full posture is on the <a href="/security" class="text-trace font-medium hover:underline">security page</a>.
+			</p>
+		</div>
+	</section>
+}
+
+templ deployStep(num string, title string, desc string) {
+	<div class="bg-paper p-6">
+		<span class="font-mono text-xs text-signal">{ num }</span>
+		<h3 class="font-display font-bold text-xl mt-4">{ title }</h3>
+		<p class="text-sm text-muted mt-2 leading-relaxed">{ desc }</p>
+	</div>
+}
+
+templ homePackage() {
+	<section class="border-b border-line">
+		<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+			@components.SectionTag("The package")
+			<h2 class="font-display font-bold text-3xl md:text-4xl tracking-tight max-w-2xl">One subscription. The whole lab.</h2>
+			<p class="text-muted mt-4 max-w-2xl leading-relaxed">
+				RobusTest isn't software you license and figure out. It's a working device lab — racked, wired, supported — that happens to live in your building instead of ours.
+			</p>
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-line border border-line mt-10">
+				@deployStep("01", "The software", "The full platform — live control, automation grid, performance vitals, network capture, TV drivers, lab operations — as a self-hosted binary on one server. Yours for the license term, air-gap included.")
+				@deployStep("02", "The hardware plan", "We spec your racks, hubs, capture cards, and TV walls against your device list — and help you source the devices you don't have yet, including the odd models cloud farms never stock.")
+				@deployStep("03", "The install", "Our engineers come on-site and build the complete lab — server, lab nodes, capture cameras, down to the cables, all supplied by us. Your team just brings the devices. We hand it over running: testers signed in, first suites executing, in about a week.")
+				@deployStep("04", "The people", "Health checks flag flaky devices before your testers do. Updates ship as signed offline bundles for air-gapped racks. When a hub dies at 2 a.m., that's our pager, not yours.")
+			</div>
+			<p class="font-medium mt-6">
+				Flat yearly license sized by device count — never by minutes, users, or parallel runs.
+			</p>
+		</div>
+	</section>
+}
+
+templ homeAudiences() {
+	<section class="border-b border-line bg-surface">
+		<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+			@components.SectionTag("Two ways to own a lab")
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-line border border-line mt-8">
+				<a href="/enterprise" class="group bg-paper hover:bg-surface transition-colors p-8 flex flex-col">
+					<div class="flex items-center justify-between">
+						<span class="tag">In-house</span>
+						<span class="text-line-strong group-hover:text-signal transition-colors" aria-hidden="true">→</span>
+					</div>
+					<h3 class="font-display font-bold text-2xl mt-5">For your own team</h3>
+					<p class="text-sm text-muted mt-2 leading-relaxed">
+						Streaming platforms, telcos, and banks run RobusTest as their in-house device lab — every device they ship to, racked in their own network.
 					</p>
-					<div class="flex flex-col sm:flex-row gap-4 mb-12">
-						<a href="/contact" class="bg-cyan-500 text-white px-8 py-4 rounded-lg font-semibold hover:bg-cyan-600 transition-colors text-center text-lg">
-							Schedule a Consultation
-						</a>
-						<a href="/features" class="border-2 border-gray-600 text-white px-8 py-4 rounded-lg font-semibold hover:border-gray-400 hover:bg-gray-800 transition-colors text-center text-lg">
-							Explore Features
-						</a>
+					<span class="text-trace font-medium mt-4">Build your lab →</span>
+				</a>
+				<a href="/partners" class="group bg-paper hover:bg-surface transition-colors p-8 flex flex-col">
+					<div class="flex items-center justify-between">
+						<span class="tag">Partners</span>
+						<span class="text-line-strong group-hover:text-signal transition-colors" aria-hidden="true">→</span>
 					</div>
-					<div class="flex flex-wrap items-center gap-6 text-sm text-gray-400">
-						<div class="flex items-center gap-2">
-							<svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-							</svg>
-							<span>100% On-Premise</span>
-						</div>
-						<div class="flex items-center gap-2">
-							<svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-							</svg>
-							<span>No Per-Minute Billing</span>
-						</div>
-						<div class="flex items-center gap-2">
-							<svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-							</svg>
-							<span>Enterprise Support</span>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-		<!-- Platforms Section -->
-		<section class="py-12 bg-gray-50 border-b border-gray-200">
-			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-				<p class="text-center text-gray-500 mb-8 font-medium">SUPPORTED PLATFORMS</p>
-				<div class="flex flex-wrap justify-center items-center gap-8 md:gap-12">
-					<div class="flex items-center gap-2 text-gray-600">
-						<!-- Android robot icon -->
-						<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-							<path d="M6 18c0 .55.45 1 1 1h1v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h2v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h1c.55 0 1-.45 1-1V8H6v10zM3.5 8C2.67 8 2 8.67 2 9.5v7c0 .83.67 1.5 1.5 1.5S5 17.33 5 16.5v-7C5 8.67 4.33 8 3.5 8zm17 0c-.83 0-1.5.67-1.5 1.5v7c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5v-7c0-.83-.67-1.5-1.5-1.5zm-4.97-5.84l1.3-1.3c.2-.2.2-.51 0-.71-.2-.2-.51-.2-.71 0l-1.48 1.48C13.85 1.23 12.95 1 12 1c-.96 0-1.86.23-2.66.63L7.85.15c-.2-.2-.51-.2-.71 0-.2.2-.2.51 0 .71l1.31 1.31C6.97 3.26 6 5.01 6 7h12c0-1.99-.97-3.75-2.47-4.84zM10 5H9V4h1v1zm5 0h-1V4h1v1z"/>
-						</svg>
-						<span class="font-medium">Android</span>
-					</div>
-					<div class="flex items-center gap-2 text-gray-600">
-						<!-- Apple icon -->
-						<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-							<path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
-						</svg>
-						<span class="font-medium">iOS</span>
-					</div>
-					<div class="flex items-center gap-2 text-gray-600">
-						<!-- Apple TV icon -->
-						<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 50 50" aria-hidden="true" focusable="false">
-							<path d="M41,4H9C6.24,4,4,6.24,4,9v32c0,2.76,2.24,5,5,5h32c2.76,0,5-2.24,5-5V9C46,6.24,43.76,4,41,4z M16.06,19.06 c0.51-0.58,1.31-0.96,2.02-1.06c0.1,0.77-0.2,1.55-0.61,2.03c-0.5,0.58-1.21,0.97-2.01,0.97C15.26,20.32,15.56,19.65,16.06,19.06z M20.39,29.1c-0.6,0.8-1.41,1.9-2.31,1.9c-0.91,0-1.11-0.6-2.22-0.5c-1.21,0-1.41,0.6-2.32,0.5c-1,0-1.71-0.9-2.21-1.8 c-1.51-2.3-1.71-5.1-0.71-6.6c0.71-1,1.71-1.6,2.72-1.6c1.01,0,1.71,0.6,2.52,0.6s1.31-0.6,2.52-0.6c0.91,0,1.81,0.5,2.52,1.3 c-2.22,1.2-1.82,4.3,0.4,5.2C20.9,28.2,20.7,28.5,20.39,29.1z M29.4,22.38h-2.6v5.22c0,1.2,0.3,1.9,1.4,1.9c0.5,0,0.8,0,1-0.1 l0.1,1.4C29,30.9,28.4,31,27.7,31c-0.8,0-1.5-0.3-2-0.8c-0.5-0.6-0.7-1.4-0.7-2.6v-5.22h-1.5V21H25v-2.5l1.8-0.5v3h2.6V22.38z M36.11,31h-1.7l-3.79-10h1.9l1.99,5.6c0.3,0.9,0.6,1.7,0.8,2.6h0.1c0.2-0.8,0.5-1.6,0.8-2.6l1.9-5.6H40L36.11,31z"/>
-						</svg>
-						<span class="font-medium">Apple TV</span>
-					</div>
-					<div class="flex items-center gap-2 text-gray-600">
-						<!-- Chromecast icon -->
-						<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-							<path d="M1 18v3h3c0-1.66-1.34-3-3-3zm0-4v2c2.76 0 5 2.24 5 5h2c0-3.87-3.13-7-7-7zm0-4v2c4.97 0 9 4.03 9 9h2c0-6.08-4.93-11-11-11zm20-7H3c-1.1 0-2 .9-2 2v3h2V5h18v14h-7v2h7c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/>
-						</svg>
-						<span class="font-medium">Chromecast</span>
-					</div>
-					<div class="flex items-center gap-2 text-gray-600">
-						<!-- Roku icon (play button style) -->
-						<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-							<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/>
-						</svg>
-						<span class="font-medium">Roku</span>
-					</div>
-					<div class="flex items-center gap-2 text-gray-600">
-						<!-- Web/Globe icon -->
-						<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path>
-						</svg>
-						<span class="font-medium">Web</span>
-					</div>
-				</div>
-			</div>
-		</section>
-		<!-- Why On-Premise Section -->
-		<section class="py-16 md:py-24 bg-white">
-			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-				<div class="text-center mb-16">
-					<h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-						Why Enterprise Teams Choose On-Premise
-					</h2>
-					<p class="text-xl text-gray-600 max-w-2xl mx-auto">
-						Cloud testing services work for some. But when security, compliance, and cost predictability matter, on-premise is the answer.
+					<h3 class="font-display font-bold text-2xl mt-5">For your clients</h3>
+					<p class="text-sm text-muted mt-2 leading-relaxed">
+						Testing services companies run RobusTest labs at their own sites and deliver testing to their clients — you own the engagement, we stay the platform.
 					</p>
-				</div>
-				<div class="grid md:grid-cols-3 gap-8">
-					<div class="bg-gray-50 rounded-xl p-8 hover:shadow-lg transition-shadow">
-						<div class="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center mb-6">
-							<svg class="w-6 h-6 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
-							</svg>
-						</div>
-						<h3 class="text-xl font-semibold text-gray-900 mb-3">100% On-Premise</h3>
-						<p class="text-gray-600 leading-relaxed">Your test data never leaves your network. Complete control over your infrastructure.</p>
-					</div>
-					<div class="bg-gray-50 rounded-xl p-8 hover:shadow-lg transition-shadow">
-						<div class="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center mb-6">
-							<svg class="w-6 h-6 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
-							</svg>
-						</div>
-						<h3 class="text-xl font-semibold text-gray-900 mb-3">Enterprise Security</h3>
-						<p class="text-gray-600 leading-relaxed">Air-gapped deployment support for high-security environments. Your data stays within your network.</p>
-					</div>
-					<div class="bg-gray-50 rounded-xl p-8 hover:shadow-lg transition-shadow">
-						<div class="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center mb-6">
-							<svg class="w-6 h-6 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-							</svg>
-						</div>
-						<h3 class="text-xl font-semibold text-gray-900 mb-3">No Usage Caps</h3>
-						<p class="text-gray-600 leading-relaxed">Unlimited users, unlimited test minutes. Predictable yearly pricing with no surprises.</p>
-					</div>
-				</div>
+					<span class="text-trace font-medium mt-4">Partner with us →</span>
+				</a>
 			</div>
-		</section>
-		<!-- Features Section -->
-		<section class="py-16 md:py-24 bg-gray-50">
-			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-				<div class="text-center mb-16">
-					<h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-						Platform Capabilities
-					</h2>
-					<p class="text-xl text-gray-600 max-w-2xl mx-auto">
-						Everything your team needs to test mobile and TV applications effectively.
-					</p>
-				</div>
-				<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-					<div class="border border-gray-200 rounded-xl p-6 bg-white hover:shadow-lg transition-shadow">
-						<div class="w-10 h-10 bg-cyan-100 rounded-lg flex items-center justify-center mb-4">
-							<svg class="w-5 h-5 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-							</svg>
-						</div>
-						<h3 class="text-lg font-semibold text-gray-900 mb-2">Test Automation</h3>
-						<p class="text-gray-600">Run Appium, Espresso, and XCUITest suites with parallel execution across your device fleet.</p>
-					</div>
-					<div class="border border-gray-200 rounded-xl p-6 bg-white hover:shadow-lg transition-shadow">
-						<div class="w-10 h-10 bg-cyan-100 rounded-lg flex items-center justify-center mb-4">
-							<svg class="w-5 h-5 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
-							</svg>
-						</div>
-						<h3 class="text-lg font-semibold text-gray-900 mb-2">Manual Testing</h3>
-						<p class="text-gray-600">Live device streaming with real-time touch and keyboard input. Debug issues as they happen.</p>
-					</div>
-					<div class="border border-gray-200 rounded-xl p-6 bg-white hover:shadow-lg transition-shadow">
-						<div class="w-10 h-10 bg-cyan-100 rounded-lg flex items-center justify-center mb-4">
-							<svg class="w-5 h-5 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
-							</svg>
-						</div>
-						<h3 class="text-lg font-semibold text-gray-900 mb-2">Performance Monitoring</h3>
-						<p class="text-gray-600">Built-in CPU, memory, and network metrics. No additional tools required.</p>
-					</div>
-					<div class="border border-gray-200 rounded-xl p-6 bg-white hover:shadow-lg transition-shadow">
-						<div class="w-10 h-10 bg-cyan-100 rounded-lg flex items-center justify-center mb-4">
-							<svg class="w-5 h-5 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-							</svg>
-						</div>
-						<h3 class="text-lg font-semibold text-gray-900 mb-2">Smart TV Testing</h3>
-						<p class="text-gray-600">Test on Apple TV, Chromecast, and Roku devices.</p>
-					</div>
-					<div class="border border-gray-200 rounded-xl p-6 bg-white hover:shadow-lg transition-shadow">
-						<div class="w-10 h-10 bg-cyan-100 rounded-lg flex items-center justify-center mb-4">
-							<svg class="w-5 h-5 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path>
-							</svg>
-						</div>
-						<h3 class="text-lg font-semibold text-gray-900 mb-2">CI/CD Integration</h3>
-						<p class="text-gray-600">Jenkins, GitHub Actions, GitLab CI, and more. Fits into your existing pipeline.</p>
-					</div>
-					<div class="border border-gray-200 rounded-xl p-6 bg-white hover:shadow-lg transition-shadow">
-						<div class="w-10 h-10 bg-cyan-100 rounded-lg flex items-center justify-center mb-4">
-							<svg class="w-5 h-5 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
-							</svg>
-						</div>
-						<h3 class="text-lg font-semibold text-gray-900 mb-2">Team Collaboration</h3>
-						<p class="text-gray-600">Role-based access, project management, and detailed reporting for distributed teams.</p>
-					</div>
-				</div>
-				<div class="text-center mt-12">
-					<a href="/features" class="inline-flex items-center gap-2 text-cyan-600 font-semibold hover:text-cyan-700 transition-colors">
-						See all features
-						<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-						</svg>
-					</a>
-				</div>
-			</div>
-		</section>
-		<!-- Comparison Section -->
-		<section class="py-16 md:py-24 bg-white">
-			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-				<div class="text-center mb-16">
-					<h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-						RobusTest vs. Cloud Testing Services
-					</h2>
-					<p class="text-xl text-gray-600 max-w-2xl mx-auto">
-						See why enterprises are moving from BrowserStack, Sauce Labs, and AWS Device Farm to on-premise solutions.
-					</p>
-				</div>
-				<div class="max-w-3xl mx-auto">
-					<div class="bg-white rounded-xl shadow-lg overflow-hidden">
-						<table class="w-full" role="table">
-							<thead>
-								<tr class="bg-gray-100">
-									<th scope="col" class="p-4 text-left font-semibold text-gray-700">Feature</th>
-									<th scope="col" class="p-4 text-center font-semibold text-gray-700">RobusTest</th>
-									<th scope="col" class="p-4 text-center font-semibold text-gray-700">Cloud Services</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr class="bg-white border-t border-gray-100">
-									<td class="p-4 text-gray-700">Data stays in your network</td>
-									<td class="p-4 text-center">
-										<svg class="w-5 h-5 text-green-500 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-										<span class="sr-only">Included</span>
-									</td>
-									<td class="p-4 text-center text-red-400">
-										<span aria-hidden="true">&#10005;</span>
-										<span class="sr-only">Not included</span>
-									</td>
-								</tr>
-								<tr class="bg-gray-50 border-t border-gray-100">
-									<td class="p-4 text-gray-700">No per-minute billing</td>
-									<td class="p-4 text-center">
-										<svg class="w-5 h-5 text-green-500 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-										<span class="sr-only">Included</span>
-									</td>
-									<td class="p-4 text-center text-red-400">
-										<span aria-hidden="true">&#10005;</span>
-										<span class="sr-only">Not included</span>
-									</td>
-								</tr>
-								<tr class="bg-white border-t border-gray-100">
-									<td class="p-4 text-gray-700">Unlimited users</td>
-									<td class="p-4 text-center">
-										<svg class="w-5 h-5 text-green-500 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-										<span class="sr-only">Included</span>
-									</td>
-									<td class="p-4 text-center text-red-400">
-										<span aria-hidden="true">&#10005;</span>
-										<span class="sr-only">Not included</span>
-									</td>
-								</tr>
-								<tr class="bg-gray-50 border-t border-gray-100">
-									<td class="p-4 text-gray-700">Air-gapped deployment</td>
-									<td class="p-4 text-center">
-										<svg class="w-5 h-5 text-green-500 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-										<span class="sr-only">Included</span>
-									</td>
-									<td class="p-4 text-center text-red-400">
-										<span aria-hidden="true">&#10005;</span>
-										<span class="sr-only">Not included</span>
-									</td>
-								</tr>
-								<tr class="bg-white border-t border-gray-100">
-									<td class="p-4 text-gray-700">Smart TV testing</td>
-									<td class="p-4 text-center">
-										<svg class="w-5 h-5 text-green-500 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-										<span class="sr-only">Included</span>
-									</td>
-									<td class="p-4 text-center text-yellow-600">
-										<span>Limited</span>
-									</td>
-								</tr>
-								<tr class="bg-gray-50 border-t border-gray-100">
-									<td class="p-4 text-gray-700">Hardware included</td>
-									<td class="p-4 text-center">
-										<svg class="w-5 h-5 text-green-500 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-										<span class="sr-only">Included</span>
-									</td>
-									<td class="p-4 text-center text-red-400">
-										<span aria-hidden="true">&#10005;</span>
-										<span class="sr-only">Not included</span>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-				</div>
-			</div>
-		</section>
-		<!-- CTA Section -->
-		<section class="py-16 md:py-24 bg-gradient-to-r from-cyan-500 to-cyan-600 text-white">
-			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-				<h2 class="text-3xl md:text-4xl font-bold mb-6">
-					Ready to Transform Your Device Lab?
-				</h2>
-				<p class="text-xl text-cyan-100 mb-8 max-w-2xl mx-auto">
-					Schedule a consultation with our team to discuss your requirements and see RobusTest in action.
+			<div class="border border-line bg-paper px-6 py-5 mt-8">
+				<p class="text-sm text-muted leading-relaxed max-w-3xl">
+					Not ready for a rack? Our other product, <a href="https://devicelab.dev" target="_blank" rel="noopener noreferrer" class="text-trace font-medium hover:underline">DeviceLab</a>, turns the devices you already own into a distributed lab — self-serve, first device free, five minutes to first test. RobusTest is what you graduate to when you need a managed lab, TV testing, and air-gap.
 				</p>
-				<div class="flex flex-col sm:flex-row gap-4 justify-center">
-					<a href="/contact" class="bg-white text-cyan-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors text-lg">
-						Schedule a Consultation
+			</div>
+		</div>
+	</section>
+}
+
+templ homeOpenSource() {
+	<section class="border-b border-line">
+		<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-16">
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+				<div>
+					@components.SectionTag("More from the team")
+					<h2 class="font-display font-bold text-2xl md:text-3xl tracking-tight">The team behind RobusTest also builds testing tools you can try today.</h2>
+				</div>
+				<div class="space-y-4">
+					<a href="https://github.com/devicelab-dev/maestro-runner" target="_blank" rel="noopener noreferrer" class="block border border-line-strong bg-surface p-4 hover:border-ink transition-colors">
+						<span class="font-mono text-sm font-medium">maestro-runner ↗ <span class="text-xs text-muted">open source</span></span>
+						<span class="block text-sm text-muted mt-1">Open-source Maestro alternative — single binary, no JVM, Android/iOS/Web. Apache 2.0.</span>
 					</a>
-					<a href="/pricing" class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white/10 transition-colors text-lg">
-						View Pricing
+					<a href="https://devicelab.dev" target="_blank" rel="noopener noreferrer" class="block border border-line-strong bg-surface p-4 hover:border-ink transition-colors">
+						<span class="font-mono text-sm font-medium">DeviceLab.dev ↗ <span class="text-xs text-muted">SaaS</span></span>
+						<span class="block text-sm text-muted mt-1">The same team's software-only product: your own devices, wherever they sit, run by you. Everything on this page — the rack, the management, the air gap — is what DeviceLab isn't.</span>
 					</a>
 				</div>
 			</div>
-		</section>
-		<!-- SoftwareApplication Schema -->
-		<script type="application/ld+json">
-		{
-			"@context": "https://schema.org",
-			"@type": "SoftwareApplication",
-			"name": "RobusTest",
-			"applicationCategory": "DeveloperApplication",
-			"operatingSystem": "Web-based, On-Premise",
-			"description": "Enterprise on-premise mobile device lab platform for iOS, Android, Roku, Apple TV, and Chromecast testing with Appium, Espresso, and XCUITest support",
-			"url": "https://robustest.com",
-			"featureList": [
-				"Manual mobile testing with live device streaming",
-				"Test automation with Appium, Espresso, XCUITest",
-				"Smart TV testing for Roku, Apple TV, Chromecast",
-				"CI/CD integration with Jenkins, GitHub Actions, GitLab CI",
-				"Performance monitoring with CPU, memory, network metrics",
-				"100% on-premise deployment",
-				"Unlimited users and test minutes",
-				"Air-gapped deployment support"
-			],
-			"offers": {
-				"@type": "Offer",
-				"availability": "https://schema.org/InStock",
-				"priceSpecification": {
-					"@type": "PriceSpecification",
-					"priceCurrency": "USD",
-					"eligibleQuantity": {
-						"@type": "QuantitativeValue",
-						"unitText": "device"
-					}
-				},
-				"description": "Custom enterprise pricing based on device count - contact for quote"
-			},
-			"provider": {
-				"@type": "Organization",
-				"name": "RobusTest",
-				"url": "https://robustest.com"
-			}
-		}
-		</script>
-		<!-- FAQ Schema -->
-		<script type="application/ld+json">
-		{
-			"@context": "https://schema.org",
-			"@type": "FAQPage",
-			"mainEntity": [
-				{
-					"@type": "Question",
-					"name": "Why choose on-premise over cloud testing services?",
-					"acceptedAnswer": {
-						"@type": "Answer",
-						"text": "On-premise device labs keep test data within your network, eliminate per-minute billing, support unlimited users, and meet SOC2, HIPAA, and PCI-DSS compliance requirements. Unlike cloud services, you have complete control over your infrastructure."
-					}
-				},
-				{
-					"@type": "Question",
-					"name": "What platforms does RobusTest support?",
-					"acceptedAnswer": {
-						"@type": "Answer",
-						"text": "RobusTest supports Android, iOS, Apple TV, Chromecast, Roku, and web testing. It integrates with Appium, Espresso, and XCUITest frameworks for test automation."
-					}
-				},
-				{
-					"@type": "Question",
-					"name": "Does RobusTest include hardware?",
-					"acceptedAnswer": {
-						"@type": "Answer",
-						"text": "Yes, RobusTest provides a complete solution including hardware, software, and ongoing support. We set up and manage your in-house device lab so your team can focus on quality."
-					}
-				},
-				{
-					"@type": "Question",
-					"name": "How is RobusTest different from BrowserStack or Sauce Labs?",
-					"acceptedAnswer": {
-						"@type": "Answer",
-						"text": "Unlike cloud testing services, RobusTest is 100% on-premise. Your data never leaves your network. There's no per-minute billing, unlimited users, air-gapped deployment support, and Smart TV testing capabilities that cloud services don't offer."
-					}
-				}
-			]
-		}
-		</script>
-	}
+		</div>
+	</section>
 }

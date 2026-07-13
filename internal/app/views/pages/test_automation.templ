@@ -1,0 +1,155 @@
+package pages
+
+import (
+	"github.com/izinga/robustest-web/internal/app/views/components"
+	"github.com/izinga/robustest-web/internal/app/views/layouts"
+)
+
+templ TestAutomationPage() {
+	@layouts.Base(
+		"Mobile test automation on your own devices — RobusTest",
+		"Run Appium, Espresso, XCUITest, Selenium, UIAutomator, and Maestro-style flows in parallel across your own device pool — triggered from CI, with JUnit output and nothing leaving your network.",
+		"/platform/test-automation",
+	) {
+		@components.PageHero(
+			"Test automation",
+			"Your frameworks. Your CI. Your devices.",
+			"RobusTest is an Appium- and Selenium-compatible hub inside your network. Point the test suites you already have at the lab's endpoint and they run — in parallel, across your real device pool, with results your pipeline can consume.",
+		)
+		@taFrameworks()
+		@taExecution()
+		@taArtifacts()
+		@taCICD()
+		@components.CTABand(
+			"Run tonight's regression on your own rack.",
+			"Bring one existing suite to the demo — we'll point it at a RobusTest hub and run it in parallel while you watch.",
+		)
+	}
+}
+
+templ taFrameworks() {
+	<section class="border-b border-line">
+		<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+			@components.SectionTag("Frameworks")
+			<h2 class="font-display font-bold text-3xl md:text-4xl tracking-tight max-w-2xl">First-class runners, not wrappers.</h2>
+			<p class="text-muted mt-4 max-w-2xl leading-relaxed">
+				Each framework has a dedicated runner in the platform — with its own preparation, report parser, and failure handling — so results come back structured, not as a log dump.
+			</p>
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-line mt-10 border border-line">
+				@taFrameworkCard("APPIUM", "Appium", "A standard /wd/hub endpoint for app and mobile-browser automation. Your existing Appium suites connect by changing one URL; capabilities route to devices automatically.")
+				@taFrameworkCard("ESPRESSO", "Espresso", "Native Android instrumentation runs — upload the app and test APKs, pick a device pool, and get parsed test-level results back.")
+				@taFrameworkCard("XCUITEST", "XCUITest & XCTest", "The lab provisions WebDriverAgent and resigns your runner IPA on its own nodes — no per-device Xcode babysitting. Runs on real iPhones, iPads, and Apple TVs.")
+				@taFrameworkCard("SELENIUM", "Selenium grid", "Desktop-browser automation through the same hub — grid nodes register browsers, and sessions route by requested capabilities.")
+				@taFrameworkCard("UIAUTOMATOR", "UIAutomator", "Suite-based UIAutomator jobs for Android system-level flows that instrumentation can't reach.")
+				@taFrameworkCard("FLOWS", "Maestro-style flows", "YAML flow definitions run against lab devices — the lightweight option for smoke tests and flows QA can own.")
+			</div>
+		</div>
+	</section>
+}
+
+templ taFrameworkCard(tag string, title string, desc string) {
+	<div class="bg-paper p-6">
+		<span class="tag">{ tag }</span>
+		<h3 class="font-display font-bold text-xl mt-5">{ title }</h3>
+		<p class="text-sm text-muted mt-2 leading-relaxed">{ desc }</p>
+	</div>
+}
+
+templ taExecution() {
+	<section class="border-b border-line bg-surface">
+		<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+			<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+				<div>
+					@components.SectionTag("Execution")
+					<h2 class="font-display font-bold text-3xl md:text-4xl tracking-tight">Parallel across the pool, not one device at a time.</h2>
+					<p class="text-muted mt-4 leading-relaxed">
+						A run fans out into jobs, jobs claim devices from the pool, and every step reports back live. You define which devices qualify; the lab does the dispatching.
+					</p>
+					<ul class="space-y-2.5 mt-6">
+						@components.Check("Parallel run mode distributes a job across every matching free device")
+						@components.Check("Saved device queries target pools by platform, OS version, model, or tag — \"all Android 14 phones\", not hard-coded serials")
+						@components.Check("Retry policies per job type: retry on the same device or a fresh one, with a max-attempts cap")
+						@components.Check("Live progress over websockets — watch tests move through the run → job → session → testcase → result hierarchy as they execute")
+					</ul>
+				</div>
+				<div class="grid grid-cols-2 gap-3">
+					@components.Metric("1 URL", "Change to adopt the hub")
+					@components.Metric("Pool", "Device targeting by query")
+					@components.Metric("Live", "Progress over websockets")
+					@components.Metric("Retry", "Same or fresh device, capped")
+				</div>
+			</div>
+		</div>
+	</section>
+}
+
+templ taArtifacts() {
+	<section class="border-b border-line">
+		<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+			@components.SectionTag("Artifacts & reporting")
+			<h2 class="font-display font-bold text-3xl md:text-4xl tracking-tight max-w-2xl">When a test fails at 2 a.m., the evidence is already collected.</h2>
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-line mt-10 border border-line">
+				@taArtifactCard("SHOTS", "Step-level screenshots", "Before and after screenshots attach to individual steps, so a failure shows you the screen at the moment it happened.")
+				@taArtifactCard("LOGS", "Every log type", "Device logs from every platform — Android logcat, iOS syslog, TV and browser logs — plus Appium server logs, captured per result, viewable in the report, and downloadable per type.")
+				@taArtifactCard("JUNIT", "JUnit XML export", "Every job exports standard JUnit XML, so your CI's own test-report UI shows lab results natively.")
+				@taArtifactCard("REPORTS", "HTML run reports", "Framework-aware parsers turn raw output into browsable reports at run, job, and testcase level.")
+				@taArtifactCard("TIMING", "Time analysis", "Per-session time breakdowns show where a run's minutes actually went — queueing, preparation, or the tests themselves.")
+				@taArtifactCard("HOOKS", "Result hooks", "Completed jobs notify Slack, email, generic webhooks, or push metrics to InfluxDB for dashboards.")
+			</div>
+			<div class="border border-line bg-signal-soft px-6 py-5 mt-10">
+				<p class="text-sm leading-relaxed max-w-3xl">
+					<span class="font-semibold">And every run records more than test results.</span>
+					<span class="text-muted"> Performance vitals and HTTP(S) network capture run by default on every automated session — so a failed test comes back with its FPS trace and the API calls behind it, per result, no extra configuration. See </span>
+					<a href="/platform/performance-testing" class="text-trace font-medium hover:underline">performance testing</a>
+					<span class="text-muted"> and </span>
+					<a href="/platform/network-capture" class="text-trace font-medium hover:underline">network capture</a><span class="text-muted">.</span>
+				</p>
+			</div>
+			<div class="mt-10">
+				@components.Frame("Test run report — parallel Espresso job") {
+					@components.IlloRunReport()
+				}
+			</div>
+		</div>
+	</section>
+}
+
+templ taArtifactCard(tag string, title string, desc string) {
+	<div class="bg-paper p-6">
+		<span class="tag">{ tag }</span>
+		<h3 class="font-display font-bold text-xl mt-5">{ title }</h3>
+		<p class="text-sm text-muted mt-2 leading-relaxed">{ desc }</p>
+	</div>
+}
+
+templ taCICD() {
+	<section class="border-b border-line bg-surface">
+		<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+			<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+				<div>
+					@components.SectionTag("CI/CD")
+					<h2 class="font-display font-bold text-3xl md:text-4xl tracking-tight">Triggered by your pipeline, not a person.</h2>
+					<p class="text-muted mt-4 leading-relaxed">
+						A documented HTTP API triggers jobs, polls status, and fetches results using per-user access keys — the same API our largest customers run their nightly regressions through. Jenkins, GitHub Actions, GitLab CI: anything that can call an endpoint can drive the lab.
+					</p>
+					<ul class="space-y-2.5 mt-6">
+						@components.Check("Trigger a job, poll its status, list its device instances, or abort it — all over HTTP")
+						@components.Check("Per-user API access keys, revocable and regenerable at any time")
+						@components.Check("JUnit XML pulls lab results into your pipeline's pass/fail gate")
+						@components.Check("Job hooks announce finished runs where the team already looks — Slack, email, or your own webhook")
+					</ul>
+				</div>
+				<div class="border border-line-strong bg-paper p-6 font-mono text-xs leading-relaxed overflow-x-auto">
+					<p class="text-muted"># trigger a run from CI</p>
+					<p class="mt-2">curl -X POST \</p>
+					<p>&nbsp;&nbsp;"https://lab.internal/v3/job/trigger" \</p>
+					<p>&nbsp;&nbsp;-H "Authorization: Bearer $LAB_KEY" \</p>
+					<p>&nbsp;&nbsp;-d @nightly-regression.json</p>
+					<p class="text-muted mt-4"># poll until done, then fetch JUnit</p>
+					<p class="mt-2">curl "https://lab.internal/v3/job/$ID/junit" \</p>
+					<p>&nbsp;&nbsp;-H "Authorization: Bearer $LAB_KEY"</p>
+				</div>
+			</div>
+		</div>
+	</section>
+}

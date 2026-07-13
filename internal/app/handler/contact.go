@@ -39,8 +39,12 @@ func logContactForm(req ContactFormRequest, status string, emailErr error) {
 	if emailErr != nil {
 		errMsg = fmt.Sprintf(" | Error: %v", emailErr)
 	}
-	contactFormLogger.Printf("[%s] Name: %s | Email: %s | Company: %s | Phone: %s | Message: %s%s",
-		status, req.Name, req.Email, req.Company, req.Phone, truncateMessage(req.Message, 100), errMsg)
+	lead := ""
+	if req.LeadType != "" {
+		lead = " | Lead: " + req.LeadType
+	}
+	contactFormLogger.Printf("[%s] Name: %s | Email: %s | Company: %s | Phone: %s | Message: %s%s%s",
+		status, req.Name, req.Email, req.Company, req.Phone, truncateMessage(req.Message, 100), lead, errMsg)
 }
 
 // truncateMessage truncates a message to the specified length
@@ -151,11 +155,12 @@ var phoneRegex = regexp.MustCompile(`^[\d\s\-\+\(\)]{0,20}$`)
 
 // ContactFormRequest represents the contact form submission
 type ContactFormRequest struct {
-	Name    string `form:"name" binding:"required,max=100"`
-	Email   string `form:"email" binding:"required,email,max=254"`
-	Company string `form:"company" binding:"max=200"`
-	Phone   string `form:"phone" binding:"max=20"`
-	Message string `form:"message" binding:"max=2000"`
+	Name     string `form:"name" binding:"required,max=100"`
+	Email    string `form:"email" binding:"required,email,max=254"`
+	Company  string `form:"company" binding:"max=200"`
+	Phone    string `form:"phone" binding:"max=20"`
+	Message  string `form:"message" binding:"max=2000"`
+	LeadType string `form:"lead_type" binding:"max=20"`
 }
 
 // sanitize cleans and validates the contact form request
@@ -166,6 +171,11 @@ func (req *ContactFormRequest) sanitize() error {
 	req.Company = strings.TrimSpace(req.Company)
 	req.Phone = strings.TrimSpace(req.Phone)
 	req.Message = strings.TrimSpace(req.Message)
+
+	// Only a known lead type survives; anything else is treated as a demo lead
+	if req.LeadType != "partner" {
+		req.LeadType = ""
+	}
 
 	// Validate email format with stricter regex
 	if !emailRegex.MatchString(req.Email) {
@@ -315,6 +325,10 @@ func SubmitContactForm(c *gin.Context) {
 	// Build email content with HTML-escaped values
 	subject := fmt.Sprintf("New Contact Form Submission from %s",
 		html.EscapeString(req.Name))
+	if req.LeadType == "partner" {
+		subject = fmt.Sprintf("[PARTNER] New Partner Inquiry from %s",
+			html.EscapeString(req.Name))
+	}
 
 	htmlContent := buildEmailHTML(req)
 	textContent := buildEmailText(req)
@@ -375,7 +389,17 @@ func buildEmailHTML(req ContactFormRequest) string {
         <div class="header">
             <h1 style="margin:0;">New Contact Form Submission</h1>
         </div>
-        <div class="content">
+        <div class="content">`)
+
+	if req.LeadType == "partner" {
+		sb.WriteString(`
+            <div class="field">
+                <div class="label">Lead type</div>
+                <div class="value"><strong>PARTNER</strong></div>
+            </div>`)
+	}
+
+	sb.WriteString(`
             <div class="field">
                 <div class="label">Name</div>
                 <div class="value">` + name + `</div>
@@ -426,6 +450,9 @@ func buildEmailText(req ContactFormRequest) string {
 
 	sb.WriteString("NEW CONTACT FORM SUBMISSION\n")
 	sb.WriteString("===========================\n\n")
+	if req.LeadType == "partner" {
+		sb.WriteString("Lead type: PARTNER\n")
+	}
 	sb.WriteString(fmt.Sprintf("Name: %s\n", req.Name))
 	sb.WriteString(fmt.Sprintf("Email: %s\n", req.Email))
 

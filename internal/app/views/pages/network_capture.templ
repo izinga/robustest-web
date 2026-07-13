@@ -1,0 +1,137 @@
+package pages
+
+import (
+	"github.com/izinga/robustest-web/internal/app/views/components"
+	"github.com/izinga/robustest-web/internal/app/views/layouts"
+)
+
+templ NetworkCapturePage() {
+	@layouts.Base(
+		"Network capture and mocking for app testing — RobusTest",
+		"Every HTTP(S) call your app makes, captured automatically as HAR — with live inspection, gRPC/protobuf decoding, rewrite rules, and breakpoints, on devices that already sit inside your network.",
+		"/platform/network-capture",
+	) {
+		@components.PageHero(
+			"Network capture",
+			"Every request your app makes, on the record.",
+			"A capture layer built into every session — manual or automated — records your app's HTTP and HTTPS traffic as it happens. No proxy setup ritual, no separate tool: connect to a device and the recording has already started.",
+		)
+		@ncCapture()
+		@ncInspect()
+		@ncMock()
+		@ncLocal()
+		@components.CTABand(
+			"See what your app says on the wire.",
+			"Bring a build to a demo session and watch its traffic captured live — then take the HAR file with you.",
+		)
+	}
+}
+
+templ ncCapture() {
+	<section class="border-b border-line">
+		<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+			@components.SectionTag("Capture")
+			<h2 class="font-display font-bold text-3xl md:text-4xl tracking-tight max-w-2xl">Recording starts when the session does.</h2>
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10 items-start">
+				<div>
+					<p class="text-muted leading-relaxed">
+						Capture starts the moment a session connects — manual or automated. Testers watch requests appear live while they drive the device; afterwards, anyone can pull the traffic for exactly the time range they care about.
+					</p>
+					<ul class="space-y-2.5 mt-6">
+						@components.Check("Auto-start on session connect — nothing to switch on")
+						@components.Check("Live request view in the session, alongside the performance vitals recorded on the same timeline")
+						@components.Check("HAR download, time-ranged, per session or per test result")
+						@components.Check("Traffic attached to results, so a failing test carries its own network evidence")
+					</ul>
+				</div>
+				<div>
+					@components.Frame("Network capture — live HAR view") {
+					@components.IlloHarView()
+				}
+				</div>
+			</div>
+		</div>
+	</section>
+}
+
+templ ncInspect() {
+	<section class="border-b border-line bg-surface">
+		<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+			@components.SectionTag("Inspection")
+			<h2 class="font-display font-bold text-3xl md:text-4xl tracking-tight max-w-2xl">HTTPS and gRPC, readable.</h2>
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-line border border-line mt-10">
+				<div class="bg-paper p-8">
+					<span class="tag">TLS</span>
+					<h3 class="font-display font-bold text-2xl mt-4">HTTPS decryption</h3>
+					<p class="text-sm text-muted mt-3 leading-relaxed">
+						The lab-managed proxy decrypts your app's TLS traffic for inspection — inside your network, under your control. Headers, bodies, timings, and status codes, not just hostnames.
+					</p>
+				</div>
+				<div class="bg-paper p-8">
+					<span class="tag">GRPC</span>
+					<h3 class="font-display font-bold text-2xl mt-4">Protobuf decoding</h3>
+					<p class="text-sm text-muted mt-3 leading-relaxed">
+						Binary gRPC and protobuf payloads decode into readable messages using your proto descriptors — so API traffic that other tools show as opaque bytes reads like JSON here.
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+}
+
+templ ncMock() {
+	<section class="border-b border-line">
+		<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+			<div class="flex items-center gap-3 mb-4">
+				<span class="tag">Mocking &amp; modification</span>
+				@components.Beta()
+				<span class="rule" aria-hidden="true"></span>
+			</div>
+			<h2 class="font-display font-bold text-3xl md:text-4xl tracking-tight max-w-2xl">Test the failure your backend won't give you.</h2>
+			<p class="text-muted mt-4 max-w-2xl leading-relaxed">
+				Reproducing a 500, a malformed payload, or a slow edge case usually means begging another team to break staging. The traffic modifier does it at the proxy instead — per session, without touching any server.
+			</p>
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-line border border-line mt-10">
+				@ncMockCard("REWRITE", "Rewrite rules", "Change status codes, headers, or bodies on matching requests or responses.")
+				@ncMockCard("LOCAL", "Map Local", "Serve a local or inline file as the response — a mock endpoint with no mock server.")
+				@ncMockCard("BREAK", "Breakpoints", "Pause a request mid-flight, edit it by hand, and resume — or abort it.")
+				@ncMockCard("PRESET", "Team presets", "Save rule sets to a shared library so the whole team reproduces the same conditions.")
+			</div>
+		</div>
+	</section>
+}
+
+templ ncMockCard(tag string, title string, desc string) {
+	<div class="bg-paper p-6">
+		<span class="tag">{ tag }</span>
+		<h3 class="font-display font-bold text-lg mt-4">{ title }</h3>
+		<p class="text-sm text-muted mt-2 leading-relaxed">{ desc }</p>
+	</div>
+}
+
+templ ncLocal() {
+	<section class="border-b border-line bg-surface">
+		<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+			<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+				<div>
+					@components.SectionTag("Testing against internal services")
+					<h2 class="font-display font-bold text-3xl md:text-4xl tracking-tight">Your staging is already reachable.</h2>
+					<p class="text-muted mt-4 leading-relaxed">
+						Cloud device farms make you tunnel out to reach anything internal. RobusTest devices sit on your LAN — staging environments, internal APIs, and service meshes are reachable the way they are from any machine in the office.
+					</p>
+					<ul class="space-y-2.5 mt-6">
+						@components.Check("Devices on your network — internal hostnames resolve natively")
+						@components.Check("Secure tunnels for nodes in other offices or labs behind NAT")
+						@components.Check("Per-session WiFi switching to test against different network segments")
+					</ul>
+				</div>
+				<div class="grid grid-cols-2 gap-3">
+					@components.Metric("HAR", "Standard format — opens anywhere")
+					@components.Metric("Live", "Requests visible as they happen")
+					@components.Metric("LAN", "Native access to internal APIs")
+					@components.Metric("0", "Traffic sent to third parties")
+				</div>
+			</div>
+		</div>
+	</section>
+}

@@ -42,3 +42,7 @@ tmp/
 # Node.js
 node_modules/
 .env.local
+data/
+
+# Stray local binaries
+server

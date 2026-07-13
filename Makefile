@@ -310,6 +310,17 @@ deploy-status:
 deploy-logs:
 	@ssh $(DEPLOY_SSH) 'journalctl -u $(SERVICE_NAME) -f --no-pager -n 50'
 
+## docs-refresh: Trigger an immediate docs sync on production (after pushing to the docs repo)
+docs-refresh:
+	@echo "$(GREEN)Refreshing docs on https://$(DEPLOY_HOST)...$(NC)"
+	@curl -sf https://$(DEPLOY_HOST)/docs/refresh
+	@echo ""
+
+## docs-refresh-local: Trigger a docs sync on the local dev server
+docs-refresh-local:
+	@curl -sf http://localhost:3000/docs/refresh
+	@echo ""
+
 ## version: Show current version
 version:
 	@echo "Version: $(VERSION)"

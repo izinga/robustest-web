@@ -1,0 +1,112 @@
+package pages
+
+import (
+	"github.com/izinga/robustest-web/internal/app/views/components"
+	"github.com/izinga/robustest-web/internal/app/views/layouts"
+)
+
+templ EnterprisePage() {
+	@layouts.Base(
+		"Enterprise on-premise device labs by industry — RobusTest",
+		"How streaming platforms, banks, and telcos run RobusTest as their in-house device lab: TV walls with DRM-safe capture, air-gapped deployments, and multi-site labs — every device inside their own network.",
+		"/enterprise",
+	) {
+		@components.PageHero(
+			"For enterprise teams",
+			"Your devices. Your network. Your team.",
+			"You ship to millions of devices, and your test data — builds, credentials, unreleased features — can't live on someone else's cloud. RobusTest is the lab enterprises run in-house: manual, automation, performance, and TV testing on one rack, inside your network, air-gapped if policy demands it. We spec it, install it, and keep it running; your team just tests.",
+		)
+		@enProofChips()
+		@enScenarios()
+		@enDepth()
+		@components.CTABand(
+			"See your own lab running in a week.",
+			"Tell us your device list and test stack. You bring the devices; we bring everything else — built in your network, handed over running.",
+		)
+	}
+}
+
+templ enProofChips() {
+	<section class="border-b border-line bg-surface">
+		<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+			<ul class="flex flex-wrap gap-2" aria-label="Deployment proof">
+				<li class="font-mono text-xs border border-line-strong bg-paper px-3 py-1.5 text-muted">In production since 2014</li>
+				<li class="font-mono text-xs border border-line-strong bg-paper px-3 py-1.5 text-muted">Streaming, telecom & fintech deployments</li>
+				<li class="font-mono text-xs border border-line-strong bg-paper px-3 py-1.5 text-muted">Air-gap supported</li>
+				<li class="font-mono text-xs border border-line-strong bg-paper px-3 py-1.5 text-muted">JioHotstar · Airtel · Swiggy · Yodlee + more</li>
+			</ul>
+		</div>
+	</section>
+}
+
+templ enScenarios() {
+	<section class="border-b border-line">
+		<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+			@components.SectionTag("How industries run it")
+			<h2 class="font-display font-bold text-3xl md:text-4xl tracking-tight max-w-2xl">Three labs, three shapes of the same problem.</h2>
+			<div class="space-y-8 mt-10">
+				@enScenario(
+					"Streaming & OTT",
+					"The app has to work on every screen in the living room.",
+					"A streaming platform's coverage list isn't phones — it's Tizen and webOS panels by model year, Roku, Apple TV, Android TV, Fire TV, plus the phones and tablets. Their lab pairs a device rack with a TV wall on HDMI capture, so one team runs manual triage, nightly automation, and playback checks on the same rack. DRM-protected playback — invisible to every screen-capture tool — stays visible through camera-based optical view.",
+					[]string{"TV wall: Tizen, webOS, Roku, Apple TV, Android TV, Fire TV", "DRM playback visible via optical capture", "Launch-day load: unlimited minutes, no per-device-minute bill"},
+				)
+				@enScenario(
+					"Banking & fintech",
+					"The build cannot leave the building. Neither can the traffic.",
+					"For a bank, uploading builds to a cloud device farm is a compliance non-starter — unreleased features, real payment flows, customer-shaped test data. Their lab runs air-gapped or firewalled: SIM-equipped real devices for OTP and payment flows, HTTP(S) capture for API evidence on every session, and a compliance team that audits a rack in their own building instead of a vendor questionnaire.",
+					[]string{"Air-gapped deployment — zero outbound connectivity", "SIM-equipped devices for OTP and payment flows", "Every session's network traffic captured as evidence"},
+				)
+				@enScenario(
+					"Telecom",
+					"One lab, many cities, every device tier.",
+					"A telco's device matrix spans flagship to entry-level, across offices in multiple cities. Their lab runs as one platform over distributed nodes — a tester in one city drives a device racked in another, over authenticated tunnels with no inbound firewall holes. Device health scoring and remote power-cycling keep hundreds of devices usable without a person walking the racks.",
+					[]string{"Multi-site nodes joined over secure tunnels", "Health scoring + smart power control at fleet scale", "Usage analytics per project, team, and device"},
+				)
+			</div>
+		</div>
+	</section>
+}
+
+templ enScenario(industry string, title string, body string, checks []string) {
+	<div class="border border-line-strong bg-surface p-8">
+		<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+			<div>
+				<span class="tag">{ industry }</span>
+				<h3 class="font-display font-bold text-2xl mt-4">{ title }</h3>
+				<p class="text-sm text-muted mt-3 leading-relaxed">{ body }</p>
+			</div>
+			<ul class="space-y-2.5 lg:pt-10">
+				for _, c := range checks {
+					@components.Check(c)
+				}
+			</ul>
+		</div>
+	</div>
+}
+
+templ enDepth() {
+	<section class="border-b border-line bg-surface">
+		<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+			<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+				<div>
+					@components.SectionTag("Go deeper")
+					<h2 class="font-display font-bold text-3xl md:text-4xl tracking-tight">The platform behind these labs.</h2>
+					<p class="text-muted mt-4 leading-relaxed">
+						Every scenario above runs on the same seven capabilities and the same package — hardware, software, and the team that keeps it alive, under one flat license.
+					</p>
+					<div class="flex flex-wrap items-center gap-4 mt-8">
+						<a href="/features" class="border border-line-strong px-6 py-3 font-semibold text-ink hover:border-ink transition-colors">Explore the platform</a>
+						<a href="/pricing" class="text-sm font-medium text-trace hover:underline">See how licensing works</a>
+					</div>
+				</div>
+				<div class="grid grid-cols-2 gap-3">
+					@components.Metric("7", "Capabilities on one rack")
+					@components.Metric("2014", "Running enterprise labs since")
+					@components.Metric("Air-gap", "Fully offline deployments supported")
+					@components.Metric("Flat", "Yearly license by device count")
+				</div>
+			</div>
+		</div>
+	</section>
+}

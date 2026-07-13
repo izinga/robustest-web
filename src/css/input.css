@@ -1,216 +1,282 @@
 @import "tailwindcss";
 
-/* Custom styles that complement Tailwind */
+/*
+  RobusTest — "Lab Schematic" design system.
+  Light = engineering drawing on lab-white paper.
+  Dark  = the same schematic in a control room at night.
+  Tokens switch via CSS variables on prefers-color-scheme.
+*/
 
-/* Smooth scrolling */
+:root {
+  --rt-paper: #f4f7f9;
+  --rt-surface: #fcfdfe;
+  --rt-ink: #10181f;
+  --rt-muted: #46535d;
+  --rt-line: #dbe2e8;
+  --rt-line-strong: #b3bfc9;
+  --rt-signal: #0e7fb5;
+  --rt-signal-soft: #e0f0f8;
+  --rt-trace: #205f92;
+  --rt-trace-soft: #e4edf6;
+  --rt-amber: #b45309;
+  --rt-amber-soft: #f6ead9;
+}
+
+/* The wordmark PNG has dark-gray glyphs that vanish on dark backgrounds.
+   Invert lightness while keeping hue: blue stays blue, gray goes light. */
+@media (prefers-color-scheme: dark) {
+  .brand-logo {
+    filter: invert(1) hue-rotate(180deg) saturate(1.4);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --rt-paper: #0c1318;
+    --rt-surface: #131b21;
+    --rt-ink: #eff4f7;
+    --rt-muted: #aebcc6;
+    --rt-line: #25313a;
+    --rt-line-strong: #46545e;
+    --rt-signal: #38b6e8;
+    --rt-signal-soft: #0f2835;
+    --rt-trace: #82b8e6;
+    --rt-trace-soft: #16283a;
+    --rt-amber: #e5a158;
+    --rt-amber-soft: #2e2213;
+  }
+}
+
+@theme {
+  --color-paper: var(--rt-paper);
+  --color-surface: var(--rt-surface);
+  --color-ink: var(--rt-ink);
+  --color-muted: var(--rt-muted);
+  --color-line: var(--rt-line);
+  --color-line-strong: var(--rt-line-strong);
+  --color-signal: var(--rt-signal);
+  --color-signal-soft: var(--rt-signal-soft);
+  --color-trace: var(--rt-trace);
+  --color-trace-soft: var(--rt-trace-soft);
+  --color-amber: var(--rt-amber);
+  --color-amber-soft: var(--rt-amber-soft);
+
+  --font-display: "Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --font-sans: "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", monospace;
+
+  /* Upsized small-text tiers for readability */
+  --text-xs: 0.8125rem;
+  --text-xs--line-height: 1.5;
+  --text-sm: 0.9375rem;
+  --text-sm--line-height: 1.6;
+}
+
 html {
   scroll-behavior: smooth;
 }
 
-/* Custom animations */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+body {
+  background-color: var(--rt-paper);
+  color: var(--rt-ink);
+  font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
 }
 
-.animate-fade-in {
-  animation: fadeIn 0.5s ease-out;
+/* Schematic paper: a faint drafting grid behind hero/section highlights */
+.grid-paper {
+  background-image:
+    linear-gradient(var(--rt-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--rt-line) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+.grid-paper-fade {
+  -webkit-mask-image: linear-gradient(to bottom, black 0%, black 60%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 0%, black 60%, transparent 100%);
 }
 
-/* Focus styles for accessibility */
-*:focus {
-  outline: 2px solid #06B6D4;
-  outline-offset: 2px;
+/* Instrument tag: mono eyebrow used on every section header */
+.tag {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--rt-signal);
 }
 
-*:focus:not(:focus-visible) {
-  outline: none;
+/* Hairline that runs from a section tag to the page edge, with an end tick */
+.rule {
+  position: relative;
+  flex: 1;
+  height: 1px;
+  background: var(--rt-line-strong);
+}
+.rule::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: -3px;
+  width: 1px;
+  height: 7px;
+  background: var(--rt-line-strong);
 }
 
-*:focus-visible {
-  outline: 2px solid #06B6D4;
-  outline-offset: 2px;
+/* Diagonal hatch used inside sample-screenshot placeholders */
+.hatch {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 10px,
+    var(--rt-line) 10px,
+    var(--rt-line) 11px
+  );
 }
 
-/* Enhanced focus for dark backgrounds */
-.bg-gray-900 *:focus-visible,
-.bg-gradient-to-br *:focus-visible,
-.bg-gradient-to-r *:focus-visible {
-  outline: 2px solid #22D3EE;
-  outline-offset: 2px;
+/* Marching dashes on schematic data paths */
+@keyframes rt-flow {
+  to { stroke-dashoffset: -16; }
+}
+.flow-path {
+  stroke-dasharray: 4 4;
+  animation: rt-flow 1.2s linear infinite;
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+/* Blinking live-indicator dot */
+@keyframes rt-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.25; }
+}
+.live-dot {
+  animation: rt-blink 1.6s ease-in-out infinite;
 }
 
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #c1c1c1;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #a1a1a1;
-}
-
-/* Form input focus states */
-input:focus,
-textarea:focus,
-select:focus {
-  border-color: #06B6D4;
-  box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.1);
-}
-
-/* Button hover effects */
-.btn-primary {
-  transition: all 0.2s ease;
-}
-
-.btn-primary:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(6, 182, 212, 0.4);
-}
-
-/* Card hover effects */
-.card-hover {
-  transition: all 0.3s ease;
-}
-
-.card-hover:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
-}
-
-/* Gradient text */
-.gradient-text {
-  background: linear-gradient(135deg, #06B6D4 0%, #0891B2 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Hero gradient */
-.hero-gradient {
-  background: linear-gradient(135deg, #1f2937 0%, #111827 50%, #1f2937 100%);
-}
-
-/* Glass effect */
-.glass {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-}
-
-/* Mobile menu animation */
-.mobile-menu {
-  transition: all 0.3s ease;
-  max-height: 0;
-  overflow: hidden;
-}
-
-.mobile-menu.open {
-  max-height: 500px;
-}
-
-/* Loading spinner */
-.spinner {
-  border: 2px solid #f3f3f3;
-  border-top: 2px solid #06B6D4;
-  border-radius: 50%;
-  width: 20px;
-  height: 20px;
-  animation: spin 0.8s linear infinite;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .hero-text {
-    font-size: 2.5rem;
-  }
-}
-
-/* Minimum touch target size for accessibility (44x44px) */
-@media (pointer: coarse) {
-  a, button, [role="button"], input, select, textarea {
-    min-height: 44px;
-    min-width: 44px;
-  }
-
-  /* Ensure clickable area for small links */
-  nav a, footer a {
-    padding: 0.5rem;
-    margin: -0.5rem;
-  }
-}
-
-/* High contrast mode support */
-@media (prefers-contrast: high) {
-  *:focus-visible {
-    outline: 3px solid currentColor;
-    outline-offset: 3px;
-  }
-}
-
-/* Reduced motion for accessibility */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
+  html { scroll-behavior: auto; }
+  .flow-path, .live-dot { animation: none; }
 }
 
-/* Print styles */
-@media print {
-  nav, footer, .no-print {
-    display: none !important;
-  }
+/* Documentation prose — styles goldmark output under /docs */
+.docs-prose {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--rt-ink);
 }
-
-/* Forced colors mode (Windows High Contrast) */
-@media (forced-colors: active) {
-  a, button {
-    forced-color-adjust: none;
-  }
-
-  *:focus-visible {
-    outline: 3px solid CanvasText;
-  }
+.docs-prose h1 {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  margin-bottom: 1rem;
 }
-
-/* Better text selection */
-::selection {
-  background-color: #06B6D4;
-  color: white;
+.docs-prose h2 {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-top: 2.25rem;
+  margin-bottom: 0.75rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--rt-line);
 }
-
-/* Ensure sufficient line height for readability */
-p, li {
+.docs-prose h3 {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin-top: 1.75rem;
+  margin-bottom: 0.5rem;
+}
+.docs-prose h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-top: 1.25rem;
+  margin-bottom: 0.375rem;
+}
+.docs-prose p { margin-bottom: 0.875rem; color: var(--rt-muted); }
+.docs-prose li { color: var(--rt-muted); }
+.docs-prose strong { color: var(--rt-ink); font-weight: 600; }
+.docs-prose a { color: var(--rt-trace); font-weight: 500; }
+.docs-prose a:hover { text-decoration: underline; }
+.docs-prose ul, .docs-prose ol { margin: 0 0 1rem 1.25rem; }
+.docs-prose li { margin-bottom: 0.375rem; }
+.docs-prose li > ul, .docs-prose li > ol { margin-top: 0.375rem; margin-bottom: 0; }
+.docs-prose code {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  background: var(--rt-signal-soft);
+  border: 1px solid var(--rt-line);
+  padding: 0.1rem 0.35rem;
+}
+.docs-prose pre {
+  background: #10181f;
+  color: #dbe4ec;
+  padding: 1rem 1.25rem;
+  overflow-x: auto;
+  margin: 1rem 0 1.25rem;
+  border: 1px solid var(--rt-line-strong);
+}
+.docs-prose pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  color: inherit;
+  font-size: 0.8125rem;
   line-height: 1.6;
 }
+.docs-prose blockquote {
+  border-left: 3px solid var(--rt-signal);
+  background: var(--rt-signal-soft);
+  padding: 0.75rem 1rem;
+  margin: 1rem 0;
+}
+.docs-prose blockquote p { margin-bottom: 0; }
+.docs-prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0 1.25rem;
+  font-size: 0.875rem;
+  display: block;
+  overflow-x: auto;
+}
+.docs-prose th {
+  text-align: left;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--rt-muted);
+  border: 1px solid var(--rt-line-strong);
+  padding: 0.5rem 0.75rem;
+  background: var(--rt-surface);
+}
+.docs-prose td {
+  border: 1px solid var(--rt-line);
+  padding: 0.5rem 0.75rem;
+  color: var(--rt-muted);
+}
+.docs-prose img {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid var(--rt-line-strong);
+  margin: 1rem 0;
+}
+.docs-prose hr {
+  border: none;
+  border-top: 1px solid var(--rt-line);
+  margin: 2rem 0;
+}
 
-/* Ensure links in body text are distinguishable */
-main a:not([class]) {
-  text-decoration: underline;
-  text-underline-offset: 2px;
+/* Focus visibility */
+*:focus {
+  outline: none;
+}
+*:focus-visible {
+  outline: 2px solid var(--rt-trace);
+  outline-offset: 2px;
+}
+
+::selection {
+  background: var(--rt-signal-soft);
+  color: var(--rt-ink);
 }

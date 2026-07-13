@@ -1,0 +1,209 @@
+package pages
+
+import (
+	"github.com/izinga/robustest-web/internal/app/views/components"
+	"github.com/izinga/robustest-web/internal/app/views/layouts"
+)
+
+templ TVTestingPage() {
+	@layouts.Base(
+		"Smart TV & OTT testing on real panels — RobusTest",
+		"Automate and manually test Samsung Tizen, LG webOS, Roku, Apple TV, Android TV, Fire TV — plus cable boxes, Xbox, and PlayStation — on real hardware in your own lab, with live video and audio over HDMI capture and TV performance vitals.",
+		"/platform/tv-testing",
+	) {
+		@components.PageHero(
+			"Smart TV & OTT testing",
+			"The TV lab cloud farms never built.",
+			"Real Samsung, LG, Roku, and Apple TV panels on your wall — and the boxes under them: cable set-top boxes, Xbox, PlayStation. Live video and audio over HDMI capture, element-level automation on the platforms that allow it, and remote-control-level testing on every app — including store apps you don't own.",
+		)
+		@tvPlatforms()
+		@tvTwoLevels()
+		@tvMatrix()
+		@tvPipeline()
+		@tvPerf()
+		@components.CTABand(
+			"Put your OTT app on a real TV wall.",
+			"Tell us which platforms you ship to — we'll spec the TV nodes, capture hardware, and panel list for your lab.",
+		)
+	}
+}
+
+templ tvPlatforms() {
+	<section class="border-b border-line">
+		<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+			@components.SectionTag("Platform coverage")
+			<h2 class="font-display font-bold text-3xl md:text-4xl tracking-tight max-w-2xl">Every screen in the living room.</h2>
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-line mt-10 border border-line">
+				@tvPlatformCard("TIZEN", "Samsung Tizen", "Native driver over sdb and the Chrome DevTools Protocol. Remote keys, app launch and install, live video, and full element-level automation on debuggable web apps. Models from 2015 onward.")
+				@tvPlatformCard("WEBOS", "LG webOS", "Native driver over SSAP and CDP, including pointer gestures webOS supports natively. Same two-level control as Tizen, with a published model-year matrix back to 2014.")
+				@tvPlatformCard("ROKU", "Roku", "WebDriver-style automation over Roku's External Control Protocol: remote keys, channel install and deep-linking, element queries on the app UI tree, media-player state, and screenshots.")
+				@tvPlatformCard("TVOS", "Apple TV", "Driven through the same pipeline as iOS devices — install builds, run XCUITest, and control tvOS apps on real Apple TV hardware in the rack.")
+				@tvPlatformCard("ANDROID", "Android TV & Fire TV", "Android-based TVs and sticks join the lab like any Android device — ADB control, automation frameworks, and app installs work out of the box.")
+				@tvPlatformCard("ANY", "Any HDMI source, black-box", "Cable set-top boxes, Xbox, PlayStation, or any other box with an HDMI output: a capture node streams the real screen and audio and drives it like a physical remote. Same for DRM-protected playback. No debugging access needed.")
+			</div>
+			<p class="text-sm text-muted mt-6 max-w-2xl leading-relaxed">
+				Chromecast devices are discovered on the lab network automatically and join test sessions for cast-target coverage.
+			</p>
+		</div>
+	</section>
+}
+
+templ tvPlatformCard(tag string, title string, desc string) {
+	<div class="bg-paper p-6">
+		<span class="tag">{ tag }</span>
+		<h3 class="font-display font-bold text-xl mt-5">{ title }</h3>
+		<p class="text-sm text-muted mt-2 leading-relaxed">{ desc }</p>
+	</div>
+}
+
+templ tvTwoLevels() {
+	<section class="border-b border-line bg-surface">
+		<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+			@components.SectionTag("Two levels of control")
+			<h2 class="font-display font-bold text-3xl md:text-4xl tracking-tight max-w-2xl">Black-box for any app. White-box for yours.</h2>
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
+				<div class="border border-line-strong bg-paper p-8">
+					<span class="tag">Level 1 · Remote + live video</span>
+					<h3 class="font-display font-bold text-2xl mt-4">Works on every app</h3>
+					<p class="text-sm text-muted mt-3 leading-relaxed">
+						Connect to the TV, launch or close any app — store apps, native apps, or your own — send remote keys and pointer gestures, and watch the live screen with audio in your browser. No debugging access required, so competitor apps and retail content are fair game.
+					</p>
+					<ul class="space-y-2.5 mt-6">
+						@components.Check("Live screen + audio via HDMI capture, ~100–150 ms on LAN")
+						@components.Check("Full remote control: D-pad, media keys, text entry")
+						@components.Check("App launch, close, install, and deep-linking")
+						@components.Check("DRM-protected playback visible — it's a real capture of a real panel")
+					</ul>
+				</div>
+				<div class="border border-line-strong bg-paper p-8">
+					<span class="tag">Level 2 · Element automation</span>
+					<h3 class="font-display font-bold text-2xl mt-4">For your own web apps</h3>
+					<p class="text-sm text-muted mt-3 leading-relaxed">
+						Developer-signed, debuggable web apps get element-level control through the Chrome DevTools Protocol: click buttons, type into fields, read page state, run assertions, and capture the in-app DOM — the same white-box precision you expect from browser automation.
+					</p>
+					<ul class="space-y-2.5 mt-6">
+						@components.Check("Click, type, evaluate, and read text by element")
+						@components.Check("Assertions against real page state, not screenshots")
+						@components.Check("In-app DOM capture for debugging failures")
+						@components.Check("Drive it from WebDriver-compatible clients or Maestro-style YAML flows")
+					</ul>
+					<p class="text-xs text-muted mt-5">
+						Requires Developer Mode on the TV. Store and native apps can't be inspected — they're driven black-box instead.
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+}
+
+templ tvMatrix() {
+	<section class="border-b border-line">
+		<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+			@components.SectionTag("Model-year support")
+			<h2 class="font-display font-bold text-3xl md:text-4xl tracking-tight max-w-2xl">Support you can look up, not guess at.</h2>
+			<p class="text-muted mt-4 max-w-2xl leading-relaxed">
+				A TV's browser engine is fixed at manufacture — neither Samsung nor LG updates it — so automation capability is set by model year. Remote control and live video work on every supported year; element automation depends on the engine.
+			</p>
+			<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-10">
+				@tvMatrixTable("Samsung Tizen", []tvMatrixRow{
+					{"2020 – 2026", "Tizen 5.5 – 10.0", "Full element automation"},
+					{"2017 – 2019", "Tizen 3.0 – 5.0", "Core automation (older engine)"},
+					{"2015 – 2016", "Tizen 2.3 – 2.4", "Remote + live video only"},
+				})
+				@tvMatrixTable("LG webOS", []tvMatrixRow{
+					{"2020 – 2026", "webOS 5.x – 26", "Full element automation"},
+					{"2016 – 2019", "webOS 3.x – 4.x", "Core automation (older engine)"},
+					{"2014 – 2015", "webOS 1.x – 2.x", "Remote + live video only"},
+				})
+			</div>
+			<p class="text-sm text-muted mt-6">
+				Recommended baseline for full automation coverage: 2020-or-newer panels — the configuration we validate against.
+			</p>
+		</div>
+	</section>
+}
+
+type tvMatrixRow struct {
+	Years  string
+	OS     string
+	Level  string
+}
+
+templ tvMatrixTable(title string, rows []tvMatrixRow) {
+	<div class="border border-line-strong">
+		<h3 class="font-display font-bold text-lg px-4 py-3 border-b border-line-strong bg-surface">{ title }</h3>
+		<table class="w-full text-sm">
+			<thead>
+				<tr class="border-b border-line">
+					<th scope="col" class="text-left font-mono text-xs uppercase tracking-widest text-muted font-medium px-4 py-2.5">Model years</th>
+					<th scope="col" class="text-left font-mono text-xs uppercase tracking-widest text-muted font-medium px-4 py-2.5">OS</th>
+					<th scope="col" class="text-left font-mono text-xs uppercase tracking-widest text-muted font-medium px-4 py-2.5">Support</th>
+				</tr>
+			</thead>
+			<tbody class="divide-y divide-line">
+				for _, r := range rows {
+					<tr>
+						<td class="px-4 py-3 font-medium whitespace-nowrap">{ r.Years }</td>
+						<td class="px-4 py-3 text-muted whitespace-nowrap">{ r.OS }</td>
+						<td class="px-4 py-3 text-muted">{ r.Level }</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+}
+
+templ tvPipeline() {
+	<section class="border-b border-line bg-surface">
+		<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+			@components.SectionTag("How a TV node works")
+			<h2 class="font-display font-bold text-3xl md:text-4xl tracking-tight max-w-2xl">One small node per TV wall.</h2>
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-line border border-line mt-10">
+				@tvStep("01", "Capture", "An HDMI grabber (or camera, for panels without capture access) feeds the TV's real output — video and audio — into the node.")
+				@tvStep("02", "Stream", "The node hardware-encodes the feed and streams it straight to the tester's browser at roughly 100–150 ms glass-to-glass — no plugins, no client install.")
+				@tvStep("03", "Control", "Key presses and automation commands travel back over the same connection and reach the TV through its native protocol — or a USB HID remote for anything else.")
+			</div>
+			<div class="mt-10">
+				@components.Frame("Live TV session — Tizen panel") {
+					@components.IlloTVSession()
+				}
+			</div>
+		</div>
+	</section>
+}
+
+templ tvStep(num string, title string, desc string) {
+	<div class="bg-paper p-6">
+		<span class="font-mono text-xs text-signal">{ num }</span>
+		<h3 class="font-display font-bold text-xl mt-4">{ title }</h3>
+		<p class="text-sm text-muted mt-2 leading-relaxed">{ desc }</p>
+	</div>
+}
+
+templ tvPerf() {
+	<section class="border-b border-line">
+		<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+			<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+				<div>
+					@components.SectionTag("TV performance panel")
+					<h2 class="font-display font-bold text-3xl md:text-4xl tracking-tight">Web vitals, on a television.</h2>
+					<p class="text-muted mt-4 leading-relaxed">
+						During a live session the node samples your app's real behavior on the panel — not an emulator — and streams it to the tester once a second.
+					</p>
+					<ul class="space-y-2.5 mt-6">
+						@components.Check("In-app frame rate and system CPU load")
+						@components.Check("App and device memory, with DOM node count as a leak signal")
+						@components.Check("Largest Contentful Paint and Cumulative Layout Shift — on TV hardware")
+						@components.Check("Stream QoE panel so testers can separate app slowness from network slowness")
+					</ul>
+				</div>
+				<div class="grid grid-cols-2 gap-3">
+					@components.Metric("60 FPS", "In-app frame rate")
+					@components.Metric("LCP", "Largest contentful paint")
+					@components.Metric("CLS", "Layout shift")
+					@components.Metric("1 Hz", "Vitals sample rate")
+				</div>
+			</div>
+		</div>
+	</section>
+}

@@ -1,0 +1,131 @@
+package pages
+
+import (
+	"github.com/izinga/robustest-web/internal/app/views/components"
+	"github.com/izinga/robustest-web/internal/app/views/layouts"
+)
+
+templ IntegrationsPage() {
+	@layouts.Base(
+		"Integrations & enterprise — RobusTest",
+		"Google and Microsoft SSO, JIRA, ReportPortal, Slack, InfluxDB, JUnit output, and a documented CI/CD API — RobusTest plugs into the stack your team already runs.",
+		"/platform/integrations",
+	) {
+		@components.PageHero(
+			"Integrations & enterprise",
+			"Your stack stays your stack.",
+			"Sign-in, issue tracking, reporting, dashboards, and pipelines — RobusTest meets each one where it already lives. Results flow out to the tools your team watches; jobs flow in from the CI you already run.",
+		)
+		@igAccess()
+		@igReporting()
+		@igNotifications()
+		@igPipelines()
+		@components.CTABand(
+			"Wire the lab into your workflow.",
+			"Tell us what your team uses for sign-in, tickets, and CI — we'll show the lab feeding all three in one demo.",
+		)
+	}
+}
+
+templ igAccess() {
+	<section class="border-b border-line">
+		<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+			@components.SectionTag("Sign-in & access control")
+			<h2 class="font-display font-bold text-3xl md:text-4xl tracking-tight max-w-2xl">One click in, with the accounts you issue.</h2>
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8 mt-10">
+				<div>
+					<h3 class="font-display font-bold text-xl">Single sign-on</h3>
+					<ul class="space-y-2.5 mt-4">
+						@components.Check("OAuth2 sign-in with Google Workspace and Microsoft accounts")
+						@components.Check("Domain-restricted signup — only your email domains can create accounts")
+						@components.Check("Email/password accounts with confirmation, recovery, and lockout for teams without an identity provider")
+					</ul>
+				</div>
+				<div>
+					<h3 class="font-display font-bold text-xl">Teams & keys</h3>
+					<ul class="space-y-2.5 mt-4">
+						@components.Check("Roles, profiles, and groups for administration; project-based teams with members and admins")
+						@components.Check("Per-user API access keys for scripted and CI access — revocable and regenerable at any time")
+						@components.Check("Admin views of live sessions and monthly usage per user")
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
+}
+
+templ igReporting() {
+	<section class="border-b border-line bg-surface">
+		<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+			@components.SectionTag("Results, tickets & dashboards")
+			<h2 class="font-display font-bold text-3xl md:text-4xl tracking-tight max-w-2xl">Results land where your team already looks.</h2>
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-line border border-line mt-10">
+				@igCard("JIRA", "JIRA", "File a JIRA issue straight from a failed test result — device, build, and logs attached. JIRA connections are configured per project.")
+				@igCard("RP", "ReportPortal", "A ReportPortal-compatible ingestion API mirrors the full launch, item, and log lifecycle, so runs appear in ReportPortal as if they ran there.")
+				@igCard("JUNIT", "JUnit & HTML", "Every job exports JUnit XML for CI test tabs, alongside the platform's own HTML reports with screenshots, logs, and timing analysis.")
+				@igCard("INFLUX", "InfluxDB", "Test results and performance records stream to InfluxDB, ready for the Grafana dashboards your team already maintains.")
+			</div>
+			<div class="mt-10">
+				@components.Frame("Test results — pushed to your stack") {
+					@components.IlloIntegrations()
+				}
+			</div>
+		</div>
+	</section>
+}
+
+templ igNotifications() {
+	<section class="border-b border-line">
+		<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+			<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+				<div>
+					@components.SectionTag("Notifications & triggers")
+					<h2 class="font-display font-bold text-3xl md:text-4xl tracking-tight">Hear about it without watching for it.</h2>
+					<p class="text-muted mt-4 leading-relaxed">
+						Job finished, run failed, device went offline — the events you care about reach the channel you actually read.
+					</p>
+					<ul class="space-y-2.5 mt-6">
+						@components.Check("Slack messages via incoming webhooks, configured per job or per project")
+						@components.Check("Email to any recipient list")
+						@components.Check("Generic REST webhooks with custom headers for anything else — pagers, chat tools, internal services")
+						@components.Check("An event trigger engine that fires actions on job, build, and device events")
+					</ul>
+				</div>
+				<div class="grid grid-cols-2 gap-3">
+					@components.Metric("Slack", "Webhook channel per project")
+					@components.Metric("Email", "Recipient lists per job")
+					@components.Metric("REST", "Custom webhooks + headers")
+					@components.Metric("Events", "Job · build · device triggers")
+				</div>
+			</div>
+		</div>
+	</section>
+}
+
+templ igPipelines() {
+	<section class="border-b border-line bg-surface">
+		<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+			@components.SectionTag("CI/CD")
+			<h2 class="font-display font-bold text-3xl md:text-4xl tracking-tight max-w-2xl">Trigger from any pipeline that can curl.</h2>
+			<p class="text-muted mt-4 max-w-2xl leading-relaxed">
+				A documented public API — authenticated with per-user access keys — triggers jobs, polls status, and fetches results and devices. It runs in production at large customers today, from Jenkins, GitHub Actions, GitLab CI, and plain shell scripts.
+			</p>
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-line border border-line mt-10">
+				@igCard("01", "Trigger", "Kick off a job against a device query — \"all Android 13+ with SIM\" — with the build you just produced.")
+				@igCard("02", "Poll", "Watch job status and per-device instances from the pipeline; abort from the same API if a newer commit supersedes the run.")
+				@igCard("03", "Collect", "Pull JUnit for the CI test tab and link back to full reports, screenshots, and logs in the lab.")
+			</div>
+			<p class="text-sm text-muted mt-8">
+				Kubernetes-backed job runners can scale execution environments on your cluster. @components.Beta()
+			</p>
+		</div>
+	</section>
+}
+
+templ igCard(tag string, title string, desc string) {
+	<div class="bg-paper p-6">
+		<span class="tag">{ tag }</span>
+		<h3 class="font-display font-bold text-xl mt-5">{ title }</h3>
+		<p class="text-sm text-muted mt-2 leading-relaxed">{ desc }</p>
+	</div>
+}

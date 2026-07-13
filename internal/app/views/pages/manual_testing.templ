@@ -1,0 +1,121 @@
+package pages
+
+import (
+	"github.com/izinga/robustest-web/internal/app/views/components"
+	"github.com/izinga/robustest-web/internal/app/views/layouts"
+)
+
+templ ManualTestingPage() {
+	@layouts.Base(
+		"Live manual testing on real devices — RobusTest",
+		"Pick a real phone, tablet, or TV from your lab and drive it from the browser at 10–20 ms latency — touch, type, GPS, shell, and logs, with performance vitals and network capture recorded on every session by default.",
+		"/platform/manual-testing",
+	) {
+		@components.PageHero(
+			"Manual testing",
+			"A real device in your browser, milliseconds away.",
+			"Every phone, tablet, TV, and set-top box in your lab is one click from any tester's browser — screen and audio streamed live, no plugins or client installs. The device sits on your network, so control feels local — typically 10–20 ms — and the stream never leaves your building.",
+		)
+		@mtControl()
+		@mtSessions()
+		@mtDRM()
+		@components.CTABand(
+			"Give every tester a full device rack.",
+			"No queues, no per-minute meter, no build uploads to someone else's cloud. Tell us your device list and we'll size the lab.",
+		)
+	}
+}
+
+templ mtControl() {
+	<section class="border-b border-line">
+		<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+			@components.SectionTag("In-session control")
+			<h2 class="font-display font-bold text-3xl md:text-4xl tracking-tight max-w-2xl">Everything you'd do with the device in hand. And a few things you couldn't.</h2>
+			<p class="text-muted mt-4 max-w-2xl leading-relaxed">
+				A live session is more than a video feed. The lab exposes the device's whole surface — input, sensors, storage, logs, and network — from one screen.
+			</p>
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-line mt-10 border border-line">
+				@mtControlCard("INPUT", "Drive it directly", "Touch, gestures, hardware keys, text entry, and rotation — sent instantly to the device, rendered on the real screen.")
+				@mtControlCard("APPS", "Install mid-session", "Push builds from the versioned build library: chunked APK install on Android, OTA manifest install on iOS. Launch, kill, and switch apps live.")
+				@mtControlCard("SENSORS", "Simulate the world", "Set GPS coordinates to test geo-fenced flows, read incoming SMS for OTP logins, and switch the device's WiFi network mid-session.")
+				@mtControlCard("SHELL", "Open a device shell", "A live shell in the browser — full ADB on Android, a whitelisted command set on iOS — plus file push and pull in both directions.")
+				@mtControlCard("LOGS", "Watch the inside", "Live device logs on every platform — logcat on Android, syslog on iOS, TV and browser logs alike — streaming in session and downloadable per run. ANR capture pulls the trace when an app stops responding.")
+				@mtControlCard("VITALS", "Watch performance live", "FPS, CPU, memory, battery, and network stream into the session panel in real time — you see the app's vitals while you drive it, and it's all saved with the session.")
+			</div>
+			<div class="border border-line bg-signal-soft px-6 py-5 mt-10">
+				<p class="text-sm leading-relaxed max-w-3xl">
+					<span class="font-semibold">And every session records itself.</span>
+					<span class="text-muted"> Performance vitals and HTTP(S) network capture stream live into every manual session by default — no setup, no separate run. When a bug appears, the FPS trace and the API calls behind it are already on screen and already saved. See </span>
+					<a href="/platform/performance-testing" class="text-trace font-medium hover:underline">performance testing</a>
+					<span class="text-muted"> and </span>
+					<a href="/platform/network-capture" class="text-trace font-medium hover:underline">network capture</a><span class="text-muted">.</span>
+				</p>
+			</div>
+			<div class="mt-10">
+				@components.Frame("Live device session — Android") {
+					@components.IlloLiveSession()
+				}
+			</div>
+		</div>
+	</section>
+}
+
+templ mtControlCard(tag string, title string, desc string) {
+	<div class="bg-paper p-6">
+		<span class="tag">{ tag }</span>
+		<h3 class="font-display font-bold text-xl mt-5">{ title }</h3>
+		<p class="text-sm text-muted mt-2 leading-relaxed">{ desc }</p>
+	</div>
+}
+
+templ mtSessions() {
+	<section class="border-b border-line bg-surface">
+		<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+			<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+				<div>
+					@components.SectionTag("Sessions that manage themselves")
+					<h2 class="font-display font-bold text-3xl md:text-4xl tracking-tight">Shared devices without the turf wars.</h2>
+					<p class="text-muted mt-4 leading-relaxed">
+						Devices are a shared resource; the lab treats them like one. Reserve a device before a release test, and let the platform reclaim what people forget.
+					</p>
+					<ul class="space-y-2.5 mt-6">
+						@components.Check("Booking and reservation with a reserve key, so a device is yours for the window you need it")
+						@components.Check("Heartbeat-driven idle timeout — walk away and the session closes itself, freeing the device")
+						@components.Check("Self-healing cleanup reclaims stale sessions automatically, no admin needed")
+						@components.Check("Multiplex sessions: control multiple devices side by side in one screen — same build, many form factors")
+					</ul>
+				</div>
+				<div class="grid grid-cols-2 gap-3">
+					@components.Metric("1 click", "From device list to live screen")
+					@components.Metric("30 min", "Idle timeout, then auto-release")
+					@components.Metric("Many : 1", "Devices on one screen in multiplex")
+					@components.Metric("Instant", "Device freed the moment the session ends")
+				</div>
+			</div>
+		</div>
+	</section>
+}
+
+templ mtDRM() {
+	<section class="border-b border-line">
+		<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+			<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+				<div>
+					@components.SectionTag("DRM & protected content")
+					<h2 class="font-display font-bold text-3xl md:text-4xl tracking-tight">When the screen won't let itself be captured.</h2>
+					<p class="text-muted mt-4 leading-relaxed">
+						Streaming apps with DRM render black frames to screen capture — on every remote-testing product. RobusTest's answer is physical: a camera node films the actual panel and streams the optical view into the same live session, with region-of-interest selection to frame the screen.
+					</p>
+					<ul class="space-y-2.5 mt-6">
+						@components.Check("Camera-based optical view for DRM-protected playback")
+						@components.Check("Same session controls — input still flows to the device")
+						@components.Check("Used for media apps, banking apps with capture protection, and TV panels")
+					</ul>
+				</div>
+				@components.Frame("Optical view — DRM playback") {
+					@components.IlloOptical()
+				}
+			</div>
+		</div>
+	</section>
+}

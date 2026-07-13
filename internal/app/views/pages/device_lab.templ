@@ -1,0 +1,154 @@
+package pages
+
+import (
+	"github.com/izinga/robustest-web/internal/app/views/components"
+	"github.com/izinga/robustest-web/internal/app/views/layouts"
+)
+
+templ DeviceLabPage() {
+	@layouts.Base(
+		"Device lab operations — RobusTest",
+		"Run fifty phones and a TV wall as reliable infrastructure: health scoring, booking, smart power control, iOS MDM for unattended installs, a versioned build library, and multi-site lab nodes.",
+		"/platform/device-lab",
+	) {
+		@components.PageHero(
+			"Device lab operations",
+			"Fifty phones is infrastructure, not a drawer of cables.",
+			"A device lab earns its keep only when every phone is charged, healthy, findable, and bookable. RobusTest runs the operational side — inventory, health, power, installs, and usage — so the lab stays up without someone walking the rack.",
+		)
+		@dlFleet()
+		@dlHealth()
+		@dlIOS()
+		@dlBuilds()
+		@dlDistributed()
+		@components.CTABand(
+			"Turn your device drawer into a lab.",
+			"Send us your device count and locations. We'll spec the nodes, power hardware, and licensing for a lab your team can rely on.",
+		)
+	}
+}
+
+templ dlFleet() {
+	<section class="border-b border-line">
+		<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+			@components.SectionTag("Fleet management")
+			<h2 class="font-display font-bold text-3xl md:text-4xl tracking-tight max-w-2xl">Every device accounted for.</h2>
+			<p class="text-muted mt-4 max-w-2xl leading-relaxed">
+				The lab keeps a live inventory of everything attached to it — phones, tablets, TVs, and set-top boxes — who's using each device, what it is, and whether it's fit for work.
+			</p>
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8 mt-10">
+				<div>
+					<h3 class="font-display font-bold text-xl">Inventory that knows the hardware</h3>
+					<ul class="space-y-2.5 mt-4">
+						@components.Check("Full metadata per device: model, OS version, CPU, RAM, display, and SIM details (IMEI, operator, phone number)")
+						@components.Check("Tags and use-type flags — reserve devices for manual work, automation, or health probes")
+						@components.Check("Device groups plus saved dynamic queries: \"all Android 14 phones with a SIM\" stays current as the fleet changes")
+						@components.Check("Archiving with an audit trail when hardware leaves the lab")
+					</ul>
+				</div>
+				<div>
+					<h3 class="font-display font-bold text-xl">Sharing without collisions</h3>
+					<ul class="space-y-2.5 mt-4">
+						@components.Check("Booking and reservation so a test run never yanks a device out of someone's hands")
+						@components.Check("Atomic allocation — parallel jobs each get exclusive devices from the pool")
+						@components.Check("Live session view: see who is on which device right now")
+						@components.Check("Connection and activity history per device for after-the-fact answers")
+					</ul>
+				</div>
+			</div>
+			<div class="mt-12">
+				@components.Frame("Lab dashboard — device fleet health") {
+					@components.IlloFleet()
+				}
+			</div>
+		</div>
+	</section>
+}
+
+templ dlHealth() {
+	<section class="border-b border-line bg-surface">
+		<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+			<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+				<div>
+					@components.SectionTag("Health & self-recovery")
+					<h2 class="font-display font-bold text-3xl md:text-4xl tracking-tight">The lab notices before your testers do.</h2>
+					<p class="text-muted mt-4 leading-relaxed">
+						Devices misbehave: batteries swell, WiFi drops, a phone stops answering. RobusTest scores every device's health continuously and gives you the levers to fix problems remotely — down to cutting the power.
+					</p>
+					<ul class="space-y-2.5 mt-6">
+						@components.Check("Per-device health score and ranking, computed from connection stability and job outcomes")
+						@components.Check("Live telemetry: battery, temperature, disk space, and RAM")
+						@components.Check("Smart powerstrip control — map devices to power ports and power-cycle a hung phone from the browser, with a full action history")
+						@components.Check("Remote restart and clean-up, plus WiFi switching with SSID history")
+						@components.Check("Disconnection and lifecycle histories to spot flaky cables and failing units")
+					</ul>
+				</div>
+				<div class="grid grid-cols-2 gap-3">
+					@components.Metric("24/7", "Health probing on idle devices")
+					@components.Metric("Score", "Per-device health ranking")
+					@components.Metric("Remote", "Power-cycle from the browser")
+					@components.Metric("°C", "Thermal telemetry per device")
+				</div>
+			</div>
+		</div>
+	</section>
+}
+
+templ dlIOS() {
+	<section class="border-b border-line">
+		<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+			@components.SectionTag("iOS at scale")
+			<h2 class="font-display font-bold text-3xl md:text-4xl tracking-tight max-w-2xl">iOS fleets without the tap dance.</h2>
+			<p class="text-muted mt-4 max-w-2xl leading-relaxed">
+				iOS is where device labs usually hurt: trust prompts, provisioning, and per-device babysitting. RobusTest embeds its own MDM so supervised devices take enterprise builds unattended.
+			</p>
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-line border border-line mt-10">
+				@dlCard("MDM", "Built-in MDM", "SCEP certificate enrollment and APNs push are part of the platform — no separate MDM product. Enterprise apps install on supervised devices with zero taps and no \"Untrusted Developer\" prompts.")
+				@dlCard("OTA", "Over-the-air installs", "Signed manifest OTA installs deliver builds straight to the device, and WebDriverAgent provisioning for automation is handled during session preparation.")
+				@dlCard("XCODE", "Version matrix", "The platform tracks which Xcode releases support which iOS, iPadOS, and tvOS versions, so mixed-OS fleets keep working through OS season.")
+			</div>
+		</div>
+	</section>
+}
+
+templ dlBuilds() {
+	<section class="border-b border-line bg-surface">
+		<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+			@components.SectionTag("Build library")
+			<h2 class="font-display font-bold text-3xl md:text-4xl tracking-tight max-w-2xl">Every build, parsed and ready to install.</h2>
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8 mt-10">
+				<ul class="space-y-2.5">
+					@components.Check("Versioned uploads per project — APK, AAB, and IPA — with metadata parsed automatically: package name, version, icon, and whether it's an app or a test runner")
+					@components.Check("Install any library build into any session, manual or automated, in a click")
+				</ul>
+				<ul class="space-y-2.5">
+					@components.Check("iOS OTA install links with signed, expiring URLs")
+					@components.Check("On-node build caching so repeated installs across a device pool don't re-download")
+					@components.Check("Retention pins keep milestone builds through storage clean-ups")
+				</ul>
+			</div>
+		</div>
+	</section>
+}
+
+templ dlDistributed() {
+	<section class="border-b border-line">
+		<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+			@components.SectionTag("Distributed labs & accounting")
+			<h2 class="font-display font-bold text-3xl md:text-4xl tracking-tight max-w-2xl">One lab, many rooms — or many cities.</h2>
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-line border border-line mt-10">
+				@dlCard("NODES", "Multi-node orchestration", "Devices attach to lightweight node agents on any machine; one RobusTest server coordinates them all. Add a node, and its devices join the pool.")
+				@dlCard("TUNNEL", "Remote sites", "Nodes behind NAT or in another office reach the server over secure tunnels — a satellite lab needs a machine and a network jack, not a VPN project.")
+				@dlCard("USAGE", "Usage accounting", "Device utilization, per-project and per-user usage, and monthly reports — with device-seat licensing and multi-org tenancy for shared platforms.")
+			</div>
+		</div>
+	</section>
+}
+
+templ dlCard(tag string, title string, desc string) {
+	<div class="bg-paper p-6">
+		<span class="tag">{ tag }</span>
+		<h3 class="font-display font-bold text-xl mt-5">{ title }</h3>
+		<p class="text-sm text-muted mt-2 leading-relaxed">{ desc }</p>
+	</div>
+}

@@ -5,6 +5,5 @@ User-agent: *
 Allow: /
 Disallow: /api/
 Disallow: /health
-Disallow: /assets/
 
 Sitemap: https://robustest.com/sitemap.xml

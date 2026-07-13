@@ -1,0 +1,149 @@
+package pages
+
+import (
+	"github.com/izinga/robustest-web/internal/app/views/components"
+	"github.com/izinga/robustest-web/internal/app/views/layouts"
+)
+
+templ PerformanceTestingPage() {
+	@layouts.Base(
+		"Performance testing with no SDK — RobusTest",
+		"Every test session captures performance vitals by default — FPS, jank, CPU, memory, battery, and thermal on real phones, tablets, and TVs, with no SDK and no code changes — then compared build-over-build with real statistics.",
+		"/platform/performance-testing",
+	) {
+		@components.PageHero(
+			"Performance testing",
+			"Every test is a performance test.",
+			"On RobusTest you don't schedule performance runs — every session captures vitals by default. A manual bug hunt, a nightly automation suite, a TV session: each one records FPS, CPU, memory, battery, and thermal while it happens. No SDK, no code changes, no setup. The binary you test is the binary you ship.",
+		)
+		@pfCollection()
+		@pfMetrics()
+		@pfScoring()
+		@pfCompare()
+		@components.CTABand(
+			"Catch the regression before your users do.",
+			"Run your next release candidate through the lab and see its vitals against the build you shipped last week.",
+		)
+	}
+}
+
+templ pfCollection() {
+	<section class="border-b border-line">
+		<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+			@components.SectionTag("How it collects")
+			<h2 class="font-display font-bold text-3xl md:text-4xl tracking-tight max-w-2xl">Measured from outside the app.</h2>
+			<p class="text-muted mt-4 max-w-2xl leading-relaxed">
+				Most performance tools ask you to embed an SDK, re-sign a modified build, or test something other than the release binary. RobusTest reads the same counters the operating system keeps anyway — so every session, manual or automated, produces vitals for free.
+			</p>
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
+				<div class="border border-line-strong bg-surface p-8">
+					<span class="tag">Phones &amp; tablets</span>
+					<h3 class="font-display font-bold text-2xl mt-4">Read from the operating system</h3>
+					<p class="text-sm text-muted mt-3 leading-relaxed">
+						Process and system counters, memory accounting, frame timestamps, battery telemetry, and thermal state — read directly from real Android and iOS devices while your app runs untouched.
+					</p>
+				</div>
+				<div class="border border-line-strong bg-surface p-8">
+					<span class="tag">TVs</span>
+					<h3 class="font-display font-bold text-2xl mt-4">Vitals on the big screen</h3>
+					<p class="text-sm text-muted mt-3 leading-relaxed">
+						TV sessions sample the same way: frame rate, CPU, and memory from the panel itself — plus web vitals like Largest Contentful Paint and layout shift for TV web apps, streamed live while you test.
+					</p>
+				</div>
+			</div>
+			<div class="grid grid-cols-2 md:grid-cols-4 gap-3 mt-10">
+				@components.Metric("0", "SDKs, agents, or code changes")
+				@components.Metric("12", "Metric families per session")
+				@components.Metric("All", "Devices: phones, tablets & TVs")
+				@components.Metric("100%", "Release binary — nothing re-signed")
+			</div>
+		</div>
+	</section>
+}
+
+templ pfMetrics() {
+	<section class="border-b border-line bg-surface">
+		<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+			@components.SectionTag("What it measures")
+			<h2 class="font-display font-bold text-3xl md:text-4xl tracking-tight max-w-2xl">Twelve families of vitals, per session.</h2>
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-line mt-10 border border-line">
+				@pfMetricCard("CPU", "CPU load", "App and system CPU, per-core on Android, with context switches and utilization over time.")
+				@pfMetricCard("MEM", "Memory", "PSS, Java and native heaps on Android; physical footprint, compressed and resident memory on iOS.")
+				@pfMetricCard("FPS", "Frames & jank", "Frame rate and frame time with jank, slow-frame, and frozen-frame counts from real render timestamps.")
+				@pfMetricCard("GPU", "GPU utilization", "Graphics load on both platforms, including tiler and renderer utilization on iOS.")
+				@pfMetricCard("NET", "Network I/O", "Bytes and packets in and out per interface, with RTT and retransmission detail on iOS.")
+				@pfMetricCard("PWR", "Battery & power", "Level, voltage, current, computed power draw, and iOS energy sampling.")
+				@pfMetricCard("THERM", "Thermal state", "Device thermal zones and state — nominal, fair, serious, critical — alongside every capture.")
+				@pfMetricCard("DISK", "Disk I/O", "Bytes and operations read and written while your app runs.")
+				@pfMetricCard("LAUNCH", "Launch times", "Cold and warm start, time to first frame, and time to interactive.")
+				@pfMetricCard("ANR", "Hangs & ANRs", "UI-block detection with stack traces captured at the moment of the hang.")
+				@pfMetricCard("PROC", "Process detail", "Thread counts, file descriptors, page faults, and per-process bookkeeping.")
+				@pfMetricCard("DEV", "Device context", "Model, OS, RAM, and charging state recorded with every run, so numbers are always comparable.")
+			</div>
+		</div>
+	</section>
+}
+
+templ pfMetricCard(tag string, title string, desc string) {
+	<div class="bg-paper p-6">
+		<span class="tag">{ tag }</span>
+		<h3 class="font-display font-bold text-lg mt-4">{ title }</h3>
+		<p class="text-sm text-muted mt-2 leading-relaxed">{ desc }</p>
+	</div>
+}
+
+templ pfScoring() {
+	<section class="border-b border-line">
+		<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+			<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+				<div>
+					@components.SectionTag("Scoring")
+					<h2 class="font-display font-bold text-3xl md:text-4xl tracking-tight">One score your release meeting can read.</h2>
+					<p class="text-muted mt-4 leading-relaxed">
+						Raw counters roll up into an overall score with four category scores, so a non-specialist can see where a build stands — and a specialist can drill into the samples behind it.
+					</p>
+					<ul class="space-y-2.5 mt-6">
+						@components.Check("Stability — crashes, hangs, and frozen frames")
+						@components.Check("Responsiveness — frame rate, jank, and launch times")
+						@components.Check("Resource — CPU, memory, and I/O footprint")
+						@components.Check("Thermal — how hard the build pushes the device")
+					</ul>
+					<p class="text-sm text-muted mt-6 leading-relaxed">
+						Captures are labelled cold, warm, or steady-state, and each run records its device and OS context — so scores are only ever compared like-for-like.
+					</p>
+				</div>
+				<div class="grid grid-cols-2 gap-3">
+					@components.Metric("4", "Category scores per build")
+					@components.Metric("3", "Capture modes: cold / warm / steady")
+					@components.Metric("1 Hz+", "Continuous sampling during sessions")
+					@components.Metric("Auto", "Runs on manual and automated sessions")
+				</div>
+			</div>
+		</div>
+	</section>
+}
+
+templ pfCompare() {
+	<section class="border-b border-line bg-surface">
+		<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+			@components.SectionTag("Build-over-build comparison")
+			<h2 class="font-display font-bold text-3xl md:text-4xl tracking-tight max-w-2xl">Regressions flagged with statistics, not vibes.</h2>
+			<p class="text-muted mt-4 max-w-2xl leading-relaxed">
+				Two builds never produce identical numbers. The comparison engine tells you when a difference is real: Mann-Whitney U tests for significance, Cliff's Delta for effect size, and a per-metric minimum detectable effect so noise doesn't page anyone.
+			</p>
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10 items-start">
+				<ul class="space-y-2.5">
+					@components.Check("1-vs-1 build comparison across every metric family")
+					@components.Check("Context-match guards — never compares across mismatched device, OS, or capture mode")
+					@components.Check("Trend views over a baseline window of past runs")
+					@components.Check("Results stream to InfluxDB for your own dashboards and alerting")
+				</ul>
+				<div>
+					@components.Frame("Performance report — build comparison") {
+					@components.IlloPerfCompare()
+				}
+				</div>
+			</div>
+		</div>
+	</section>
+}

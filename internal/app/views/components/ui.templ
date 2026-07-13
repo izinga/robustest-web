@@ -1,0 +1,79 @@
+package components
+
+// SectionTag renders the schematic section header: mono instrument tag +
+// hairline rule running to the edge.
+templ SectionTag(tag string) {
+	<div class="flex items-center gap-4 mb-4">
+		<span class="tag">{ tag }</span>
+		<span class="rule" aria-hidden="true"></span>
+	</div>
+}
+
+// PageHero is the standard opening block for capability pages.
+templ PageHero(tag string, title string, lede string) {
+	<section class="relative border-b border-line">
+		<div class="absolute inset-0 grid-paper grid-paper-fade" aria-hidden="true"></div>
+		<div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-14 md:pt-24 md:pb-20">
+			@SectionTag(tag)
+			<h1 class="font-display font-bold text-4xl md:text-5xl lg:text-6xl tracking-tight max-w-3xl">{ title }</h1>
+			<p class="text-lg md:text-xl text-muted max-w-2xl mt-5 leading-relaxed">{ lede }</p>
+		</div>
+	</section>
+}
+
+// SampleFrame is a placeholder for a product screenshot: a dashboard-style
+// frame with a hatched body and a mono label. Swapped for real captures later.
+templ SampleFrame(label string) {
+	<figure class="border border-line-strong bg-surface">
+		<div class="flex items-center gap-1.5 px-3 py-2 border-b border-line">
+			<span class="w-2 h-2 rounded-full bg-line-strong" aria-hidden="true"></span>
+			<span class="w-2 h-2 rounded-full bg-line-strong" aria-hidden="true"></span>
+			<span class="w-2 h-2 rounded-full bg-line-strong" aria-hidden="true"></span>
+			<span class="font-mono text-xs uppercase tracking-widest text-muted ml-2">{ label }</span>
+		</div>
+		<div class="hatch h-64 md:h-80 flex items-center justify-center">
+			<figcaption class="font-mono text-xs uppercase tracking-widest text-muted bg-surface border border-line px-3 py-1.5">
+				Sample — real capture to follow
+			</figcaption>
+		</div>
+	</figure>
+}
+
+// Beta marks a capability that ships but is still maturing.
+templ Beta() {
+	<span class="font-mono text-xs uppercase tracking-widest text-amber bg-amber-soft border border-amber/30 px-1.5 py-0.5 align-middle">Beta</span>
+}
+
+// Check renders one item in a capability checklist.
+templ Check(text string) {
+	<li class="flex items-start gap-3">
+		<svg class="w-4 h-4 mt-1 shrink-0 text-signal" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+		<span class="text-sm text-muted leading-relaxed">{ text }</span>
+	</li>
+}
+
+// Metric renders a mono measurement chip, e.g. "60 FPS" or "~100 MS".
+templ Metric(value string, label string) {
+	<div class="border border-line bg-surface px-4 py-3">
+		<div class="font-display font-bold text-2xl md:text-3xl tracking-tight">{ value }</div>
+		<div class="font-mono text-xs uppercase tracking-widest text-muted mt-1">{ label }</div>
+	</div>
+}
+
+// CTABand is the standard closing call-to-action on every page.
+templ CTABand(title string, sub string) {
+	<section class="border-t border-line-strong bg-signal-soft">
+		<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+			<div class="flex flex-col md:flex-row md:items-end md:justify-between gap-8">
+				<div>
+					<h2 class="font-display font-bold text-3xl md:text-4xl tracking-tight max-w-xl">{ title }</h2>
+					<p class="text-muted mt-3 max-w-lg leading-relaxed">{ sub }</p>
+				</div>
+				<div class="flex items-center gap-4 shrink-0">
+					<a href="/contact" class="bg-signal text-paper px-6 py-3 font-semibold hover:opacity-90 transition-opacity">Book a demo</a>
+					<a href="/pricing" class="text-sm font-medium text-trace hover:underline">See pricing</a>
+				</div>
+			</div>
+		</div>
+	</section>
+}

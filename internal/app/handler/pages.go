@@ -32,6 +32,69 @@ func FeaturesPage(c *gin.Context) {
 	})
 }
 
+// ManualTestingPage renders the manual testing capability page
+func ManualTestingPage(c *gin.Context) {
+	renderPage(c, "manual-testing", func() error {
+		return pages.ManualTestingPage().Render(c.Request.Context(), c.Writer)
+	})
+}
+
+// TestAutomationPage renders the test automation capability page
+func TestAutomationPage(c *gin.Context) {
+	renderPage(c, "test-automation", func() error {
+		return pages.TestAutomationPage().Render(c.Request.Context(), c.Writer)
+	})
+}
+
+// PerformanceTestingPage renders the performance testing capability page
+func PerformanceTestingPage(c *gin.Context) {
+	renderPage(c, "performance-testing", func() error {
+		return pages.PerformanceTestingPage().Render(c.Request.Context(), c.Writer)
+	})
+}
+
+// TVTestingPage renders the Smart TV & OTT testing capability page
+func TVTestingPage(c *gin.Context) {
+	renderPage(c, "tv-testing", func() error {
+		return pages.TVTestingPage().Render(c.Request.Context(), c.Writer)
+	})
+}
+
+// NetworkCapturePage renders the network capture capability page
+func NetworkCapturePage(c *gin.Context) {
+	renderPage(c, "network-capture", func() error {
+		return pages.NetworkCapturePage().Render(c.Request.Context(), c.Writer)
+	})
+}
+
+// DeviceLabPage renders the device lab operations capability page
+func DeviceLabPage(c *gin.Context) {
+	renderPage(c, "device-lab", func() error {
+		return pages.DeviceLabPage().Render(c.Request.Context(), c.Writer)
+	})
+}
+
+// IntegrationsPage renders the integrations & enterprise capability page
+func IntegrationsPage(c *gin.Context) {
+	renderPage(c, "integrations", func() error {
+		return pages.IntegrationsPage().Render(c.Request.Context(), c.Writer)
+	})
+}
+
+// EnterprisePage renders the enterprise industry-scenarios page
+func EnterprisePage(c *gin.Context) {
+	renderPage(c, "enterprise", func() error {
+		return pages.EnterprisePage().Render(c.Request.Context(), c.Writer)
+	})
+}
+
+// PartnersPage renders the testing-services partners page
+func PartnersPage(c *gin.Context) {
+	renderPage(c, "partners", func() error {
+		return pages.PartnersPage().Render(c.Request.Context(), c.Writer)
+	})
+}
+
 // PricingPage renders the pricing page
 func PricingPage(c *gin.Context) {
 	renderPage(c, "pricing", func() error {
@@ -55,8 +118,12 @@ func AboutPage(c *gin.Context) {
 
 // ContactPage renders the contact page
 func ContactPage(c *gin.Context) {
+	leadType := ""
+	if c.Query("type") == "partner" {
+		leadType = "partner"
+	}
 	renderPage(c, "contact", func() error {
-		return pages.ContactPage().Render(c.Request.Context(), c.Writer)
+		return pages.ContactPage(leadType).Render(c.Request.Context(), c.Writer)
 	})
 }
 
