@@ -71,6 +71,27 @@ Note the legacy binary predates the :80 redirect and the /docs, /partners,
 /enterprise pages — it is a last resort, not a rollback (use
 `make deploy-rollback` for that).
 
+## Analytics (two systems, deliberately)
+
+- **Plausible (cloud)** — script in both layouts; rich custom events with
+  properties (demo/partner lead split). Caveat: silently drops traffic
+  from networks it classifies as datacenter/VPN (including our own office
+  egress), so treat its absolute counts as a floor.
+- **GoatCounter (self-hosted, ground truth)** — `goatcounter` systemd
+  service on the same instance, listening on `localhost:8081` only
+  (SQLite at `/home/omnarayan/goatcounter/goatcounter.sqlite3`). The
+  counting beacon is proxied first-party at `robustest.com/gc/count` and
+  `count.js` is served from our own assets, so ad-blockers and
+  third-party IP filters can't interfere. Events mirror Plausible's with
+  flattened names (e.g. `contact-form-submitted-partner`).
+- **Dashboard access** (not publicly exposed): add
+  `127.0.0.1 stats.robustest.com` to your local `/etc/hosts`, then
+  `gcloud compute ssh <instance> --zone us-central1-c -- -L 8081:localhost:8081`
+  and open `http://stats.robustest.com:8081`. Login is
+  `hello@robustest.com` (password held by Om, set at install).
+- Comparing GoatCounter vs Plausible visitor counts over a few weeks
+  measures Plausible's undercount empirically.
+
 ## Known gaps / future work
 
 - **Certificate renewal**: check how the Let's Encrypt cert renews
