@@ -72,7 +72,7 @@ func DocsPage(page *docs.Page, nav *docs.Nav, currentPath string) templ.Componen
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "\"><meta name=\"theme-color\" media=\"(prefers-color-scheme: light)\" content=\"#f4f7f9\"><meta name=\"theme-color\" media=\"(prefers-color-scheme: dark)\" content=\"#0c1318\"><link rel=\"preconnect\" href=\"https://fonts.googleapis.com\"><link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin><link href=\"https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap\" rel=\"stylesheet\"><link rel=\"icon\" type=\"image/png\" href=\"/assets/images/favicon.png\"><link rel=\"stylesheet\" href=\"/assets/css/app.css\"><!-- Privacy-friendly analytics by Plausible --><script async src=\"https://plausible.io/js/pa-RBlWWb_AxPoRdo1a5FLVu.js\"></script><script>\n\t\t\t\twindow.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};\n\t\t\t\tplausible.init()\n\t\t\t</script></head><body class=\"bg-paper text-ink font-sans\"><header class=\"sticky top-0 z-50 bg-paper/90 backdrop-blur-sm border-b border-line\"><div class=\"max-w-[88rem] mx-auto px-4 sm:px-6 flex items-center justify-between h-14\"><div class=\"flex items-center gap-3 min-w-0\"><a href=\"/\" class=\"inline-flex items-center shrink-0\" aria-label=\"RobusTest home\"><img src=\"/assets/images/logo-full.png\" alt=\"RobusTest\" class=\"brand-logo h-5 w-auto\"></a> <span class=\"w-px h-5 bg-line-strong\" aria-hidden=\"true\"></span> <a href=\"/docs\" class=\"font-mono text-xs uppercase tracking-widest text-muted hover:text-ink\">Docs</a></div><nav class=\"flex items-center gap-5\"><a href=\"/features\" class=\"hidden sm:inline text-sm font-medium text-muted hover:text-ink\">Platform</a> <a href=\"/contact\" class=\"bg-signal text-paper px-3 py-1.5 text-sm font-semibold hover:opacity-90 transition-opacity\">Book a demo</a></nav></div></header><div class=\"max-w-[88rem] mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-[16rem_minmax(0,1fr)_12rem] gap-8\"><!-- sidebar --><aside class=\"lg:sticky lg:top-14 lg:h-[calc(100vh-3.5rem)] lg:overflow-y-auto py-6 lg:py-10 border-b lg:border-b-0 border-line\"><details class=\"lg:hidden mb-2\"><summary class=\"font-mono text-xs uppercase tracking-widest text-signal cursor-pointer py-1\">Menu</summary>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "\"><meta name=\"theme-color\" media=\"(prefers-color-scheme: light)\" content=\"#f4f7f9\"><meta name=\"theme-color\" media=\"(prefers-color-scheme: dark)\" content=\"#0c1318\"><link rel=\"preconnect\" href=\"https://fonts.googleapis.com\"><link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin><link href=\"https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap\" rel=\"stylesheet\"><link rel=\"icon\" type=\"image/png\" href=\"/assets/images/favicon.png\"><link rel=\"stylesheet\" href=\"/assets/css/app.css\"><!-- Self-hosted GoatCounter (first-party ground-truth analytics) --><script data-goatcounter=\"https://robustest.com/gc/count\" async src=\"/assets/js/count.js\"></script><!-- Privacy-friendly analytics by Plausible --><script async src=\"https://plausible.io/js/pa-RBlWWb_AxPoRdo1a5FLVu.js\"></script><script>\n\t\t\t\twindow.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};\n\t\t\t\tplausible.init()\n\t\t\t</script></head><body class=\"bg-paper text-ink font-sans\"><header class=\"sticky top-0 z-50 bg-paper/90 backdrop-blur-sm border-b border-line\"><div class=\"max-w-[88rem] mx-auto px-4 sm:px-6 flex items-center justify-between h-14\"><div class=\"flex items-center gap-3 min-w-0\"><a href=\"/\" class=\"inline-flex items-center shrink-0\" aria-label=\"RobusTest home\"><img src=\"/assets/images/logo-full.png\" alt=\"RobusTest\" class=\"brand-logo h-5 w-auto\"></a> <span class=\"w-px h-5 bg-line-strong\" aria-hidden=\"true\"></span> <a href=\"/docs\" class=\"font-mono text-xs uppercase tracking-widest text-muted hover:text-ink\">Docs</a></div><nav class=\"flex items-center gap-5\"><a href=\"/features\" class=\"hidden sm:inline text-sm font-medium text-muted hover:text-ink\">Platform</a> <a href=\"/contact\" class=\"bg-signal text-paper px-3 py-1.5 text-sm font-semibold hover:opacity-90 transition-opacity\">Book a demo</a></nav></div></header><div class=\"max-w-[88rem] mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-[16rem_minmax(0,1fr)_12rem] gap-8\"><!-- sidebar --><aside class=\"lg:sticky lg:top-14 lg:h-[calc(100vh-3.5rem)] lg:overflow-y-auto py-6 lg:py-10 border-b lg:border-b-0 border-line\"><details class=\"lg:hidden mb-2\"><summary class=\"font-mono text-xs uppercase tracking-widest text-signal cursor-pointer py-1\">Menu</summary>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -122,7 +122,7 @@ func DocsPage(page *docs.Page, nav *docs.Nav, currentPath string) templ.Componen
 				var templ_7745c5c3_Var6 templ.SafeURL
 				templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinURLErrs(templ.SafeURL("#" + item.ID))
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/docs.templ`, Line: 72, Col: 45}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/docs.templ`, Line: 74, Col: 45}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var6))
 				if templ_7745c5c3_Err != nil {
@@ -148,7 +148,7 @@ func DocsPage(page *docs.Page, nav *docs.Nav, currentPath string) templ.Componen
 				var templ_7745c5c3_Var8 string
 				templ_7745c5c3_Var8, templ_7745c5c3_Err = templ.JoinStringErrs(item.Text)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/docs.templ`, Line: 74, Col: 21}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/docs.templ`, Line: 76, Col: 21}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var8))
 				if templ_7745c5c3_Err != nil {
@@ -217,7 +217,7 @@ func docsNav(nav *docs.Nav, currentPath string) templ.Component {
 				var templ_7745c5c3_Var10 string
 				templ_7745c5c3_Var10, templ_7745c5c3_Err = templ.JoinStringErrs(section.Title)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/docs.templ`, Line: 103, Col: 38}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/docs.templ`, Line: 105, Col: 38}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var10))
 				if templ_7745c5c3_Err != nil {
@@ -249,7 +249,7 @@ func docsNav(nav *docs.Nav, currentPath string) templ.Component {
 				var templ_7745c5c3_Var12 templ.SafeURL
 				templ_7745c5c3_Var12, templ_7745c5c3_Err = templ.JoinURLErrs(templ.SafeURL("/docs" + slashPath(link.Path)))
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/docs.templ`, Line: 109, Col: 60}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/docs.templ`, Line: 111, Col: 60}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var12))
 				if templ_7745c5c3_Err != nil {
@@ -275,7 +275,7 @@ func docsNav(nav *docs.Nav, currentPath string) templ.Component {
 				var templ_7745c5c3_Var14 string
 				templ_7745c5c3_Var14, templ_7745c5c3_Err = templ.JoinStringErrs(link.Title)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/docs.templ`, Line: 111, Col: 20}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/docs.templ`, Line: 113, Col: 20}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var14))
 				if templ_7745c5c3_Err != nil {

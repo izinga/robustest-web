@@ -27,10 +27,17 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
-// Analytics events (no-ops if Plausible is blocked or absent)
+// Analytics events — sent to Plausible (with properties) and mirrored to
+// the self-hosted GoatCounter as flattened event names. Both no-op when
+// their script is blocked or absent.
 function track(name, props) {
   if (typeof window.plausible === 'function') {
     window.plausible(name, props ? { props: props } : undefined);
+  }
+  if (window.goatcounter && typeof window.goatcounter.count === 'function') {
+    var flat = name.toLowerCase().replace(/ /g, '-');
+    if (props && props.lead) flat += '-' + props.lead;
+    window.goatcounter.count({ path: flat, event: true });
   }
 }
 

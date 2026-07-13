@@ -6,6 +6,8 @@ import (
 	"log"
 	"net"
 	"net/http"
+	"net/http/httputil"
+	"net/url"
 	"os"
 	"os/signal"
 	"strings"
@@ -127,6 +129,22 @@ func main() {
 
 	// API routes
 	r.POST("/api/contact", handler.SubmitContactForm)
+
+	// First-party beacon for the self-hosted GoatCounter instance
+	// (ground-truth analytics beside Plausible). GoatCounter listens on
+	// localhost only; only its /count endpoint is exposed, under our origin
+	// so ad-blockers and third-party filters never see it.
+	gcTarget, _ := url.Parse("http://127.0.0.1:8081")
+	gcProxy := httputil.NewSingleHostReverseProxy(gcTarget)
+	gcDirector := gcProxy.Director
+	gcProxy.Director = func(req *http.Request) {
+		gcDirector(req)
+		req.Host = "stats.robustest.com" // GoatCounter routes sites by vhost
+	}
+	r.Any("/gc/count", func(c *gin.Context) {
+		c.Request.URL.Path = "/count"
+		gcProxy.ServeHTTP(c.Writer, c.Request)
+	})
 
 	// Handle 404
 	r.NoRoute(func(c *gin.Context) {
