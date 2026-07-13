@@ -74,6 +74,8 @@
 
 html {
   scroll-behavior: smooth;
+  /* Native UI (scrollbars, form controls) follows the active theme */
+  color-scheme: light dark;
 }
 
 body {
@@ -254,6 +256,10 @@ body {
   border: 1px solid var(--rt-line);
   padding: 0.5rem 0.75rem;
   color: var(--rt-muted);
+}
+/* Markdown tables sometimes ship an all-empty header row — hide it */
+.docs-prose thead tr:not(:has(th:not(:empty))) {
+  display: none;
 }
 .docs-prose img {
   max-width: 100%;
