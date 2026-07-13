@@ -39,18 +39,18 @@ templ DocsPage(page *docs.Page, nav *docs.Nav, currentPath string, prev *docs.Na
 						</a>
 						<span class="w-px h-5 bg-line-strong" aria-hidden="true"></span>
 						<a href="/docs" class="font-mono text-xs uppercase tracking-widest text-muted hover:text-ink">Docs</a>
-					</div>
-					<div class="hidden md:block relative flex-1 max-w-xs mx-6">
-						<input
-							type="search"
-							id="docs-search"
-							placeholder="Search docs…"
-							autocomplete="off"
-							class="w-full bg-surface border border-line px-3 py-1.5 text-sm text-ink placeholder:text-muted"
-							aria-label="Search documentation"
-						/>
-						<kbd class="absolute right-2.5 top-1/2 -translate-y-1/2 font-mono text-[10px] text-muted border border-line px-1 py-0.5 pointer-events-none">⌘K</kbd>
-						<div id="docs-search-results" class="hidden absolute top-full left-0 right-0 mt-1 bg-surface border border-line-strong shadow-xl shadow-ink/10 max-h-80 overflow-y-auto z-50"></div>
+						<div class="hidden md:block relative w-64 ml-4">
+							<input
+								type="search"
+								id="docs-search"
+								placeholder="Search docs…"
+								autocomplete="off"
+								class="w-full bg-surface border border-line px-3 py-1.5 text-sm text-ink placeholder:text-muted"
+								aria-label="Search documentation"
+							/>
+							<kbd class="absolute right-2.5 top-1/2 -translate-y-1/2 font-mono text-[10px] text-muted border border-line px-1 py-0.5 pointer-events-none">⌘K</kbd>
+							<div id="docs-search-results" class="hidden absolute top-full left-0 right-0 mt-1 bg-surface border border-line-strong shadow-xl shadow-ink/10 max-h-80 overflow-y-auto z-50"></div>
+						</div>
 					</div>
 					<nav class="flex items-center gap-5">
 						<a href="/features" class="hidden sm:inline text-sm font-medium text-muted hover:text-ink">Platform</a>
