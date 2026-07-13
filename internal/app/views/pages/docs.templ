@@ -4,7 +4,7 @@ import "github.com/izinga/robustest-web/internal/app/docs"
 
 // DocsPage renders a documentation page with its own chrome: slim top bar,
 // sidebar from the docs repo's _sidebar.md, reading column, and TOC.
-templ DocsPage(page *docs.Page, nav *docs.Nav, currentPath string) {
+templ DocsPage(page *docs.Page, nav *docs.Nav, currentPath string, prev *docs.NavLink, next *docs.NavLink) {
 	<!DOCTYPE html>
 	<html lang="en">
 		<head>
@@ -40,6 +40,18 @@ templ DocsPage(page *docs.Page, nav *docs.Nav, currentPath string) {
 						<span class="w-px h-5 bg-line-strong" aria-hidden="true"></span>
 						<a href="/docs" class="font-mono text-xs uppercase tracking-widest text-muted hover:text-ink">Docs</a>
 					</div>
+					<div class="hidden md:block relative flex-1 max-w-xs mx-6">
+						<input
+							type="search"
+							id="docs-search"
+							placeholder="Search docs…"
+							autocomplete="off"
+							class="w-full bg-surface border border-line px-3 py-1.5 text-sm text-ink placeholder:text-muted"
+							aria-label="Search documentation"
+						/>
+						<kbd class="absolute right-2.5 top-1/2 -translate-y-1/2 font-mono text-[10px] text-muted border border-line px-1 py-0.5 pointer-events-none">⌘K</kbd>
+						<div id="docs-search-results" class="hidden absolute top-full left-0 right-0 mt-1 bg-surface border border-line-strong shadow-xl shadow-ink/10 max-h-80 overflow-y-auto z-50"></div>
+					</div>
 					<nav class="flex items-center gap-5">
 						<a href="/features" class="hidden sm:inline text-sm font-medium text-muted hover:text-ink">Platform</a>
 						<a href="/contact" class="bg-signal text-paper px-3 py-1.5 text-sm font-semibold hover:opacity-90 transition-opacity">Book a demo</a>
@@ -62,6 +74,24 @@ templ DocsPage(page *docs.Page, nav *docs.Nav, currentPath string) {
 					<article class="docs-prose max-w-3xl">
 						@templ.Raw(string(page.Content))
 					</article>
+					if prev != nil || next != nil {
+						<nav class="max-w-3xl flex justify-between gap-4 mt-12 pt-6 border-t border-line" aria-label="Page navigation">
+							if prev != nil {
+								<a href={ templ.SafeURL("/docs" + slashPath(prev.Path)) } class="group min-w-0">
+									<span class="tag">← Previous</span>
+									<span class="block text-sm font-medium text-muted group-hover:text-ink mt-1 truncate">{ prev.Title }</span>
+								</a>
+							} else {
+								<span></span>
+							}
+							if next != nil {
+								<a href={ templ.SafeURL("/docs" + slashPath(next.Path)) } class="group min-w-0 text-right">
+									<span class="tag">Next →</span>
+									<span class="block text-sm font-medium text-muted group-hover:text-ink mt-1 truncate">{ next.Title }</span>
+								</a>
+							}
+						</nav>
+					}
 				</main>
 				<!-- toc -->
 				<aside class="hidden lg:block lg:sticky lg:top-14 lg:h-[calc(100vh-3.5rem)] lg:overflow-y-auto py-10">
@@ -86,6 +116,7 @@ templ DocsPage(page *docs.Page, nav *docs.Nav, currentPath string) {
 					<a href="https://github.com/izinga/robustest_documentation_md" target="_blank" rel="noopener noreferrer" class="font-mono text-xs text-muted hover:text-ink">Edit these docs on GitHub ↗</a>
 				</div>
 			</footer>
+			<script src="/assets/js/docs.js"></script>
 		</body>
 	</html>
 }

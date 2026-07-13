@@ -27,6 +27,15 @@ func DocsPage(c *gin.Context) {
 	path := strings.Trim(c.Param("path"), "/")
 
 	switch {
+	case path == "index.json":
+		if !docsStore.Ready() {
+			c.JSON(http.StatusServiceUnavailable, gin.H{"error": "docs not synced"})
+			return
+		}
+		c.Header("Cache-Control", "public, max-age=300")
+		c.JSON(http.StatusOK, docsStore.Index())
+		return
+
 	case path == "refresh":
 		if err := docsStore.Sync(); err != nil {
 			c.JSON(http.StatusBadGateway, gin.H{"status": "error", "error": err.Error()})
@@ -71,8 +80,9 @@ func DocsPage(c *gin.Context) {
 		return
 	}
 
+	prev, next := docsStore.PrevNext(path)
 	c.Header("Content-Type", "text/html; charset=utf-8")
-	if err := pages.DocsPage(page, docsStore.Nav(), path).Render(c.Request.Context(), c.Writer); err != nil {
+	if err := pages.DocsPage(page, docsStore.Nav(), path, prev, next).Render(c.Request.Context(), c.Writer); err != nil {
 		log.Printf("Error rendering doc %q: %v", path, err)
 	}
 }

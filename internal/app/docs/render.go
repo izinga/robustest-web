@@ -118,6 +118,61 @@ func docPathFromLink(target string) string {
 	return target
 }
 
+// IndexEntry is one searchable page in the docs index.
+type IndexEntry struct {
+	Title    string   `json:"title"`
+	Section  string   `json:"section"`
+	Path     string   `json:"path"`
+	Headings []string `json:"headings,omitempty"`
+}
+
+// Index returns the search index for the current tree: every sidebar page
+// with its section and headings. Cached per synced SHA.
+func (s *Store) Index() []IndexEntry {
+	s.mu.RLock()
+	sha := s.sha
+	s.mu.RUnlock()
+	if v, ok := s.pageCache.Load("index|" + sha); ok {
+		return v.([]IndexEntry)
+	}
+	var idx []IndexEntry
+	for _, section := range s.Nav().Sections {
+		for _, link := range section.Links {
+			entry := IndexEntry{Title: link.Title, Section: section.Title, Path: link.Path}
+			if page, err := s.Load(link.Path); err == nil {
+				for _, t := range page.TOC {
+					entry.Headings = append(entry.Headings, t.Text)
+				}
+			}
+			idx = append(idx, entry)
+		}
+	}
+	s.pageCache.Store("index|"+sha, idx)
+	return idx
+}
+
+// PrevNext returns the sidebar neighbours of a page, for footer navigation.
+func (s *Store) PrevNext(path string) (prev, next *NavLink) {
+	var flat []NavLink
+	for _, section := range s.Nav().Sections {
+		flat = append(flat, section.Links...)
+	}
+	for i, link := range flat {
+		if link.Path == path {
+			if i > 0 {
+				p := flat[i-1]
+				prev = &p
+			}
+			if i < len(flat)-1 {
+				n := flat[i+1]
+				next = &n
+			}
+			return prev, next
+		}
+	}
+	return nil, nil
+}
+
 // Load returns the rendered page for a /docs URL path ("" = home/README).
 func (s *Store) Load(urlPath string) (*Page, error) {
 	s.mu.RLock()

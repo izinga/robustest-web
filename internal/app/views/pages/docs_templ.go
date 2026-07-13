@@ -12,7 +12,7 @@ import "github.com/izinga/robustest-web/internal/app/docs"
 
 // DocsPage renders a documentation page with its own chrome: slim top bar,
 // sidebar from the docs repo's _sidebar.md, reading column, and TOC.
-func DocsPage(page *docs.Page, nav *docs.Nav, currentPath string) templ.Component {
+func DocsPage(page *docs.Page, nav *docs.Nav, currentPath string, prev *docs.NavLink, next *docs.NavLink) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -72,7 +72,7 @@ func DocsPage(page *docs.Page, nav *docs.Nav, currentPath string) templ.Componen
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "\"><meta name=\"theme-color\" media=\"(prefers-color-scheme: light)\" content=\"#f4f7f9\"><meta name=\"theme-color\" media=\"(prefers-color-scheme: dark)\" content=\"#0c1318\"><link rel=\"preconnect\" href=\"https://fonts.googleapis.com\"><link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin><link href=\"https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap\" rel=\"stylesheet\"><link rel=\"icon\" type=\"image/png\" href=\"/assets/images/favicon.png\"><link rel=\"stylesheet\" href=\"/assets/css/app.css\"><!-- Self-hosted GoatCounter (first-party ground-truth analytics) --><script data-goatcounter=\"https://robustest.com/gc/count\" async src=\"/assets/js/count.js\"></script><!-- Privacy-friendly analytics by Plausible --><script async src=\"https://plausible.io/js/pa-RBlWWb_AxPoRdo1a5FLVu.js\"></script><script>\n\t\t\t\twindow.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};\n\t\t\t\tplausible.init()\n\t\t\t</script></head><body class=\"bg-paper text-ink font-sans\"><header class=\"sticky top-0 z-50 bg-paper/90 backdrop-blur-sm border-b border-line\"><div class=\"max-w-[88rem] mx-auto px-4 sm:px-6 flex items-center justify-between h-14\"><div class=\"flex items-center gap-3 min-w-0\"><a href=\"/\" class=\"inline-flex items-center shrink-0\" aria-label=\"RobusTest home\"><img src=\"/assets/images/logo-full.png\" alt=\"RobusTest\" class=\"brand-logo h-5 w-auto\"></a> <span class=\"w-px h-5 bg-line-strong\" aria-hidden=\"true\"></span> <a href=\"/docs\" class=\"font-mono text-xs uppercase tracking-widest text-muted hover:text-ink\">Docs</a></div><nav class=\"flex items-center gap-5\"><a href=\"/features\" class=\"hidden sm:inline text-sm font-medium text-muted hover:text-ink\">Platform</a> <a href=\"/contact\" class=\"bg-signal text-paper px-3 py-1.5 text-sm font-semibold hover:opacity-90 transition-opacity\">Book a demo</a></nav></div></header><div class=\"max-w-[88rem] mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-[16rem_minmax(0,1fr)_12rem] gap-8\"><!-- sidebar --><aside class=\"lg:sticky lg:top-14 lg:h-[calc(100vh-3.5rem)] lg:overflow-y-auto py-6 lg:py-10 border-b lg:border-b-0 border-line\"><details class=\"lg:hidden mb-2\"><summary class=\"font-mono text-xs uppercase tracking-widest text-signal cursor-pointer py-1\">Menu</summary>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "\"><meta name=\"theme-color\" media=\"(prefers-color-scheme: light)\" content=\"#f4f7f9\"><meta name=\"theme-color\" media=\"(prefers-color-scheme: dark)\" content=\"#0c1318\"><link rel=\"preconnect\" href=\"https://fonts.googleapis.com\"><link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin><link href=\"https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap\" rel=\"stylesheet\"><link rel=\"icon\" type=\"image/png\" href=\"/assets/images/favicon.png\"><link rel=\"stylesheet\" href=\"/assets/css/app.css\"><!-- Self-hosted GoatCounter (first-party ground-truth analytics) --><script data-goatcounter=\"https://robustest.com/gc/count\" async src=\"/assets/js/count.js\"></script><!-- Privacy-friendly analytics by Plausible --><script async src=\"https://plausible.io/js/pa-RBlWWb_AxPoRdo1a5FLVu.js\"></script><script>\n\t\t\t\twindow.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};\n\t\t\t\tplausible.init()\n\t\t\t</script></head><body class=\"bg-paper text-ink font-sans\"><header class=\"sticky top-0 z-50 bg-paper/90 backdrop-blur-sm border-b border-line\"><div class=\"max-w-[88rem] mx-auto px-4 sm:px-6 flex items-center justify-between h-14\"><div class=\"flex items-center gap-3 min-w-0\"><a href=\"/\" class=\"inline-flex items-center shrink-0\" aria-label=\"RobusTest home\"><img src=\"/assets/images/logo-full.png\" alt=\"RobusTest\" class=\"brand-logo h-5 w-auto\"></a> <span class=\"w-px h-5 bg-line-strong\" aria-hidden=\"true\"></span> <a href=\"/docs\" class=\"font-mono text-xs uppercase tracking-widest text-muted hover:text-ink\">Docs</a></div><div class=\"hidden md:block relative flex-1 max-w-xs mx-6\"><input type=\"search\" id=\"docs-search\" placeholder=\"Search docs…\" autocomplete=\"off\" class=\"w-full bg-surface border border-line px-3 py-1.5 text-sm text-ink placeholder:text-muted\" aria-label=\"Search documentation\"> <kbd class=\"absolute right-2.5 top-1/2 -translate-y-1/2 font-mono text-[10px] text-muted border border-line px-1 py-0.5 pointer-events-none\">⌘K</kbd><div id=\"docs-search-results\" class=\"hidden absolute top-full left-0 right-0 mt-1 bg-surface border border-line-strong shadow-xl shadow-ink/10 max-h-80 overflow-y-auto z-50\"></div></div><nav class=\"flex items-center gap-5\"><a href=\"/features\" class=\"hidden sm:inline text-sm font-medium text-muted hover:text-ink\">Platform</a> <a href=\"/contact\" class=\"bg-signal text-paper px-3 py-1.5 text-sm font-semibold hover:opacity-90 transition-opacity\">Book a demo</a></nav></div></header><div class=\"max-w-[88rem] mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-[16rem_minmax(0,1fr)_12rem] gap-8\"><!-- sidebar --><aside class=\"lg:sticky lg:top-14 lg:h-[calc(100vh-3.5rem)] lg:overflow-y-auto py-6 lg:py-10 border-b lg:border-b-0 border-line\"><details class=\"lg:hidden mb-2\"><summary class=\"font-mono text-xs uppercase tracking-widest text-signal cursor-pointer py-1\">Menu</summary>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -96,75 +96,158 @@ func DocsPage(page *docs.Page, nav *docs.Nav, currentPath string) templ.Componen
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "</article></main><!-- toc --><aside class=\"hidden lg:block lg:sticky lg:top-14 lg:h-[calc(100vh-3.5rem)] lg:overflow-y-auto py-10\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "</article>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		if len(page.TOC) > 0 {
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "<span class=\"tag\">On this page</span><ul class=\"mt-3 space-y-1.5 border-l border-line\">")
+		if prev != nil || next != nil {
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "<nav class=\"max-w-3xl flex justify-between gap-4 mt-12 pt-6 border-t border-line\" aria-label=\"Page navigation\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			for _, item := range page.TOC {
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 9, "<li>")
+			if prev != nil {
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 9, "<a href=\"")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				var templ_7745c5c3_Var5 = []any{"block text-xs text-muted hover:text-ink leading-snug py-0.5", templ.KV("pl-3", item.Level == 2), templ.KV("pl-6", item.Level == 3)}
-				templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var5...)
+				var templ_7745c5c3_Var5 templ.SafeURL
+				templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinURLErrs(templ.SafeURL("/docs" + slashPath(prev.Path)))
+				if templ_7745c5c3_Err != nil {
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/docs.templ`, Line: 80, Col: 63}
+				}
+				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "<a href=\"")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "\" class=\"group min-w-0\"><span class=\"tag\">← Previous</span> <span class=\"block text-sm font-medium text-muted group-hover:text-ink mt-1 truncate\">")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				var templ_7745c5c3_Var6 templ.SafeURL
-				templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinURLErrs(templ.SafeURL("#" + item.ID))
+				var templ_7745c5c3_Var6 string
+				templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinStringErrs(prev.Title)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/docs.templ`, Line: 74, Col: 45}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/docs.templ`, Line: 82, Col: 107}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var6))
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 11, "\" class=\"")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 11, "</span></a> ")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				var templ_7745c5c3_Var7 string
-				templ_7745c5c3_Var7, templ_7745c5c3_Err = templ.JoinStringErrs(templ.CSSClasses(templ_7745c5c3_Var5).String())
+			} else {
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 12, "<span></span> ")
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/docs.templ`, Line: 1, Col: 0}
+					return templ_7745c5c3_Err
+				}
+			}
+			if next != nil {
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 13, "<a href=\"")
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				var templ_7745c5c3_Var7 templ.SafeURL
+				templ_7745c5c3_Var7, templ_7745c5c3_Err = templ.JoinURLErrs(templ.SafeURL("/docs" + slashPath(next.Path)))
+				if templ_7745c5c3_Err != nil {
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/docs.templ`, Line: 88, Col: 63}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var7))
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 12, "\">")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 14, "\" class=\"group min-w-0 text-right\"><span class=\"tag\">Next →</span> <span class=\"block text-sm font-medium text-muted group-hover:text-ink mt-1 truncate\">")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
 				var templ_7745c5c3_Var8 string
-				templ_7745c5c3_Var8, templ_7745c5c3_Err = templ.JoinStringErrs(item.Text)
+				templ_7745c5c3_Var8, templ_7745c5c3_Err = templ.JoinStringErrs(next.Title)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/docs.templ`, Line: 76, Col: 21}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/docs.templ`, Line: 90, Col: 107}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var8))
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 13, "</a></li>")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 15, "</span></a>")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 14, "</ul>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 16, "</nav>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 15, "</aside></div><footer class=\"border-t border-line mt-8\"><div class=\"max-w-[88rem] mx-auto px-4 sm:px-6 py-6 flex flex-col sm:flex-row justify-between gap-2\"><p class=\"font-mono text-xs text-muted\">© ROBUSTEST · DOCUMENTATION</p><a href=\"https://github.com/izinga/robustest_documentation_md\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"font-mono text-xs text-muted hover:text-ink\">Edit these docs on GitHub ↗</a></div></footer></body></html>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 17, "</main><!-- toc --><aside class=\"hidden lg:block lg:sticky lg:top-14 lg:h-[calc(100vh-3.5rem)] lg:overflow-y-auto py-10\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		if len(page.TOC) > 0 {
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 18, "<span class=\"tag\">On this page</span><ul class=\"mt-3 space-y-1.5 border-l border-line\">")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			for _, item := range page.TOC {
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 19, "<li>")
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				var templ_7745c5c3_Var9 = []any{"block text-xs text-muted hover:text-ink leading-snug py-0.5", templ.KV("pl-3", item.Level == 2), templ.KV("pl-6", item.Level == 3)}
+				templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var9...)
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 20, "<a href=\"")
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				var templ_7745c5c3_Var10 templ.SafeURL
+				templ_7745c5c3_Var10, templ_7745c5c3_Err = templ.JoinURLErrs(templ.SafeURL("#" + item.ID))
+				if templ_7745c5c3_Err != nil {
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/docs.templ`, Line: 104, Col: 45}
+				}
+				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var10))
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 21, "\" class=\"")
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				var templ_7745c5c3_Var11 string
+				templ_7745c5c3_Var11, templ_7745c5c3_Err = templ.JoinStringErrs(templ.CSSClasses(templ_7745c5c3_Var9).String())
+				if templ_7745c5c3_Err != nil {
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/docs.templ`, Line: 1, Col: 0}
+				}
+				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var11))
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 22, "\">")
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				var templ_7745c5c3_Var12 string
+				templ_7745c5c3_Var12, templ_7745c5c3_Err = templ.JoinStringErrs(item.Text)
+				if templ_7745c5c3_Err != nil {
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/docs.templ`, Line: 106, Col: 21}
+				}
+				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var12))
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 23, "</a></li>")
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+			}
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 24, "</ul>")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 25, "</aside></div><footer class=\"border-t border-line mt-8\"><div class=\"max-w-[88rem] mx-auto px-4 sm:px-6 py-6 flex flex-col sm:flex-row justify-between gap-2\"><p class=\"font-mono text-xs text-muted\">© ROBUSTEST · DOCUMENTATION</p><a href=\"https://github.com/izinga/robustest_documentation_md\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"font-mono text-xs text-muted hover:text-ink\">Edit these docs on GitHub ↗</a></div></footer><script src=\"/assets/js/docs.js\"></script></body></html>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -195,103 +278,103 @@ func docsNav(nav *docs.Nav, currentPath string) templ.Component {
 			}()
 		}
 		ctx = templ.InitializeContext(ctx)
-		templ_7745c5c3_Var9 := templ.GetChildren(ctx)
-		if templ_7745c5c3_Var9 == nil {
-			templ_7745c5c3_Var9 = templ.NopComponent
+		templ_7745c5c3_Var13 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var13 == nil {
+			templ_7745c5c3_Var13 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 16, "<nav aria-label=\"Documentation\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 26, "<nav aria-label=\"Documentation\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		for _, section := range nav.Sections {
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 17, "<div class=\"mb-6\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 27, "<div class=\"mb-6\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			if section.Title != "" {
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 18, "<span class=\"tag\">")
-				if templ_7745c5c3_Err != nil {
-					return templ_7745c5c3_Err
-				}
-				var templ_7745c5c3_Var10 string
-				templ_7745c5c3_Var10, templ_7745c5c3_Err = templ.JoinStringErrs(section.Title)
-				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/docs.templ`, Line: 105, Col: 38}
-				}
-				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var10))
-				if templ_7745c5c3_Err != nil {
-					return templ_7745c5c3_Err
-				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 19, "</span>")
-				if templ_7745c5c3_Err != nil {
-					return templ_7745c5c3_Err
-				}
-			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 20, "<ul class=\"mt-2 space-y-0.5\">")
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			for _, link := range section.Links {
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 21, "<li>")
-				if templ_7745c5c3_Err != nil {
-					return templ_7745c5c3_Err
-				}
-				var templ_7745c5c3_Var11 = []any{"block text-sm py-1 px-2 -mx-2 leading-snug", templ.KV("bg-signal-soft text-ink font-medium border-l-2 border-signal", link.Path == currentPath), templ.KV("text-muted hover:text-ink", link.Path != currentPath)}
-				templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var11...)
-				if templ_7745c5c3_Err != nil {
-					return templ_7745c5c3_Err
-				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 22, "<a href=\"")
-				if templ_7745c5c3_Err != nil {
-					return templ_7745c5c3_Err
-				}
-				var templ_7745c5c3_Var12 templ.SafeURL
-				templ_7745c5c3_Var12, templ_7745c5c3_Err = templ.JoinURLErrs(templ.SafeURL("/docs" + slashPath(link.Path)))
-				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/docs.templ`, Line: 111, Col: 60}
-				}
-				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var12))
-				if templ_7745c5c3_Err != nil {
-					return templ_7745c5c3_Err
-				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 23, "\" class=\"")
-				if templ_7745c5c3_Err != nil {
-					return templ_7745c5c3_Err
-				}
-				var templ_7745c5c3_Var13 string
-				templ_7745c5c3_Var13, templ_7745c5c3_Err = templ.JoinStringErrs(templ.CSSClasses(templ_7745c5c3_Var11).String())
-				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/docs.templ`, Line: 1, Col: 0}
-				}
-				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var13))
-				if templ_7745c5c3_Err != nil {
-					return templ_7745c5c3_Err
-				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 24, "\">")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 28, "<span class=\"tag\">")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
 				var templ_7745c5c3_Var14 string
-				templ_7745c5c3_Var14, templ_7745c5c3_Err = templ.JoinStringErrs(link.Title)
+				templ_7745c5c3_Var14, templ_7745c5c3_Err = templ.JoinStringErrs(section.Title)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/docs.templ`, Line: 113, Col: 20}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/docs.templ`, Line: 136, Col: 38}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var14))
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 25, "</a></li>")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 29, "</span>")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 26, "</ul></div>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 30, "<ul class=\"mt-2 space-y-0.5\">")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			for _, link := range section.Links {
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 31, "<li>")
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				var templ_7745c5c3_Var15 = []any{"block text-sm py-1 px-2 -mx-2 leading-snug", templ.KV("bg-signal-soft text-ink font-medium border-l-2 border-signal", link.Path == currentPath), templ.KV("text-muted hover:text-ink", link.Path != currentPath)}
+				templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var15...)
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 32, "<a href=\"")
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				var templ_7745c5c3_Var16 templ.SafeURL
+				templ_7745c5c3_Var16, templ_7745c5c3_Err = templ.JoinURLErrs(templ.SafeURL("/docs" + slashPath(link.Path)))
+				if templ_7745c5c3_Err != nil {
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/docs.templ`, Line: 142, Col: 60}
+				}
+				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var16))
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 33, "\" class=\"")
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				var templ_7745c5c3_Var17 string
+				templ_7745c5c3_Var17, templ_7745c5c3_Err = templ.JoinStringErrs(templ.CSSClasses(templ_7745c5c3_Var15).String())
+				if templ_7745c5c3_Err != nil {
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/docs.templ`, Line: 1, Col: 0}
+				}
+				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var17))
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 34, "\">")
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				var templ_7745c5c3_Var18 string
+				templ_7745c5c3_Var18, templ_7745c5c3_Err = templ.JoinStringErrs(link.Title)
+				if templ_7745c5c3_Err != nil {
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/docs.templ`, Line: 144, Col: 20}
+				}
+				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var18))
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 35, "</a></li>")
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+			}
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 36, "</ul></div>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 27, "</nav>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 37, "</nav>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -316,12 +399,12 @@ func DocsUnavailable() templ.Component {
 			}()
 		}
 		ctx = templ.InitializeContext(ctx)
-		templ_7745c5c3_Var15 := templ.GetChildren(ctx)
-		if templ_7745c5c3_Var15 == nil {
-			templ_7745c5c3_Var15 = templ.NopComponent
+		templ_7745c5c3_Var19 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var19 == nil {
+			templ_7745c5c3_Var19 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 28, "<!doctype html><html lang=\"en\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><title>Docs syncing — RobusTest</title><meta name=\"robots\" content=\"noindex\"><link rel=\"stylesheet\" href=\"/assets/css/app.css\"></head><body class=\"bg-paper text-ink font-sans min-h-screen flex items-center justify-center\"><div class=\"text-center px-4\"><p class=\"tag\">Documentation</p><h1 class=\"font-display font-bold text-3xl mt-3\">Docs are syncing.</h1><p class=\"text-muted mt-2\">The documentation is being fetched — try again in a moment.</p><a href=\"/\" class=\"inline-block mt-6 bg-signal text-paper px-5 py-2.5 font-semibold\">Back to robustest.com</a></div></body></html>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 38, "<!doctype html><html lang=\"en\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><title>Docs syncing — RobusTest</title><meta name=\"robots\" content=\"noindex\"><link rel=\"stylesheet\" href=\"/assets/css/app.css\"></head><body class=\"bg-paper text-ink font-sans min-h-screen flex items-center justify-center\"><div class=\"text-center px-4\"><p class=\"tag\">Documentation</p><h1 class=\"font-display font-bold text-3xl mt-3\">Docs are syncing.</h1><p class=\"text-muted mt-2\">The documentation is being fetched — try again in a moment.</p><a href=\"/\" class=\"inline-block mt-6 bg-signal text-paper px-5 py-2.5 font-semibold\">Back to robustest.com</a></div></body></html>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
