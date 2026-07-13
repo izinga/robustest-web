@@ -177,7 +177,7 @@ clean:
 ## release: Create Linux release tarball (default)
 release: release-linux
 
-## release-linux: Create Linux release tarball
+## release-linux: Create Linux release tarball (no .env — server env is authoritative)
 release-linux: build-linux
 	@echo "$(GREEN)Creating Linux release package...$(NC)"
 	@rm -rf $(DIST_DIR)/*
@@ -186,7 +186,6 @@ release-linux: build-linux
 	tar -czvf $(DIST_DIR)/$(APP_NAME)-linux.tar.gz \
 		$(APP_NAME) \
 		$(PUBLIC_DIR) \
-		.env \
 		README.md
 	@rm -f $(APP_NAME)
 	@echo "$(GREEN)Release package created: $(DIST_DIR)/$(APP_NAME)-linux.tar.gz$(NC)"
@@ -244,71 +243,65 @@ docker-run:
 	@echo "$(GREEN)Running Docker container...$(NC)"
 	docker run --rm -p 3000:3000 --env-file .env.local $(APP_NAME):latest
 
-# ─── Deployment ───────────────────────────────────────────────
-# Configure these for your server
-DEPLOY_HOST ?= robustest.com
-DEPLOY_USER ?= root
-DEPLOY_PATH ?= /opt/robustest-web
-DEPLOY_SSH   := $(DEPLOY_USER)@$(DEPLOY_HOST)
+# ─── Deployment (GCP) ─────────────────────────────────────────
+# The site runs on a GCE instance as a systemd service. The old
+# screen-based setup in /home/omnarayan is kept untouched as backup.
+DEPLOY_HOST  ?= robustest.com
+GCP_INSTANCE ?= robustest-landing-instance-20251223-062108
+GCP_ZONE     ?= us-central1-c
+DEPLOY_PATH  ?= /home/omnarayan/robustest-web
 SERVICE_NAME := robustest-web
+GCLOUD_SSH   := gcloud compute ssh $(GCP_INSTANCE) --zone $(GCP_ZONE) --command
 
-## deploy: Build, package, upload, and restart on the server
+## deploy: Build, package, upload, and restart the systemd service
 deploy: release-linux
-	@echo "$(GREEN)Deploying $(APP_NAME) to $(DEPLOY_SSH):$(DEPLOY_PATH)...$(NC)"
-	@echo "$(YELLOW)Uploading release package...$(NC)"
-	scp $(DIST_DIR)/$(APP_NAME)-linux.tar.gz $(DEPLOY_SSH):/tmp/$(APP_NAME)-linux.tar.gz
-	@echo "$(YELLOW)Installing on server...$(NC)"
-	ssh $(DEPLOY_SSH) '\
+	@echo "$(GREEN)Deploying $(APP_NAME) to $(GCP_INSTANCE):$(DEPLOY_PATH)...$(NC)"
+	gcloud compute scp $(DIST_DIR)/$(APP_NAME)-linux.tar.gz $(GCP_INSTANCE):/tmp/$(APP_NAME)-linux.tar.gz --zone $(GCP_ZONE)
+	$(GCLOUD_SSH) '\
 		set -e && \
 		mkdir -p $(DEPLOY_PATH) && \
 		cd $(DEPLOY_PATH) && \
 		cp $(APP_NAME) $(APP_NAME).bak 2>/dev/null || true && \
 		tar -xzf /tmp/$(APP_NAME)-linux.tar.gz && \
 		rm /tmp/$(APP_NAME)-linux.tar.gz && \
-		echo "$(APP_NAME) extracted successfully" && \
-		if systemctl is-active --quiet $(SERVICE_NAME); then \
-			systemctl restart $(SERVICE_NAME) && \
-			echo "Service restarted"; \
-		else \
-			echo "WARNING: systemd service not found. Start manually or run: make deploy-service"; \
-		fi \
-	'
+		sudo systemctl restart $(SERVICE_NAME) && \
+		sleep 2 && \
+		sudo systemctl is-active $(SERVICE_NAME)'
 	@echo "$(GREEN)Deployment complete!$(NC)"
+	@curl -sf https://$(DEPLOY_HOST)/health && echo ""
 
-## deploy-service: Install systemd service file on the server
+## deploy-service: Install/update the systemd unit on the server
 deploy-service:
-	@echo "$(GREEN)Installing systemd service on $(DEPLOY_SSH)...$(NC)"
-	scp robustest-web.service $(DEPLOY_SSH):/etc/systemd/system/$(SERVICE_NAME).service
-	ssh $(DEPLOY_SSH) '\
-		systemctl daemon-reload && \
-		systemctl enable $(SERVICE_NAME) && \
-		systemctl restart $(SERVICE_NAME) && \
-		systemctl status $(SERVICE_NAME) \
-	'
-	@echo "$(GREEN)Service installed and started!$(NC)"
+	@echo "$(GREEN)Installing systemd service on $(GCP_INSTANCE)...$(NC)"
+	gcloud compute scp robustest-web.service $(GCP_INSTANCE):/tmp/$(SERVICE_NAME).service --zone $(GCP_ZONE)
+	$(GCLOUD_SSH) '\
+		sudo mv /tmp/$(SERVICE_NAME).service /etc/systemd/system/$(SERVICE_NAME).service && \
+		sudo systemctl daemon-reload && \
+		sudo systemctl enable $(SERVICE_NAME) && \
+		echo "Service installed and enabled (not started)"'
 
-## deploy-rollback: Rollback to previous binary on the server
+## deploy-rollback: Swap back the previous binary and restart
 deploy-rollback:
-	@echo "$(YELLOW)Rolling back $(APP_NAME) on $(DEPLOY_SSH)...$(NC)"
-	ssh $(DEPLOY_SSH) '\
+	@echo "$(YELLOW)Rolling back $(APP_NAME) on $(GCP_INSTANCE)...$(NC)"
+	$(GCLOUD_SSH) '\
 		cd $(DEPLOY_PATH) && \
 		if [ -f $(APP_NAME).bak ]; then \
 			mv $(APP_NAME).bak $(APP_NAME) && \
-			systemctl restart $(SERVICE_NAME) && \
+			sudo systemctl restart $(SERVICE_NAME) && \
 			echo "Rollback complete"; \
 		else \
 			echo "ERROR: No backup found to rollback to" && exit 1; \
-		fi \
-	'
-	@echo "$(GREEN)Rollback complete!$(NC)"
+		fi'
 
-## deploy-status: Check service status on the server
+## deploy-status: Service state + public health check
 deploy-status:
-	@ssh $(DEPLOY_SSH) 'systemctl status $(SERVICE_NAME) 2>/dev/null || echo "Service not found"; echo "---"; curl -sf http://localhost:3000/health 2>/dev/null || curl -sf https://localhost/health -k 2>/dev/null || echo "Health check failed"'
+	@$(GCLOUD_SSH) 'sudo systemctl status $(SERVICE_NAME) --no-pager | head -8' || true
+	@echo "---"
+	@curl -sf https://$(DEPLOY_HOST)/health && echo ""
 
-## deploy-logs: Tail logs from the server
+## deploy-logs: Tail service logs from the server
 deploy-logs:
-	@ssh $(DEPLOY_SSH) 'journalctl -u $(SERVICE_NAME) -f --no-pager -n 50'
+	@$(GCLOUD_SSH) 'sudo journalctl -u $(SERVICE_NAME) -f --no-pager -n 50'
 
 ## docs-refresh: Trigger an immediate docs sync on production (after pushing to the docs repo)
 docs-refresh:

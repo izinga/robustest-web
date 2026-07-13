@@ -4,15 +4,18 @@ After=network.target
 
 [Service]
 Type=simple
+# Runs as root to read /etc/letsencrypt keys and bind :443/:80 —
+# matches how the site has always run (sudo in a screen session).
+# Hardening to a dedicated user + cert group is a later improvement.
 User=root
-WorkingDirectory=/opt/robustest-web
-ExecStart=/opt/robustest-web/robustest-web
+WorkingDirectory=/home/omnarayan/robustest-web
+ExecStart=/home/omnarayan/robustest-web/robustest-web
 Restart=on-failure
 RestartSec=5
 LimitNOFILE=65536
 
 # Environment
-EnvironmentFile=/opt/robustest-web/.env
+EnvironmentFile=/home/omnarayan/robustest-web/.env
 
 # Graceful shutdown (matches the 30s timeout in main.go)
 TimeoutStopSec=35
