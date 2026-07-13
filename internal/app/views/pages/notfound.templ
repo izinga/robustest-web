@@ -11,11 +11,16 @@ templ NotFoundPage() {
 		<section class="relative border-b border-line">
 			<div class="absolute inset-0 grid-paper grid-paper-fade" aria-hidden="true"></div>
 			<div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-36 text-center">
-				<p class="tag">HTTP 404 · Not found</p>
-				<h1 class="font-display font-bold text-5xl md:text-6xl tracking-tight mt-4">This page isn't in the rack.</h1>
+				<p class="tag">HTTP 404 · Device not found</p>
+				<h1 class="font-display font-bold text-5xl md:text-6xl tracking-tight mt-4">This page failed its health check.</h1>
 				<p class="text-muted mt-4 max-w-md mx-auto leading-relaxed">
-					The address may have changed in the site redesign, or the link was mistyped.
+					We did what any good device lab would do — checked every rack, re-ran the device query, even power-cycled the port. It's genuinely not here.
 				</p>
+				<div class="inline-flex flex-wrap justify-center gap-2 mt-6" aria-hidden="true">
+					<span class="font-mono text-xs border border-line bg-surface px-3 py-1.5 text-muted">HEALTH SCORE: 0</span>
+					<span class="font-mono text-xs border border-line bg-surface px-3 py-1.5 text-muted">RETRIES: 3/3</span>
+					<span class="font-mono text-xs border border-amber bg-amber-soft px-3 py-1.5 text-amber">STATUS: NOT IN RACK</span>
+				</div>
 				<div class="flex flex-wrap items-center justify-center gap-4 mt-8">
 					<a href="/" class="bg-signal text-paper px-6 py-3 font-semibold hover:opacity-90 transition-opacity">Back to home</a>
 					<a href="/features" class="border border-line-strong px-6 py-3 font-semibold text-ink hover:border-ink transition-colors">Platform overview</a>
