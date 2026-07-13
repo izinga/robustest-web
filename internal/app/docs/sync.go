@@ -61,19 +61,26 @@ func NewStore() *Store {
 	}
 }
 
-// Start performs an initial sync and begins the periodic refresh loop.
+// Start performs an initial sync. Publishing is a manual step from there:
+// the docs repo is private, so there is no background polling — after
+// pushing docs, hit /docs/refresh (or `make docs-refresh`). Periodic
+// polling can be opted into by setting DOCS_SYNC_INTERVAL (e.g. "10m").
 func (s *Store) Start() {
 	if err := s.Sync(); err != nil {
-		log.Printf("docs: initial sync failed (will retry on interval): %v", err)
+		log.Printf("docs: initial sync failed (refresh manually via /docs/refresh): %v", err)
 	}
-	interval := 10 * time.Minute
-	if v := os.Getenv("DOCS_SYNC_INTERVAL"); v != "" {
-		if d, err := time.ParseDuration(v); err == nil && d >= time.Minute {
-			interval = d
-		}
+	v := os.Getenv("DOCS_SYNC_INTERVAL")
+	if v == "" {
+		log.Printf("docs: periodic sync disabled; publish via /docs/refresh")
+		return
+	}
+	d, err := time.ParseDuration(v)
+	if err != nil || d < time.Minute {
+		log.Printf("docs: invalid DOCS_SYNC_INTERVAL %q; periodic sync disabled", v)
+		return
 	}
 	go func() {
-		for range time.Tick(interval) {
+		for range time.Tick(d) {
 			if err := s.Sync(); err != nil {
 				log.Printf("docs: periodic sync failed: %v", err)
 			}
