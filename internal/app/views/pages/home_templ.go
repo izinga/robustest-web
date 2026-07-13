@@ -603,7 +603,7 @@ func homeVisuals() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 31, "<h2 class=\"font-display font-bold text-3xl md:text-4xl tracking-tight max-w-2xl\">What testers see.</h2><p class=\"text-muted mt-4 max-w-2xl leading-relaxed\">Illustrative views of the two screens teams live in — the live session and the build comparison. Real captures replace these soon.</p><div class=\"grid grid-cols-1 lg:grid-cols-2 gap-8 mt-10\"><div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 31, "<h2 class=\"font-display font-bold text-3xl md:text-4xl tracking-tight max-w-2xl\">What testers see.</h2><p class=\"text-muted mt-4 max-w-2xl leading-relaxed\">Illustrative views of the two screens teams live in — the live session and the build comparison.</p><div class=\"grid grid-cols-1 lg:grid-cols-2 gap-8 mt-10\"><div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
