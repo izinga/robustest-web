@@ -4,6 +4,7 @@ import (
 	"context"
 	"crypto/tls"
 	"log"
+	"net"
 	"net/http"
 	"os"
 	"os/signal"
@@ -186,6 +187,33 @@ func main() {
 				tls.TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,
 			},
 		}
+	}
+
+	// When serving HTTPS directly, also answer plain HTTP with a permanent
+	// redirect so http:// links and old bookmarks don't hit a dead port.
+	if tlsEnabled {
+		redirectPort := os.Getenv("HTTP_REDIRECT_PORT")
+		if redirectPort == "" {
+			redirectPort = "80"
+		}
+		go func() {
+			redirectSrv := &http.Server{
+				Addr: ":" + redirectPort,
+				Handler: http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+					host := r.Host
+					if h, _, err := net.SplitHostPort(host); err == nil {
+						host = h
+					}
+					http.Redirect(w, r, "https://"+host+r.URL.RequestURI(), http.StatusMovedPermanently)
+				}),
+				ReadTimeout:  5 * time.Second,
+				WriteTimeout: 5 * time.Second,
+			}
+			log.Printf("HTTP redirect server starting on :%s", redirectPort)
+			if err := redirectSrv.ListenAndServe(); err != nil && err != http.ErrServerClosed {
+				log.Printf("HTTP redirect server not available: %v", err)
+			}
+		}()
 	}
 
 	// Start server in a goroutine
