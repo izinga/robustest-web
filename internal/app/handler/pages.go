@@ -127,6 +127,15 @@ func ContactPage(c *gin.Context) {
 	})
 }
 
+// NotFoundPage renders the branded 404 page
+func NotFoundPage(c *gin.Context) {
+	c.Header("Content-Type", "text/html; charset=utf-8")
+	c.Status(http.StatusNotFound)
+	if err := pages.NotFoundPage().Render(c.Request.Context(), c.Writer); err != nil {
+		log.Printf("Error rendering 404 page: %v", err)
+	}
+}
+
 // LegalPage renders the combined privacy and terms page
 func LegalPage(c *gin.Context) {
 	renderPage(c, "legal", func() error {

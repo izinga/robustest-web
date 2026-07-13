@@ -1,0 +1,27 @@
+package pages
+
+import "github.com/izinga/robustest-web/internal/app/views/layouts"
+
+templ NotFoundPage() {
+	@layouts.Base(
+		"Page not found — RobusTest",
+		"The page you were looking for doesn't exist.",
+		"/404",
+	) {
+		<section class="relative border-b border-line">
+			<div class="absolute inset-0 grid-paper grid-paper-fade" aria-hidden="true"></div>
+			<div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-36 text-center">
+				<p class="tag">HTTP 404 · Not found</p>
+				<h1 class="font-display font-bold text-5xl md:text-6xl tracking-tight mt-4">This page isn't in the rack.</h1>
+				<p class="text-muted mt-4 max-w-md mx-auto leading-relaxed">
+					The address may have changed in the site redesign, or the link was mistyped.
+				</p>
+				<div class="flex flex-wrap items-center justify-center gap-4 mt-8">
+					<a href="/" class="bg-signal text-paper px-6 py-3 font-semibold hover:opacity-90 transition-opacity">Back to home</a>
+					<a href="/features" class="border border-line-strong px-6 py-3 font-semibold text-ink hover:border-ink transition-colors">Platform overview</a>
+					<a href="/docs" class="text-sm font-medium text-trace hover:underline">Documentation</a>
+				</div>
+			</div>
+		</section>
+	}
+}
