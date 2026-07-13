@@ -4,70 +4,65 @@ The website serves product documentation at `https://robustest.com/docs`,
 rendered from the private repo
 [`izinga/robustest_documentation_md`](https://github.com/izinga/robustest_documentation_md).
 The docs repo is the single source of truth — its content is **never
-committed into robustest-web**. The server fetches it at runtime as a
-GitHub tarball and renders the markdown (goldmark, docsify-style
-`_sidebar.md` navigation, per-page table of contents).
+committed into robustest-web** (`docs-content/` is gitignored).
 
-Publishing is **manual by design** (the repo is private; there is no
-background polling).
+Docs are **fetched locally at build time and shipped with the deploy** —
+the production server needs no GitHub credentials and never calls GitHub.
 
-## One-time setup
+## How it works
 
-1. Create a GitHub **fine-grained personal access token**:
-   GitHub → Settings → Developer settings → Fine-grained tokens →
-   Generate new token
-   - Repository access: **only** `izinga/robustest_documentation_md`
-   - Permissions: **Contents: Read** (nothing else)
-2. Add it to the server's env file (`/home/omnarayan/.env` on the
-   production instance):
-
-   ```bash
-   DOCS_GITHUB_TOKEN=github_pat_XXXX...
-   ```
-
-3. Restart the site binary. It performs one initial sync at startup.
-
-Without the token, `/docs` shows a "docs are syncing" page and
-`/docs/refresh` returns the GitHub API error.
+- `make docs-fetch` pulls the docs repo tarball (using your local `gh`
+  login) into `./docs-content/`.
+- `make release-linux` (and therefore `make deploy`) runs `docs-fetch`
+  automatically and bundles `docs-content/` into the release tarball.
+- The server detects the bundled directory and serves it: markdown is
+  rendered with goldmark, `_sidebar.md` drives the navigation, `##`/`###`
+  headings build the per-page table of contents.
 
 ## Publishing flow (every docs change)
 
-1. **Write** — edit or add markdown in the docs repo. New pages must
-   also be added to `_sidebar.md` to appear in the navigation. Merge to
-   `main`. Nothing changes on the site yet.
-2. **Publish** — trigger a sync, any of:
-   - `make docs-refresh` (from this repo; hits production)
-   - `curl https://robustest.com/docs/refresh`
-   - open `https://robustest.com/docs/refresh` in a browser
-3. **Verify** — the response is:
+1. **Write** — edit or add markdown in the docs repo. New pages must also
+   be added to `_sidebar.md` to appear in the navigation. Merge to `main`.
+2. **Publish** — from this repo, one command:
 
-   ```json
-   {"status":"ok","sha":"<commit>","synced_at":"..."}
+   ```bash
+   make docs-publish     # fetch latest docs, ship ONLY docs, refresh — no binary deploy
    ```
 
-   If `sha` matches the docs repo's latest commit on `main`, the site is
-   serving exactly what was merged.
+   (A full `make deploy` also carries the latest docs, since the release
+   bundles them.)
+3. **Verify** — the command ends by calling `/docs/refresh`, which
+   returns `{"status":"ok","sha":"<content fingerprint>",...}` after
+   re-scanning the shipped content. Spot-check a changed page on
+   `https://robustest.com/docs`.
 
-The sync downloads the tarball, extracts it next to the current copy
-under `data/docs/`, and swaps atomically — readers never see a
-half-updated state.
+Requirements for whoever publishes: `gh` CLI authenticated with access to
+the docs repo, and `gcloud` access to the instance — the same access
+needed to deploy the site.
 
 ## Failure behavior
 
-- If a refresh fails (expired token, GitHub unreachable), the endpoint
-  returns the error and the site **keeps serving the last good copy**.
-- A server restart re-syncs once at boot, so docs survive redeploys.
-- `data/` is gitignored; synced content never enters this repo.
+- The docs swap on the server is atomic (`docs-content.new` → rename), so
+  readers never see a half-updated tree; the previous copy is kept as
+  `docs-content.old`.
+- If `/docs` shows "Docs are syncing", the bundled directory is missing —
+  run `make docs-publish` (or a full `make deploy`).
 
-## Environment variables
+## Optional: server-side GitHub sync
+
+The server can instead fetch from GitHub itself (the pre-bundling mode):
+set `DOCS_GITHUB_TOKEN` (fine-grained PAT, Contents: Read, docs repo only)
+in the server env, and optionally `DOCS_SYNC_INTERVAL=10m` for polling.
+Bundled content takes precedence when `docs-content/` exists.
 
 | Variable | Default | Purpose |
 |---|---|---|
-| `DOCS_GITHUB_TOKEN` | *(required in prod)* | Fine-grained read-only PAT for the private docs repo |
-| `DOCS_REPO` | `izinga/robustest_documentation_md` | Repo to sync |
-| `DOCS_BRANCH` | `main` | Branch to sync |
-| `DOCS_DIR` | `./data/docs` | Where synced trees are extracted |
-| `DOCS_SYNC_INTERVAL` | *(unset — disabled)* | Set e.g. `10m` to re-enable automatic polling |
+| `DOCS_LOCAL_DIR` | `./docs-content` | Bundled docs directory (preferred mode) |
+| `DOCS_GITHUB_TOKEN` | *(unset)* | Enables server-side GitHub fetch mode |
+| `DOCS_REPO` | `izinga/robustest_documentation_md` | Repo (both modes) |
+| `DOCS_BRANCH` | `main` | Branch (both modes) |
+| `DOCS_DIR` | `./data/docs` | Extraction dir for GitHub mode |
+| `DOCS_SYNC_INTERVAL` | *(unset — disabled)* | Polling interval for GitHub mode |
 
 ## Rendering conventions (for docs authors)
 

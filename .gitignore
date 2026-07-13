@@ -46,3 +46,6 @@ data/
 
 # Stray local binaries
 /server
+
+# Docs bundled at build time (make docs-fetch) — never committed
+docs-content/

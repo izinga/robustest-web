@@ -8,9 +8,12 @@ package docs
 import (
 	"archive/tar"
 	"compress/gzip"
+	"crypto/sha256"
+	"encoding/hex"
 	"encoding/json"
 	"fmt"
 	"io"
+	"io/fs"
 	"log"
 	"net/http"
 	"os"
@@ -34,6 +37,7 @@ type Store struct {
 	branch string
 	token  string
 	root   string // parent dir under which synced trees are extracted
+	local  string // non-empty: serve a bundled docs dir, never call GitHub
 
 	pageCache sync.Map // key string -> *Page (invalidated on new SHA)
 	navCache  *Nav
@@ -53,11 +57,21 @@ func NewStore() *Store {
 	if root == "" {
 		root = "./data/docs"
 	}
+	// Preferred mode: docs bundled at build time (make docs-fetch) and
+	// shipped with the deploy — no GitHub credentials on the server.
+	local := os.Getenv("DOCS_LOCAL_DIR")
+	if local == "" {
+		local = "./docs-content"
+	}
+	if fi, err := os.Stat(local); err != nil || !fi.IsDir() {
+		local = ""
+	}
 	return &Store{
 		repo:   repo,
 		branch: branch,
 		token:  os.Getenv("DOCS_GITHUB_TOKEN"),
 		root:   root,
+		local:  local,
 	}
 }
 
@@ -68,6 +82,10 @@ func NewStore() *Store {
 func (s *Store) Start() {
 	if err := s.Sync(); err != nil {
 		log.Printf("docs: initial sync failed (refresh manually via /docs/refresh): %v", err)
+	}
+	if s.local != "" {
+		log.Printf("docs: serving bundled content from %s", s.local)
+		return
 	}
 	v := os.Getenv("DOCS_SYNC_INTERVAL")
 	if v == "" {
@@ -144,9 +162,13 @@ func (s *Store) headSHA() (string, error) {
 	return out.SHA, nil
 }
 
-// Sync fetches the repo tarball and atomically swaps the served tree.
-// It is safe to call concurrently; only one sync runs at a time.
+// Sync refreshes the served tree: in bundled mode it re-fingerprints the
+// local directory (picking up docs shipped by a deploy or docs-publish);
+// otherwise it fetches the repo tarball from GitHub.
 func (s *Store) Sync() error {
+	if s.local != "" {
+		return s.syncLocal()
+	}
 	s.mu.Lock()
 	current := s.sha
 	s.mu.Unlock()
@@ -196,6 +218,46 @@ func (s *Store) Sync() error {
 		os.RemoveAll(old)
 	}
 	log.Printf("docs: synced %s@%s", s.repo, sha[:12])
+	return nil
+}
+
+// syncLocal fingerprints the bundled docs dir so caches invalidate when a
+// deploy or docs-publish replaces the content.
+func (s *Store) syncLocal() error {
+	h := sha256.New()
+	err := filepath.WalkDir(s.local, func(p string, d fs.DirEntry, err error) error {
+		if err != nil {
+			return err
+		}
+		if d.IsDir() {
+			return nil
+		}
+		info, err := d.Info()
+		if err != nil {
+			return err
+		}
+		fmt.Fprintf(h, "%s|%d|%d;", p, info.Size(), info.ModTime().UnixNano())
+		return nil
+	})
+	if err != nil {
+		s.recordErr(err)
+		return err
+	}
+	sha := hex.EncodeToString(h.Sum(nil))
+
+	s.mu.Lock()
+	changed := sha != s.sha
+	s.dir = s.local
+	s.sha = sha
+	s.syncedAt = time.Now()
+	s.lastErr = nil
+	if changed {
+		s.navCache = nil
+	}
+	s.mu.Unlock()
+	if changed {
+		s.pageCache = sync.Map{}
+	}
 	return nil
 }
 

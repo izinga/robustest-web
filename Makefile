@@ -177,8 +177,15 @@ clean:
 ## release: Create Linux release tarball (default)
 release: release-linux
 
+## docs-fetch: Pull the docs repo into ./docs-content (gitignored, bundled by releases)
+docs-fetch:
+	@echo "$(GREEN)Fetching docs from $(DOCS_REPO)...$(NC)"
+	@rm -rf docs-content && mkdir -p docs-content
+	@gh api repos/$(DOCS_REPO)/tarball/$(DOCS_BRANCH) | tar -xz --strip-components=1 -C docs-content
+	@echo "$(GREEN)Docs fetched: $$(find docs-content -name '*.md' | wc -l | tr -d ' ') markdown files$(NC)"
+
 ## release-linux: Create Linux release tarball (no .env — server env is authoritative)
-release-linux: build-linux
+release-linux: build-linux docs-fetch
 	@echo "$(GREEN)Creating Linux release package...$(NC)"
 	@rm -rf $(DIST_DIR)/*
 	@mkdir -p $(DIST_DIR)
@@ -186,6 +193,7 @@ release-linux: build-linux
 	tar -czvf $(DIST_DIR)/$(APP_NAME)-linux.tar.gz \
 		$(APP_NAME) \
 		$(PUBLIC_DIR) \
+		docs-content \
 		README.md
 	@rm -f $(APP_NAME)
 	@echo "$(GREEN)Release package created: $(DIST_DIR)/$(APP_NAME)-linux.tar.gz$(NC)"
@@ -303,16 +311,31 @@ deploy-status:
 deploy-logs:
 	@$(GCLOUD_SSH) 'sudo journalctl -u $(SERVICE_NAME) -f --no-pager -n 50'
 
-## docs-refresh: Trigger an immediate docs sync on production (after pushing to the docs repo)
-docs-refresh:
-	@echo "$(GREEN)Refreshing docs on https://$(DEPLOY_HOST)...$(NC)"
+## docs-publish: Fetch latest docs and ship ONLY the docs to production (no binary deploy)
+docs-publish: docs-fetch
+	@echo "$(GREEN)Publishing docs to $(GCP_INSTANCE)...$(NC)"
+	@tar -czf $(DIST_DIR)/docs-content.tar.gz docs-content
+	gcloud compute scp $(DIST_DIR)/docs-content.tar.gz $(GCP_INSTANCE):/tmp/docs-content.tar.gz --zone $(GCP_ZONE)
+	$(GCLOUD_SSH) '\
+		set -e && \
+		cd $(DEPLOY_PATH) && \
+		rm -rf docs-content.new && mkdir docs-content.new && \
+		tar -xzf /tmp/docs-content.tar.gz -C docs-content.new --strip-components=1 && \
+		rm -rf docs-content.old && \
+		([ -d docs-content ] && mv docs-content docs-content.old || true) && \
+		mv docs-content.new docs-content && \
+		rm -f /tmp/docs-content.tar.gz'
 	@curl -sf https://$(DEPLOY_HOST)/docs/refresh
 	@echo ""
 
-## docs-refresh-local: Trigger a docs sync on the local dev server
-docs-refresh-local:
-	@curl -sf http://localhost:3000/docs/refresh
+## docs-refresh: Re-scan bundled docs on production (used by docs-publish; harmless alone)
+docs-refresh:
+	@curl -sf https://$(DEPLOY_HOST)/docs/refresh
 	@echo ""
+
+# Docs repo settings (content is fetched at build time, never committed here)
+DOCS_REPO   ?= izinga/robustest_documentation_md
+DOCS_BRANCH ?= main
 
 ## version: Show current version
 version:
