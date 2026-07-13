@@ -82,6 +82,12 @@ make release-all        # Create all platform releases
 - `TLS_CERT` / `TLS_KEY` - Serve HTTPS directly when both are set
 - `DOCS_GITHUB_TOKEN` - Read-only PAT for the private docs repo — see [DOCS.md](DOCS.md)
 
+### Deployment
+
+The site runs as a systemd service on a GCE instance; `make deploy` ships a
+new build in one command. Instance details, everyday commands, server env,
+and the legacy-screen fallback are in **[DEPLOYMENT.md](DEPLOYMENT.md)**.
+
 ### Documentation (/docs)
 
 Product docs are synced at runtime from the private
