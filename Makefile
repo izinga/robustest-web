@@ -249,7 +249,7 @@ docker-run:
 DEPLOY_HOST  ?= robustest.com
 GCP_INSTANCE ?= robustest-landing-instance-20251223-062108
 GCP_ZONE     ?= us-central1-c
-DEPLOY_PATH  ?= /home/omnarayan/robustest-web
+DEPLOY_PATH  ?= /home/omnarayan/site
 SERVICE_NAME := robustest-web
 GCLOUD_SSH   := gcloud compute ssh $(GCP_INSTANCE) --zone $(GCP_ZONE) --command
 

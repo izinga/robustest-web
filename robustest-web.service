@@ -8,14 +8,14 @@ Type=simple
 # matches how the site has always run (sudo in a screen session).
 # Hardening to a dedicated user + cert group is a later improvement.
 User=root
-WorkingDirectory=/home/omnarayan/robustest-web
-ExecStart=/home/omnarayan/robustest-web/robustest-web
+WorkingDirectory=/home/omnarayan/site
+ExecStart=/home/omnarayan/site/robustest-web
 Restart=on-failure
 RestartSec=5
 LimitNOFILE=65536
 
 # Environment
-EnvironmentFile=/home/omnarayan/robustest-web/.env
+EnvironmentFile=/home/omnarayan/site/.env
 
 # Graceful shutdown (matches the 30s timeout in main.go)
 TimeoutStopSec=35
