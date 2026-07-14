@@ -102,9 +102,7 @@ func main() {
 	r.GET("/robots.txt", func(c *gin.Context) {
 		c.File(assetsPath + "/robots.txt")
 	})
-	r.GET("/sitemap.xml", func(c *gin.Context) {
-		c.File(assetsPath + "/sitemap.xml")
-	})
+	r.GET("/sitemap.xml", handler.SitemapXML)
 
 	// Routes
 	r.GET("/", handler.HomePage)
