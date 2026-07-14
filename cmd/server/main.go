@@ -103,6 +103,7 @@ func main() {
 		c.File(assetsPath + "/robots.txt")
 	})
 	r.GET("/sitemap.xml", handler.SitemapXML)
+	r.GET("/llms.txt", handler.LlmsTxt)
 
 	// Routes
 	r.GET("/", handler.HomePage)
