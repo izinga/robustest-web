@@ -1,0 +1,56 @@
+<svg viewBox="0 0 640 250" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" font-family="'IBM Plex Mono', monospace">
+  <text x="40" y="22" font-size="10" letter-spacing="0.12em" fill="var(--rt-muted)">MEASURED FROM THE OUTSIDE IN</text>
+  <text x="600" y="22" text-anchor="end" font-size="9" letter-spacing="0.08em" fill="var(--rt-muted)">INSTRUMENTATION: EXTERNAL</text>
+  <path d="M40 32 H600" stroke="var(--rt-line)" stroke-width="1"/>
+
+  <!-- CENTER · the TV: a sealed unit, nothing inside it is ours -->
+  <rect x="252" y="56" width="136" height="100" fill="var(--rt-paper)" stroke="var(--rt-line-strong)" stroke-width="1.25"/>
+  <rect x="262" y="66" width="116" height="68" fill="var(--rt-surface)" stroke="var(--rt-line)" stroke-width="1"/>
+  <rect x="270" y="74" width="100" height="52" stroke="var(--rt-line)" stroke-width="1"/>
+  <text x="320" y="96" text-anchor="middle" font-size="13" fill="var(--rt-ink)">APP</text>
+  <text x="320" y="112" text-anchor="middle" font-size="9" fill="var(--rt-muted)">sealed · no hooks</text>
+  <circle cx="320" cy="146" r="2" fill="var(--rt-line-strong)"/>
+  <path d="M306 156 L302 166 H338 L334 156" stroke="var(--rt-line-strong)" stroke-width="1.25"/>
+  <path d="M292 166 H348" stroke="var(--rt-line-strong)" stroke-width="1.25"/>
+  <text x="320" y="184" text-anchor="middle" font-size="10" fill="var(--rt-muted)">no SDK inside · app is a black box</text>
+
+  <!-- LEFT · instrument 1: the OS reads the process from outside -->
+  <rect x="38" y="64" width="122" height="92" fill="var(--rt-surface)" stroke="var(--rt-signal)" stroke-width="1.5"/>
+  <text x="99" y="80" text-anchor="middle" font-size="9" letter-spacing="0.08em" fill="var(--rt-signal)">SYSTEM VIEW</text>
+  <path d="M55 116 A15 15 0 0 1 85 116" stroke="var(--rt-line-strong)" stroke-width="1.25"/>
+  <path d="M70 99 V103 M56 108 L60 110 M84 108 L80 110" stroke="var(--rt-line)" stroke-width="1"/>
+  <path d="M70 116 L78 104" stroke="var(--rt-signal)" stroke-width="1.5"/>
+  <circle cx="70" cy="116" r="2" fill="var(--rt-signal)"/>
+  <text x="70" y="134" text-anchor="middle" font-size="9" fill="var(--rt-muted)">CPU</text>
+  <text x="70" y="147" text-anchor="middle" font-size="9" fill="var(--rt-ink)">38%</text>
+  <path d="M113 116 A15 15 0 0 1 143 116" stroke="var(--rt-line-strong)" stroke-width="1.25"/>
+  <path d="M128 99 V103 M114 108 L118 110 M142 108 L138 110" stroke="var(--rt-line)" stroke-width="1"/>
+  <path d="M128 116 L121 104" stroke="var(--rt-signal)" stroke-width="1.5"/>
+  <circle cx="128" cy="116" r="2" fill="var(--rt-signal)"/>
+  <text x="128" y="134" text-anchor="middle" font-size="9" fill="var(--rt-muted)">MEM</text>
+  <text x="128" y="147" text-anchor="middle" font-size="9" fill="var(--rt-ink)">412 MB</text>
+  <text x="99" y="172" text-anchor="middle" font-size="9" fill="var(--rt-muted)">the OS view of the process</text>
+
+  <!-- arrow: system view reads inward -->
+  <text x="206" y="100" text-anchor="middle" font-size="8" fill="var(--rt-muted)">reads the process</text>
+  <path d="M168 110 H244" stroke="var(--rt-signal)" stroke-width="1.5"/>
+  <path d="M236 104 L244 110 L236 116" stroke="var(--rt-signal)" stroke-width="1.5"/>
+
+  <!-- RIGHT · instrument 2: a lens on the panel, ground truth -->
+  <g stroke="var(--rt-signal)" stroke-width="1.5" fill="var(--rt-paper)">
+    <rect x="512" y="89" width="54" height="42"/>
+    <path d="M512 101 L494 93 V127 L512 119 Z"/>
+    <rect x="526" y="81" width="16" height="8"/>
+  </g>
+  <circle cx="539" cy="110" r="8" fill="var(--rt-signal-soft)" stroke="var(--rt-signal)" stroke-width="1.5"/>
+  <circle cx="539" cy="110" r="2.5" fill="var(--rt-signal)"/>
+  <text x="530" y="149" text-anchor="middle" font-size="10" fill="var(--rt-signal)">panel capture</text>
+  <text x="530" y="172" text-anchor="middle" font-size="9" fill="var(--rt-muted)">ground truth for smoothness</text>
+
+  <!-- arrow: the lens reads inward -->
+  <text x="441" y="100" text-anchor="middle" font-size="8" fill="var(--rt-muted)">reads the light</text>
+  <path d="M486 110 H396" stroke="var(--rt-signal)" stroke-width="1.5"/>
+  <path d="M404 104 L396 110 L404 116" stroke="var(--rt-signal)" stroke-width="1.5"/>
+
+  <text x="320" y="242" text-anchor="middle" font-size="11" fill="var(--rt-muted)">no SDK, no code change</text>
+</svg>

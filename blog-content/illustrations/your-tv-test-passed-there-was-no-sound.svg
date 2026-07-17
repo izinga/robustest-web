@@ -1,0 +1,57 @@
+<svg viewBox="0 0 640 250" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" font-family="'IBM Plex Mono', monospace">
+  <!-- eyebrow + run label -->
+  <text x="40" y="22" font-size="10" letter-spacing="0.12em" fill="var(--rt-muted)">THE SILENT PASS</text>
+  <text x="608" y="22" text-anchor="end" font-size="9" letter-spacing="0.08em" fill="var(--rt-muted)">AV OUTPUT MONITOR · RUN 4471</text>
+
+  <!-- TV panel -->
+  <rect x="44" y="48" width="180" height="110" fill="var(--rt-surface)" stroke="var(--rt-line-strong)" stroke-width="1.5"/>
+  <rect x="54" y="58" width="160" height="76" fill="var(--rt-signal-soft)"/>
+  <path d="M127 84 L147 96 L127 108 Z" fill="var(--rt-signal)"/>
+  <!-- progress bar -->
+  <line x1="62" y1="144" x2="216" y2="144" stroke="var(--rt-line)" stroke-width="1.5"/>
+  <line x1="62" y1="144" x2="160" y2="144" stroke="var(--rt-signal)" stroke-width="1.5"/>
+  <circle cx="160" cy="144" r="2.5" fill="var(--rt-signal)"/>
+  <!-- stand -->
+  <line x1="134" y1="158" x2="134" y2="166" stroke="var(--rt-line-strong)" stroke-width="1.5"/>
+  <line x1="116" y1="166" x2="152" y2="166" stroke="var(--rt-line-strong)" stroke-width="1.5"/>
+  <text x="134" y="182" text-anchor="middle" font-size="9" letter-spacing="0.08em" fill="var(--rt-muted)">PANEL · PLAYING · 00:42</text>
+
+  <!-- connectors panel -> channels -->
+  <line x1="224" y1="90" x2="272" y2="90" stroke="var(--rt-line)" stroke-width="1"/>
+  <path d="M224 140 h24 v30 h24" stroke="var(--rt-line)" stroke-width="1"/>
+
+  <!-- channel axis + separator -->
+  <line x1="272" y1="68" x2="272" y2="112" stroke="var(--rt-line)" stroke-width="1"/>
+  <line x1="272" y1="148" x2="272" y2="192" stroke="var(--rt-line)" stroke-width="1"/>
+  <line x1="272" y1="122" x2="608" y2="122" stroke="var(--rt-line)" stroke-width="1" stroke-dasharray="2 4"/>
+
+  <!-- CH 01 · video out -->
+  <text x="280" y="58" font-size="9" letter-spacing="0.12em" fill="var(--rt-muted)">CH·01 · VIDEO OUT</text>
+  <polyline points="280,90 288,80 296,98 304,84 312,96 320,78 328,100 336,86 344,94 352,80 360,98 368,88 376,96 384,79 392,101 400,85 408,95 416,81 424,99 432,87 440,93 448,80 456,100 464,86 472,94 480,82 488,98 496,90 502,90" stroke="var(--rt-signal)" stroke-width="1.25" stroke-linejoin="round" stroke-linecap="round"/>
+  <circle cx="525" cy="90" r="9" stroke="var(--rt-signal)" stroke-width="1.25"/>
+  <path d="M520 90 l4 4 l7 -8" stroke="var(--rt-signal)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="544" y="94" font-size="11" fill="var(--rt-signal)">video · PASS</text>
+
+  <!-- CH 02 · audio out -->
+  <text x="280" y="138" font-size="9" letter-spacing="0.12em" fill="var(--rt-muted)">CH·02 · AUDIO OUT</text>
+  <!-- speaker glyph, no waves -->
+  <path d="M284 166 h5 l8 -7 v22 l-8 -7 h-5 z" stroke="var(--rt-amber)" stroke-width="1.25" stroke-linejoin="round"/>
+  <!-- expected waveform (ghost) -->
+  <text x="500" y="158" text-anchor="end" font-size="9" fill="var(--rt-muted)">expected</text>
+  <polyline points="310,170 320,162 330,178 340,164 350,176 360,163 370,177 380,165 390,175 400,163 410,177 420,164 430,176 440,163 450,177 460,166 470,174 480,164 490,176 500,170" stroke="var(--rt-line)" stroke-width="1" stroke-dasharray="3 3"/>
+  <!-- actual: flat line -->
+  <line x1="306" y1="170" x2="502" y2="170" stroke="var(--rt-amber)" stroke-width="1.5"/>
+  <text x="404" y="188" text-anchor="middle" font-size="9" fill="var(--rt-amber)">-∞ dB</text>
+  <circle cx="525" cy="170" r="9" stroke="var(--rt-amber)" stroke-width="1.25"/>
+  <line x1="520" y1="170" x2="530" y2="170" stroke="var(--rt-amber)" stroke-width="1.5"/>
+  <text x="544" y="174" font-size="11" fill="var(--rt-amber)">audio · silent</text>
+
+  <!-- legend -->
+  <line x1="44" y1="204" x2="64" y2="204" stroke="var(--rt-signal)" stroke-width="1.5"/>
+  <text x="70" y="207" font-size="9" fill="var(--rt-muted)">signal present</text>
+  <line x1="44" y1="220" x2="64" y2="220" stroke="var(--rt-amber)" stroke-width="1.5"/>
+  <text x="70" y="223" font-size="9" fill="var(--rt-muted)">signal absent</text>
+
+  <!-- caption -->
+  <text x="320" y="244" text-anchor="middle" font-size="11" fill="var(--rt-muted)">a screenshot can't hear</text>
+</svg>

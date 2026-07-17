@@ -1,0 +1,66 @@
+<svg viewBox="0 0 640 250" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" font-family="'IBM Plex Mono', monospace">
+  <!-- eyebrow + top refs -->
+  <text x="40" y="22" font-size="10" letter-spacing="0.12em" fill="var(--rt-muted)">SMART TV · THE AUTOMATION FLOOR</text>
+  <text x="608" y="22" text-anchor="end" font-size="9" letter-spacing="0.08em" fill="var(--rt-muted)">REF · RT/TV-MATRIX</text>
+
+  <!-- LEFT: TV panel, engine frozen at manufacture -->
+  <rect x="40" y="64" width="148" height="92" fill="var(--rt-surface)" stroke="var(--rt-line-strong)" stroke-width="1.25"/>
+  <rect x="50" y="74" width="128" height="64" fill="var(--rt-paper)" stroke="var(--rt-line)" stroke-width="1"/>
+  <text x="58" y="90" font-size="9" letter-spacing="0.08em" fill="var(--rt-muted)">WEB ENGINE</text>
+  <text x="58" y="106" font-size="10" fill="var(--rt-ink)">browser build 2019</text>
+  <text x="58" y="122" font-size="9" fill="var(--rt-amber)">updates: none, ever</text>
+  <!-- stand -->
+  <path d="M104 156 L98 166 M124 156 L130 166 M88 166 H140" stroke="var(--rt-line-strong)" stroke-width="1.25"/>
+  <text x="114" y="182" text-anchor="middle" font-size="9" fill="var(--rt-muted)">engine fixed at manufacture</text>
+
+  <!-- padlock stamp on the panel -->
+  <circle cx="184" cy="68" r="14" fill="var(--rt-paper)" stroke="var(--rt-amber)" stroke-width="1.25"/>
+  <path d="M181 68 v-4 a3 3 0 0 1 6 0 v4" stroke="var(--rt-amber)" stroke-width="1.25"/>
+  <rect x="178" y="68" width="12" height="9" rx="1" fill="var(--rt-paper)" stroke="var(--rt-amber)" stroke-width="1.25"/>
+  <text x="205" y="72" font-size="9" letter-spacing="0.06em" fill="var(--rt-amber)">FROZEN AT SHIP</text>
+
+  <!-- RIGHT: header rule -->
+  <text x="225" y="50" font-size="9" letter-spacing="0.08em" fill="var(--rt-muted)">PUBLISHED AS A MODEL-YEAR MATRIX</text>
+  <line x1="225" y1="58" x2="608" y2="58" stroke="var(--rt-line)" stroke-width="1"/>
+
+  <!-- depth axis -->
+  <line x1="214" y1="205" x2="214" y2="100" stroke="var(--rt-muted)" stroke-width="1"/>
+  <path d="M210 107 L214 100 L218 107" stroke="var(--rt-muted)" stroke-width="1"/>
+  <text transform="rotate(-90 205 153)" x="205" y="153" text-anchor="middle" font-size="9" letter-spacing="0.08em" fill="var(--rt-muted)">AUTOMATION DEPTH</text>
+
+  <!-- baseline -->
+  <line x1="214" y1="205" x2="610" y2="205" stroke="var(--rt-line-strong)" stroke-width="1.25"/>
+
+  <!-- staircase: the floor rises with model year -->
+  <rect x="225" y="175" width="120" height="30" fill="var(--rt-surface)" stroke="var(--rt-line)" stroke-width="1"/>
+  <rect x="345" y="145" width="120" height="60" fill="var(--rt-surface)" stroke="var(--rt-line)" stroke-width="1"/>
+  <rect x="465" y="105" width="145" height="100" fill="var(--rt-signal-soft)" stroke="var(--rt-signal)" stroke-width="1.5"/>
+  <path d="M225 175 H345 V145 H465" stroke="var(--rt-line-strong)" stroke-width="1.5"/>
+
+  <!-- step: 2015-16 -->
+  <text x="282" y="166" text-anchor="middle" font-size="9" fill="var(--rt-muted)">remote + live video only</text>
+  <text x="285" y="186" text-anchor="middle" font-size="10" fill="var(--rt-muted)">2015–16</text>
+  <rect x="282" y="193" width="6" height="6" fill="var(--rt-line-strong)"/>
+
+  <!-- step: 2017-19 -->
+  <text x="405" y="133" text-anchor="middle" font-size="9" fill="var(--rt-muted)">core automation</text>
+  <text x="405" y="162" text-anchor="middle" font-size="10" fill="var(--rt-muted)">2017–19</text>
+  <text x="405" y="178" text-anchor="middle" font-size="9" fill="var(--rt-muted)">app launch · keys</text>
+  <rect x="395" y="192" width="6" height="6" fill="var(--rt-line-strong)"/>
+  <rect x="405" y="192" width="6" height="6" fill="var(--rt-line-strong)"/>
+
+  <!-- step: 2020-26 (the best case) -->
+  <text x="537" y="93" text-anchor="middle" font-size="10" fill="var(--rt-signal)">full element automation</text>
+  <text x="537" y="124" text-anchor="middle" font-size="11" fill="var(--rt-signal)">2020–26</text>
+  <line x1="478" y1="134" x2="597" y2="134" stroke="var(--rt-line)" stroke-width="1"/>
+  <text x="537" y="152" text-anchor="middle" font-size="9" fill="var(--rt-muted)">element tree · locators</text>
+  <text x="537" y="168" text-anchor="middle" font-size="9" fill="var(--rt-muted)">gestures · perf · logs</text>
+  <rect x="524" y="192" width="6" height="6" fill="var(--rt-signal)"/>
+  <rect x="534" y="192" width="6" height="6" fill="var(--rt-signal)"/>
+  <rect x="544" y="192" width="6" height="6" fill="var(--rt-signal)"/>
+
+  <!-- bottom title block -->
+  <text x="40" y="246" font-size="9" letter-spacing="0.08em" fill="var(--rt-muted)">FIG 04</text>
+  <text x="320" y="246" text-anchor="middle" font-size="10" fill="var(--rt-muted)">the model year sets the ceiling</text>
+  <text x="608" y="246" text-anchor="end" font-size="9" fill="var(--rt-muted)">a fleet is never uniform</text>
+</svg>
