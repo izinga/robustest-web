@@ -1,6 +1,6 @@
 ---
 title: "Where we stopped"
-description: "We reimplemented Samsung's SDB protocol from the daemon's own source, found the public documentation wrong, and then hit a wall we could not climb. This is the wall."
+description: "We reimplemented Samsung's SDB protocol from the daemon's source, found the public docs wrong, then hit a wall we couldn't climb. This is the wall."
 category: WHY
 author: Om Narayan
 author_role: "Co-founder"

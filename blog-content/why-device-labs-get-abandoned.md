@@ -1,6 +1,6 @@
 ---
 title: "The device lab you build yourself runs on someone's unpaid weekends"
-description: "The open-source stack most in-house device labs are built on tells the buy-vs-build story better than we could: its own maintainers describe it as underfunded, slow-moving, and — their word — a money sink."
+description: "The open-source stack most in-house device labs run on tells the buy-vs-build story: its maintainers call it underfunded and — their word — a money sink."
 category: BUSINESS
 author: Om Narayan
 author_role: "Co-founder"

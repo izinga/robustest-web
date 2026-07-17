@@ -1,6 +1,6 @@
 ---
 title: "Why there's an MDM inside our test lab"
-description: "Nobody expects a certificate authority in a device farm. We built one because the alternative — enrolling a fleet of iOS devices behind a load balancer — quietly breaks in a way that's easy to miss until it's in production."
+description: "Nobody expects a certificate authority in a device farm. We built one because enrolling iOS behind a load balancer breaks in a way you miss until production."
 category: WHY
 author: Om Narayan
 author_role: "Co-founder"

@@ -1,6 +1,6 @@
 ---
 title: "16.67ms is not the number that flags jank"
-description: "Everyone quotes the 16.67ms frame budget as the line for jank. Google's own JankStats library doesn't use it — it flags a frame at twice the refresh rate, and that difference is the whole point of measuring jank on real hardware."
+description: "Everyone quotes 16.67ms as the jank line. Google's own JankStats doesn't — it flags a frame at twice the refresh rate. Why that matters on real hardware."
 category: PERF
 author: Om Narayan
 author_role: "Co-founder"

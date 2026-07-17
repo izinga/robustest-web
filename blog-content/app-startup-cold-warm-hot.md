@@ -1,6 +1,6 @@
 ---
 title: "The startup number everyone quotes is the failure line, not the target"
-description: "\"Keep cold start under five seconds\" is repeated everywhere. It's wrong — five seconds is Google's threshold for calling your startup *excessive*, not a goal. Here's what the tools actually measure, and the three numbers people conflate."
+description: ""Keep cold start under 5 seconds" is everywhere — but 5s is Google's excessive-failure threshold, not a target. What the tools actually measure."
 category: PERF
 author: Om Narayan
 author_role: "Co-founder"

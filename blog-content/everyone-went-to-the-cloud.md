@@ -1,6 +1,6 @@
 ---
 title: "Everyone went to the cloud. We didn't."
-description: "For most of a decade, building an on-premise device lab looked like a mistake. Here is what the bet actually cost, and why we think the argument has changed underneath it."
+description: "For most of a decade, building an on-premise device lab looked like a mistake. What the bet cost — and why the argument has quietly changed underneath it."
 category: BUSINESS
 author: Om Narayan
 author_role: "Co-founder"

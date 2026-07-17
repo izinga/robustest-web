@@ -1,6 +1,6 @@
 ---
 title: "This market eats companies"
-description: "A billion-dollar fraud, a $4B valuation nobody has matched since, and a decade of vendors quietly renaming themselves. A short history of device testing, from someone still in it."
+description: "A billion-dollar fraud, a $4B peak nobody's matched since, a decade of vendors quietly renamed. A short history of device testing, from someone still in it."
 category: BUSINESS
 author: Om Narayan
 author_role: "Co-founder"

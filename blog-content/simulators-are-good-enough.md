@@ -1,6 +1,6 @@
 ---
 title: "Simulators win on everything except being real"
-description: "The case for simulators is genuinely strong — cheaper, faster, parallel, scriptable. We'll concede all of it. Then there's the one class of bug a stock image structurally cannot contain, and it only ships to real users."
+description: "Simulators are cheaper, faster, parallel — we'll concede all of it. Then there's the one class of bug a stock image can't contain, and it only hits real users."
 category: BUSINESS
 author: Om Narayan
 author_role: "Co-founder"

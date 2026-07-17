@@ -1,6 +1,6 @@
 ---
 title: "The camera sees what the framebuffer can't"
-description: "To test a TV app you have to see the screen. A software screenshot goes black the instant protected video plays — exactly the moment that matters. So we stopped grabbing the framebuffer and started watching the panel."
+description: "A software screenshot of a TV app goes black the instant protected video plays — the moment that matters most. So we stopped reading the framebuffer."
 category: WHY
 author: Om Narayan
 author_role: "Co-founder"

@@ -1,6 +1,6 @@
 ---
 title: "Your unreleased app sits on someone else's cloud for weeks"
-description: "When you test on a device cloud, your app binary, your screen recordings, and your logs are stored on the vendor's infrastructure — for 30 to 400 days, by their own documentation. Here's exactly how long, per vendor."
+description: "Test on a device cloud and your app binary, recordings, and logs sit on the vendor's servers for 30–400 days — by their own docs. How long, per vendor."
 category: LAB
 author: Om Narayan
 author_role: "Co-founder"

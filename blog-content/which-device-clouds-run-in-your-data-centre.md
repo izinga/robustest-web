@@ -1,6 +1,6 @@
 ---
 title: "Which device clouds can actually run in your data centre?"
-description: "If your security review said no to the public cloud, the field of options is much smaller than the field of vendors. As of mid-2026, most device clouds cannot run inside your walls at all — by their own documentation."
+description: "If your security review said no to the public cloud, most device clouds can't run inside your walls at all — by their own docs. The mid-2026 survey."
 category: LAB
 author: Om Narayan
 author_role: "Co-founder"

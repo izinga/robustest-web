@@ -82,7 +82,7 @@ func PricingPage() templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = components.CTABand(
+			templ_7745c5c3_Err = components.CTABandPricing(
 				"Get a quote for your lab.",
 				"Pricing is sized by device seats. Send us your device count and platforms — you'll get a concrete proposal, not a sales funnel.",
 			).Render(ctx, templ_7745c5c3_Buffer)

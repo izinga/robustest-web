@@ -1,6 +1,6 @@
 ---
 title: "\"It returned OK\" is not \"it worked\""
-description: "Our TV remote reported every keypress delivered. The TV received nothing. A debugging story, and why \"the write succeeded\" is one of the most dangerous phrases in distributed systems."
+description: "Our remote reported every keypress delivered; the TV got nothing. Why 'the write succeeded' is one of the most dangerous phrases in distributed systems."
 category: FIELD
 author: Om Narayan
 author_role: "Co-founder"

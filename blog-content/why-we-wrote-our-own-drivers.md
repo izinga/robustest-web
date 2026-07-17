@@ -1,6 +1,6 @@
 ---
 title: "The SDK stops where the test lab begins"
-description: "We wanted to drive real Samsung and LG TVs at scale — install, launch, press buttons, read performance, headless. The vendor tooling isn't built for that. So we implemented the wire protocols ourselves."
+description: "We wanted to drive real Samsung and LG TVs at scale — install, launch, press buttons, headless. The vendor SDKs aren't built for that, so we went below them."
 category: WHY
 author: Om Narayan
 author_role: "Co-founder"
