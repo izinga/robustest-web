@@ -115,6 +115,8 @@ func main() {
 	r.GET("/platform/network-capture", handler.NetworkCapturePage)
 	r.GET("/platform/device-lab", handler.DeviceLabPage)
 	r.GET("/platform/integrations", handler.IntegrationsPage)
+
+	r.GET("/compare/robustest-vs-browserstack", handler.CompareBrowserStackPage)
 	handler.InitDocs()
 	r.GET("/docs", handler.DocsPage)
 	r.GET("/docs/*path", handler.DocsPage)

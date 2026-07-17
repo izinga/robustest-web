@@ -1,0 +1,304 @@
+package pages
+
+import (
+	"github.com/izinga/robustest-web/internal/app/views/components"
+	"github.com/izinga/robustest-web/internal/app/views/layouts"
+)
+
+templ CompareBrowserStackPage() {
+	@layouts.Base(
+		"RobusTest vs BrowserStack for smart TV & OTT testing",
+		"How RobusTest and BrowserStack compare for smart TV & OTT testing: Samsung Tizen and LG webOS coverage, on-premise vs cloud, and pricing. Verified July 2026.",
+		"/compare/robustest-vs-browserstack",
+	) {
+		@components.PageHero(
+			"Smart TV comparison · vs BrowserStack",
+			"RobusTest vs BrowserStack for smart TV & OTT testing",
+			"If your app ships to smart TVs, this is the comparison that counts. BrowserStack is a strong mobile-and-browser cloud — but on smart TV and OTT the two diverge sharply: on which platforms you can test at all, and on where your devices and build physically live. Here's the honest breakdown, including where BrowserStack wins.",
+		)
+		@compareDisclaimerNote()
+		@compareSummary()
+		@compareTable()
+		@compareTV()
+		@compareResidency()
+		@comparePricingModel()
+		@compareWhenBrowserStack()
+		@compareProof()
+		@compareFAQ()
+		@compareTrademark()
+		@components.CTABand(
+			"See what a lab you own looks like.",
+			"Tell us which platforms you ship to — mobile, smart TV, or both — and we'll spec the nodes, capture hardware, and device list for your own lab.",
+		)
+	}
+}
+
+// compareDisclaimerNote — the required nominative-fair-use disclaimer, placed high.
+templ compareDisclaimerNote() {
+	<div class="border-b border-line bg-surface">
+		<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+			<p class="font-mono text-xs text-muted leading-relaxed">
+				Independent comparison. RobusTest is not affiliated with or endorsed by BrowserStack. Every BrowserStack fact below is drawn from their own public pages and quoted or linked; verified July 2026.
+			</p>
+		</div>
+	</div>
+}
+
+templ compareSummary() {
+	<section class="border-b border-line">
+		<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+			@components.SectionTag("The short version")
+			<h2 class="font-display font-bold text-3xl md:text-4xl tracking-tight max-w-2xl">For a smart-TV team, three decisions.</h2>
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-line border border-line mt-10">
+				@compareSummaryCard("Smart TV & OTT", "RobusTest", "Samsung Tizen and LG webOS on real panels via native drivers, plus Roku, Apple TV, and Android-based TVs — a production farm with a published model-year matrix.", "BrowserStack", "A smart-TV “alpha release” you request access to, on four streaming devices. No Samsung Tizen or LG webOS listed.")
+				@compareSummaryCard("Where it runs", "RobusTest", "On-premise in your own lab — the devices, the app binary, and the captured video never leave your network. Air-gap deployments supported.", "BrowserStack", "Devices run in BrowserStack's own data centers; your app is uploaded to their cloud to test. No on-premise deployment advertised.")
+				@compareSummaryCard("How you pay", "RobusTest", "You own the lab. Cost is the hardware and the platform, not a meter that climbs every time you add a concurrent test.", "BrowserStack", "Priced per parallel session on their cloud, billed annually; concurrency above five is a sales conversation.")
+			</div>
+			<p class="text-sm text-muted mt-6 max-w-2xl leading-relaxed">
+				BrowserStack is a strong, mature product with far broader public mobile-and-browser coverage than any single lab — <a href="#when-browserstack" class="underline decoration-line-strong underline-offset-2 hover:text-ink">where it's the better fit is its own section below</a>. This page is about where the two genuinely differ.
+			</p>
+		</div>
+	</section>
+}
+
+templ compareSummaryCard(dim, aName, aDesc, bName, bDesc string) {
+	<div class="bg-paper p-6">
+		<span class="tag">{ dim }</span>
+		<div class="mt-5">
+			<div class="font-mono text-xs uppercase tracking-widest text-signal">{ aName }</div>
+			<p class="text-sm mt-1.5 leading-relaxed">{ aDesc }</p>
+		</div>
+		<div class="mt-5 pt-5 border-t border-line">
+			<div class="font-mono text-xs uppercase tracking-widest text-muted">{ bName }</div>
+			<p class="text-sm text-muted mt-1.5 leading-relaxed">{ bDesc }</p>
+		</div>
+	</div>
+}
+
+type bsFeatureRow struct {
+	Dim string
+	Rt  string
+	Bs  string
+}
+
+templ compareTable() {
+	<section class="border-b border-line bg-surface">
+		<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+			@components.SectionTag("Feature by feature")
+			<h2 class="font-display font-bold text-3xl md:text-4xl tracking-tight max-w-2xl">The whole matrix, with the context bare checkmarks hide.</h2>
+			<div class="border border-line-strong mt-10 overflow-x-auto">
+				<table class="w-full text-sm min-w-[46rem]">
+					<thead>
+						<tr class="border-b border-line-strong bg-paper">
+							<th scope="col" class="text-left font-mono text-xs uppercase tracking-widest text-muted font-medium px-4 py-3 w-1/4">Capability</th>
+							<th scope="col" class="text-left font-mono text-xs uppercase tracking-widest text-signal font-medium px-4 py-3">RobusTest</th>
+							<th scope="col" class="text-left font-mono text-xs uppercase tracking-widest text-muted font-medium px-4 py-3">BrowserStack</th>
+						</tr>
+					</thead>
+					<tbody class="divide-y divide-line">
+						@compareTableRows([]bsFeatureRow{
+							{"Samsung Tizen (TV)", "Real panels, native SDB driver", "Not listed in smart-TV devices"},
+							{"LG webOS (TV)", "Real panels, native SSAP driver", "Not listed in smart-TV devices"},
+							{"Smart-TV maturity", "Production; model-year matrix back to 2014", "“Alpha release,” access on request (their docs)"},
+							{"Smart-TV device list", "A farm you spec — panels and boxes", "Four: Fire TV, Nvidia Shield, Apple TV 4K, Roku TV"},
+							{"Any HDMI box (cable, console)", "Yes — capture node drives it black-box", "Not offered"},
+							{"Live TV session, video + audio", "Yes, HDMI capture, ~100–150 ms on LAN", "Interactive sessions on supported devices"},
+							{"On-device TV performance vitals", "FPS, CPU, memory, LCP, CLS on the panel", "Session profiling (mobile-focused)"},
+							{"Deployment", "On-premise in your lab; air-gap capable", "BrowserStack cloud data centers"},
+							{"Your app binary", "Stays on your hardware and network", "Uploaded to their cloud to run"},
+							{"Mobile & browser breadth", "Real farm, self-hosted", "Very broad public cloud (their strength)"},
+							{"CI/CD integrations", "WebDriver, Appium, Maestro-style flows", "Broad and mature (their strength)"},
+							{"Time to first test", "We install the lab (white-glove)", "Instant, self-serve (their strength)"},
+							{"Pricing model", "Own the lab — fixed footprint", "Per parallel session, billed annually"},
+						})
+					</tbody>
+				</table>
+			</div>
+			<p class="font-mono text-xs text-muted mt-4">
+				Sources: browserstack.com/test-on-smart-tv, /docs/app-automate/smart-tv, /custom-device-lab, /pricing — as of July 2026.
+			</p>
+		</div>
+	</section>
+}
+
+templ compareTableRows(rows []bsFeatureRow) {
+	for _, r := range rows {
+		<tr>
+			<td class="px-4 py-3.5 font-medium align-top">{ r.Dim }</td>
+			<td class="px-4 py-3.5 align-top">{ r.Rt }</td>
+			<td class="px-4 py-3.5 text-muted align-top">{ r.Bs }</td>
+		</tr>
+	}
+}
+
+templ compareTV() {
+	<section class="border-b border-line">
+		<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+			@components.SectionTag("Smart TV & OTT — the real gap")
+			<h2 class="font-display font-bold text-3xl md:text-4xl tracking-tight max-w-2xl">Tizen and webOS are where the two part ways.</h2>
+			<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-10">
+				<div class="border border-line-strong bg-paper p-8">
+					<div class="font-mono text-xs uppercase tracking-widest text-signal">RobusTest</div>
+					<h3 class="font-display font-bold text-2xl mt-3">A production TV farm you run.</h3>
+					<p class="text-sm text-muted mt-3 leading-relaxed">
+						Samsung Tizen and LG webOS are the two platforms most OTT apps ship to first — and the two hardest to automate, because each speaks its own wire protocol. RobusTest drives them with native drivers over SDB and SSAP, on real panels, with a model-year support matrix you can look up rather than guess at.
+					</p>
+					<ul class="space-y-2.5 mt-6">
+						@components.Check("Samsung Tizen and LG webOS on real hardware")
+						@components.Check("Roku, Apple TV, Android TV and Fire TV in the same lab")
+						@components.Check("Any HDMI box — cable set-top, Xbox, PlayStation — driven black-box")
+						@components.Check("Live screen and audio over HDMI capture, element automation where the platform allows it")
+					</ul>
+					<a href="/platform/tv-testing" class="inline-block mt-6 font-mono text-xs uppercase tracking-widest text-signal underline decoration-line-strong underline-offset-4 hover:text-ink">See the TV platform →</a>
+				</div>
+				<div class="border border-line bg-surface p-8">
+					<div class="font-mono text-xs uppercase tracking-widest text-muted">BrowserStack</div>
+					<h3 class="font-display font-bold text-2xl mt-3">An alpha, on four streaming devices.</h3>
+					<p class="text-sm text-muted mt-3 leading-relaxed">
+						BrowserStack's smart-TV testing is documented as an early-access program. Their getting-started docs read, verbatim:
+					</p>
+					<blockquote class="border-l-2 border-line-strong pl-4 mt-4 text-sm text-muted italic leading-relaxed">
+						&ldquo;Access to the smart TV alpha release on your BrowserStack account. To request access, contact support.&rdquo;
+					</blockquote>
+					<p class="text-sm text-muted mt-4 leading-relaxed">
+						The listed devices are Amazon Fire TV Stick 4K, Nvidia Shield TV Pro, Apple TV 4K, and a Roku TV — four streaming boxes. Neither Samsung Tizen nor LG webOS appears in the smart-TV documentation or device list. For teams whose living-room audience is mostly on Samsung and LG panels, that is the gap that matters.
+					</p>
+					<p class="font-mono text-xs text-muted mt-5">
+						browserstack.com/docs/app-automate/smart-tv · verified July 2026
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+}
+
+templ compareResidency() {
+	<section class="border-b border-line bg-surface">
+		<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+			@components.SectionTag("Where your devices — and your build — live")
+			<h2 class="font-display font-bold text-3xl md:text-4xl tracking-tight max-w-2xl">Cloud convenience, or a lab inside your perimeter.</h2>
+			<p class="text-muted mt-4 max-w-2xl leading-relaxed">
+				This is the axis a security review cares about. To test on BrowserStack you upload your build to their cloud and drive devices that sit in their data centers — the model that makes a public device cloud so fast to start. BrowserStack's dedicated-device offering, Custom Device Lab, reserves devices for your organization but still hosts them on BrowserStack infrastructure; its current pages advertise no deployment on customer premises.
+			</p>
+			<p class="text-muted mt-4 max-w-2xl leading-relaxed">
+				RobusTest installs the lab on <em>your</em> side of the line. The devices are yours, the racks are in your building or your cloud tenancy, and the app binary, the logs, and the captured video never leave your network — up to and including fully air-gapped deployments. For a bank, a broadcaster, or anyone whose build is the crown jewels, that is frequently the whole decision.
+			</p>
+			<div class="mt-8">
+				<a href="/platform/device-lab" class="font-mono text-xs uppercase tracking-widest text-signal underline decoration-line-strong underline-offset-4 hover:text-ink">How the on-prem lab works →</a>
+			</div>
+		</div>
+	</section>
+}
+
+templ comparePricingModel() {
+	<section class="border-b border-line">
+		<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+			@components.SectionTag("How the bill scales")
+			<h2 class="font-display font-bold text-3xl md:text-4xl tracking-tight max-w-2xl">A meter that climbs, or a footprint you own.</h2>
+			<p class="text-muted mt-4 max-w-2xl leading-relaxed">
+				BrowserStack prices App Automate per parallel session, billed annually, with volume beyond five parallels handled through sales. That model is honest and predictable at small scale; the common gripe in public reviews is that the bill climbs as you add concurrency, because every simultaneous test is another parallel you rent. Current numbers are on their pricing page — check them there rather than trusting a figure that ages.
+			</p>
+			<p class="text-muted mt-4 max-w-2xl leading-relaxed">
+				RobusTest's cost is the lab: the hardware you buy once and the platform that runs it. Adding a tenth concurrent test means the rack already has the device — not a tenth parallel on someone else's meter. Past a certain amount of usage, owning the lab is simply cheaper than renting the concurrency; below it, a public cloud is less to manage. The crossover is what our team will size with you honestly.
+			</p>
+			<div class="mt-8">
+				<a href="/pricing" class="font-mono text-xs uppercase tracking-widest text-signal underline decoration-line-strong underline-offset-4 hover:text-ink">RobusTest pricing →</a>
+			</div>
+		</div>
+	</section>
+}
+
+templ compareWhenBrowserStack() {
+	<section id="when-browserstack" class="border-b border-line bg-surface scroll-mt-24">
+		<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+			@components.SectionTag("The honest part")
+			<h2 class="font-display font-bold text-3xl md:text-4xl tracking-tight max-w-2xl">When BrowserStack is the better choice.</h2>
+			<p class="text-muted mt-4 max-w-2xl leading-relaxed">
+				A comparison you can't lose is a comparison no one believes. There are real cases where we'd point you to BrowserStack.
+			</p>
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
+				@compareConcede("You want to start in minutes", "There is no hardware to install and no lab to run. Sign up, upload a build, and you're testing on a mobile device this afternoon. An owned lab is a deliberate build; a public cloud is a login.")
+				@compareConcede("You need the widest public device matrix", "BrowserStack's mobile-and-browser coverage is broader than any single self-hosted lab, spanning a long tail of OS and browser versions maintained for you. If chasing that matrix is the job, it's a genuine strength — and their reviews reflect it, at 4.6 out of 5 across 775 ratings on Capterra.")
+				@compareConcede("Your testing is mobile and web, not TV", "If smart TV and OTT aren't on your roadmap, the single biggest reason to choose RobusTest doesn't apply to you. Weigh the rest on its merits.")
+				@compareConcede("Cloud is a hard requirement, on-prem a non-issue", "If your security posture is happy with a SaaS cloud and you have no data-residency or air-gap constraint, the on-premise advantage is one you don't need to pay for.")
+			</div>
+			<p class="text-sm text-muted mt-8 max-w-2xl leading-relaxed">
+				Where those don't describe you — where the audience is on Samsung and LG panels, where the build can't leave the building, or where concurrency has outgrown a per-parallel meter — is where a lab you own pulls ahead.
+			</p>
+		</div>
+	</section>
+}
+
+templ compareConcede(title, body string) {
+	<div class="border border-line-strong bg-paper p-6">
+		<h3 class="font-display font-bold text-lg">{ title }</h3>
+		<p class="text-sm text-muted mt-2.5 leading-relaxed">{ body }</p>
+	</div>
+}
+
+templ compareProof() {
+	<section class="border-b border-line">
+		<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-16">
+			<div class="flex items-center gap-4 mb-6">
+				<span class="tag">On-premise, in production at</span>
+				<span class="rule" aria-hidden="true"></span>
+			</div>
+			<ul class="flex flex-wrap items-baseline gap-x-10 gap-y-4" aria-label="Customers running RobusTest labs">
+				@proofName("JioHotstar")
+				@proofName("Airtel")
+				@proofName("Swiggy")
+				@proofName("BookMyShow")
+				@proofName("Yodlee")
+				@proofName("OnMobile")
+				<li class="font-mono text-xs uppercase tracking-widest text-muted self-center">+ many more</li>
+			</ul>
+			<p class="text-sm text-muted mt-6 max-w-2xl leading-relaxed">
+				Enterprise device labs in production since 2014 — including the lab behind India's largest streaming platform, testing on the same Tizen and webOS panels their audience watches on.
+			</p>
+		</div>
+	</section>
+}
+
+type compareQA struct {
+	Q string
+	A string
+}
+
+templ compareFAQ() {
+	<section class="border-b border-line bg-surface">
+		<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+			@components.SectionTag("Questions buyers ask")
+			<h2 class="font-display font-bold text-3xl md:text-4xl tracking-tight max-w-2xl">Straight answers.</h2>
+			<div class="mt-10 divide-y divide-line border-y border-line max-w-3xl">
+				@compareFAQItems([]compareQA{
+					{"Does BrowserStack support Samsung Tizen or LG webOS?", "Not in its smart-TV testing as documented in July 2026. BrowserStack's smart-TV program is an alpha you request access to, listing four streaming devices — Fire TV, Nvidia Shield, Apple TV 4K, and a Roku TV. Samsung Tizen and LG webOS panels aren't in the device list. RobusTest drives both on real hardware with native drivers."},
+					{"Is RobusTest a BrowserStack alternative for smart TV testing?", "Yes — that's the clearest reason teams move. If your OTT app ships to Samsung and LG TVs, RobusTest tests them on real panels in a lab you run, alongside Roku, Apple TV, Android TVs, and any HDMI box. It also covers mobile and browser testing, so it can be one platform rather than two."},
+					{"Can I run RobusTest on-premise or air-gapped?", "Yes. RobusTest installs in your own data center or cloud tenancy; the devices, your app binary, and captured video stay on your network, up to fully air-gapped deployments. BrowserStack runs devices in its own data centers and has no on-premise deployment advertised on its current pages."},
+					{"How does pricing compare?", "Different models rather than a like-for-like number. BrowserStack rents concurrency — per parallel session, billed annually, with more than five parallels via sales. RobusTest is a lab you own: hardware plus platform, with no per-parallel meter. Past a certain usage level owning is cheaper; below it a public cloud is less to manage. We'll size the crossover with you."},
+					{"What does BrowserStack do better?", "Speed to start and public breadth. There's no lab to install, and its mobile-and-browser device matrix is wider than any single self-hosted farm — reflected in a 4.6/5 rating across 775 Capterra reviews. If you don't need smart TV or on-premise, those strengths may outweigh everything here."},
+					{"Where do these BrowserStack facts come from?", "BrowserStack's own public pages — the smart-TV product and docs pages, the Custom Device Lab pages, and the pricing page — read and quoted in July 2026. We re-check them before updating this page. RobusTest isn't affiliated with or endorsed by BrowserStack."},
+				})
+			</div>
+		</div>
+	</section>
+}
+
+templ compareFAQItems(items []compareQA) {
+	for _, it := range items {
+		<div class="py-6">
+			<h3 class="font-display font-bold text-lg md:text-xl">{ it.Q }</h3>
+			<p class="text-muted mt-2.5 leading-relaxed max-w-2xl">{ it.A }</p>
+		</div>
+	}
+}
+
+// compareTrademark — closing nominative-fair-use / identification notice.
+templ compareTrademark() {
+	<section class="border-b border-line">
+		<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+			<p class="font-mono text-xs text-muted leading-relaxed max-w-3xl">
+				&ldquo;BrowserStack&rdquo; is a trademark of BrowserStack Inc., used here only to identify and compare their product under nominative fair use. RobusTest is not affiliated with, sponsored by, or endorsed by BrowserStack. Competitor facts are quoted or linked from BrowserStack's own public materials and were verified in July 2026; product details change, so check the linked sources for the current position.
+			</p>
+		</div>
+	</section>
+}

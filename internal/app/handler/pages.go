@@ -60,6 +60,13 @@ func TVTestingPage(c *gin.Context) {
 	})
 }
 
+// CompareBrowserStackPage renders the RobusTest vs BrowserStack comparison page
+func CompareBrowserStackPage(c *gin.Context) {
+	renderPage(c, "compare-browserstack", func() error {
+		return pages.CompareBrowserStackPage().Render(c.Request.Context(), c.Writer)
+	})
+}
+
 // NetworkCapturePage renders the network capture capability page
 func NetworkCapturePage(c *gin.Context) {
 	renderPage(c, "network-capture", func() error {

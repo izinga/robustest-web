@@ -130,6 +130,20 @@ var spamPatterns = []*regexp.Regexp{
 	regexp.MustCompile(`(?i)\b(SEO\s+services?|web\s+traffic|backlinks|rank\s+#?1|page\s+rank)\b`),
 }
 
+// parseRecipients splits a comma-separated recipient list into trimmed,
+// non-empty addresses, so CONTACT_TO_EMAIL can fan a submission out to
+// several inboxes.
+func parseRecipients(raw string) []string {
+	parts := strings.Split(raw, ",")
+	out := make([]string, 0, len(parts))
+	for _, p := range parts {
+		if a := strings.TrimSpace(p); a != "" {
+			out = append(out, a)
+		}
+	}
+	return out
+}
+
 // isDisposableEmail checks if the email domain is a known disposable provider
 func isDisposableEmail(email string) bool {
 	parts := strings.SplitN(email, "@", 2)
@@ -486,13 +500,22 @@ func sendEmail(subject, htmlContent, textContent string) error {
 
 	toEmail := os.Getenv("CONTACT_TO_EMAIL")
 	if toEmail == "" {
-		toEmail = "hello@robustest.com"
+		toEmail = "hello@robustest.com,omnarayan@robustest.com"
 	}
 
 	from := mail.NewEmail("RobusTest Website", fromEmail)
-	to := mail.NewEmail("RobusTest Team", toEmail)
 
-	message := mail.NewSingleEmail(from, subject, to, textContent, htmlContent)
+	// CONTACT_TO_EMAIL may list several addresses, comma-separated — every one
+	// gets the submission.
+	recipients := parseRecipients(toEmail)
+	if len(recipients) == 0 {
+		return fmt.Errorf("no valid contact recipient configured")
+	}
+
+	message := mail.NewSingleEmail(from, subject, mail.NewEmail("RobusTest Team", recipients[0]), textContent, htmlContent)
+	for _, addr := range recipients[1:] {
+		message.Personalizations[0].AddTos(mail.NewEmail("RobusTest Team", addr))
+	}
 
 	client := sendgrid.NewSendClient(apiKey)
 	response, err := client.Send(message)

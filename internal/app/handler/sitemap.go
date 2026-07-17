@@ -23,6 +23,7 @@ var marketingPages = []struct {
 	{"/platform/network-capture", "0.9"},
 	{"/platform/device-lab", "0.9"},
 	{"/platform/integrations", "0.9"},
+	{"/compare/robustest-vs-browserstack", "0.8"},
 	{"/enterprise", "0.8"},
 	{"/partners", "0.8"},
 	{"/pricing", "0.8"},
