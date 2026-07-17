@@ -25,22 +25,19 @@ stopped.
 ## The public documentation is wrong
 
 `sdb` descends from `adb`, and the protocol document everyone reaches for is the
-one bundled with `adb` from around 2011. It describes a 24-byte message header, a
-magic field that is the command XORed with `0xFFFFFFFF`, and a payload checksum.
+one bundled with `adb` from around 2011. Follow it faithfully against a Samsung TV
+and the connection silently drops — no error, no explanation, no clue that the
+problem is the spec and not your code.
 
-Three of those details do not survive contact with a Samsung TV.
+The reason is that several of the fields the old document describes — the version
+it advertises, the maximum payload it allows, the way it checksums a message — are
+simply not what a Samsung TV expects. The public map is wrong in ways it gives you
+no way to detect from the outside. You will spend a day certain the bug is yours.
 
-The version field is not `adb`'s `0x01000001` — it is `0x02000000`. The maximum
-payload is not the documented figure but 256 KiB. And the field the old document
-calls a CRC is not a CRC at all: it is an unsigned sum of the payload bytes. If
-you implement the published spec faithfully, the TV drops your connection and does
-not tell you why.
-
-We only know this because sdbd — the daemon on the TV — has readable source. Every
-correction above came from reading it, not from guessing at a handshake until one
-worked. We wrote the corrected description down as we went, with each claim
-pointing at the file it came from, because the alternative was rediscovering it in
-eighteen months.
+We know where it diverges because sdbd — the daemon on the TV — has readable
+source, and we read it rather than guessing at a handshake until one happened to
+work. (We're keeping the exact corrections to ourselves — the point here is that
+the published map has unmarked cliffs on it, not to hand over ours.)
 
 ## Then it stops
 
@@ -59,17 +56,14 @@ So: **on a TV that requires the secure handshake, our native client cannot conne
 and we fall back to Samsung's own `sdb` binary.** That is the wall. We did not get
 past it. We are not going to pretend the fallback is a design choice.
 
-## Why publish the wall
+## Why this is worth telling
 
-Because the useful part of this work is not "we built a thing." Plenty of people
-build things. The useful part is a map with the cliff marked on it.
+Not to hand over the fixes — those we're keeping. It's the *shape* of the problem
+that's worth seeing. Reimplementing a vendor's own bridge protocol, from a daemon's
+source, only to dead-end at a proprietary encryption plugin you cannot implement
+from source, is the kind of multi-month detour that "we'll just build our own TV
+lab" quietly signs you up for. We went down it so that driving a Samsung TV is a
+solved problem on our side of the line — and a wall you never have to meet on yours.
 
-If you are about to reimplement SDB, you now know three things that would each have
-cost you a day: the version and payload constants the public doc gets wrong, that
-the checksum is a byte sum, and that there is a hard ceiling at the secure
-handshake with a proprietary plugin behind it. That last one might save you a
-month, because it is the kind of problem you can spend a month believing is your
-bug.
-
-The version of this post where we only describe the parts that worked would be a
-better advertisement and a worse document. We would rather be the second one.
+That's the honest version of this post. Not a recipe. A marker on a map: here is how
+deep the water gets, and here is the one spot even we had to turn back.
