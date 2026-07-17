@@ -5,6 +5,7 @@ category: FIELD
 author: Om Narayan
 author_role: "Co-founder"
 author_url: "https://www.linkedin.com/company/robustest/"
+author_image: "/assets/images/authors/author-om.png"
 author_company: "RobusTest"
 author_company_url: "https://www.linkedin.com/company/robustest/"
 date: 2025-09-30

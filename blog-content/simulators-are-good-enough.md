@@ -5,6 +5,7 @@ category: BUSINESS
 author: Om Narayan
 author_role: "Co-founder"
 author_url: "https://www.linkedin.com/company/robustest/"
+author_image: "/assets/images/authors/author-om.png"
 author_company: "RobusTest"
 author_company_url: "https://www.linkedin.com/company/robustest/"
 date: 2026-05-06
@@ -121,13 +122,3 @@ means for where your app ends up](/blog/what-actually-leaves-your-network) — a
 [which of those clouds can run inside your own network](/blog/which-device-clouds-run-in-your-data-centre).)
 Simulators win on everything except being real. Unfortunately, being real is where a
 meaningful share of your production bugs live.
-
-The honest position is not "real devices, always." It is a division of labour: run the
-bulk on simulators, because they win on cost, speed, and parallelism — and run the
-things that only exist on real hardware on real hardware, because a simulator cannot
-fail a test for a bug it does not contain.
-
-The trap is a test suite that is green on emulators and quietly blind to an entire
-category of failure — the category that, by construction, only ever reaches a real
-user. Simulators win on everything except being real. Unfortunately, being real is
-where a meaningful share of your production bugs live.

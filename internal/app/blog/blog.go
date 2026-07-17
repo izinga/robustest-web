@@ -44,6 +44,7 @@ type Post struct {
 	Author          string
 	AuthorRole      string // job title only, e.g. "Co-founder"
 	AuthorURL       string // the person's profile — the byline icon links here
+	AuthorImage     string // headshot path; falls back to the initials monogram if empty
 	AuthorCompany   string // e.g. "RobusTest" — rendered after the role
 	AuthorCompanyURL string // the company page — the company name links here
 	Date        time.Time
@@ -87,6 +88,7 @@ type frontmatter struct {
 	Author          string `yaml:"author"`
 	AuthorRole      string `yaml:"author_role"`
 	AuthorURL       string `yaml:"author_url"`
+	AuthorImage     string `yaml:"author_image"`
 	AuthorCompany   string `yaml:"author_company"`
 	AuthorCompanyURL string `yaml:"author_company_url"`
 	Date        string   `yaml:"date"`
@@ -281,6 +283,7 @@ func parsePost(slug string, raw []byte) (*Post, error) {
 		Author:      author,
 		AuthorRole:  fm.AuthorRole,
 		AuthorURL:   fm.AuthorURL,
+		AuthorImage: fm.AuthorImage,
 		AuthorCompany:    fm.AuthorCompany,
 		AuthorCompanyURL: fm.AuthorCompanyURL,
 		Date:        date,
