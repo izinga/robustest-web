@@ -8,7 +8,7 @@ author_url: "https://www.linkedin.com/company/robustest/"
 author_image: "/assets/images/authors/author-om.png"
 author_company: "RobusTest"
 author_company_url: "https://www.linkedin.com/company/robustest/"
-date: 2026-07-17
+date: 2026-07-15
 sources:
   - title: "StatCounter — Mobile Operating System Market Share India"
     url: "https://gs.statcounter.com/os-market-share/mobile/india"

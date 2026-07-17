@@ -8,7 +8,7 @@ author_url: "https://www.linkedin.com/company/robustest/"
 author_image: "/assets/images/authors/author-om.png"
 author_company: "RobusTest"
 author_company_url: "https://www.linkedin.com/company/robustest/"
-date: 2026-07-17
+date: 2026-07-09
 sources:
   - title: "9to5Google — A bad USB-C cable fried a Google engineer's Chromebook (Feb 2016)"
     url: "https://9to5google.com/2016/02/03/bad-usb-c-cable-fries-chromebook/"

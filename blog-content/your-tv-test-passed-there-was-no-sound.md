@@ -8,7 +8,7 @@ author_url: "https://www.linkedin.com/company/robustest/"
 author_image: "/assets/images/authors/author-om.png"
 author_company: "RobusTest"
 author_company_url: "https://www.linkedin.com/company/robustest/"
-date: 2026-07-17
+date: 2026-07-08
 sources:
   - title: "EBU Recommendation R37 — The relative timing of sound and vision"
     url: "https://tech.ebu.ch/publications/r037"

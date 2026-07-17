@@ -8,7 +8,7 @@ author_url: "https://www.linkedin.com/company/robustest/"
 author_image: "/assets/images/authors/author-om.png"
 author_company: "RobusTest"
 author_company_url: "https://www.linkedin.com/company/robustest/"
-date: 2026-07-17
+date: 2026-07-02
 sources:
   - title: "Android — Inspect GPU rendering (gfxinfo / JankStats)"
     url: "https://developer.android.com/topic/performance/rendering/inspect-gpu-rendering"

@@ -8,7 +8,7 @@ author_url: "https://www.linkedin.com/company/robustest/"
 author_image: "/assets/images/authors/author-om.png"
 author_company: "RobusTest"
 author_company_url: "https://www.linkedin.com/company/robustest/"
-date: 2026-07-17
+date: 2026-07-05
 sources:
   - title: "Hackaday — USB and the myth of 500 milliamps"
     url: "https://hackaday.com/2024/07/03/usb-and-the-myth-of-500-milliamps/"
