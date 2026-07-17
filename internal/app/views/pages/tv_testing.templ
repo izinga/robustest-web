@@ -33,6 +33,9 @@ templ tvPlatforms() {
 		<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
 			@components.SectionTag("Platform coverage")
 			<h2 class="font-display font-bold text-3xl md:text-4xl tracking-tight max-w-2xl">Every screen in the living room.</h2>
+			<p class="text-muted mt-4 max-w-2xl leading-relaxed">
+				Smart TV test automation where the platform exposes an engine, black-box remote-and-video control where it doesn't — every panel and box on one lab network.
+			</p>
 			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-line mt-10 border border-line">
 				@tvPlatformCard("TIZEN", "Samsung Tizen", "Native driver over sdb and the Chrome DevTools Protocol. Remote keys, app launch and install, live video, and full element-level automation on debuggable web apps. Models from 2015 onward.")
 				@tvPlatformCard("WEBOS", "LG webOS", "Native driver over SSAP and CDP, including pointer gestures webOS supports natively. Same two-level control as Tizen, with a published model-year matrix back to 2014.")
@@ -185,10 +188,10 @@ templ tvPerf() {
 		<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
 			<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 				<div>
-					@components.SectionTag("TV performance panel")
+					@components.SectionTag("OTT & TV performance testing")
 					<h2 class="font-display font-bold text-3xl md:text-4xl tracking-tight">Web vitals, on a television.</h2>
 					<p class="text-muted mt-4 leading-relaxed">
-						During a live session the node samples your app's real behavior on the panel — not an emulator — and streams it to the tester once a second.
+						OTT performance testing only tells you something when it runs on the real panel. During a live session the node samples your app's actual behavior on the TV — not an emulator — and streams it to the tester once a second.
 					</p>
 					<ul class="space-y-2.5 mt-6">
 						@components.Check("In-app frame rate and system CPU load")

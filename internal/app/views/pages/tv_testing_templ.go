@@ -148,7 +148,7 @@ func tvPlatforms() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "<h2 class=\"font-display font-bold text-3xl md:text-4xl tracking-tight max-w-2xl\">Every screen in the living room.</h2><div class=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-line mt-10 border border-line\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "<h2 class=\"font-display font-bold text-3xl md:text-4xl tracking-tight max-w-2xl\">Every screen in the living room.</h2><p class=\"text-muted mt-4 max-w-2xl leading-relaxed\">Smart TV test automation where the platform exposes an engine, black-box remote-and-video control where it doesn't — every panel and box on one lab network.</p><div class=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-line mt-10 border border-line\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -212,7 +212,7 @@ func tvPlatformCard(tag string, title string, desc string) templ.Component {
 		var templ_7745c5c3_Var5 string
 		templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(tag)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/tv_testing.templ`, Line: 53, Col: 25}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/tv_testing.templ`, Line: 56, Col: 25}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
 		if templ_7745c5c3_Err != nil {
@@ -225,7 +225,7 @@ func tvPlatformCard(tag string, title string, desc string) templ.Component {
 		var templ_7745c5c3_Var6 string
 		templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinStringErrs(title)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/tv_testing.templ`, Line: 54, Col: 57}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/tv_testing.templ`, Line: 57, Col: 57}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var6))
 		if templ_7745c5c3_Err != nil {
@@ -238,7 +238,7 @@ func tvPlatformCard(tag string, title string, desc string) templ.Component {
 		var templ_7745c5c3_Var7 string
 		templ_7745c5c3_Var7, templ_7745c5c3_Err = templ.JoinStringErrs(desc)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/tv_testing.templ`, Line: 55, Col: 59}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/tv_testing.templ`, Line: 58, Col: 59}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var7))
 		if templ_7745c5c3_Err != nil {
@@ -420,7 +420,7 @@ func tvMatrixTable(title string, rows []tvMatrixRow) templ.Component {
 		var templ_7745c5c3_Var11 string
 		templ_7745c5c3_Var11, templ_7745c5c3_Err = templ.JoinStringErrs(title)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/tv_testing.templ`, Line: 134, Col: 101}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/tv_testing.templ`, Line: 137, Col: 101}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var11))
 		if templ_7745c5c3_Err != nil {
@@ -438,7 +438,7 @@ func tvMatrixTable(title string, rows []tvMatrixRow) templ.Component {
 			var templ_7745c5c3_Var12 string
 			templ_7745c5c3_Var12, templ_7745c5c3_Err = templ.JoinStringErrs(r.Years)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/tv_testing.templ`, Line: 146, Col: 67}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/tv_testing.templ`, Line: 149, Col: 67}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var12))
 			if templ_7745c5c3_Err != nil {
@@ -451,7 +451,7 @@ func tvMatrixTable(title string, rows []tvMatrixRow) templ.Component {
 			var templ_7745c5c3_Var13 string
 			templ_7745c5c3_Var13, templ_7745c5c3_Err = templ.JoinStringErrs(r.OS)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/tv_testing.templ`, Line: 147, Col: 63}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/tv_testing.templ`, Line: 150, Col: 63}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var13))
 			if templ_7745c5c3_Err != nil {
@@ -464,7 +464,7 @@ func tvMatrixTable(title string, rows []tvMatrixRow) templ.Component {
 			var templ_7745c5c3_Var14 string
 			templ_7745c5c3_Var14, templ_7745c5c3_Err = templ.JoinStringErrs(r.Level)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/tv_testing.templ`, Line: 148, Col: 48}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/tv_testing.templ`, Line: 151, Col: 48}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var14))
 			if templ_7745c5c3_Err != nil {
@@ -590,7 +590,7 @@ func tvStep(num string, title string, desc string) templ.Component {
 		var templ_7745c5c3_Var18 string
 		templ_7745c5c3_Var18, templ_7745c5c3_Err = templ.JoinStringErrs(num)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/tv_testing.templ`, Line: 177, Col: 51}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/tv_testing.templ`, Line: 180, Col: 51}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var18))
 		if templ_7745c5c3_Err != nil {
@@ -603,7 +603,7 @@ func tvStep(num string, title string, desc string) templ.Component {
 		var templ_7745c5c3_Var19 string
 		templ_7745c5c3_Var19, templ_7745c5c3_Err = templ.JoinStringErrs(title)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/tv_testing.templ`, Line: 178, Col: 57}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/tv_testing.templ`, Line: 181, Col: 57}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var19))
 		if templ_7745c5c3_Err != nil {
@@ -616,7 +616,7 @@ func tvStep(num string, title string, desc string) templ.Component {
 		var templ_7745c5c3_Var20 string
 		templ_7745c5c3_Var20, templ_7745c5c3_Err = templ.JoinStringErrs(desc)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/tv_testing.templ`, Line: 179, Col: 59}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/tv_testing.templ`, Line: 182, Col: 59}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var20))
 		if templ_7745c5c3_Err != nil {
@@ -655,11 +655,11 @@ func tvPerf() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = components.SectionTag("TV performance panel").Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = components.SectionTag("OTT & TV performance testing").Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 37, "<h2 class=\"font-display font-bold text-3xl md:text-4xl tracking-tight\">Web vitals, on a television.</h2><p class=\"text-muted mt-4 leading-relaxed\">During a live session the node samples your app's real behavior on the panel — not an emulator — and streams it to the tester once a second.</p><ul class=\"space-y-2.5 mt-6\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 37, "<h2 class=\"font-display font-bold text-3xl md:text-4xl tracking-tight\">Web vitals, on a television.</h2><p class=\"text-muted mt-4 leading-relaxed\">OTT performance testing only tells you something when it runs on the real panel. During a live session the node samples your app's actual behavior on the TV — not an emulator — and streams it to the tester once a second.</p><ul class=\"space-y-2.5 mt-6\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
