@@ -30,9 +30,12 @@ make deploy-rollback   # swap the previous binary back and restart (~5s)
 make docs-refresh      # publish docs after the team merges markdown (see DOCS.md)
 ```
 
-A deploy replaces the binary and `public/` only. **The tarball deliberately
-excludes `.env`** — the server's `/home/omnarayan/site/.env` is the
-authoritative config and survives every deploy. To change env (keys, docs
+A deploy replaces the binary, `public/`, `docs-content/`, and `blog-content/`.
+**The tarball deliberately excludes `.env`** — the server's
+`/home/omnarayan/site/.env` is the authoritative config and survives every deploy.
+Note: `tar` extraction overwrites and adds but does not remove, so a post *deleted*
+from `blog-content/` locally must also be removed on the server (the same caveat as
+docs). To change env (keys, docs
 token), edit that file on the server and `sudo systemctl restart robustest-web`.
 
 Verify a deploy landed: `curl https://robustest.com/health` returns the git

@@ -1,0 +1,68 @@
+<svg viewBox="0 0 640 250" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" font-family="'IBM Plex Mono', monospace">
+  <text x="40" y="22" font-size="10" letter-spacing="0.12em" fill="var(--rt-muted)">WEBOS 26 · FIELD NOTES</text>
+
+  <!-- the TV under study -->
+  <rect x="32" y="78" width="150" height="104" fill="var(--rt-paper)" stroke="var(--rt-signal)" stroke-width="1.5"/>
+  <rect x="46" y="92" width="122" height="66" fill="var(--rt-signal-soft)"/>
+  <text x="107" y="122" text-anchor="middle" font-size="13" fill="var(--rt-signal)">webOS 26</text>
+  <text x="107" y="140" text-anchor="middle" font-size="9" fill="var(--rt-muted)">ssh prisoner@:9922</text>
+  <path d="M97 182 L92 196 H122 L117 182" stroke="var(--rt-line-strong)" stroke-width="1.25"/>
+  <path d="M82 196 H132" stroke="var(--rt-line-strong)" stroke-width="1.25"/>
+  <text x="107" y="216" text-anchor="middle" font-size="9" fill="var(--rt-muted)">happy path ends here</text>
+
+  <!-- CARD 1 · /tmp -->
+  <g>
+    <rect x="200" y="50" width="190" height="84" rx="3" fill="var(--rt-surface)" stroke="var(--rt-line-strong)" stroke-width="1"/>
+    <rect x="200" y="50" width="3" height="84" fill="var(--rt-amber)"/>
+    <circle cx="224" cy="74" r="10" fill="none" stroke="var(--rt-amber)" stroke-width="1.25"/>
+    <text x="224" y="78" text-anchor="middle" font-size="11" fill="var(--rt-amber)">1</text>
+    <text x="242" y="70" font-size="11" fill="var(--rt-amber)">/tmp · d--x--x--x</text>
+    <text x="218" y="98" font-size="10" fill="var(--rt-muted)">writes vanish, no error</text>
+    <text x="218" y="116" font-size="10" fill="var(--rt-signal)">→ stage /media/developer</text>
+    <path d="M362 60 h12 l5 5 v16 h-17 z" fill="var(--rt-paper)" stroke="var(--rt-amber)" stroke-width="1.1"/>
+    <path d="M374 60 v5 h5" stroke="var(--rt-amber)" stroke-width="1.1"/>
+    <path d="M357 84 L384 58" stroke="var(--rt-amber)" stroke-width="1.4"/>
+  </g>
+
+  <!-- CARD 2 · journalctl -->
+  <g>
+    <rect x="408" y="50" width="190" height="84" rx="3" fill="var(--rt-surface)" stroke="var(--rt-line-strong)" stroke-width="1"/>
+    <rect x="408" y="50" width="3" height="84" fill="var(--rt-amber)"/>
+    <circle cx="432" cy="74" r="10" fill="none" stroke="var(--rt-amber)" stroke-width="1.25"/>
+    <text x="432" y="78" text-anchor="middle" font-size="11" fill="var(--rt-amber)">2</text>
+    <text x="450" y="70" font-size="11" fill="var(--rt-amber)">journalctl</text>
+    <text x="426" y="98" font-size="10" fill="var(--rt-muted)">empty for user prisoner</text>
+    <text x="426" y="116" font-size="10" fill="var(--rt-muted)">logs exist, not for you</text>
+    <rect x="562" y="60" width="26" height="22" fill="var(--rt-paper)" stroke="var(--rt-amber)" stroke-width="1.1"/>
+    <path d="M566 66 l4 3 l-4 3" stroke="var(--rt-amber)" stroke-width="1.1"/>
+    <path d="M573 74 h9" stroke="var(--rt-amber)" stroke-width="1.1" opacity="0.4"/>
+  </g>
+
+  <!-- CARD 3 · dev-mode -->
+  <g>
+    <rect x="200" y="148" width="190" height="84" rx="3" fill="var(--rt-surface)" stroke="var(--rt-line-strong)" stroke-width="1"/>
+    <rect x="200" y="148" width="3" height="84" fill="var(--rt-amber)"/>
+    <circle cx="224" cy="172" r="10" fill="none" stroke="var(--rt-amber)" stroke-width="1.25"/>
+    <text x="224" y="176" text-anchor="middle" font-size="11" fill="var(--rt-amber)">3</text>
+    <text x="242" y="168" font-size="11" fill="var(--rt-amber)">dev-mode · ~1000h</text>
+    <text x="218" y="196" font-size="10" fill="var(--rt-muted)">session expires, then</text>
+    <text x="218" y="214" font-size="10" fill="var(--rt-amber)">uninstalls your apps</text>
+    <circle cx="366" cy="172" r="10" fill="var(--rt-paper)" stroke="var(--rt-amber)" stroke-width="1.25"/>
+    <path d="M366 172 V165 M366 172 L371 175" stroke="var(--rt-amber)" stroke-width="1.25"/>
+  </g>
+
+  <!-- CARD 4 · :3000 -->
+  <g>
+    <rect x="408" y="148" width="190" height="84" rx="3" fill="var(--rt-surface)" stroke="var(--rt-line-strong)" stroke-width="1"/>
+    <rect x="408" y="148" width="3" height="84" fill="var(--rt-amber)"/>
+    <circle cx="432" cy="172" r="10" fill="none" stroke="var(--rt-amber)" stroke-width="1.25"/>
+    <text x="432" y="176" text-anchor="middle" font-size="11" fill="var(--rt-amber)">4</text>
+    <text x="450" y="168" font-size="11" fill="var(--rt-amber)">port :3000 · hang</text>
+    <text x="426" y="196" font-size="10" fill="var(--rt-muted)">silent 120s hang, no reset</text>
+    <text x="426" y="214" font-size="10" fill="var(--rt-signal)">→ try :3001, only :3001</text>
+    <path d="M574 162 A10 10 0 1 1 566 172" fill="none" stroke="var(--rt-amber)" stroke-width="1.4"/>
+    <circle cx="574" cy="162" r="1.6" fill="var(--rt-amber)"/>
+  </g>
+
+  <text x="320" y="246" text-anchor="middle" font-size="11" fill="var(--rt-muted)">every OS version is a new OS</text>
+</svg>

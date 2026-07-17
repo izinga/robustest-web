@@ -1,0 +1,28 @@
+<svg viewBox="0 0 640 276" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" font-family="'IBM Plex Mono', monospace">
+  <!-- header -->
+  <text x="40" y="24" font-size="10" letter-spacing="0.1em" fill="var(--rt-muted)">RUNS INSIDE YOUR NETWORK? · mid-2026</text>
+  <text x="600" y="24" text-anchor="end" font-size="10" fill="var(--rt-amber)">5 of 8: no</text>
+  <path d="M40 34 H600" stroke="var(--rt-line-strong)" stroke-width="1"/>
+
+  <!-- rows: glyph · vendor · verdict -->
+  <g font-size="13">
+    <text x="46" y="56" fill="var(--rt-muted)">✗</text><text x="76" y="56" fill="var(--rt-ink)">BrowserStack</text><text x="356" y="56" fill="var(--rt-muted)">No · vendor DC</text>
+    <text x="46" y="80" fill="var(--rt-muted)">✗</text><text x="76" y="80" fill="var(--rt-ink)">Sauce Labs</text><text x="356" y="80" fill="var(--rt-muted)">No · vendor DC</text>
+    <text x="46" y="104" fill="var(--rt-muted)">✗</text><text x="76" y="104" fill="var(--rt-ink)">AWS Device Farm</text><text x="356" y="104" fill="var(--rt-muted)">No · vendor DC</text>
+    <text x="46" y="128" fill="var(--rt-muted)">✗</text><text x="76" y="128" fill="var(--rt-ink)">TestMu AI</text><text x="356" y="128" fill="var(--rt-muted)">No</text>
+    <text x="46" y="152" fill="var(--rt-muted)">✗</text><text x="76" y="152" fill="var(--rt-ink)">Firebase Test Lab</text><text x="356" y="152" fill="var(--rt-muted)">No</text>
+    <text x="46" y="176" fill="var(--rt-amber)">~</text><text x="76" y="176" fill="var(--rt-ink)">Kobiton</text><text x="356" y="176" fill="var(--rt-amber)">Contact sales</text>
+    <text x="46" y="200" fill="var(--rt-amber)">~</text><text x="76" y="200" fill="var(--rt-ink)">HeadSpin</text><text x="356" y="200" fill="var(--rt-amber)">Claims to</text>
+    <text x="46" y="224" fill="var(--rt-signal)">✓</text><text x="76" y="224" fill="var(--rt-ink)">pCloudy</text><text x="356" y="224" fill="var(--rt-signal)">Yes · Lab in a Box</text>
+  </g>
+
+  <path d="M40 240 H600" stroke="var(--rt-line-strong)" stroke-width="1"/>
+
+  <!-- the full-stack row -->
+  <rect x="32" y="248" width="576" height="26" fill="var(--rt-signal-soft)"/>
+  <circle cx="46" cy="261" r="3" fill="var(--rt-signal)" class="live-dot"/>
+  <g font-size="13" fill="var(--rt-signal)">
+    <text x="76" y="266" font-weight="600">RobusTest</text>
+    <text x="356" y="266" font-weight="600">Yes · full stack, air-gap</text>
+  </g>
+</svg>

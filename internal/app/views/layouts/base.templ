@@ -76,6 +76,17 @@ templ Base(title string, description string, currentPath string) {
 		<head>
 			<meta charset="UTF-8"/>
 			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+			<!-- Resolve the theme to an explicit value before first paint: a stored
+			     choice wins, otherwise mirror the OS. Prevents a flash of the wrong theme. -->
+			<script>
+				(function () {
+					try {
+						var stored = localStorage.getItem("rt-theme");
+						var theme = stored || (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+						document.documentElement.setAttribute("data-theme", theme);
+					} catch (e) {}
+				})();
+			</script>
 			<title>{ title }</title>
 			<meta name="description" content={ description }/>
 			<meta name="robots" content="index, follow"/>
@@ -156,9 +167,38 @@ templ Base(title string, description string, currentPath string) {
 				{ children... }
 			</main>
 			@Footer()
+			<script>
+				(function () {
+					function apply(theme) {
+						document.documentElement.setAttribute("data-theme", theme);
+						try { localStorage.setItem("rt-theme", theme); } catch (e) {}
+						var meta = document.querySelector('meta[name="theme-color"]');
+						if (meta) meta.setAttribute("content", theme === "dark" ? "#0c1318" : "#f4f7f9");
+					}
+					document.querySelectorAll(".theme-toggle").forEach(function (btn) {
+						btn.addEventListener("click", function () {
+							var cur = document.documentElement.getAttribute("data-theme");
+							apply(cur === "dark" ? "light" : "dark");
+						});
+					});
+				})();
+			</script>
 			<script src="/assets/js/app.js"></script>
 		</body>
 	</html>
+}
+
+templ themeToggle() {
+	<button
+		type="button"
+		class="theme-toggle p-2 text-muted hover:text-ink transition-colors"
+		aria-label="Switch between light and dark theme"
+	>
+		<!-- moon: shown in light theme (click to go dark) -->
+		<svg class="theme-to-dark w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path></svg>
+		<!-- sun: shown in dark theme (click to go light) -->
+		<svg class="theme-to-light w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path stroke-linecap="round" d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path></svg>
+	</button>
 }
 
 templ navLink(href string, label string, currentPath string) {
@@ -212,12 +252,17 @@ templ Header(currentPath string) {
 					@navLink("/docs", "Docs", currentPath)
 					@navLink("/pricing", "Pricing", currentPath)
 					@navLink("/security", "Security", currentPath)
+					@navLink("/blog", "Blog", currentPath)
 					@navLink("/about", "About", currentPath)
 				</div>
-				<div class="hidden md:flex items-center">
+				<div class="hidden md:flex items-center gap-2">
+					@themeToggle()
 					<a href="/contact" class="bg-signal text-paper px-4 py-2 text-sm font-semibold hover:opacity-90 transition-opacity">
 						Book a demo
 					</a>
+				</div>
+				<div class="md:hidden flex items-center gap-1">
+					@themeToggle()
 				</div>
 				<button
 					type="button"
@@ -246,6 +291,7 @@ templ Header(currentPath string) {
 					<a href="/docs" class="px-1 py-1.5 text-sm font-medium text-muted hover:text-ink">Docs</a>
 					<a href="/pricing" class="px-1 py-1.5 text-sm font-medium text-muted hover:text-ink">Pricing</a>
 					<a href="/security" class="px-1 py-1.5 text-sm font-medium text-muted hover:text-ink">Security</a>
+					<a href="/blog" class="px-1 py-1.5 text-sm font-medium text-muted hover:text-ink">Blog</a>
 					<a href="/about" class="px-1 py-1.5 text-sm font-medium text-muted hover:text-ink">About</a>
 					<a href="/contact" class="mt-3 bg-signal text-paper px-4 py-2.5 text-sm font-semibold text-center">Book a demo</a>
 				</div>

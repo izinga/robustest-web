@@ -1,0 +1,49 @@
+<svg viewBox="0 0 640 220" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" font-family="'IBM Plex Mono', monospace">
+  <!-- headers -->
+  <text x="36" y="24" font-size="10" letter-spacing="0.1em" fill="var(--rt-muted)">EACH REPLICA · ITS OWN CA</text>
+  <text x="340" y="24" font-size="10" letter-spacing="0.1em" fill="var(--rt-signal)">ONE CA · IN THE DEPOT</text>
+  <path d="M320 34 V200" stroke="var(--rt-line)" stroke-width="1"/>
+
+  <!-- LEFT · scale out, and each replica boots its own authority -->
+  <rect x="36" y="92" width="64" height="32" fill="var(--rt-paper)" stroke="var(--rt-line-strong)" stroke-width="1.25"/>
+  <text x="68" y="112" text-anchor="middle" font-size="10" fill="var(--rt-muted)">balancer</text>
+  <path d="M100 104 L136 70 M100 112 L136 146" stroke="var(--rt-muted)" stroke-width="1.25"/>
+
+  <rect x="136" y="52" width="124" height="32" fill="var(--rt-paper)" stroke="var(--rt-line-strong)" stroke-width="1.25"/>
+  <text x="146" y="72" font-size="10" fill="var(--rt-muted)">replica 1</text>
+  <rect x="212" y="58" width="40" height="20" stroke="var(--rt-amber)" stroke-width="1.25"/>
+  <text x="232" y="72" text-anchor="middle" font-size="10" fill="var(--rt-amber)">CA·A</text>
+
+  <rect x="136" y="132" width="124" height="32" fill="var(--rt-paper)" stroke="var(--rt-line-strong)" stroke-width="1.25"/>
+  <text x="146" y="152" font-size="10" fill="var(--rt-muted)">replica 2</text>
+  <rect x="212" y="138" width="40" height="20" stroke="var(--rt-amber)" stroke-width="1.25"/>
+  <text x="232" y="152" text-anchor="middle" font-size="10" fill="var(--rt-amber)">CA·B</text>
+
+  <text x="232" y="113" text-anchor="middle" font-size="14" fill="var(--rt-amber)">≠</text>
+  <text x="178" y="196" text-anchor="middle" font-size="10" fill="var(--rt-amber)">CA·A ≠ CA·B → rejected</text>
+
+  <!-- RIGHT · the CA lives in the database; every replica serves the same one -->
+  <rect x="340" y="92" width="64" height="32" fill="var(--rt-paper)" stroke="var(--rt-line-strong)" stroke-width="1.25"/>
+  <text x="372" y="112" text-anchor="middle" font-size="10" fill="var(--rt-muted)">balancer</text>
+  <path d="M404 104 L440 70 M404 112 L440 146" stroke="var(--rt-muted)" stroke-width="1.25"/>
+
+  <rect x="440" y="52" width="104" height="32" fill="var(--rt-paper)" stroke="var(--rt-line-strong)" stroke-width="1.25"/>
+  <text x="492" y="72" text-anchor="middle" font-size="10" fill="var(--rt-muted)">replica 1</text>
+  <rect x="440" y="132" width="104" height="32" fill="var(--rt-paper)" stroke="var(--rt-line-strong)" stroke-width="1.25"/>
+  <text x="492" y="152" text-anchor="middle" font-size="10" fill="var(--rt-muted)">replica 2</text>
+
+  <g stroke="var(--rt-signal)" stroke-width="1.5" class="flow-path">
+    <path d="M544 68 L574 92"/>
+    <path d="M544 148 L574 142"/>
+  </g>
+
+  <g stroke="var(--rt-signal)" stroke-width="1.25">
+    <path d="M562 96 V133 Q562 142 588 142 Q614 142 614 133 V96" fill="var(--rt-signal-soft)"/>
+    <ellipse cx="588" cy="96" rx="26" ry="7" fill="var(--rt-signal-soft)"/>
+  </g>
+  <circle cx="588" cy="96" r="3" fill="var(--rt-signal)" class="live-dot"/>
+  <text x="588" y="124" text-anchor="middle" font-size="10" fill="var(--rt-signal)">one CA</text>
+  <text x="588" y="160" text-anchor="middle" font-size="9" fill="var(--rt-muted)">mongo depot</text>
+
+  <text x="480" y="196" text-anchor="middle" font-size="10" fill="var(--rt-signal)">one CA · both replicas serve it</text>
+</svg>

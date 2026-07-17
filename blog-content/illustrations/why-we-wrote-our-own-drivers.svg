@@ -1,0 +1,18 @@
+<svg viewBox="0 0 640 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" font-family="'IBM Plex Mono', monospace">
+  <!-- SDK box on the left -->
+  <rect x="36" y="78" width="128" height="46" fill="var(--rt-paper)" stroke="var(--rt-line-strong)" stroke-width="1.25"/>
+  <text x="100" y="106" text-anchor="middle" font-size="12" fill="var(--rt-muted)">vendor SDK</text>
+  <!-- the line where the SDK stops -->
+  <path d="M210 40 V162" stroke="var(--rt-line-strong)" stroke-width="1.5" stroke-dasharray="3 4"/>
+  <text x="210" y="34" text-anchor="middle" font-size="10" fill="var(--rt-muted)">SDK stops here</text>
+  <!-- our driver crosses it and reaches the TV -->
+  <path d="M164 101 H210" stroke="var(--rt-muted)" stroke-width="1.5"/>
+  <path d="M210 101 H444" stroke="var(--rt-signal)" stroke-width="1.5" class="flow-path"/>
+  <path d="M436 95 L444 101 L436 107" stroke="var(--rt-signal)" stroke-width="1.5"/>
+  <text x="330" y="92" text-anchor="middle" font-size="11" fill="var(--rt-signal)">native driver</text>
+  <!-- TV -->
+  <rect x="452" y="60" width="96" height="82" fill="var(--rt-paper)" stroke="var(--rt-signal)" stroke-width="1.75"/>
+  <rect x="466" y="74" width="68" height="44" fill="var(--rt-signal-soft)"/>
+  <text x="500" y="128" text-anchor="middle" font-size="11" fill="var(--rt-signal)">TV</text>
+  <text x="500" y="162" text-anchor="middle" font-size="10" fill="var(--rt-signal)">install · launch · press OK</text>
+</svg>

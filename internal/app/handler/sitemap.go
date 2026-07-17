@@ -28,13 +28,14 @@ var marketingPages = []struct {
 	{"/pricing", "0.8"},
 	{"/security", "0.7"},
 	{"/docs", "0.7"},
+	{"/blog", "0.7"},
 	{"/about", "0.6"},
 	{"/contact", "0.5"},
 	{"/legal", "0.3"},
 }
 
-// SitemapXML emits the sitemap dynamically: static marketing pages plus
-// every page in the currently published docs tree.
+// SitemapXML emits the sitemap dynamically: static marketing pages, every page
+// in the currently published docs tree, and every published blog post.
 func SitemapXML(c *gin.Context) {
 	var b strings.Builder
 	b.WriteString(`<?xml version="1.0" encoding="UTF-8"?>` + "\n")
@@ -63,6 +64,15 @@ func SitemapXML(c *gin.Context) {
 			}
 			write("/docs/"+entry.Path, docsDate, "0.6")
 		}
+	}
+	// Posts carry their own lastmod: a revised post (the regulation pages get
+	// refreshed at each compliance milestone) should say so.
+	for _, p := range BlogPosts() {
+		lastmod := p.Date
+		if !p.Updated.IsZero() {
+			lastmod = p.Updated
+		}
+		write("/blog/"+p.Slug, lastmod.UTC().Format("2006-01-02"), "0.7")
 	}
 
 	b.WriteString("</urlset>\n")

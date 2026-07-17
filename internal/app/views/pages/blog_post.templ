@@ -1,0 +1,263 @@
+package pages
+
+import (
+	"encoding/json"
+	"strconv"
+	"strings"
+
+	"github.com/izinga/robustest-web/internal/app/blog"
+	"github.com/izinga/robustest-web/internal/app/views/layouts"
+)
+
+func fullDate(p *blog.Post) string { return p.Date.Format("2 January 2006") }
+
+// initials renders the byline monogram: up to two letters, uppercased.
+func initials(name string) string {
+	fields := strings.Fields(name)
+	if len(fields) == 0 {
+		return "RT"
+	}
+	out := string([]rune(fields[0])[0])
+	if len(fields) > 1 {
+		last := fields[len(fields)-1]
+		out += string([]rune(last)[0])
+	}
+	return strings.ToUpper(out)
+}
+
+func revisedDate(p *blog.Post) string { return p.Updated.Format("2 Jan 2006") }
+
+func articleSchemaScript(p *blog.Post) string {
+	schema := map[string]interface{}{
+		"@context":         "https://schema.org",
+		"@type":            "BlogPosting",
+		"headline":         p.Title,
+		"description":      p.Description,
+		"datePublished":    p.Date.Format("2006-01-02"),
+		"wordCount":        p.WordCount,
+		"mainEntityOfPage": "https://robustest.com/blog/" + p.Slug,
+		"author": map[string]string{
+			"@type": "Person",
+			"name":  p.Author,
+		},
+		"publisher": map[string]string{
+			"@type": "Organization",
+			"name":  "RobusTest",
+			"url":   "https://robustest.com",
+		},
+	}
+	if !p.Updated.IsZero() {
+		schema["dateModified"] = p.Updated.Format("2006-01-02")
+	}
+	b, _ := json.Marshal(schema)
+	return `<script type="application/ld+json">` + string(b) + `</script>`
+}
+
+templ articleSchema(p *blog.Post) {
+	@templ.Raw(articleSchemaScript(p))
+}
+
+// linkedInLink is the icon beside the author name — it points at the PERSON.
+templ linkedInLink(p *blog.Post) {
+	<a href={ templ.SafeURL(p.AuthorURL) } target="_blank" rel="noopener noreferrer" class="text-muted hover:text-signal transition-colors" aria-label={ p.Author + " on LinkedIn" }>
+		<svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0z"></path></svg>
+	</a>
+}
+
+// roleLine renders "Co-founder, RobusTest" where the company name links to the
+// company page — a distinct target from the person's icon above.
+templ roleLine(p *blog.Post) {
+	<span class="font-mono text-xs text-muted">
+		if p.AuthorCompany != "" {
+			<span>{ p.AuthorRole + ", " }</span><a href={ templ.SafeURL(p.AuthorCompanyURL) } target="_blank" rel="noopener noreferrer" class="text-muted hover:text-signal transition-colors underline decoration-line-strong underline-offset-2">{ p.AuthorCompany }</a>
+		} else {
+			{ p.AuthorRole }
+		}
+	</span>
+}
+
+templ BlogPost(p *blog.Post, related []*blog.Post) {
+	@layouts.Base(p.Title+" — RobusTest", p.Description, "/blog/"+p.Slug) {
+		@articleSchema(p)
+		<article>
+			<!-- Header: the drawing's title block -->
+			<header class="border-b border-line-strong">
+				<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+					<a href="/blog" class="inline-flex items-center gap-2 font-mono text-xs text-muted hover:text-signal transition-colors">
+						<span aria-hidden="true">←</span> All notes
+					</a>
+					<h1 class="font-display font-bold text-3xl md:text-5xl tracking-tight max-w-4xl mt-6 leading-[1.1]">
+						{ p.Title }
+					</h1>
+					if p.Description != "" {
+						<p class="text-muted mt-5 max-w-2xl text-lg leading-relaxed">{ p.Description }</p>
+					}
+					<!-- Mobile: compact byline + one record line, no boxes. -->
+					<div class="sm:hidden mt-8">
+						<div class="flex items-center gap-3.5">
+							<span class="w-11 h-11 shrink-0 border border-line-strong bg-surface grid place-items-center font-display font-bold text-signal">
+								{ initials(p.Author) }
+							</span>
+							<div class="leading-tight">
+								<div class="flex items-center gap-2">
+									<span class="font-display font-semibold text-ink">{ p.Author }</span>
+									if p.AuthorURL != "" {
+										@linkedInLink(p)
+									}
+								</div>
+								if p.AuthorRole != "" {
+									@roleLine(p)
+								}
+							</div>
+						</div>
+						<p class="mt-4 font-mono text-xs text-muted">
+							{ fullDate(p) } · { p.Category } ·
+							if !p.Updated.IsZero() {
+								{ "rev " + revisedDate(p) }
+							} else {
+								{ readingTime(p) }
+							}
+						</p>
+					</div>
+					<!-- Desktop: one line — author (larger monogram) then the record. -->
+					<div class="title-block hidden sm:inline-flex items-stretch mt-8">
+						<div class="tb-cell flex items-center gap-4 pr-8">
+							<span class="w-14 h-14 shrink-0 border border-line-strong bg-surface grid place-items-center font-display font-bold text-lg text-signal">
+								{ initials(p.Author) }
+							</span>
+							<div class="leading-tight">
+								<div class="flex items-center gap-2">
+									<span class="font-display font-semibold text-ink text-base">{ p.Author }</span>
+									if p.AuthorURL != "" {
+										@linkedInLink(p)
+									}
+								</div>
+								if p.AuthorRole != "" {
+									@roleLine(p)
+								}
+							</div>
+						</div>
+						<div class="tb-cell flex flex-col justify-center">
+							<dt>Filed</dt>
+							<dd>{ fullDate(p) }</dd>
+						</div>
+						<div class="tb-cell flex flex-col justify-center">
+							<dt>Sheet</dt>
+							<dd>{ p.Category }</dd>
+						</div>
+						<div class="tb-cell flex flex-col justify-center">
+							if !p.Updated.IsZero() {
+								<dt>Rev.</dt>
+								<dd>{ revisedDate(p) }</dd>
+							} else {
+								<dt>Length</dt>
+								<dd>{ readingTime(p) }</dd>
+							}
+						</div>
+					</div>
+				</div>
+				if p.Illustration != "" {
+					<!-- Schematic figure: a line drawing of this post's argument,
+					     inlined so it recolours with the theme. -->
+					<div class="border-t border-line">
+						<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+							<figure class="blog-figure relative overflow-hidden border-x border-line-strong bg-surface">
+								<div class="grid-paper grid-paper-fade absolute inset-0 opacity-60"></div>
+								<div class="blog-figure-art absolute inset-0 flex items-center justify-center p-6">
+									@templ.Raw(p.Illustration)
+								</div>
+								<figcaption class="absolute bottom-3 right-4 tag">Fig. 1</figcaption>
+							</figure>
+						</div>
+					</div>
+				}
+			</header>
+			<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+				<div class="lg:flex lg:gap-16">
+					<!-- Reading rail: sections only, never a nested outline -->
+					if len(p.TOC) > 2 {
+						<nav aria-label="On this page" class="hidden lg:block w-56 shrink-0 order-2">
+							<div class="sticky top-24">
+								<p class="tag mb-3">On this page</p>
+								<ul class="space-y-2 border-l border-line pl-4">
+									for _, t := range p.TOC {
+										<li>
+											<a href={ templ.SafeURL("#" + t.ID) } class="block text-sm text-muted hover:text-signal transition-colors leading-snug">
+												{ t.Text }
+											</a>
+										</li>
+									}
+								</ul>
+							</div>
+						</nav>
+					}
+					<div class="min-w-0 order-1 max-w-[68ch]">
+						<div class="blog-prose">
+							@templ.Raw(p.Content)
+						</div>
+						if len(p.Sources) > 0 {
+							<!-- Sources are the argument, not an appendix: every claim here
+							     is meant to be checkable by the person reading it. -->
+							<section class="mt-16 pt-8 border-t border-line-strong" aria-labelledby="sources">
+								<div class="flex items-center gap-4 mb-6">
+									<span class="tag" id="sources">Sources</span>
+									<span class="rule"></span>
+								</div>
+								<ol class="space-y-4">
+									for i, s := range p.Sources {
+										<li class="flex gap-4">
+											<span class="font-mono text-xs text-signal shrink-0 pt-1">
+												{ strconv.Itoa(i + 1) }
+											</span>
+											<span class="min-w-0">
+												<a href={ templ.SafeURL(s.URL) } target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-trace hover:underline break-words">
+													{ s.Title }
+												</a>
+												if s.Note != "" {
+													<span class="block text-xs text-muted mt-1 leading-relaxed">{ s.Note }</span>
+												}
+											</span>
+										</li>
+									}
+								</ol>
+							</section>
+						}
+						<div class="mt-16 border border-line-strong bg-surface p-8">
+							<h2 class="font-display font-bold text-xl tracking-tight">Run this in your own building.</h2>
+							<p class="text-sm text-muted mt-2 leading-relaxed max-w-lg">
+								RobusTest is a real device lab — phones, tablets and TVs — installed inside your
+								network. Your devices, your data centre, nothing leaving the building.
+							</p>
+							<a href="/contact" class="inline-block mt-5 bg-signal text-paper px-4 py-2 text-sm font-semibold hover:opacity-90 transition-opacity">
+								Book a demo
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			if len(related) > 0 {
+				<section class="border-t border-line-strong bg-surface">
+					<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+						<div class="flex items-center gap-4 mb-6">
+							<span class="tag">Read next</span>
+							<span class="rule"></span>
+						</div>
+						<ul class="grid grid-cols-1 md:grid-cols-3 gap-px bg-line border border-line">
+							for _, r := range related {
+								<li class="bg-surface">
+									<a href={ templ.SafeURL(postHref(r.Slug)) } class="block p-6 h-full hover:bg-signal-soft transition-colors group">
+										<span class="tag">{ r.Category }</span>
+										<h3 class="font-display font-bold text-lg mt-3 tracking-tight group-hover:text-signal transition-colors leading-snug">
+											{ r.Title }
+										</h3>
+										<span class="block font-mono text-xs text-muted mt-3">{ readingTime(r) }</span>
+									</a>
+								</li>
+							}
+						</ul>
+					</div>
+				</section>
+			}
+		</article>
+	}
+}

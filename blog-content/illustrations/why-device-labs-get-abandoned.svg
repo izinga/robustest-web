@@ -1,0 +1,41 @@
+<svg viewBox="0 0 640 250" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" font-family="'IBM Plex Mono', monospace">
+  <text x="48" y="24" font-size="10" letter-spacing="0.1em" fill="var(--rt-muted)">OPEN-SOURCE DEVICE LAB · OpenSTF → DeviceFarmer</text>
+
+  <!-- y hint -->
+  <text x="52" y="126" font-size="9" fill="var(--rt-muted)" transform="rotate(-90 52 126)">new capability</text>
+
+  <!-- active development: rising feature line with dense releases -->
+  <path d="M64 168 L96 150 L128 150 L160 126 L192 126 L224 102 L256 92 L300 84" stroke="var(--rt-ink)" stroke-width="1.75" fill="none"/>
+  <g fill="var(--rt-ink)">
+    <circle cx="96" cy="150" r="3"/><circle cx="128" cy="150" r="3"/><circle cx="160" cy="126" r="3"/><circle cx="192" cy="126" r="3"/><circle cx="224" cy="102" r="3"/><circle cx="256" cy="92" r="3"/><circle cx="300" cy="84" r="3"/>
+  </g>
+  <text x="180" y="196" text-anchor="middle" font-size="10" fill="var(--rt-muted)">active development</text>
+
+  <!-- handoff -->
+  <path d="M300 60 V176" stroke="var(--rt-line-strong)" stroke-width="1" stroke-dasharray="3 3"/>
+  <text x="300" y="52" text-anchor="middle" font-size="9" fill="var(--rt-muted)">orig. dev stops · Jul 2020</text>
+
+  <!-- maintenance: flat, sparse amber releases with big gaps -->
+  <path d="M300 84 H600" stroke="var(--rt-amber)" stroke-width="1.75" stroke-dasharray="6 5"/>
+  <g fill="var(--rt-amber)">
+    <circle cx="352" cy="84" r="3.5"/><circle cx="430" cy="84" r="3.5"/><circle cx="520" cy="84" r="3.5"/><circle cx="592" cy="84" r="3.5"/>
+  </g>
+  <text x="470" y="196" text-anchor="middle" font-size="10" fill="var(--rt-amber)">maintenance only · unpaid time</text>
+
+  <!-- the ~1 year gap between the last two releases -->
+  <path d="M520 66 H592" stroke="var(--rt-amber)" stroke-width="1"/>
+  <path d="M520 62 V70 M592 62 V70" stroke="var(--rt-amber)" stroke-width="1"/>
+  <text x="556" y="58" text-anchor="middle" font-size="9" fill="var(--rt-amber)">~1 year</text>
+  <text x="520" y="104" text-anchor="middle" font-size="9" fill="var(--rt-amber)">v3.7.7</text>
+  <text x="592" y="104" text-anchor="middle" font-size="9" fill="var(--rt-amber)">v3.7.9</text>
+
+  <!-- time axis -->
+  <path d="M64 176 H600" stroke="var(--rt-line-strong)" stroke-width="1"/>
+  <g font-size="9" fill="var(--rt-muted)">
+    <path d="M64 176 V181 M300 176 V181 M600 176 V181" stroke="var(--rt-line-strong)" stroke-width="1"/>
+    <text x="64" y="192" text-anchor="middle">2013</text>
+    <text x="600" y="192" text-anchor="middle">2026</text>
+  </g>
+
+  <text x="332" y="230" text-anchor="middle" font-size="11" fill="var(--rt-muted)">kept breathing, not moving forward</text>
+</svg>

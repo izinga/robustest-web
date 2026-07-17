@@ -194,6 +194,7 @@ release-linux: build-linux docs-fetch
 		$(APP_NAME) \
 		$(PUBLIC_DIR) \
 		docs-content \
+		blog-content \
 		README.md
 	@rm -f $(APP_NAME)
 	@echo "$(GREEN)Release package created: $(DIST_DIR)/$(APP_NAME)-linux.tar.gz$(NC)"

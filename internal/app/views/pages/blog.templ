@@ -1,0 +1,91 @@
+package pages
+
+import (
+	"strconv"
+
+	"github.com/izinga/robustest-web/internal/app/blog"
+	"github.com/izinga/robustest-web/internal/app/views/layouts"
+)
+
+func postHref(slug string) string { return "/blog/" + slug }
+
+// dayMonth renders the ledger's date column: "16 JUL".
+func dayMonth(p *blog.Post) string { return p.Date.Format("02 Jan") }
+
+func readingTime(p *blog.Post) string { return strconv.Itoa(p.ReadingTime) + " min" }
+
+templ BlogIndex(years []blog.Year) {
+	@layouts.Base(
+		"Blog — RobusTest",
+		"Field notes from twelve years of running device labs: what we built, what broke, and what the industry got wrong.",
+		"/blog",
+	) {
+		<section class="border-b border-line-strong">
+			<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+				<div class="flex items-center gap-4 mb-6">
+					<span class="tag">Notes</span>
+					<span class="rule"></span>
+				</div>
+				<h1 class="font-display font-bold text-4xl md:text-5xl tracking-tight max-w-3xl">
+					What we learned building device labs.
+				</h1>
+				<p class="text-muted mt-5 max-w-2xl leading-relaxed">
+					Twelve years of running real devices for people who ship apps to millions.
+					The protocols we reimplemented, the bugs that lied to us, and the bets we
+					made when the rest of the industry went the other way.
+				</p>
+			</div>
+		</section>
+		<section>
+			<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-16">
+				if len(years) == 0 {
+					<div class="border border-line-strong bg-surface p-10 text-center">
+						<p class="font-display font-bold text-xl">Nothing published yet.</p>
+						<p class="text-sm text-muted mt-2">The first notes are being written.</p>
+					</div>
+				}
+				for _, y := range years {
+					<div class="mb-12 last:mb-0">
+						<div class="flex items-center gap-4 mb-1">
+							<span class="font-mono text-xs text-muted tracking-widest">{ strconv.Itoa(y.Year) }</span>
+							<span class="rule"></span>
+							<span class="font-mono text-xs text-muted">
+								{ strconv.Itoa(len(y.Posts)) }
+								if len(y.Posts) == 1 {
+									{ " entry" }
+								} else {
+									{ " entries" }
+								}
+							</span>
+						</div>
+						<ul class="border-t border-line-strong">
+							for _, p := range y.Posts {
+								<li class="ledger-row relative">
+									<a href={ templ.SafeURL(postHref(p.Slug)) } class="block py-6 pl-4 pr-2 group">
+										<div class="md:flex md:items-baseline md:gap-6">
+											<div class="flex items-center gap-3 shrink-0 md:w-40">
+												<span class="font-mono text-xs text-muted uppercase">{ dayMonth(p) }</span>
+												<span class="tag">{ p.Category }</span>
+											</div>
+											<div class="mt-2 md:mt-0 min-w-0">
+												<h2 class="font-display font-bold text-xl md:text-2xl tracking-tight group-hover:text-signal transition-colors">
+													{ p.Title }
+												</h2>
+												if p.Description != "" {
+													<p class="text-sm text-muted mt-1.5 leading-relaxed max-w-2xl">{ p.Description }</p>
+												}
+											</div>
+											<span class="hidden md:block font-mono text-xs text-muted shrink-0 ml-auto pl-4">
+												{ readingTime(p) }
+											</span>
+										</div>
+									</a>
+								</li>
+							}
+						</ul>
+					</div>
+				}
+			</div>
+		</section>
+	}
+}

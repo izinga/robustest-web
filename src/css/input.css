@@ -47,6 +47,45 @@
   }
 }
 
+/* Manual theme override. The toggle stamps data-theme on <html>; these win
+   over the prefers-color-scheme block above so a reader's choice beats the OS. */
+:root[data-theme="light"] {
+  --rt-paper: #f4f7f9;
+  --rt-surface: #fcfdfe;
+  --rt-ink: #10181f;
+  --rt-muted: #46535d;
+  --rt-line: #dbe2e8;
+  --rt-line-strong: #b3bfc9;
+  --rt-signal: #0e7fb5;
+  --rt-signal-soft: #e0f0f8;
+  --rt-trace: #205f92;
+  --rt-trace-soft: #e4edf6;
+  --rt-amber: #b45309;
+  --rt-amber-soft: #f6ead9;
+}
+:root[data-theme="dark"] {
+  --rt-paper: #0c1318;
+  --rt-surface: #131b21;
+  --rt-ink: #eff4f7;
+  --rt-muted: #aebcc6;
+  --rt-line: #25313a;
+  --rt-line-strong: #46545e;
+  --rt-signal: #38b6e8;
+  --rt-signal-soft: #0f2835;
+  --rt-trace: #82b8e6;
+  --rt-trace-soft: #16283a;
+  --rt-amber: #e5a158;
+  --rt-amber-soft: #2e2213;
+}
+/* Logo inversion follows the resolved theme, not just the OS preference. */
+:root[data-theme="dark"] .brand-logo { filter: invert(1) hue-rotate(180deg) saturate(1.4); }
+:root[data-theme="light"] .brand-logo { filter: none; }
+
+/* Theme toggle: show the icon for the theme you'd switch TO. */
+.theme-to-dark, .theme-to-light { display: none; }
+:root[data-theme="light"] .theme-to-dark { display: inline-flex; }
+:root[data-theme="dark"] .theme-to-light { display: inline-flex; }
+
 @theme {
   --color-paper: var(--rt-paper);
   --color-surface: var(--rt-surface);
@@ -271,6 +310,217 @@ body {
   border: none;
   border-top: 1px solid var(--rt-line);
   margin: 2rem 0;
+}
+
+/* ---------------------------------------------------------------------------
+   Blog
+
+   docs-prose is tuned for scanning reference material: small, tight, dense.
+   Long-form argument needs the opposite — a measure you can track across and
+   leading you can fall down. Same schematic vocabulary, different instrument.
+   --------------------------------------------------------------------------- */
+
+/* The title block: an engineering drawing states its own provenance in the
+   corner — number, date, revision. A post does the same. */
+/* The block is drawn, not padded: cells share ruled borders like the corner
+   block of a real schematic, so the fields sit in boxes rather than floating. */
+.title-block {
+  border: 1px solid var(--rt-line-strong);
+  background: var(--rt-surface);
+  /* Collapse doubled interior borders into single hairlines. */
+  gap: 1px;
+  background: var(--rt-line);
+}
+.title-block .tb-cell {
+  background: var(--rt-surface);
+  padding: 0.6rem 1.1rem 0.7rem;
+  min-width: 8.5rem;
+}
+.title-block dt {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--rt-muted);
+  padding-bottom: 0.35rem;
+  margin-bottom: 0.4rem;
+  border-bottom: 1px solid var(--rt-line);
+}
+.title-block dd {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--rt-ink);
+}
+
+/* Ledger row: the index reads like a drawing register, not a card wall. */
+.ledger-row {
+  border-bottom: 1px solid var(--rt-line);
+  transition: background-color 120ms ease;
+}
+.ledger-row:hover {
+  background: var(--rt-signal-soft);
+}
+/* The tick echoes .rule's end mark — a row is a measurement on the sheet. */
+.ledger-row::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 1px;
+  height: 0;
+  background: var(--rt-signal);
+  transition: height 160ms ease, top 160ms ease;
+}
+.ledger-row:hover::before,
+.ledger-row:focus-within::before {
+  height: 100%;
+  top: 0;
+}
+
+/* Schematic figure band. The SVG scales inside; the grid sits behind it. */
+.blog-figure {
+  height: 260px;
+}
+@media (max-width: 640px) {
+  .blog-figure { height: 190px; }
+}
+.blog-figure-art svg {
+  width: 100%;
+  height: 100%;
+  max-width: 40rem;
+}
+
+.blog-prose {
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: var(--rt-ink);
+}
+.blog-prose > * + * { margin-top: 1.35em; }
+.blog-prose p { color: var(--rt-muted); }
+.blog-prose strong { color: var(--rt-ink); font-weight: 600; }
+
+.blog-prose h2 {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  color: var(--rt-ink);
+  margin-top: 2.75em;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--rt-line);
+  scroll-margin-top: 5rem;
+}
+.blog-prose h3 {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--rt-ink);
+  margin-top: 2em;
+  scroll-margin-top: 5rem;
+}
+.blog-prose h2 + *, .blog-prose h3 + * { margin-top: 0.75em; }
+
+.blog-prose a {
+  color: var(--rt-trace);
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-color: var(--rt-line-strong);
+  text-underline-offset: 3px;
+}
+.blog-prose a:hover { text-decoration-color: var(--rt-trace); }
+
+.blog-prose ul, .blog-prose ol { margin-left: 1.25rem; color: var(--rt-muted); }
+.blog-prose li + li { margin-top: 0.5em; }
+.blog-prose ul { list-style: none; margin-left: 0; }
+/* Square markers, not dots: this is drawn, not typeset. */
+.blog-prose ul > li { position: relative; padding-left: 1.25rem; }
+.blog-prose ul > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.7em;
+  width: 5px;
+  height: 5px;
+  border: 1px solid var(--rt-signal);
+}
+.blog-prose ol { list-style: decimal; }
+.blog-prose ol > li::marker { font-family: var(--font-mono); font-size: 0.8125rem; color: var(--rt-signal); }
+
+.blog-prose code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  background: var(--rt-signal-soft);
+  border: 1px solid var(--rt-line);
+  padding: 0.1rem 0.35rem;
+}
+.blog-prose pre {
+  background: #10181f;
+  color: #dbe4ec;
+  padding: 1.15rem 1.35rem;
+  overflow-x: auto;
+  border: 1px solid var(--rt-line-strong);
+}
+.blog-prose pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  color: inherit;
+  font-size: 0.8125rem;
+  line-height: 1.7;
+}
+
+/* A quotation is evidence here, not decoration — it is nearly always someone
+   else's exact words, so it gets weight rather than italics. */
+.blog-prose blockquote {
+  border-left: 2px solid var(--rt-signal);
+  padding: 0.25rem 0 0.25rem 1.35rem;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  line-height: 1.5;
+  font-weight: 500;
+  color: var(--rt-ink);
+}
+.blog-prose blockquote p { color: inherit; }
+.blog-prose blockquote > * + * { margin-top: 0.5em; }
+
+.blog-prose table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+  display: block;
+  overflow-x: auto;
+}
+.blog-prose th {
+  text-align: left;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--rt-muted);
+  border: 1px solid var(--rt-line-strong);
+  padding: 0.6rem 0.85rem;
+  background: var(--rt-surface);
+  white-space: nowrap;
+}
+.blog-prose td {
+  border: 1px solid var(--rt-line);
+  padding: 0.6rem 0.85rem;
+  color: var(--rt-muted);
+  vertical-align: top;
+}
+.blog-prose thead tr:not(:has(th:not(:empty))) { display: none; }
+
+.blog-prose img {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid var(--rt-line-strong);
+}
+.blog-prose hr {
+  border: none;
+  border-top: 1px solid var(--rt-line);
+  margin: 2.5em 0;
 }
 
 /* Focus visibility */

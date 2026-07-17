@@ -1,0 +1,53 @@
+<svg viewBox="0 0 640 250" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" font-family="'IBM Plex Mono', monospace">
+  <!-- LEFT · simulator, stock image -->
+  <text x="161" y="30" text-anchor="middle" font-size="10" letter-spacing="0.08em" fill="var(--rt-muted)">SIMULATOR · stock image</text>
+  <rect x="86" y="44" width="150" height="172" rx="14" fill="var(--rt-paper)" stroke="var(--rt-line-strong)" stroke-width="1.25"/>
+  <rect x="146" y="54" width="30" height="3" rx="1.5" fill="var(--rt-line-strong)"/>
+  <g>
+    <rect x="100" y="66" width="122" height="30" fill="var(--rt-surface)" stroke="var(--rt-line-strong)" stroke-width="1"/>
+    <text x="161" y="85" text-anchor="middle" font-size="10" fill="var(--rt-muted)">your app</text>
+    <rect x="100" y="102" width="122" height="30" fill="var(--rt-surface)" stroke="var(--rt-line-strong)" stroke-width="1"/>
+    <text x="161" y="121" text-anchor="middle" font-size="10" fill="var(--rt-muted)">framework</text>
+    <rect x="100" y="138" width="122" height="30" fill="var(--rt-surface)" stroke="var(--rt-line-strong)" stroke-width="1"/>
+    <text x="161" y="157" text-anchor="middle" font-size="10" fill="var(--rt-muted)">stock OS image</text>
+  </g>
+  <text x="161" y="200" text-anchor="middle" font-size="10" fill="var(--rt-muted)">✓ fast · cheap · parallel</text>
+
+  <!-- MIDDLE · same base, plus the missing layers -->
+  <text x="320" y="70" text-anchor="middle" font-size="10" fill="var(--rt-muted)">same base image</text>
+  <path d="M244 78 H396" stroke="var(--rt-line)" stroke-width="1" stroke-dasharray="3 4"/>
+
+  <!-- RIGHT · real device, shipped OS -->
+  <text x="479" y="22" text-anchor="middle" font-size="10" letter-spacing="0.08em" fill="var(--rt-signal)">REAL DEVICE · shipped OS</text>
+  <rect x="404" y="32" width="150" height="196" rx="14" fill="var(--rt-paper)" stroke="var(--rt-line-strong)" stroke-width="1.25"/>
+  <rect x="464" y="42" width="30" height="3" rx="1.5" fill="var(--rt-line-strong)"/>
+  <!-- base (same as sim) -->
+  <g>
+    <rect x="418" y="52" width="122" height="25" fill="var(--rt-surface)" stroke="var(--rt-line-strong)" stroke-width="1"/>
+    <text x="479" y="69" text-anchor="middle" font-size="10" fill="var(--rt-muted)">your app</text>
+    <rect x="418" y="79" width="122" height="25" fill="var(--rt-surface)" stroke="var(--rt-line-strong)" stroke-width="1"/>
+    <text x="479" y="96" text-anchor="middle" font-size="10" fill="var(--rt-muted)">framework</text>
+    <rect x="418" y="106" width="122" height="25" fill="var(--rt-surface)" stroke="var(--rt-line-strong)" stroke-width="1"/>
+    <text x="479" y="123" text-anchor="middle" font-size="10" fill="var(--rt-muted)">OS image</text>
+  </g>
+  <!-- the extra layers a stock image never has -->
+  <g>
+    <rect x="418" y="133" width="122" height="25" fill="var(--rt-signal-soft)" stroke="var(--rt-signal)" stroke-width="1.25"/>
+    <text x="479" y="150" text-anchor="middle" font-size="10" fill="var(--rt-signal)">OEM skin + mods</text>
+    <rect x="418" y="160" width="122" height="25" fill="var(--rt-signal-soft)" stroke="var(--rt-signal)" stroke-width="1.25"/>
+    <text x="479" y="177" text-anchor="middle" font-size="10" fill="var(--rt-signal)">thermal throttle</text>
+    <rect x="418" y="187" width="122" height="25" fill="var(--rt-signal-soft)" stroke="var(--rt-signal)" stroke-width="1.25"/>
+    <text x="479" y="204" text-anchor="middle" font-size="10" fill="var(--rt-signal)">Widevine L1</text>
+  </g>
+  <!-- signal brace: these exist only on real hardware -->
+  <path d="M548 133 h6 v79 h-6" stroke="var(--rt-signal)" stroke-width="1.25"/>
+  <text x="560" y="168" font-size="9" fill="var(--rt-signal)">real</text>
+  <text x="560" y="180" font-size="9" fill="var(--rt-signal)">only</text>
+
+  <!-- the bug lives in the layers the image lacks -->
+  <circle cx="418" cy="172" r="7" fill="var(--rt-amber)"/>
+  <text x="418" y="176" text-anchor="middle" font-size="10" fill="var(--rt-paper)">!</text>
+  <path d="M410 172 L316 156" stroke="var(--rt-amber)" stroke-width="1.25"/>
+  <text x="310" y="150" text-anchor="end" font-size="10" fill="var(--rt-amber)">the bug that isn't</text>
+  <text x="310" y="164" text-anchor="end" font-size="10" fill="var(--rt-amber)">in the image</text>
+</svg>

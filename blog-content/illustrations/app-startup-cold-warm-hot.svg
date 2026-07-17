@@ -1,0 +1,39 @@
+<svg viewBox="0 0 640 250" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" font-family="'IBM Plex Mono', monospace">
+  <text x="48" y="24" font-size="10" letter-spacing="0.1em" fill="var(--rt-muted)">APP STARTUP · time to first frame</text>
+
+  <!-- COLD -->
+  <text x="48" y="74" font-size="12" fill="var(--rt-ink)">COLD</text>
+  <path d="M120 70 H590" stroke="var(--rt-line)" stroke-width="6"/>
+  <path d="M120 70 H175" stroke="var(--rt-signal)" stroke-width="6"/>
+  <text x="150" y="56" text-anchor="middle" font-size="9" fill="var(--rt-signal)">aim here</text>
+  <path d="M590 54 V86" stroke="var(--rt-amber)" stroke-width="2"/>
+  <text x="585" y="50" text-anchor="end" font-size="10" fill="var(--rt-amber)">EXCESSIVE · 5s</text>
+
+  <!-- WARM -->
+  <text x="48" y="124" font-size="12" fill="var(--rt-ink)">WARM</text>
+  <path d="M120 120 H308" stroke="var(--rt-line)" stroke-width="6"/>
+  <path d="M120 120 H168" stroke="var(--rt-signal)" stroke-width="6"/>
+  <path d="M308 104 V136" stroke="var(--rt-amber)" stroke-width="2"/>
+  <text x="316" y="124" font-size="10" fill="var(--rt-amber)">EXCESSIVE · 2s</text>
+
+  <!-- HOT -->
+  <text x="48" y="174" font-size="12" fill="var(--rt-ink)">HOT</text>
+  <path d="M120 170 H261" stroke="var(--rt-line)" stroke-width="6"/>
+  <path d="M120 170 H160" stroke="var(--rt-signal)" stroke-width="6"/>
+  <path d="M261 154 V186" stroke="var(--rt-amber)" stroke-width="2"/>
+  <text x="269" y="174" font-size="10" fill="var(--rt-amber)">EXCESSIVE · 1.5s</text>
+
+  <!-- shared axis -->
+  <path d="M120 204 H590" stroke="var(--rt-line-strong)" stroke-width="1"/>
+  <g font-size="9" fill="var(--rt-muted)">
+    <path d="M120 204 V209 M214 204 V209 M308 204 V209 M402 204 V209 M496 204 V209 M590 204 V209" stroke="var(--rt-line-strong)" stroke-width="1"/>
+    <text x="120" y="220" text-anchor="middle">0</text>
+    <text x="214" y="220" text-anchor="middle">1s</text>
+    <text x="308" y="220" text-anchor="middle">2s</text>
+    <text x="402" y="220" text-anchor="middle">3s</text>
+    <text x="496" y="220" text-anchor="middle">4s</text>
+    <text x="590" y="220" text-anchor="middle">5s</text>
+  </g>
+
+  <text x="120" y="242" font-size="11" fill="var(--rt-muted)">the quoted number is Google's failure line, not the target</text>
+</svg>

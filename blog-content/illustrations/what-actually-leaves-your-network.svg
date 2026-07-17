@@ -1,0 +1,50 @@
+<svg viewBox="0 0 640 250" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" font-family="'IBM Plex Mono', monospace">
+  <text x="40" y="26" font-size="10" letter-spacing="0.1em" fill="var(--rt-muted)">HOW LONG YOUR DATA STAYS · AWS Device Farm</text>
+
+  <!-- the vendor cloud container -->
+  <path d="M60 60 q-14 0 -14 -13 q0 -12 14 -12 q4 -13 18 -9 q8 -14 22 -6 q14 -4 16 10 H60 Z"
+        transform="translate(430 -14)" fill="var(--rt-paper)" stroke="var(--rt-muted)" stroke-width="1.1"/>
+  <rect x="40" y="44" width="470" height="174" rx="10" fill="none" stroke="var(--rt-muted)" stroke-width="1.25" stroke-dasharray="7 5"/>
+  <text x="56" y="62" font-size="10" fill="var(--rt-muted)">VENDOR CLOUD · your artifacts at rest</text>
+
+  <!-- CHIP 1 · app binary -->
+  <rect x="58" y="72" width="434" height="42" rx="4" fill="var(--rt-surface)" stroke="var(--rt-line-strong)" stroke-width="1"/>
+  <rect x="72" y="84" width="18" height="18" rx="3" fill="var(--rt-paper)" stroke="var(--rt-muted)" stroke-width="1.1"/>
+  <circle cx="81" cy="93" r="3" fill="var(--rt-muted)"/>
+  <text x="102" y="98" font-size="11" fill="var(--rt-ink)">app binary  ·  your unreleased build</text>
+  <text x="430" y="101" text-anchor="end" font-size="20" fill="var(--rt-amber)">30</text>
+  <text x="438" y="100" font-size="10" fill="var(--rt-muted)">days</text>
+  <rect x="466" y="84" width="18" height="17" rx="2" fill="var(--rt-paper)" stroke="var(--rt-muted)" stroke-width="1"/>
+  <path d="M466 89 H484 M471 84 V80 M479 84 V80" stroke="var(--rt-muted)" stroke-width="1"/>
+
+  <!-- CHIP 2 · screen recording · the hero -->
+  <rect x="58" y="122" width="434" height="42" rx="4" fill="var(--rt-surface)" stroke="var(--rt-amber)" stroke-width="1.5"/>
+  <rect x="58" y="122" width="4" height="42" fill="var(--rt-amber)"/>
+  <rect x="72" y="134" width="22" height="18" rx="2" fill="var(--rt-ink)"/>
+  <path d="M79 138 L88 143 L79 148 Z" fill="var(--rt-signal)"/>
+  <text x="102" y="148" font-size="11" fill="var(--rt-ink)">screen recording  ·  your app on screen</text>
+  <text x="430" y="152" text-anchor="end" font-size="22" fill="var(--rt-amber)" font-weight="600">400</text>
+  <text x="438" y="151" font-size="10" fill="var(--rt-amber)">days</text>
+  <rect x="466" y="134" width="18" height="17" rx="2" fill="var(--rt-paper)" stroke="var(--rt-amber)" stroke-width="1"/>
+  <path d="M466 139 H484 M471 134 V130 M479 134 V130" stroke="var(--rt-amber)" stroke-width="1"/>
+
+  <!-- CHIP 3 · logs -->
+  <rect x="58" y="172" width="434" height="42" rx="4" fill="var(--rt-surface)" stroke="var(--rt-line-strong)" stroke-width="1"/>
+  <rect x="72" y="183" width="16" height="20" rx="1.5" fill="var(--rt-paper)" stroke="var(--rt-muted)" stroke-width="1.1"/>
+  <path d="M75 189 H85 M75 193 H85 M75 197 H82" stroke="var(--rt-muted)" stroke-width="1"/>
+  <text x="102" y="198" font-size="11" fill="var(--rt-ink)">logs  ·  every run, every tap</text>
+  <text x="430" y="201" text-anchor="end" font-size="20" fill="var(--rt-amber)">400</text>
+  <text x="438" y="200" font-size="10" fill="var(--rt-amber)">days</text>
+  <rect x="466" y="184" width="18" height="17" rx="2" fill="var(--rt-paper)" stroke="var(--rt-muted)" stroke-width="1"/>
+  <path d="M466 189 H484 M471 184 V180 M479 184 V180" stroke="var(--rt-muted)" stroke-width="1"/>
+
+  <!-- contrast · on-prem keeps nothing -->
+  <rect x="524" y="104" width="92" height="90" rx="4" fill="var(--rt-signal-soft)" stroke="var(--rt-signal)" stroke-width="1.5"/>
+  <circle cx="540" cy="122" r="3" fill="var(--rt-signal)" class="live-dot"/>
+  <text x="570" y="126" text-anchor="middle" font-size="10" fill="var(--rt-signal)">on-prem</text>
+  <text x="570" y="158" text-anchor="middle" font-size="26" fill="var(--rt-signal)" font-weight="600">0</text>
+  <text x="570" y="174" text-anchor="middle" font-size="10" fill="var(--rt-signal)">days</text>
+  <text x="570" y="188" text-anchor="middle" font-size="8" fill="var(--rt-signal)">nothing leaves</text>
+
+  <text x="40" y="238" font-size="9" fill="var(--rt-muted)">elsewhere: Sauce 30d · Firebase 90d · BrowserStack video 30d / logs 60d</text>
+</svg>

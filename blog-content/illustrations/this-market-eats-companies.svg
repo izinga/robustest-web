@@ -1,0 +1,26 @@
+<svg viewBox="0 0 640 236" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" font-family="'IBM Plex Mono', monospace">
+  <!-- header -->
+  <text x="40" y="26" font-size="10" letter-spacing="0.1em" fill="var(--rt-muted)">THE MARKET · 2015 — 2026</text>
+  <path d="M40 36 H600" stroke="var(--rt-line-strong)" stroke-width="1"/>
+
+  <!-- the departed: neutral, factual, exactly as the post lists them -->
+  <g font-size="13" fill="var(--rt-muted)">
+    <text x="40" y="66">2015</text><text x="104" y="66">S3 Group / StormTest</text><text x="352" y="66">→</text><text x="378" y="66">Accenture</text>
+    <text x="40" y="94">2018</text><text x="104" y="94">Perfecto</text><text x="352" y="94">→</text><text x="378" y="94">Perforce</text>
+    <text x="40" y="122">2022</text><text x="104" y="122">Eurofins DT</text><text x="352" y="122">→</text><text x="378" y="122">Resillion</text>
+    <text x="40" y="150">2024</text><text x="104" y="150">HeadSpin</text><text x="352" y="150">→</text><text x="378" y="150">PartnerOne</text>
+    <text x="40" y="178">2026</text><text x="104" y="178">LambdaTest</text><text x="352" y="178">→</text><text x="378" y="178">TestMu AI</text>
+  </g>
+
+  <!-- separator -->
+  <path d="M40 196 H600" stroke="var(--rt-line-strong)" stroke-width="1"/>
+
+  <!-- the one still standing -->
+  <rect x="32" y="204" width="576" height="26" fill="var(--rt-signal-soft)"/>
+  <circle cx="46" cy="217" r="3" fill="var(--rt-signal)" class="live-dot"/>
+  <g font-size="13" fill="var(--rt-signal)">
+    <text x="104" y="222" font-weight="600">RobusTest</text>
+    <text x="352" y="222">▸</text>
+    <text x="378" y="222" font-weight="600">still independent</text>
+  </g>
+</svg>

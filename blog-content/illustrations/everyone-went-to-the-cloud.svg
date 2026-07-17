@@ -1,0 +1,59 @@
+<svg viewBox="0 0 640 240" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" font-family="'IBM Plex Mono', monospace">
+  <!-- headers -->
+  <text x="40" y="24" font-size="10" letter-spacing="0.1em" fill="var(--rt-muted)">EVERYONE ELSE · 2015 →</text>
+  <text x="356" y="24" font-size="10" letter-spacing="0.1em" fill="var(--rt-signal)">ROBUSTEST · FULL-STACK ON-PREM</text>
+  <path d="M322 34 V210" stroke="var(--rt-line)" stroke-width="1"/>
+
+  <!-- LEFT · the industry pattern: your app leaves your network for a public cloud -->
+  <path d="M130 76 Q110 76 110 61 Q110 47 126 46 Q128 32 145 32 Q155 32 160 39 Q166 29 180 29 Q197 29 199 44 Q216 46 216 60 Q216 76 196 76 Z"
+        fill="var(--rt-paper)" stroke="var(--rt-line-strong)" stroke-width="1.25"/>
+  <text x="163" y="54" text-anchor="middle" font-size="10" fill="var(--rt-muted)">PUBLIC CLOUD</text>
+  <text x="163" y="67" text-anchor="middle" font-size="9" fill="var(--rt-muted)">someone else's lab</text>
+
+  <!-- your network, punctured where the upload crosses it -->
+  <path d="M75 142 H153 M173 142 H251 V208 H75 V142" stroke="var(--rt-muted)" stroke-width="1.25" stroke-dasharray="6 4"/>
+  <rect x="123" y="158" width="80" height="34" fill="var(--rt-paper)" stroke="var(--rt-line-strong)" stroke-width="1.25"/>
+  <text x="163" y="179" text-anchor="middle" font-size="11" fill="var(--rt-muted)">your app</text>
+  <text x="163" y="226" text-anchor="middle" font-size="10" fill="var(--rt-muted)">your network</text>
+
+  <!-- the upload out of the building -->
+  <path d="M163 158 V84" stroke="var(--rt-amber)" stroke-width="1.5" stroke-dasharray="4 4"/>
+  <path d="M158 93 L163 83 L168 93" stroke="var(--rt-amber)" stroke-width="1.5"/>
+  <text x="175" y="120" font-size="10" fill="var(--rt-amber)">app + data leave</text>
+
+  <!-- RIGHT · the whole lab inside the customer's walls -->
+  <rect x="356" y="46" width="248" height="162" stroke="var(--rt-signal)" stroke-width="1.5" stroke-dasharray="6 4"/>
+  <text x="480" y="226" text-anchor="middle" font-size="10" fill="var(--rt-signal)">your network · nothing leaves</text>
+
+  <!-- control plane -->
+  <rect x="376" y="70" width="106" height="36" fill="var(--rt-paper)" stroke="var(--rt-line-strong)" stroke-width="1.25"/>
+  <circle cx="388" cy="88" r="3" fill="var(--rt-signal)" class="live-dot"/>
+  <text x="398" y="92" font-size="10" fill="var(--rt-ink)">control plane</text>
+
+  <!-- devices -->
+  <g fill="var(--rt-paper)" stroke="var(--rt-line-strong)" stroke-width="1.25">
+    <rect x="512" y="70" width="22" height="36"/>
+    <rect x="540" y="70" width="22" height="36"/>
+    <rect x="568" y="70" width="22" height="36"/>
+  </g>
+  <g fill="var(--rt-signal-soft)">
+    <rect x="516" y="74" width="14" height="22"/>
+    <rect x="544" y="74" width="14" height="22"/>
+    <rect x="572" y="74" width="14" height="22"/>
+  </g>
+  <text x="551" y="124" text-anchor="middle" font-size="10" fill="var(--rt-muted)">devices</text>
+
+  <!-- storage -->
+  <g stroke="var(--rt-signal)" stroke-width="1.25">
+    <path d="M436 150 V176 Q436 185 472 185 Q508 185 508 176 V150" fill="var(--rt-signal-soft)"/>
+    <ellipse cx="472" cy="150" rx="36" ry="9" fill="var(--rt-signal-soft)"/>
+  </g>
+  <text x="472" y="174" text-anchor="middle" font-size="10" fill="var(--rt-signal)">storage</text>
+
+  <!-- internal wiring: the loop never crosses the boundary -->
+  <g stroke="var(--rt-signal)" stroke-width="1.5" class="flow-path">
+    <path d="M482 88 H512"/>
+    <path d="M434 106 V143"/>
+    <path d="M579 106 V162 H509"/>
+  </g>
+</svg>
