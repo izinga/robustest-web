@@ -190,7 +190,7 @@ release-linux: build-linux docs-fetch
 	@rm -rf $(DIST_DIR)/*
 	@mkdir -p $(DIST_DIR)
 	@cp $(APP_NAME)-linux $(APP_NAME)
-	tar -czvf $(DIST_DIR)/$(APP_NAME)-linux.tar.gz \
+	COPYFILE_DISABLE=1 tar --no-xattrs -czvf $(DIST_DIR)/$(APP_NAME)-linux.tar.gz \
 		$(APP_NAME) \
 		$(PUBLIC_DIR) \
 		docs-content \

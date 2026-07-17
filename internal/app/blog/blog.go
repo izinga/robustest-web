@@ -9,6 +9,7 @@ import (
 	"bytes"
 	"fmt"
 	"html/template"
+	"log"
 	"os"
 	"path/filepath"
 	"regexp"
@@ -131,17 +132,23 @@ func (s *Store) Load() error {
 	bySlug := make(map[string]*Post, len(entries))
 
 	for _, path := range entries {
-		slug := strings.TrimSuffix(filepath.Base(path), ".md")
-		if strings.HasPrefix(slug, "_") {
-			continue // _template.md and friends
+		base := filepath.Base(path)
+		// Skip dotfiles (notably macOS "._" AppleDouble resource forks that a
+		// macOS tar can smuggle into a release archive) and _template.md.
+		if strings.HasPrefix(base, ".") || strings.HasPrefix(base, "_") {
+			continue
 		}
+		slug := strings.TrimSuffix(base, ".md")
 		raw, err := os.ReadFile(path)
 		if err != nil {
-			return fmt.Errorf("blog: read %s: %w", path, err)
+			log.Printf("blog: skipping %s: %v", path, err)
+			continue
 		}
+		// One malformed post must not take the whole blog down with it.
 		p, err := parsePost(slug, raw)
 		if err != nil {
-			return fmt.Errorf("blog: parse %s: %w", path, err)
+			log.Printf("blog: skipping %s: %v", path, err)
+			continue
 		}
 		if p.Draft {
 			continue
