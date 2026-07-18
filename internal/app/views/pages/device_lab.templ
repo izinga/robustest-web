@@ -7,14 +7,14 @@ import (
 
 templ DeviceLabPage() {
 	@layouts.Base(
-		"Device lab operations — RobusTest",
-		"Run fifty phones and a TV wall as reliable infrastructure: health scoring, booking, smart power control, iOS MDM for unattended installs, a versioned build library, and multi-site lab nodes.",
+		"On-premise device lab operations — RobusTest",
+		"Run fifty phones and a TV wall as a self-hosted, on-premise device lab: health scoring, booking, power control, iOS MDM, a build library, and multi-site nodes — every device inside your own network.",
 		"/platform/device-lab",
 	) {
 		@components.PageHero(
-			"Device lab operations",
+			"On-premise device lab",
 			"Fifty phones is infrastructure, not a drawer of cables.",
-			"A device lab earns its keep only when every phone is charged, healthy, findable, and bookable. RobusTest runs the operational side — inventory, health, power, installs, and usage — so the lab stays up without someone walking the rack.",
+			"A device lab earns its keep only when every phone is charged, healthy, findable, and bookable. RobusTest runs the operational side of an on-premise lab — inventory, health, power, installs, and usage, every device inside your own network — so the lab stays up without someone walking the rack.",
 		)
 		@dlFleet()
 		@dlHealth()
@@ -136,6 +136,9 @@ templ dlDistributed() {
 		<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
 			@components.SectionTag("Distributed labs & accounting")
 			<h2 class="font-display font-bold text-3xl md:text-4xl tracking-tight max-w-2xl">One lab, many rooms — or many cities.</h2>
+			<p class="text-muted mt-4 max-w-2xl leading-relaxed">
+				Every node runs on your own hardware, inside your own network — on-premise by default, air-gapped if a security review demands it. The devices, the builds, and the captured data never leave your walls. See <a href="/blog/which-device-clouds-run-in-your-data-centre" class="underline decoration-line-strong underline-offset-2 hover:text-ink">which device clouds can actually run in your data centre</a>, or why <a href="/blog/we-ship-the-lab-you-keep-the-phones" class="underline decoration-line-strong underline-offset-2 hover:text-ink">we ship the lab hardware but never your devices</a>.
+			</p>
 			<div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-line border border-line mt-10">
 				@dlCard("NODES", "Multi-node orchestration", "Devices attach to lightweight node agents on any machine; one RobusTest server coordinates them all. Add a node, and its devices join the pool.")
 				@dlCard("TUNNEL", "Remote sites", "Nodes behind NAT or in another office reach the server over secure tunnels — a satellite lab needs a machine and a network jack, not a VPN project.")

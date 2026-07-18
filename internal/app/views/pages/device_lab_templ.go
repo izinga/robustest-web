@@ -47,9 +47,9 @@ func DeviceLabPage() templ.Component {
 			}
 			ctx = templ.InitializeContext(ctx)
 			templ_7745c5c3_Err = components.PageHero(
-				"Device lab operations",
+				"On-premise device lab",
 				"Fifty phones is infrastructure, not a drawer of cables.",
-				"A device lab earns its keep only when every phone is charged, healthy, findable, and bookable. RobusTest runs the operational side — inventory, health, power, installs, and usage — so the lab stays up without someone walking the rack.",
+				"A device lab earns its keep only when every phone is charged, healthy, findable, and bookable. RobusTest runs the operational side of an on-premise lab — inventory, health, power, installs, and usage, every device inside your own network — so the lab stays up without someone walking the rack.",
 			).Render(ctx, templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
@@ -108,8 +108,8 @@ func DeviceLabPage() templ.Component {
 			return nil
 		})
 		templ_7745c5c3_Err = layouts.Base(
-			"Device lab operations — RobusTest",
-			"Run fifty phones and a TV wall as reliable infrastructure: health scoring, booking, smart power control, iOS MDM for unattended installs, a versioned build library, and multi-site lab nodes.",
+			"On-premise device lab operations — RobusTest",
+			"Run fifty phones and a TV wall as a self-hosted, on-premise device lab: health scoring, booking, power control, iOS MDM, a build library, and multi-site nodes — every device inside your own network.",
 			"/platform/device-lab",
 		).Render(templ.WithChildren(ctx, templ_7745c5c3_Var2), templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
@@ -450,7 +450,7 @@ func dlDistributed() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 24, "<h2 class=\"font-display font-bold text-3xl md:text-4xl tracking-tight max-w-2xl\">One lab, many rooms — or many cities.</h2><div class=\"grid grid-cols-1 md:grid-cols-3 gap-px bg-line border border-line mt-10\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 24, "<h2 class=\"font-display font-bold text-3xl md:text-4xl tracking-tight max-w-2xl\">One lab, many rooms — or many cities.</h2><p class=\"text-muted mt-4 max-w-2xl leading-relaxed\">Every node runs on your own hardware, inside your own network — on-premise by default, air-gapped if a security review demands it. The devices, the builds, and the captured data never leave your walls. See <a href=\"/blog/which-device-clouds-run-in-your-data-centre\" class=\"underline decoration-line-strong underline-offset-2 hover:text-ink\">which device clouds can actually run in your data centre</a>, or why <a href=\"/blog/we-ship-the-lab-you-keep-the-phones\" class=\"underline decoration-line-strong underline-offset-2 hover:text-ink\">we ship the lab hardware but never your devices</a>.</p><div class=\"grid grid-cols-1 md:grid-cols-3 gap-px bg-line border border-line mt-10\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -502,7 +502,7 @@ func dlCard(tag string, title string, desc string) templ.Component {
 		var templ_7745c5c3_Var10 string
 		templ_7745c5c3_Var10, templ_7745c5c3_Err = templ.JoinStringErrs(tag)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/device_lab.templ`, Line: 150, Col: 25}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/device_lab.templ`, Line: 153, Col: 25}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var10))
 		if templ_7745c5c3_Err != nil {
@@ -515,7 +515,7 @@ func dlCard(tag string, title string, desc string) templ.Component {
 		var templ_7745c5c3_Var11 string
 		templ_7745c5c3_Var11, templ_7745c5c3_Err = templ.JoinStringErrs(title)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/device_lab.templ`, Line: 151, Col: 57}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/device_lab.templ`, Line: 154, Col: 57}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var11))
 		if templ_7745c5c3_Err != nil {
@@ -528,7 +528,7 @@ func dlCard(tag string, title string, desc string) templ.Component {
 		var templ_7745c5c3_Var12 string
 		templ_7745c5c3_Var12, templ_7745c5c3_Err = templ.JoinStringErrs(desc)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/device_lab.templ`, Line: 152, Col: 59}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/device_lab.templ`, Line: 155, Col: 59}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var12))
 		if templ_7745c5c3_Err != nil {
