@@ -1,0 +1,62 @@
+<svg viewBox="0 0 640 250" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" font-family="'IBM Plex Mono', monospace">
+  <text x="40" y="24" font-size="10" letter-spacing="0.12em" fill="var(--rt-muted)">DATA RESIDENCY · STAYS IN INDIA</text>
+
+  <!-- compliance boundary · everything regulated lives in here -->
+  <rect x="40" y="44" width="340" height="170" rx="6" fill="var(--rt-signal-soft)" stroke="var(--rt-signal)" stroke-width="1.5"/>
+  <text x="56" y="66" font-size="10" letter-spacing="0.08em" fill="var(--rt-signal)">INDIA · YOUR NETWORK</text>
+
+  <!-- regulator tags pinned along the boundary edge -->
+  <rect x="18" y="92" width="44" height="16" rx="3" fill="var(--rt-paper)" stroke="var(--rt-signal)" stroke-width="1"/>
+  <text x="40" y="103" text-anchor="middle" font-size="8" letter-spacing="0.05em" fill="var(--rt-signal)">RBI</text>
+  <rect x="18" y="118" width="44" height="16" rx="3" fill="var(--rt-paper)" stroke="var(--rt-signal)" stroke-width="1"/>
+  <text x="40" y="129" text-anchor="middle" font-size="8" letter-spacing="0.05em" fill="var(--rt-signal)">IRDAI</text>
+  <rect x="18" y="144" width="44" height="16" rx="3" fill="var(--rt-paper)" stroke="var(--rt-signal)" stroke-width="1"/>
+  <text x="40" y="155" text-anchor="middle" font-size="8" letter-spacing="0.05em" fill="var(--rt-signal)">SEBI</text>
+
+  <!-- regulated data store -->
+  <path d="M83 96 V138 a32 8 0 0 0 64 0 V96" fill="var(--rt-surface)" stroke="var(--rt-line-strong)" stroke-width="1.25"/>
+  <path d="M83 110 a32 8 0 0 0 64 0 M83 124 a32 8 0 0 0 64 0" stroke="var(--rt-line)" stroke-width="1"/>
+  <ellipse cx="115" cy="96" rx="32" ry="8" fill="var(--rt-surface)" stroke="var(--rt-line-strong)" stroke-width="1.25"/>
+  <text x="115" y="166" text-anchor="middle" font-size="9" fill="var(--rt-ink)">payment · policy ·</text>
+  <text x="115" y="178" text-anchor="middle" font-size="9" fill="var(--rt-ink)">securities data</text>
+
+  <!-- data flows to the test device · both inside -->
+  <path d="M155 122 H222" stroke="var(--rt-line-strong)" stroke-width="1" stroke-dasharray="4 3"/>
+  <path d="M218 118.5 L226 122 L218 125.5 Z" fill="var(--rt-line-strong)"/>
+  <text x="190" y="114" text-anchor="middle" font-size="8" fill="var(--rt-muted)">under test</text>
+
+  <!-- the test device · sits inside the boundary -->
+  <rect x="228" y="84" width="48" height="80" rx="7" fill="var(--rt-surface)" stroke="var(--rt-line-strong)" stroke-width="1.25"/>
+  <path d="M245 89.5 H259" stroke="var(--rt-line)" stroke-width="1.25"/>
+  <rect x="235" y="94" width="34" height="56" rx="2" fill="var(--rt-paper)" stroke="var(--rt-line)" stroke-width="1"/>
+  <rect x="241" y="102" width="22" height="3" rx="1.5" fill="var(--rt-muted)"/>
+  <rect x="241" y="109" width="16" height="3" rx="1.5" fill="var(--rt-muted)"/>
+  <rect x="241" y="136" width="22" height="5" rx="1" fill="var(--rt-signal)"/>
+  <path d="M246 157 H258" stroke="var(--rt-line)" stroke-width="1.25"/>
+  <text x="252" y="178" text-anchor="middle" font-size="9" fill="var(--rt-ink)">TEST DEVICE</text>
+  <text x="252" y="190" text-anchor="middle" font-size="8" fill="var(--rt-muted)">on-prem · in the lab</text>
+
+  <!-- attempted export path · stopped at the boundary gate -->
+  <path d="M284 130 H360" stroke="var(--rt-ink)" stroke-width="1.25"/>
+  <path d="M360 125 L370 130 L360 135 Z" fill="var(--rt-ink)"/>
+  <text x="324" y="120" text-anchor="middle" font-size="8" fill="var(--rt-muted)">export path</text>
+
+  <!-- amber stop-gate on the boundary edge -->
+  <rect x="373" y="94" width="14" height="72" fill="var(--rt-paper)" stroke="var(--rt-amber)" stroke-width="1.5"/>
+  <path d="M373 108 L387 94 M373 124 L387 110 M373 140 L387 126 M373 156 L387 142 M373 166 L387 156" stroke="var(--rt-amber)" stroke-width="1.25"/>
+  <rect x="323" y="174" width="114" height="16" rx="3" fill="var(--rt-paper)" stroke="var(--rt-amber)" stroke-width="1"/>
+  <text x="380" y="185" text-anchor="middle" font-size="8.5" fill="var(--rt-amber)">stored only in India</text>
+
+  <!-- outside · the third-party device cloud the data never reaches -->
+  <text x="510" y="70" text-anchor="middle" font-size="9" letter-spacing="0.08em" fill="var(--rt-muted)">OUTSIDE THE BOUNDARY</text>
+  <path d="M390 130 H456" stroke="var(--rt-muted)" stroke-width="1" stroke-dasharray="3 4"/>
+  <path d="M482 140 q-18 0 -18 -14 q0 -13 15 -14 q3 -15 19 -11 q9 -14 24 -6 q16 -4 19 11 q15 1 15 15 q0 19 -19 19 Z" fill="var(--rt-surface)" stroke="var(--rt-muted)" stroke-width="1.25"/>
+  <rect x="496" y="110" width="12" height="20" rx="2" fill="var(--rt-paper)" stroke="var(--rt-muted)" stroke-width="1"/>
+  <path d="M499 126 H505" stroke="var(--rt-muted)" stroke-width="1"/>
+  <rect x="514" y="110" width="12" height="20" rx="2" fill="var(--rt-paper)" stroke="var(--rt-muted)" stroke-width="1"/>
+  <path d="M517 126 H523" stroke="var(--rt-muted)" stroke-width="1"/>
+  <text x="510" y="158" text-anchor="middle" font-size="9" letter-spacing="0.06em" fill="var(--rt-muted)">3RD-PARTY DEVICE CLOUD</text>
+  <text x="510" y="176" text-anchor="middle" font-size="8.5" fill="var(--rt-muted)">regulated data never lands here</text>
+
+  <text x="320" y="238" text-anchor="middle" font-size="11" fill="var(--rt-muted)">the test lab is inside the boundary</text>
+</svg>

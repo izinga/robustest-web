@@ -1,0 +1,74 @@
+<svg viewBox="0 0 640 250" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" font-family="'IBM Plex Mono', monospace">
+  <text x="40" y="22" font-size="10" letter-spacing="0.12em" fill="var(--rt-muted)">NO RESIDENCY LAW — STRICTER RULES</text>
+
+  <!-- US SOIL boundary: solid on all sides except a controlled gap on the right (the access gate) -->
+  <rect x="36" y="44" width="300" height="168" fill="var(--rt-signal-soft)"/>
+  <path d="M336 100 V44 H36 V212 H336 V152" stroke="var(--rt-signal)" stroke-width="1.5"/>
+  <text x="52" y="64" font-size="11" letter-spacing="0.14em" fill="var(--rt-signal)">US SOIL</text>
+  <text x="320" y="64" text-anchor="end" font-size="9" fill="var(--rt-muted)">ITAR/EAR · FedRAMP · CJIS</text>
+
+  <!-- controlled-data chips -->
+  <rect x="52" y="92" width="84" height="56" rx="4" fill="var(--rt-surface)" stroke="var(--rt-line)" stroke-width="1"/>
+  <rect x="86" y="98" width="16" height="20" rx="2" fill="var(--rt-paper)" stroke="var(--rt-muted)" stroke-width="1.1"/>
+  <path d="M90 104 h8 M90 108 h8 M90 112 h5" stroke="var(--rt-muted)" stroke-width="1"/>
+  <text x="94" y="131" text-anchor="middle" font-size="9" fill="var(--rt-ink)">app builds</text>
+  <text x="94" y="142" text-anchor="middle" font-size="9" fill="var(--rt-muted)">ITAR</text>
+
+  <rect x="144" y="92" width="84" height="56" rx="4" fill="var(--rt-surface)" stroke="var(--rt-line)" stroke-width="1"/>
+  <path d="M174 100 l12 -7 l12 7 Z M178 104 v10 M186 104 v10 M194 104 v10 M173 118 h26" stroke="var(--rt-muted)" stroke-width="1.1"/>
+  <text x="186" y="131" text-anchor="middle" font-size="9" fill="var(--rt-ink)">gov records</text>
+  <text x="186" y="142" text-anchor="middle" font-size="9" fill="var(--rt-muted)">FEDERAL</text>
+
+  <rect x="236" y="92" width="84" height="56" rx="4" fill="var(--rt-surface)" stroke="var(--rt-line)" stroke-width="1"/>
+  <path d="M275 96 h6 v6 h6 v6 h-6 v6 h-6 v-6 h-6 v-6 h6 Z" fill="var(--rt-paper)" stroke="var(--rt-muted)" stroke-width="1.1"/>
+  <text x="278" y="131" text-anchor="middle" font-size="9" fill="var(--rt-ink)">health data</text>
+  <text x="278" y="142" text-anchor="middle" font-size="9" fill="var(--rt-muted)">PHI</text>
+
+  <!-- who may touch it: the cleared US-person admin, and keys that stay yours -->
+  <circle cx="66" cy="172" r="5" stroke="var(--rt-signal)" stroke-width="1.3"/>
+  <path d="M56 190 q10 -11 20 0" stroke="var(--rt-signal)" stroke-width="1.3"/>
+  <circle cx="80" cy="186" r="5.5" fill="var(--rt-signal-soft)" stroke="var(--rt-signal)" stroke-width="1.1"/>
+  <path d="M77.5 186 l2 2 l3.8 -4" stroke="var(--rt-signal)" stroke-width="1.3"/>
+  <text x="94" y="177" font-size="10" fill="var(--rt-ink)">cleared admin</text>
+  <text x="94" y="190" font-size="9" fill="var(--rt-muted)">US person · screened</text>
+
+  <rect x="288" y="174" width="17" height="13" rx="2" stroke="var(--rt-signal)" stroke-width="1.2"/>
+  <path d="M291.5 174 v-4 q0 -5 5 -5 q5 0 5 5 v4" stroke="var(--rt-signal)" stroke-width="1.2"/>
+  <circle cx="296.5" cy="180" r="1.4" fill="var(--rt-signal)"/>
+  <text x="297" y="199" text-anchor="middle" font-size="9" fill="var(--rt-muted)">your keys</text>
+
+  <!-- ACCESS GATE on the boundary -->
+  <rect x="331" y="90" width="10" height="10" fill="var(--rt-paper)" stroke="var(--rt-signal)" stroke-width="1.2"/>
+  <rect x="331" y="152" width="10" height="10" fill="var(--rt-paper)" stroke="var(--rt-signal)" stroke-width="1.2"/>
+  <path d="M336 102 V150" stroke="var(--rt-signal)" stroke-width="1.2" stroke-dasharray="3 4"/>
+  <path d="M336 115 l9 4 v9 q0 9 -9 12 q-9 -3 -9 -12 v-9 Z" fill="var(--rt-paper)" stroke="var(--rt-signal)" stroke-width="1.3"/>
+  <path d="M331.5 127 l3.5 3.5 l6.5 -6.5" stroke="var(--rt-signal)" stroke-width="1.5"/>
+  <text x="344" y="54" font-size="9" letter-spacing="0.08em" fill="var(--rt-muted)">ACCESS GATE</text>
+  <text x="344" y="66" font-size="9" fill="var(--rt-signal)">US PERSONS ONLY</text>
+  <path d="M352 70 q-7 12 -14 19" stroke="var(--rt-line)" stroke-width="1"/>
+
+  <!-- amber barrier: the reach from outside stops here -->
+  <rect x="374" y="94" width="8" height="64" rx="1.5" fill="var(--rt-amber)"/>
+  <path d="M374 106 l8 -8 M374 122 l8 -8 M374 138 l8 -8 M374 154 l8 -8" stroke="var(--rt-paper)" stroke-width="2.5"/>
+
+  <!-- foreign reach, blocked -->
+  <path d="M450 124 H390" stroke="var(--rt-amber)" stroke-width="1.5"/>
+  <path d="M398 117 L387 124 L398 131" stroke="var(--rt-amber)" stroke-width="1.5"/>
+  <text x="497" y="172" text-anchor="middle" font-size="9.5" fill="var(--rt-amber)">foreign access = deemed export</text>
+  <text x="497" y="185" text-anchor="middle" font-size="9" fill="var(--rt-muted)">a login counts the same as a shipment</text>
+
+  <!-- GLOBAL DEVICE CLOUD, staffed from everywhere -->
+  <path d="M452 146 H600 q24 0 24 -20 q0 -18 -18 -20 q6 -22 -20 -24 q-6 -18 -28 -14 q-14 -14 -32 -4 q-20 -10 -34 4 q-24 -2 -26 20 q-18 4 -18 24 q0 30 4 34 Z" fill="var(--rt-surface)" stroke="var(--rt-muted)" stroke-width="1.25"/>
+  <text x="536" y="88" text-anchor="middle" font-size="10" fill="var(--rt-muted)">GLOBAL DEVICE CLOUD</text>
+  <circle cx="486" cy="105" r="4" stroke="var(--rt-muted)" stroke-width="1.2"/>
+  <path d="M478 118 q8 -9 16 0" stroke="var(--rt-muted)" stroke-width="1.2"/>
+  <text x="486" y="131" text-anchor="middle" font-size="9" fill="var(--rt-muted)">ops·SG</text>
+  <circle cx="534" cy="105" r="4" stroke="var(--rt-muted)" stroke-width="1.2"/>
+  <path d="M526 118 q8 -9 16 0" stroke="var(--rt-muted)" stroke-width="1.2"/>
+  <text x="534" y="131" text-anchor="middle" font-size="9" fill="var(--rt-muted)">admin·DE</text>
+  <circle cx="582" cy="105" r="4" stroke="var(--rt-muted)" stroke-width="1.2"/>
+  <path d="M574 118 q8 -9 16 0" stroke="var(--rt-muted)" stroke-width="1.2"/>
+  <text x="582" y="131" text-anchor="middle" font-size="9" fill="var(--rt-muted)">ops·IN</text>
+
+  <text x="320" y="240" text-anchor="middle" font-size="10.5" fill="var(--rt-muted)">US soil, US persons — or it never leaves your walls</text>
+</svg>
