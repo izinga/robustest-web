@@ -72,7 +72,7 @@ appliance, Kobiton offers on-prem under Enterprise, and [RobusTest runs the full
 it, rather than characterise it.
 
 **"On-prem" and "air-gapped" are not the same.** On-prem means the gear is in your
-building. Air-gapped means it also has no path to the internet — which breaks anything
+building. [Air-gapped](/blog/air-gapped-is-not-just-on-prem) means it also has no path to the internet — which breaks anything
 that needs to phone home (a licence check, an email relay, a push service). If your
 requirement is the stricter one, ask each vendor specifically, because a page that says
 "on-premise" rarely says "and it runs disconnected."

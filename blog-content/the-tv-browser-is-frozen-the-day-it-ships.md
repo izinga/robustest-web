@@ -35,7 +35,7 @@ line works the same way. Pick a model year and you have pinned the browser engin
 with it the exact web-platform features and APIs that app can rely on.
 
 For app developers this is a familiar constraint — you code to the oldest engine you
-support. For a **test lab** it has a sharper consequence, because the tool you drive
+support. For a **device lab** it has a sharper consequence, because the tool you drive
 the app with is subject to the same limit.
 
 ## Why that sets an automation floor

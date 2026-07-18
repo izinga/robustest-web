@@ -8,7 +8,7 @@ author_url: "https://www.linkedin.com/company/robustest/"
 author_image: "/assets/images/authors/author-om.png"
 author_company: "RobusTest"
 author_company_url: "https://www.linkedin.com/company/robustest/"
-date: 2026-07-18
+date: 2026-07-10
 sources:
   - title: "GDPR — Chapter V (Articles 44–50), transfers to third countries"
     url: "https://gdpr-info.eu/chapter-5/"
@@ -72,7 +72,7 @@ next ruling.
 
 ## Why on-premise answers it cleanly
 
-If the lab runs inside the EEA and inside your own network — the devices, the builds,
+If the device lab runs inside the EEA and inside your own network — the devices, the builds,
 and the captured data never crossing a border — there is no Chapter V transfer to
 justify. No adequacy question, no SCCs to paper, no supplementary measures to argue, no
 framework whose validity you have to track in the legal press. The data stayed where the
@@ -84,7 +84,7 @@ fast](/blog/which-device-clouds-run-in-your-data-centre).
 ## The honest boundary
 
 Transfers can be made lawful — SCCs plus genuine supplementary measures do work, and
-fully anonymised or synthetic test data sidesteps GDPR's scope altogether. But real test
+fully anonymised or [synthetic test data](/blog/synthetic-test-data-is-a-trade-off) sidesteps GDPR's scope altogether. But real test
 environments touch real personal data, and "we have the SCCs on file" is an ongoing
 burden of assessment, audit, and legal-risk tracking that on-premise testing simply does
 not create. The cleanest transfer to defend is the one you never made.

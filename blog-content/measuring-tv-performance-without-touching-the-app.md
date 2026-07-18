@@ -61,7 +61,7 @@ this actual panel, under a real session — without a single line added to it.
 ## Why the constraint is worth leaning into
 
 It is tempting to see "no SDK" as a limitation. In practice it is the opposite. An
-outside-in measurement works on every app in the lab — yours and everyone else's —
+outside-in measurement works on every app in the device lab — yours and everyone else's —
 with no integration step, no instrumented build, and nothing to keep in sync with each
 release. The same live session a tester uses to drive the app is the one that
 [reports its performance on the panel](/platform/tv-testing).

@@ -8,7 +8,7 @@ author_url: "https://www.linkedin.com/company/robustest/"
 author_image: "/assets/images/authors/author-om.png"
 author_company: "RobusTest"
 author_company_url: "https://www.linkedin.com/company/robustest/"
-date: 2026-07-18
+date: 2026-07-12
 sources:
   - title: "Braumiller Law — Storing export-controlled data in the cloud"
     url: "https://www.braumillerlaw.com/storing-export-controlled-data-in-the-cloud-whats-the-latest/"
@@ -67,7 +67,7 @@ these regimes "leaving your control" is the whole violation.
 
 ## Why on-premise answers it cleanly
 
-If the lab runs inside your own US facility, on your own network, administered by your
+If the device lab runs inside your own US facility, on your own network, administered by your
 own cleared staff — the devices, the builds, and the captures never leaving the
 building — export-controlled data was never exported, no foreign person could access it,
 and there is no third-party business associate to vet. The US-soil and US-persons-only

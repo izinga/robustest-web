@@ -56,7 +56,7 @@ cleanup is on you to think about.
 
 For most teams none of this matters. For some it's the whole decision:
 
-- A **fintech** app under data-localisation rules can't have its build and [network traffic](/platform/network-capture) sitting in a vendor's region for 400 days.
+- A **fintech** app under [data-localisation rules](/blog/data-residency-reaches-the-test-device) can't have its build and [network traffic](/platform/network-capture) sitting in a vendor's region for 400 days.
 - A **broadcaster** testing an unreleased streaming app — the thing competitors would
   most like to see early — has to account for a screen recording of it living on
   someone else's cloud for weeks.

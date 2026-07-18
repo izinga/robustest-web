@@ -8,7 +8,7 @@ author_url: "https://www.linkedin.com/company/robustest/"
 author_image: "/assets/images/authors/author-om.png"
 author_company: "RobusTest"
 author_company_url: "https://www.linkedin.com/company/robustest/"
-date: 2026-07-18
+date: 2026-07-07
 sources:
   - title: "RBI — Storage of Payment System Data (FAQ + April 2018 directive)"
     url: "https://www.rbi.org.in/commonman/english/scripts/FAQs.aspx?Id=2995"
@@ -78,8 +78,8 @@ who could read it" is not answered by "our testing vendor handles that."
 
 ## Why on-premise answers it cleanly
 
-If the lab runs inside your own network — the devices, the builds, the captured video,
-and the logs never leaving your walls, air-gapped if the review demands it — the
+If the device lab runs inside your own network — the devices, the builds, the captured video,
+and the logs never leaving your walls, [air-gapped](/blog/air-gapped-is-not-just-on-prem) if the review demands it — the
 residency question answers itself. There is no foreign leg to document, no vendor
 retention window to prove you closed, no data you have to certify you repatriated
 within 24 hours. The test data was never anywhere it wasn't allowed to be. That is the
@@ -90,7 +90,7 @@ can't](/blog/which-device-clouds-run-in-your-data-centre).
 
 ## The honest boundary
 
-If you test strictly with synthetic data, the calculus softens — genuinely. But real
+If you test strictly with [synthetic data](/blog/synthetic-test-data-is-a-trade-off), the calculus softens — genuinely. But real
 test environments touch real builds, real integrations, and real captures, and none of
 these rules carries a "but it was only a test" exemption. The accountable-entity
 standard does not pause for a QA run. For a regulated entity, "where does the test data

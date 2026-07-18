@@ -61,7 +61,8 @@ if you bolt it on as an afterthought to a video test.
 ## The point
 
 Verifying a TV app means verifying what comes out of the speakers, not just what lands
-on the panel. That is why a real TV session in our lab [captures the actual audio
+on the panel. That is why a real TV session in our device lab — Samsung Tizen, LG webOS,
+or any panel — [captures the actual audio
 alongside the live screen](/platform/tv-testing), so a tester hears what the device is
 playing and a check can assert on it — and why "the video played" is never, on its own,
 allowed to stand in for "the app worked." On a device built to be heard, a silent pass
