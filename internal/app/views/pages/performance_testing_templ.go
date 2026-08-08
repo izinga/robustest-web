@@ -90,6 +90,25 @@ func PerformanceTestingPage() templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
+			templ_7745c5c3_Err = components.FurtherReading(
+				[]components.ReadingLink{
+					{Href: "/docs/testing/appvitals", Title: "App Vitals", Note: "What gets collected during a run."},
+					{Href: "/docs/testing/AppVitals_Android_Metrics_Reference", Title: "App Vitals — Android", Note: "Every Android metric, defined."},
+					{Href: "/docs/testing/AppVitals_iOS_Metrics_Reference", Title: "App Vitals — iOS", Note: "Every iOS metric, defined."},
+				},
+				[]components.ReadingLink{
+					{Href: "/blog/what-a-janky-frame-actually-is", Title: "What a janky frame actually is", Note: "The measurement behind the number."},
+					{Href: "/blog/app-startup-cold-warm-hot", Title: "Cold, warm, hot", Note: "Three startup numbers that are not comparable."},
+					{Href: "/blog/at-indian-scale-the-cheap-phone-breaks", Title: "At Indian scale, the cheap phone breaks", Note: "Why the low end is the real target."},
+				},
+			).Render(ctx, templ_7745c5c3_Buffer)
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, " ")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
 			templ_7745c5c3_Err = components.CTABand(
 				"Catch the regression before your users do.",
 				"Run your next release candidate through the lab and see its vitals against the build you shipped last week.",
@@ -132,7 +151,7 @@ func pfCollection() templ.Component {
 			templ_7745c5c3_Var3 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "<section class=\"border-b border-line\"><div class=\"max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "<section class=\"border-b border-line\"><div class=\"max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -140,7 +159,7 @@ func pfCollection() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "<h2 class=\"font-display font-bold text-3xl md:text-4xl tracking-tight max-w-2xl\">Measured from outside the app.</h2><p class=\"text-muted mt-4 max-w-2xl leading-relaxed\">Most performance tools ask you to embed an SDK, re-sign a modified build, or test something other than the release binary. RobusTest reads the same counters the operating system keeps anyway — so every session, manual or automated, produces vitals for free.</p><div class=\"grid grid-cols-1 md:grid-cols-2 gap-8 mt-10\"><div class=\"border border-line-strong bg-surface p-8\"><span class=\"tag\">Phones &amp; tablets</span><h3 class=\"font-display font-bold text-2xl mt-4\">Read from the operating system</h3><p class=\"text-sm text-muted mt-3 leading-relaxed\">Process and system counters, memory accounting, frame timestamps, battery telemetry, and thermal state — read directly from real Android and iOS devices while your app runs untouched.</p></div><div class=\"border border-line-strong bg-surface p-8\"><span class=\"tag\">TVs</span><h3 class=\"font-display font-bold text-2xl mt-4\">Vitals on the big screen</h3><p class=\"text-sm text-muted mt-3 leading-relaxed\">TV sessions sample the same way: frame rate, CPU, and memory from the panel itself — plus web vitals like Largest Contentful Paint and layout shift for TV web apps, streamed live while you test.</p></div></div><div class=\"grid grid-cols-2 md:grid-cols-4 gap-3 mt-10\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "<h2 class=\"font-display font-bold text-3xl md:text-4xl tracking-tight max-w-2xl\">Measured from outside the app.</h2><p class=\"text-muted mt-4 max-w-2xl leading-relaxed\">Most performance tools ask you to embed an SDK, re-sign a modified build, or test something other than the release binary. RobusTest reads the same counters the operating system keeps anyway — so every session, manual or automated, produces vitals for free.</p><div class=\"grid grid-cols-1 md:grid-cols-2 gap-8 mt-10\"><div class=\"border border-line-strong bg-surface p-8\"><span class=\"tag\">Phones &amp; tablets</span><h3 class=\"font-display font-bold text-2xl mt-4\">Read from the operating system</h3><p class=\"text-sm text-muted mt-3 leading-relaxed\">Process and system counters, memory accounting, frame timestamps, battery telemetry, and thermal state — read directly from real Android and iOS devices while your app runs untouched.</p></div><div class=\"border border-line-strong bg-surface p-8\"><span class=\"tag\">TVs</span><h3 class=\"font-display font-bold text-2xl mt-4\">Vitals on the big screen</h3><p class=\"text-sm text-muted mt-3 leading-relaxed\">TV sessions sample the same way: frame rate, CPU, and memory from the panel itself — plus web vitals like Largest Contentful Paint and layout shift for TV web apps, streamed live while you test.</p></div></div><div class=\"grid grid-cols-2 md:grid-cols-4 gap-3 mt-10\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -160,7 +179,7 @@ func pfCollection() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "</div></div></section>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 9, "</div></div></section>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -189,7 +208,7 @@ func pfMetrics() templ.Component {
 			templ_7745c5c3_Var4 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 9, "<section class=\"border-b border-line bg-surface\"><div class=\"max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "<section class=\"border-b border-line bg-surface\"><div class=\"max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -197,7 +216,7 @@ func pfMetrics() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "<h2 class=\"font-display font-bold text-3xl md:text-4xl tracking-tight max-w-2xl\">Twelve families of vitals, per session.</h2><div class=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-line mt-10 border border-line\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 11, "<h2 class=\"font-display font-bold text-3xl md:text-4xl tracking-tight max-w-2xl\">Twelve families of vitals, per session.</h2><div class=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-line mt-10 border border-line\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -249,7 +268,7 @@ func pfMetrics() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 11, "</div></div></section>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 12, "</div></div></section>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -278,46 +297,46 @@ func pfMetricCard(tag string, title string, desc string) templ.Component {
 			templ_7745c5c3_Var5 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 12, "<div class=\"bg-paper p-6\"><span class=\"tag\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 13, "<div class=\"bg-paper p-6\"><span class=\"tag\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var6 string
 		templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinStringErrs(tag)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/performance_testing.templ`, Line: 89, Col: 25}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/performance_testing.templ`, Line: 101, Col: 25}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var6))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 13, "</span><h3 class=\"font-display font-bold text-lg mt-4\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 14, "</span><h3 class=\"font-display font-bold text-lg mt-4\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var7 string
 		templ_7745c5c3_Var7, templ_7745c5c3_Err = templ.JoinStringErrs(title)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/performance_testing.templ`, Line: 90, Col: 57}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/performance_testing.templ`, Line: 102, Col: 57}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var7))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 14, "</h3><p class=\"text-sm text-muted mt-2 leading-relaxed\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 15, "</h3><p class=\"text-sm text-muted mt-2 leading-relaxed\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var8 string
 		templ_7745c5c3_Var8, templ_7745c5c3_Err = templ.JoinStringErrs(desc)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/performance_testing.templ`, Line: 91, Col: 59}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/performance_testing.templ`, Line: 103, Col: 59}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var8))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 15, "</p></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 16, "</p></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -346,7 +365,7 @@ func pfScoring() templ.Component {
 			templ_7745c5c3_Var9 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 16, "<section class=\"border-b border-line\"><div class=\"max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24\"><div class=\"grid grid-cols-1 lg:grid-cols-2 gap-12 items-center\"><div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 17, "<section class=\"border-b border-line\"><div class=\"max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24\"><div class=\"grid grid-cols-1 lg:grid-cols-2 gap-12 items-center\"><div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -354,7 +373,7 @@ func pfScoring() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 17, "<h2 class=\"font-display font-bold text-3xl md:text-4xl tracking-tight\">One score your release meeting can read.</h2><p class=\"text-muted mt-4 leading-relaxed\">Raw counters roll up into an overall score with four category scores, so a non-specialist can see where a build stands — and a specialist can drill into the samples behind it.</p><ul class=\"space-y-2.5 mt-6\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 18, "<h2 class=\"font-display font-bold text-3xl md:text-4xl tracking-tight\">One score your release meeting can read.</h2><p class=\"text-muted mt-4 leading-relaxed\">Raw counters roll up into an overall score with four category scores, so a non-specialist can see where a build stands — and a specialist can drill into the samples behind it.</p><ul class=\"space-y-2.5 mt-6\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -374,7 +393,7 @@ func pfScoring() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 18, "</ul><p class=\"text-sm text-muted mt-6 leading-relaxed\">Captures are labelled cold, warm, or steady-state, and each run records its device and OS context — so scores are only ever compared like-for-like.</p></div><div class=\"grid grid-cols-2 gap-3\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 19, "</ul><p class=\"text-sm text-muted mt-6 leading-relaxed\">Captures are labelled cold, warm, or steady-state, and each run records its device and OS context — so scores are only ever compared like-for-like.</p></div><div class=\"grid grid-cols-2 gap-3\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -394,7 +413,7 @@ func pfScoring() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 19, "</div></div></div></section>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 20, "</div></div></div></section>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -423,7 +442,7 @@ func pfCompare() templ.Component {
 			templ_7745c5c3_Var10 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 20, "<section class=\"border-b border-line bg-surface\"><div class=\"max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 21, "<section class=\"border-b border-line bg-surface\"><div class=\"max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -431,7 +450,7 @@ func pfCompare() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 21, "<h2 class=\"font-display font-bold text-3xl md:text-4xl tracking-tight max-w-2xl\">Regressions flagged with statistics, not vibes.</h2><p class=\"text-muted mt-4 max-w-2xl leading-relaxed\">Two builds never produce identical numbers. The comparison engine tells you when a difference is real: Mann-Whitney U tests for significance, Cliff's Delta for effect size, and a per-metric minimum detectable effect so noise doesn't page anyone.</p><div class=\"grid grid-cols-1 md:grid-cols-2 gap-8 mt-10 items-start\"><ul class=\"space-y-2.5\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 22, "<h2 class=\"font-display font-bold text-3xl md:text-4xl tracking-tight max-w-2xl\">Regressions flagged with statistics, not vibes.</h2><p class=\"text-muted mt-4 max-w-2xl leading-relaxed\">Two builds never produce identical numbers. The comparison engine tells you when a difference is real: Mann-Whitney U tests for significance, Cliff's Delta for effect size, and a per-metric minimum detectable effect so noise doesn't page anyone.</p><div class=\"grid grid-cols-1 md:grid-cols-2 gap-8 mt-10 items-start\"><ul class=\"space-y-2.5\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -451,7 +470,7 @@ func pfCompare() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 22, "</ul><div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 23, "</ul><div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -477,7 +496,7 @@ func pfCompare() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 23, "</div></div></div></section>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 24, "</div></div></div></section>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

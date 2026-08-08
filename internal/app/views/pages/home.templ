@@ -1,11 +1,12 @@
 package pages
 
 import (
+	"github.com/izinga/robustest-web/internal/app/blog"
 	"github.com/izinga/robustest-web/internal/app/views/components"
 	"github.com/izinga/robustest-web/internal/app/views/layouts"
 )
 
-templ HomePage() {
+templ HomePage(posts []*blog.Post) {
 	@layouts.Base(
 		"Enterprise On-Premise Device Lab | RobusTest",
 		"The enterprise device lab on your premises: real phones, tablets, and TVs inside your network, with automation, live manual testing, performance vitals, and network capture — no per-minute billing, nothing leaving your walls.",
@@ -20,6 +21,7 @@ templ HomePage() {
 		@homeDeployment()
 		@homePackage()
 		@homeAudiences()
+		@homeNotes(posts)
 		@homeOpenSource()
 		@components.CTABand(
 			"See your own lab running in a week.",
@@ -401,6 +403,54 @@ templ homeAudiences() {
 			</div>
 		</div>
 	</section>
+}
+
+// homeNotes surfaces the newest posts on the home page. The home page carries
+// more crawl weight than anything else on the site; linking the posts from here
+// is what gets them discovered as something other than a sitemap entry.
+templ homeNotes(posts []*blog.Post) {
+	if len(posts) > 0 {
+		<section class="border-b border-line">
+			<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-16">
+				<div class="flex items-baseline justify-between gap-4 flex-wrap">
+					<div>
+						@components.SectionTag("Field notes")
+						<h2 class="font-display font-bold text-2xl md:text-3xl tracking-tight">
+							What we learned building device labs.
+						</h2>
+					</div>
+					<a href="/blog" class="font-mono text-sm text-muted hover:text-ink transition-colors shrink-0">
+						All notes →
+					</a>
+				</div>
+				<ul class="border-t border-line-strong mt-8">
+					for _, p := range posts {
+						<li class="ledger-row relative">
+							<a href={ templ.SafeURL(postHref(p.Slug)) } class="block py-5 pl-4 pr-2 group">
+								<div class="md:flex md:items-baseline md:gap-6">
+									<div class="flex items-center gap-3 shrink-0 md:w-40">
+										<span class="font-mono text-xs text-muted uppercase">{ dayMonth(p) }</span>
+										<span class="tag">{ p.Category }</span>
+									</div>
+									<div class="mt-2 md:mt-0 min-w-0">
+										<h3 class="font-display font-bold text-lg md:text-xl tracking-tight group-hover:text-signal transition-colors">
+											{ p.Title }
+										</h3>
+										if p.Description != "" {
+											<p class="text-sm text-muted mt-1.5 leading-relaxed max-w-2xl">{ p.Description }</p>
+										}
+									</div>
+									<span class="hidden md:block font-mono text-xs text-muted shrink-0 ml-auto pl-4">
+										{ readingTime(p) }
+									</span>
+								</div>
+							</a>
+						</li>
+					}
+				</ul>
+			</div>
+		</section>
+	}
 }
 
 templ homeOpenSource() {

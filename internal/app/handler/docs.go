@@ -69,6 +69,13 @@ func DocsPage(c *gin.Context) {
 		return
 	}
 
+	// Checked ahead of Load so a retired page always lands on its replacement,
+	// even if a stale copy is still sitting in the synced tree.
+	if target, ok := docsRedirects[path]; ok {
+		c.Redirect(http.StatusMovedPermanently, target)
+		return
+	}
+
 	page, err := docsStore.Load(path)
 	if err != nil {
 		if errors.Is(err, os.ErrNotExist) {

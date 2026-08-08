@@ -19,6 +19,17 @@ templ ManualTestingPage() {
 		@mtControl()
 		@mtSessions()
 		@mtDRM()
+		@components.FurtherReading(
+			[]components.ReadingLink{
+				{Href: "/docs/testing/new_manual_session", Title: "Manual session", Note: "Starting and driving a hands-on session."},
+				{Href: "/docs/testing/liveview", Title: "Live view", Note: "Working on a device in real time."},
+				{Href: "/docs/testing/webrtcsession", Title: "WebRTC session", Note: "The low-latency streaming path."},
+			},
+			[]components.ReadingLink{
+				{Href: "/blog/throw-away-the-cable-that-came-with-the-phone", Title: "Throw away the cable that came with the phone", Note: "Why manual sessions drop."},
+				{Href: "/blog/the-camera-sees-what-the-framebuffer-cant", Title: "The camera sees what the framebuffer can't", Note: "The limits of screen capture."},
+			},
+		)
 		@components.CTABand(
 			"Give every tester a full device rack.",
 			"No queues, no per-minute meter, no build uploads to someone else's cloud. Tell us your device list and we'll size the lab.",

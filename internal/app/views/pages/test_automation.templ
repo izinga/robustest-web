@@ -20,6 +20,18 @@ templ TestAutomationPage() {
 		@taExecution()
 		@taArtifacts()
 		@taCICD()
+		@components.FurtherReading(
+			[]components.ReadingLink{
+				{Href: "/docs/hub/robustesthub", Title: "RobusTest Hub", Note: "The endpoint your test suite points at."},
+				{Href: "/docs/hub/hubappium", Title: "Appium", Note: "Running an existing Appium suite unchanged."},
+				{Href: "/docs/hub/hubespresso", Title: "Espresso", Note: "Android instrumentation on real devices."},
+			},
+			[]components.ReadingLink{
+				{Href: "/blog/why-we-wrote-our-own-drivers", Title: "Why we wrote our own drivers", Note: "What the stock automation stack couldn't do."},
+				{Href: "/blog/it-returned-ok", Title: "It returned OK", Note: "A pass that meant nothing."},
+				{Href: "/blog/simulators-are-good-enough", Title: "Simulators are good enough", Note: "Until the thing you are testing is the hardware."},
+			},
+		)
 		@components.CTABand(
 			"Run tonight's regression on your own rack.",
 			"Bring one existing suite to the demo — we'll point it at a RobusTest hub and run it in parallel while you watch.",

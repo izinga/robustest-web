@@ -90,6 +90,25 @@ func TestAutomationPage() templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
+			templ_7745c5c3_Err = components.FurtherReading(
+				[]components.ReadingLink{
+					{Href: "/docs/hub/robustesthub", Title: "RobusTest Hub", Note: "The endpoint your test suite points at."},
+					{Href: "/docs/hub/hubappium", Title: "Appium", Note: "Running an existing Appium suite unchanged."},
+					{Href: "/docs/hub/hubespresso", Title: "Espresso", Note: "Android instrumentation on real devices."},
+				},
+				[]components.ReadingLink{
+					{Href: "/blog/why-we-wrote-our-own-drivers", Title: "Why we wrote our own drivers", Note: "What the stock automation stack couldn't do."},
+					{Href: "/blog/it-returned-ok", Title: "It returned OK", Note: "A pass that meant nothing."},
+					{Href: "/blog/simulators-are-good-enough", Title: "Simulators are good enough", Note: "Until the thing you are testing is the hardware."},
+				},
+			).Render(ctx, templ_7745c5c3_Buffer)
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, " ")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
 			templ_7745c5c3_Err = components.CTABand(
 				"Run tonight's regression on your own rack.",
 				"Bring one existing suite to the demo — we'll point it at a RobusTest hub and run it in parallel while you watch.",
@@ -132,7 +151,7 @@ func taFrameworks() templ.Component {
 			templ_7745c5c3_Var3 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "<section class=\"border-b border-line\"><div class=\"max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "<section class=\"border-b border-line\"><div class=\"max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -140,7 +159,7 @@ func taFrameworks() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "<h2 class=\"font-display font-bold text-3xl md:text-4xl tracking-tight max-w-2xl\">First-class runners, not wrappers.</h2><p class=\"text-muted mt-4 max-w-2xl leading-relaxed\">Each framework has a dedicated runner in the platform — with its own preparation, report parser, and failure handling — so results come back structured, not as a log dump.</p><div class=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-line mt-10 border border-line\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "<h2 class=\"font-display font-bold text-3xl md:text-4xl tracking-tight max-w-2xl\">First-class runners, not wrappers.</h2><p class=\"text-muted mt-4 max-w-2xl leading-relaxed\">Each framework has a dedicated runner in the platform — with its own preparation, report parser, and failure handling — so results come back structured, not as a log dump.</p><div class=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-line mt-10 border border-line\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -168,7 +187,7 @@ func taFrameworks() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "</div></div></section>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 9, "</div></div></section>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -197,46 +216,46 @@ func taFrameworkCard(tag string, title string, desc string) templ.Component {
 			templ_7745c5c3_Var4 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 9, "<div class=\"bg-paper p-6\"><span class=\"tag\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "<div class=\"bg-paper p-6\"><span class=\"tag\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var5 string
 		templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(tag)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/test_automation.templ`, Line: 52, Col: 25}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/test_automation.templ`, Line: 64, Col: 25}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "</span><h3 class=\"font-display font-bold text-xl mt-5\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 11, "</span><h3 class=\"font-display font-bold text-xl mt-5\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var6 string
 		templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinStringErrs(title)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/test_automation.templ`, Line: 53, Col: 57}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/test_automation.templ`, Line: 65, Col: 57}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var6))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 11, "</h3><p class=\"text-sm text-muted mt-2 leading-relaxed\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 12, "</h3><p class=\"text-sm text-muted mt-2 leading-relaxed\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var7 string
 		templ_7745c5c3_Var7, templ_7745c5c3_Err = templ.JoinStringErrs(desc)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/test_automation.templ`, Line: 54, Col: 59}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/test_automation.templ`, Line: 66, Col: 59}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var7))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 12, "</p></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 13, "</p></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -265,7 +284,7 @@ func taExecution() templ.Component {
 			templ_7745c5c3_Var8 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 13, "<section class=\"border-b border-line bg-surface\"><div class=\"max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24\"><div class=\"grid grid-cols-1 lg:grid-cols-2 gap-12 items-center\"><div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 14, "<section class=\"border-b border-line bg-surface\"><div class=\"max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24\"><div class=\"grid grid-cols-1 lg:grid-cols-2 gap-12 items-center\"><div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -273,7 +292,7 @@ func taExecution() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 14, "<h2 class=\"font-display font-bold text-3xl md:text-4xl tracking-tight\">Parallel across the pool, not one device at a time.</h2><p class=\"text-muted mt-4 leading-relaxed\">A run fans out into jobs, jobs claim devices from the pool, and every step reports back live. You define which devices qualify; the lab does the dispatching.</p><ul class=\"space-y-2.5 mt-6\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 15, "<h2 class=\"font-display font-bold text-3xl md:text-4xl tracking-tight\">Parallel across the pool, not one device at a time.</h2><p class=\"text-muted mt-4 leading-relaxed\">A run fans out into jobs, jobs claim devices from the pool, and every step reports back live. You define which devices qualify; the lab does the dispatching.</p><ul class=\"space-y-2.5 mt-6\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -293,7 +312,7 @@ func taExecution() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 15, "</ul></div><div class=\"grid grid-cols-2 gap-3\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 16, "</ul></div><div class=\"grid grid-cols-2 gap-3\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -313,7 +332,7 @@ func taExecution() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 16, "</div></div></div></section>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 17, "</div></div></div></section>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -342,7 +361,7 @@ func taArtifacts() templ.Component {
 			templ_7745c5c3_Var9 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 17, "<section class=\"border-b border-line\"><div class=\"max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 18, "<section class=\"border-b border-line\"><div class=\"max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -350,7 +369,7 @@ func taArtifacts() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 18, "<h2 class=\"font-display font-bold text-3xl md:text-4xl tracking-tight max-w-2xl\">When a test fails at 2 a.m., the evidence is already collected.</h2><div class=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-line mt-10 border border-line\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 19, "<h2 class=\"font-display font-bold text-3xl md:text-4xl tracking-tight max-w-2xl\">When a test fails at 2 a.m., the evidence is already collected.</h2><div class=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-line mt-10 border border-line\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -378,7 +397,7 @@ func taArtifacts() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 19, "</div><div class=\"border border-line bg-signal-soft px-6 py-5 mt-10\"><p class=\"text-sm leading-relaxed max-w-3xl\"><span class=\"font-semibold\">And every run records more than test results.</span> <span class=\"text-muted\">Performance vitals and HTTP(S) network capture run by default on every automated session — so a failed test comes back with its FPS trace and the API calls behind it, per result, no extra configuration. See </span> <a href=\"/platform/performance-testing\" class=\"text-trace font-medium hover:underline\">performance testing</a> <span class=\"text-muted\">and </span> <a href=\"/platform/network-capture\" class=\"text-trace font-medium hover:underline\">network capture</a><span class=\"text-muted\">.</span></p></div><div class=\"mt-10\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 20, "</div><div class=\"border border-line bg-signal-soft px-6 py-5 mt-10\"><p class=\"text-sm leading-relaxed max-w-3xl\"><span class=\"font-semibold\">And every run records more than test results.</span> <span class=\"text-muted\">Performance vitals and HTTP(S) network capture run by default on every automated session — so a failed test comes back with its FPS trace and the API calls behind it, per result, no extra configuration. See </span> <a href=\"/platform/performance-testing\" class=\"text-trace font-medium hover:underline\">performance testing</a> <span class=\"text-muted\">and </span> <a href=\"/platform/network-capture\" class=\"text-trace font-medium hover:underline\">network capture</a><span class=\"text-muted\">.</span></p></div><div class=\"mt-10\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -404,7 +423,7 @@ func taArtifacts() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 20, "</div></div></section>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 21, "</div></div></section>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -433,46 +452,46 @@ func taArtifactCard(tag string, title string, desc string) templ.Component {
 			templ_7745c5c3_Var11 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 21, "<div class=\"bg-paper p-6\"><span class=\"tag\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 22, "<div class=\"bg-paper p-6\"><span class=\"tag\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var12 string
 		templ_7745c5c3_Var12, templ_7745c5c3_Err = templ.JoinStringErrs(tag)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/test_automation.templ`, Line: 119, Col: 25}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/test_automation.templ`, Line: 131, Col: 25}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var12))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 22, "</span><h3 class=\"font-display font-bold text-xl mt-5\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 23, "</span><h3 class=\"font-display font-bold text-xl mt-5\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var13 string
 		templ_7745c5c3_Var13, templ_7745c5c3_Err = templ.JoinStringErrs(title)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/test_automation.templ`, Line: 120, Col: 57}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/test_automation.templ`, Line: 132, Col: 57}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var13))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 23, "</h3><p class=\"text-sm text-muted mt-2 leading-relaxed\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 24, "</h3><p class=\"text-sm text-muted mt-2 leading-relaxed\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var14 string
 		templ_7745c5c3_Var14, templ_7745c5c3_Err = templ.JoinStringErrs(desc)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/test_automation.templ`, Line: 121, Col: 59}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/test_automation.templ`, Line: 133, Col: 59}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var14))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 24, "</p></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 25, "</p></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -501,7 +520,7 @@ func taCICD() templ.Component {
 			templ_7745c5c3_Var15 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 25, "<section class=\"border-b border-line bg-surface\"><div class=\"max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24\"><div class=\"grid grid-cols-1 lg:grid-cols-2 gap-12 items-start\"><div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 26, "<section class=\"border-b border-line bg-surface\"><div class=\"max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24\"><div class=\"grid grid-cols-1 lg:grid-cols-2 gap-12 items-start\"><div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -509,7 +528,7 @@ func taCICD() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 26, "<h2 class=\"font-display font-bold text-3xl md:text-4xl tracking-tight\">Triggered by your pipeline, not a person.</h2><p class=\"text-muted mt-4 leading-relaxed\">A documented HTTP API triggers jobs, polls status, and fetches results using per-user access keys — the same API our largest customers run their nightly regressions through. Jenkins, GitHub Actions, GitLab CI: anything that can call an endpoint can drive the lab.</p><ul class=\"space-y-2.5 mt-6\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 27, "<h2 class=\"font-display font-bold text-3xl md:text-4xl tracking-tight\">Triggered by your pipeline, not a person.</h2><p class=\"text-muted mt-4 leading-relaxed\">A documented HTTP API triggers jobs, polls status, and fetches results using per-user access keys — the same API our largest customers run their nightly regressions through. Jenkins, GitHub Actions, GitLab CI: anything that can call an endpoint can drive the lab.</p><ul class=\"space-y-2.5 mt-6\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -529,7 +548,7 @@ func taCICD() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 27, "</ul></div><div class=\"border border-line-strong bg-paper p-6 font-mono text-xs leading-relaxed overflow-x-auto\"><p class=\"text-muted\"># trigger a run from CI</p><p class=\"mt-2\">curl -X POST \\</p><p>&nbsp;&nbsp;\"https://lab.internal/v3/job/trigger\" \\</p><p>&nbsp;&nbsp;-H \"Authorization: Bearer $LAB_KEY\" \\</p><p>&nbsp;&nbsp;-d @nightly-regression.json</p><p class=\"text-muted mt-4\"># poll until done, then fetch JUnit</p><p class=\"mt-2\">curl \"https://lab.internal/v3/job/$ID/junit\" \\</p><p>&nbsp;&nbsp;-H \"Authorization: Bearer $LAB_KEY\"</p></div></div></div></section>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 28, "</ul></div><div class=\"border border-line-strong bg-paper p-6 font-mono text-xs leading-relaxed overflow-x-auto\"><p class=\"text-muted\"># trigger a run from CI</p><p class=\"mt-2\">curl -X POST \\</p><p>&nbsp;&nbsp;\"https://lab.internal/v3/job/trigger\" \\</p><p>&nbsp;&nbsp;-H \"Authorization: Bearer $LAB_KEY\" \\</p><p>&nbsp;&nbsp;-d @nightly-regression.json</p><p class=\"text-muted mt-4\"># poll until done, then fetch JUnit</p><p class=\"mt-2\">curl \"https://lab.internal/v3/job/$ID/junit\" \\</p><p>&nbsp;&nbsp;-H \"Authorization: Bearer $LAB_KEY\"</p></div></div></div></section>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

@@ -82,6 +82,24 @@ func ManualTestingPage() templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
+			templ_7745c5c3_Err = components.FurtherReading(
+				[]components.ReadingLink{
+					{Href: "/docs/testing/new_manual_session", Title: "Manual session", Note: "Starting and driving a hands-on session."},
+					{Href: "/docs/testing/liveview", Title: "Live view", Note: "Working on a device in real time."},
+					{Href: "/docs/testing/webrtcsession", Title: "WebRTC session", Note: "The low-latency streaming path."},
+				},
+				[]components.ReadingLink{
+					{Href: "/blog/throw-away-the-cable-that-came-with-the-phone", Title: "Throw away the cable that came with the phone", Note: "Why manual sessions drop."},
+					{Href: "/blog/the-camera-sees-what-the-framebuffer-cant", Title: "The camera sees what the framebuffer can't", Note: "The limits of screen capture."},
+				},
+			).Render(ctx, templ_7745c5c3_Buffer)
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, " ")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
 			templ_7745c5c3_Err = components.CTABand(
 				"Give every tester a full device rack.",
 				"No queues, no per-minute meter, no build uploads to someone else's cloud. Tell us your device list and we'll size the lab.",
@@ -124,7 +142,7 @@ func mtControl() templ.Component {
 			templ_7745c5c3_Var3 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "<section class=\"border-b border-line\"><div class=\"max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "<section class=\"border-b border-line\"><div class=\"max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -132,7 +150,7 @@ func mtControl() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "<h2 class=\"font-display font-bold text-3xl md:text-4xl tracking-tight max-w-2xl\">Everything you'd do with the device in hand. And a few things you couldn't.</h2><p class=\"text-muted mt-4 max-w-2xl leading-relaxed\">A live session is more than a video feed. The lab exposes the device's whole surface — input, sensors, storage, logs, and network — from one screen.</p><div class=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-line mt-10 border border-line\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "<h2 class=\"font-display font-bold text-3xl md:text-4xl tracking-tight max-w-2xl\">Everything you'd do with the device in hand. And a few things you couldn't.</h2><p class=\"text-muted mt-4 max-w-2xl leading-relaxed\">A live session is more than a video feed. The lab exposes the device's whole surface — input, sensors, storage, logs, and network — from one screen.</p><div class=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-line mt-10 border border-line\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -160,7 +178,7 @@ func mtControl() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "</div><div class=\"border border-line bg-signal-soft px-6 py-5 mt-10\"><p class=\"text-sm leading-relaxed max-w-3xl\"><span class=\"font-semibold\">And every session records itself.</span> <span class=\"text-muted\">Performance vitals and HTTP(S) network capture stream live into every manual session by default — no setup, no separate run. When a bug appears, the FPS trace and the API calls behind it are already on screen and already saved. See </span> <a href=\"/platform/performance-testing\" class=\"text-trace font-medium hover:underline\">performance testing</a> <span class=\"text-muted\">and </span> <a href=\"/platform/network-capture\" class=\"text-trace font-medium hover:underline\">network capture</a><span class=\"text-muted\">.</span></p></div><div class=\"mt-10\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "</div><div class=\"border border-line bg-signal-soft px-6 py-5 mt-10\"><p class=\"text-sm leading-relaxed max-w-3xl\"><span class=\"font-semibold\">And every session records itself.</span> <span class=\"text-muted\">Performance vitals and HTTP(S) network capture stream live into every manual session by default — no setup, no separate run. When a bug appears, the FPS trace and the API calls behind it are already on screen and already saved. See </span> <a href=\"/platform/performance-testing\" class=\"text-trace font-medium hover:underline\">performance testing</a> <span class=\"text-muted\">and </span> <a href=\"/platform/network-capture\" class=\"text-trace font-medium hover:underline\">network capture</a><span class=\"text-muted\">.</span></p></div><div class=\"mt-10\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -186,7 +204,7 @@ func mtControl() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "</div></div></section>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 9, "</div></div></section>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -215,46 +233,46 @@ func mtControlCard(tag string, title string, desc string) templ.Component {
 			templ_7745c5c3_Var5 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 9, "<div class=\"bg-paper p-6\"><span class=\"tag\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "<div class=\"bg-paper p-6\"><span class=\"tag\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var6 string
 		templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinStringErrs(tag)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/manual_testing.templ`, Line: 65, Col: 25}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/manual_testing.templ`, Line: 76, Col: 25}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var6))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "</span><h3 class=\"font-display font-bold text-xl mt-5\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 11, "</span><h3 class=\"font-display font-bold text-xl mt-5\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var7 string
 		templ_7745c5c3_Var7, templ_7745c5c3_Err = templ.JoinStringErrs(title)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/manual_testing.templ`, Line: 66, Col: 57}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/manual_testing.templ`, Line: 77, Col: 57}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var7))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 11, "</h3><p class=\"text-sm text-muted mt-2 leading-relaxed\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 12, "</h3><p class=\"text-sm text-muted mt-2 leading-relaxed\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var8 string
 		templ_7745c5c3_Var8, templ_7745c5c3_Err = templ.JoinStringErrs(desc)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/manual_testing.templ`, Line: 67, Col: 59}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/manual_testing.templ`, Line: 78, Col: 59}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var8))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 12, "</p></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 13, "</p></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -283,7 +301,7 @@ func mtSessions() templ.Component {
 			templ_7745c5c3_Var9 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 13, "<section class=\"border-b border-line bg-surface\"><div class=\"max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24\"><div class=\"grid grid-cols-1 lg:grid-cols-2 gap-12 items-center\"><div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 14, "<section class=\"border-b border-line bg-surface\"><div class=\"max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24\"><div class=\"grid grid-cols-1 lg:grid-cols-2 gap-12 items-center\"><div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -291,7 +309,7 @@ func mtSessions() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 14, "<h2 class=\"font-display font-bold text-3xl md:text-4xl tracking-tight\">Shared devices without the turf wars.</h2><p class=\"text-muted mt-4 leading-relaxed\">Devices are a shared resource; the lab treats them like one. Reserve a device before a release test, and let the platform reclaim what people forget.</p><ul class=\"space-y-2.5 mt-6\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 15, "<h2 class=\"font-display font-bold text-3xl md:text-4xl tracking-tight\">Shared devices without the turf wars.</h2><p class=\"text-muted mt-4 leading-relaxed\">Devices are a shared resource; the lab treats them like one. Reserve a device before a release test, and let the platform reclaim what people forget.</p><ul class=\"space-y-2.5 mt-6\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -311,7 +329,7 @@ func mtSessions() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 15, "</ul></div><div class=\"grid grid-cols-2 gap-3\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 16, "</ul></div><div class=\"grid grid-cols-2 gap-3\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -331,7 +349,7 @@ func mtSessions() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 16, "</div></div></div></section>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 17, "</div></div></div></section>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -360,7 +378,7 @@ func mtDRM() templ.Component {
 			templ_7745c5c3_Var10 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 17, "<section class=\"border-b border-line\"><div class=\"max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24\"><div class=\"grid grid-cols-1 lg:grid-cols-2 gap-12 items-start\"><div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 18, "<section class=\"border-b border-line\"><div class=\"max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24\"><div class=\"grid grid-cols-1 lg:grid-cols-2 gap-12 items-start\"><div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -368,7 +386,7 @@ func mtDRM() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 18, "<h2 class=\"font-display font-bold text-3xl md:text-4xl tracking-tight\">When the screen won't let itself be captured.</h2><p class=\"text-muted mt-4 leading-relaxed\">Streaming apps with DRM render black frames to screen capture — on every remote-testing product. RobusTest's answer is physical: a camera node films the actual panel and streams the optical view into the same live session, with region-of-interest selection to frame the screen.</p><ul class=\"space-y-2.5 mt-6\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 19, "<h2 class=\"font-display font-bold text-3xl md:text-4xl tracking-tight\">When the screen won't let itself be captured.</h2><p class=\"text-muted mt-4 leading-relaxed\">Streaming apps with DRM render black frames to screen capture — on every remote-testing product. RobusTest's answer is physical: a camera node films the actual panel and streams the optical view into the same live session, with region-of-interest selection to frame the screen.</p><ul class=\"space-y-2.5 mt-6\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -384,7 +402,7 @@ func mtDRM() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 19, "</ul></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 20, "</ul></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -410,7 +428,7 @@ func mtDRM() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 20, "</div></div></section>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 21, "</div></div></section>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

@@ -21,6 +21,17 @@ templ DeviceLabPage() {
 		@dlIOS()
 		@dlBuilds()
 		@dlDistributed()
+		@components.FurtherReading(
+			[]components.ReadingLink{
+				{Href: "/docs/devices/device_setup", Title: "Device setup", Note: "Bringing Android, iOS and Roku devices online."},
+				{Href: "/docs/installation/installation_guides", Title: "Prerequisites & setup", Note: "Everything a lab machine needs installed."},
+			},
+			[]components.ReadingLink{
+				{Href: "/blog/why-device-labs-get-abandoned", Title: "Why device labs get abandoned", Note: "The maintenance load nobody budgets for."},
+				{Href: "/blog/we-ship-the-lab-you-keep-the-phones", Title: "We ship the lab, you keep the phones", Note: "How the handover actually works."},
+				{Href: "/blog/why-every-device-node-is-a-mac-mini", Title: "Why every device node is a Mac mini", Note: "The hardware choice behind the rack."},
+			},
+		)
 		@components.CTABand(
 			"Turn your device drawer into a lab.",
 			"Send us your device count and locations. We'll spec the nodes, power hardware, and licensing for a lab your team can rely on.",

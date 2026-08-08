@@ -20,6 +20,18 @@ templ PerformanceTestingPage() {
 		@pfMetrics()
 		@pfScoring()
 		@pfCompare()
+		@components.FurtherReading(
+			[]components.ReadingLink{
+				{Href: "/docs/testing/appvitals", Title: "App Vitals", Note: "What gets collected during a run."},
+				{Href: "/docs/testing/AppVitals_Android_Metrics_Reference", Title: "App Vitals — Android", Note: "Every Android metric, defined."},
+				{Href: "/docs/testing/AppVitals_iOS_Metrics_Reference", Title: "App Vitals — iOS", Note: "Every iOS metric, defined."},
+			},
+			[]components.ReadingLink{
+				{Href: "/blog/what-a-janky-frame-actually-is", Title: "What a janky frame actually is", Note: "The measurement behind the number."},
+				{Href: "/blog/app-startup-cold-warm-hot", Title: "Cold, warm, hot", Note: "Three startup numbers that are not comparable."},
+				{Href: "/blog/at-indian-scale-the-cheap-phone-breaks", Title: "At Indian scale, the cheap phone breaks", Note: "Why the low end is the real target."},
+			},
+		)
 		@components.CTABand(
 			"Catch the regression before your users do.",
 			"Run your next release candidate through the lab and see its vitals against the build you shipped last week.",

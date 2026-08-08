@@ -20,6 +20,16 @@ templ IntegrationsPage() {
 		@igReporting()
 		@igNotifications()
 		@igPipelines()
+		@components.FurtherReading(
+			[]components.ReadingLink{
+				{Href: "/docs/integration/integration_reportportal", Title: "Report Portal", Note: "Pushing results, logs and screenshots."},
+				{Href: "/docs/integration/bugtrackerintegration", Title: "Bug tracker integration", Note: "Filing from a failed run."},
+				{Href: "/docs/integration/mcp_server", Title: "MCP server", Note: "Driving the lab from an agent."},
+			},
+			[]components.ReadingLink{
+				{Href: "/blog/one-less-connection-to-debug", Title: "One less connection to debug", Note: "Fewer moving parts between suite and device."},
+			},
+		)
 		@components.CTABand(
 			"Wire the lab into your workflow.",
 			"Tell us what your team uses for sign-in, tickets, and CI — we'll show the lab feeding all three in one demo.",

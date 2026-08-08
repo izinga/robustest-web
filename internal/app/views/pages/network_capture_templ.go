@@ -90,6 +90,22 @@ func NetworkCapturePage() templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
+			templ_7745c5c3_Err = components.FurtherReading(
+				[]components.ReadingLink{
+					{Href: "/docs/integration/tunnelClientConfig", Title: "Tunneling setup", Note: "Routing device traffic through your network."},
+				},
+				[]components.ReadingLink{
+					{Href: "/blog/what-actually-leaves-your-network", Title: "What actually leaves your network", Note: "Reading the traffic a test session generates."},
+					{Href: "/blog/one-less-connection-to-debug", Title: "One less connection to debug", Note: "Why the capture point matters."},
+				},
+			).Render(ctx, templ_7745c5c3_Buffer)
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, " ")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
 			templ_7745c5c3_Err = components.CTABand(
 				"See what your app says on the wire.",
 				"Bring a build to a demo session and watch its traffic captured live — then take the HAR file with you.",
@@ -132,7 +148,7 @@ func ncCapture() templ.Component {
 			templ_7745c5c3_Var3 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "<section class=\"border-b border-line\"><div class=\"max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "<section class=\"border-b border-line\"><div class=\"max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -140,7 +156,7 @@ func ncCapture() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "<h2 class=\"font-display font-bold text-3xl md:text-4xl tracking-tight max-w-2xl\">Recording starts when the session does.</h2><div class=\"grid grid-cols-1 md:grid-cols-2 gap-8 mt-10 items-start\"><div><p class=\"text-muted leading-relaxed\">Capture starts the moment a session connects — manual or automated. Testers watch requests appear live while they drive the device; afterwards, anyone can pull the traffic for exactly the time range they care about.</p><ul class=\"space-y-2.5 mt-6\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "<h2 class=\"font-display font-bold text-3xl md:text-4xl tracking-tight max-w-2xl\">Recording starts when the session does.</h2><div class=\"grid grid-cols-1 md:grid-cols-2 gap-8 mt-10 items-start\"><div><p class=\"text-muted leading-relaxed\">Capture starts the moment a session connects — manual or automated. Testers watch requests appear live while they drive the device; afterwards, anyone can pull the traffic for exactly the time range they care about.</p><ul class=\"space-y-2.5 mt-6\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -160,7 +176,7 @@ func ncCapture() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "</ul></div><div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 9, "</ul></div><div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -186,7 +202,7 @@ func ncCapture() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 9, "</div></div></div></section>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "</div></div></div></section>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -215,7 +231,7 @@ func ncInspect() templ.Component {
 			templ_7745c5c3_Var5 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "<section class=\"border-b border-line bg-surface\"><div class=\"max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 11, "<section class=\"border-b border-line bg-surface\"><div class=\"max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -223,7 +239,7 @@ func ncInspect() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 11, "<h2 class=\"font-display font-bold text-3xl md:text-4xl tracking-tight max-w-2xl\">HTTPS and gRPC, readable.</h2><div class=\"grid grid-cols-1 md:grid-cols-2 gap-px bg-line border border-line mt-10\"><div class=\"bg-paper p-8\"><span class=\"tag\">TLS</span><h3 class=\"font-display font-bold text-2xl mt-4\">HTTPS decryption</h3><p class=\"text-sm text-muted mt-3 leading-relaxed\">The lab-managed proxy decrypts your app's TLS traffic for inspection — inside your network, under your control. Headers, bodies, timings, and status codes, not just hostnames.</p></div><div class=\"bg-paper p-8\"><span class=\"tag\">GRPC</span><h3 class=\"font-display font-bold text-2xl mt-4\">Protobuf decoding</h3><p class=\"text-sm text-muted mt-3 leading-relaxed\">Binary gRPC and protobuf payloads decode into readable messages using your proto descriptors — so API traffic that other tools show as opaque bytes reads like JSON here.</p></div></div></div></section>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 12, "<h2 class=\"font-display font-bold text-3xl md:text-4xl tracking-tight max-w-2xl\">HTTPS and gRPC, readable.</h2><div class=\"grid grid-cols-1 md:grid-cols-2 gap-px bg-line border border-line mt-10\"><div class=\"bg-paper p-8\"><span class=\"tag\">TLS</span><h3 class=\"font-display font-bold text-2xl mt-4\">HTTPS decryption</h3><p class=\"text-sm text-muted mt-3 leading-relaxed\">The lab-managed proxy decrypts your app's TLS traffic for inspection — inside your network, under your control. Headers, bodies, timings, and status codes, not just hostnames.</p></div><div class=\"bg-paper p-8\"><span class=\"tag\">GRPC</span><h3 class=\"font-display font-bold text-2xl mt-4\">Protobuf decoding</h3><p class=\"text-sm text-muted mt-3 leading-relaxed\">Binary gRPC and protobuf payloads decode into readable messages using your proto descriptors — so API traffic that other tools show as opaque bytes reads like JSON here.</p></div></div></div></section>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -252,7 +268,7 @@ func ncMock() templ.Component {
 			templ_7745c5c3_Var6 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 12, "<section class=\"border-b border-line\"><div class=\"max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24\"><div class=\"flex items-center gap-3 mb-4\"><span class=\"tag\">Mocking &amp; modification</span>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 13, "<section class=\"border-b border-line\"><div class=\"max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24\"><div class=\"flex items-center gap-3 mb-4\"><span class=\"tag\">Mocking &amp; modification</span>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -260,7 +276,7 @@ func ncMock() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 13, "<span class=\"rule\" aria-hidden=\"true\"></span></div><h2 class=\"font-display font-bold text-3xl md:text-4xl tracking-tight max-w-2xl\">Test the failure your backend won't give you.</h2><p class=\"text-muted mt-4 max-w-2xl leading-relaxed\">Reproducing a 500, a malformed payload, or a slow edge case usually means begging another team to break staging. The traffic modifier does it at the proxy instead — per session, without touching any server.</p><div class=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-line border border-line mt-10\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 14, "<span class=\"rule\" aria-hidden=\"true\"></span></div><h2 class=\"font-display font-bold text-3xl md:text-4xl tracking-tight max-w-2xl\">Test the failure your backend won't give you.</h2><p class=\"text-muted mt-4 max-w-2xl leading-relaxed\">Reproducing a 500, a malformed payload, or a slow edge case usually means begging another team to break staging. The traffic modifier does it at the proxy instead — per session, without touching any server.</p><div class=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-line border border-line mt-10\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -280,7 +296,7 @@ func ncMock() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 14, "</div></div></section>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 15, "</div></div></section>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -309,46 +325,46 @@ func ncMockCard(tag string, title string, desc string) templ.Component {
 			templ_7745c5c3_Var7 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 15, "<div class=\"bg-paper p-6\"><span class=\"tag\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 16, "<div class=\"bg-paper p-6\"><span class=\"tag\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var8 string
 		templ_7745c5c3_Var8, templ_7745c5c3_Err = templ.JoinStringErrs(tag)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/network_capture.templ`, Line: 106, Col: 25}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/network_capture.templ`, Line: 115, Col: 25}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var8))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 16, "</span><h3 class=\"font-display font-bold text-lg mt-4\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 17, "</span><h3 class=\"font-display font-bold text-lg mt-4\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var9 string
 		templ_7745c5c3_Var9, templ_7745c5c3_Err = templ.JoinStringErrs(title)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/network_capture.templ`, Line: 107, Col: 57}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/network_capture.templ`, Line: 116, Col: 57}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var9))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 17, "</h3><p class=\"text-sm text-muted mt-2 leading-relaxed\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 18, "</h3><p class=\"text-sm text-muted mt-2 leading-relaxed\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var10 string
 		templ_7745c5c3_Var10, templ_7745c5c3_Err = templ.JoinStringErrs(desc)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/network_capture.templ`, Line: 108, Col: 59}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/network_capture.templ`, Line: 117, Col: 59}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var10))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 18, "</p></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 19, "</p></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -377,7 +393,7 @@ func ncLocal() templ.Component {
 			templ_7745c5c3_Var11 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 19, "<section class=\"border-b border-line bg-surface\"><div class=\"max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24\"><div class=\"grid grid-cols-1 lg:grid-cols-2 gap-12 items-center\"><div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 20, "<section class=\"border-b border-line bg-surface\"><div class=\"max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24\"><div class=\"grid grid-cols-1 lg:grid-cols-2 gap-12 items-center\"><div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -385,7 +401,7 @@ func ncLocal() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 20, "<h2 class=\"font-display font-bold text-3xl md:text-4xl tracking-tight\">Your staging is already reachable.</h2><p class=\"text-muted mt-4 leading-relaxed\">Cloud device farms make you tunnel out to reach anything internal. RobusTest devices sit on your LAN — staging environments, internal APIs, and service meshes are reachable the way they are from any machine in the office.</p><ul class=\"space-y-2.5 mt-6\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 21, "<h2 class=\"font-display font-bold text-3xl md:text-4xl tracking-tight\">Your staging is already reachable.</h2><p class=\"text-muted mt-4 leading-relaxed\">Cloud device farms make you tunnel out to reach anything internal. RobusTest devices sit on your LAN — staging environments, internal APIs, and service meshes are reachable the way they are from any machine in the office.</p><ul class=\"space-y-2.5 mt-6\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -401,7 +417,7 @@ func ncLocal() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 21, "</ul></div><div class=\"grid grid-cols-2 gap-3\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 22, "</ul></div><div class=\"grid grid-cols-2 gap-3\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -421,7 +437,7 @@ func ncLocal() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 22, "</div></div></div></section>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 23, "</div></div></div></section>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

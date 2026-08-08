@@ -4,35 +4,46 @@ import (
 	"fmt"
 	"net/http"
 	"strings"
-	"time"
 
 	"github.com/gin-gonic/gin"
 )
 
-// marketingPages are the static site URLs with their sitemap priority.
+// docsFallbackDate is the lastmod used for the docs and blog listing pages
+// before their real dates are known (docs not yet synced, no posts loaded). It
+// is a fixed past date rather than "now" so an empty store can't advertise a
+// fresh change that never happened.
+const docsFallbackDate = "2026-07-18"
+
+// marketingPages are the static site URLs with their sitemap priority and the
+// date the page's content last actually changed.
+//
+// LastMod is hand-maintained on purpose: it must reflect a real content change,
+// so bump it in the same commit that edits the page's template. Deriving it from
+// time.Now() (as this once did) republishes every page as "modified today" on
+// every request, which teaches Google the field is noise — it then ignores
+// lastmod site-wide and wastes crawl budget re-fetching pages that never change.
 var marketingPages = []struct {
 	Path     string
 	Priority string
+	LastMod  string
 }{
-	{"/", "1.0"},
-	{"/features", "0.9"},
-	{"/platform/manual-testing", "0.9"},
-	{"/platform/test-automation", "0.9"},
-	{"/platform/performance-testing", "0.9"},
-	{"/platform/tv-testing", "0.9"},
-	{"/platform/network-capture", "0.9"},
-	{"/platform/device-lab", "0.9"},
-	{"/platform/integrations", "0.9"},
-	{"/compare/robustest-vs-browserstack", "0.8"},
-	{"/enterprise", "0.8"},
-	{"/partners", "0.8"},
-	{"/pricing", "0.8"},
-	{"/security", "0.7"},
-	{"/docs", "0.7"},
-	{"/blog", "0.7"},
-	{"/about", "0.6"},
-	{"/contact", "0.5"},
-	{"/legal", "0.3"},
+	{"/", "1.0", "2026-07-14"},
+	{"/features", "0.9", "2026-07-14"},
+	{"/platform/manual-testing", "0.9", "2026-07-14"},
+	{"/platform/test-automation", "0.9", "2026-07-14"},
+	{"/platform/performance-testing", "0.9", "2026-07-14"},
+	{"/platform/tv-testing", "0.9", "2026-07-17"},
+	{"/platform/network-capture", "0.9", "2026-07-14"},
+	{"/platform/device-lab", "0.9", "2026-07-18"},
+	{"/platform/integrations", "0.9", "2026-07-17"},
+	{"/compare/robustest-vs-browserstack", "0.8", "2026-07-17"},
+	{"/enterprise", "0.8", "2026-07-14"},
+	{"/partners", "0.8", "2026-07-14"},
+	{"/pricing", "0.8", "2026-07-17"},
+	{"/security", "0.7", "2026-07-14"},
+	{"/about", "0.6", "2026-07-14"},
+	{"/contact", "0.5", "2026-07-14"},
+	{"/legal", "0.3", "2026-07-14"},
 }
 
 // SitemapXML emits the sitemap dynamically: static marketing pages, every page
@@ -42,11 +53,33 @@ func SitemapXML(c *gin.Context) {
 	b.WriteString(`<?xml version="1.0" encoding="UTF-8"?>` + "\n")
 	b.WriteString(`<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">` + "\n")
 
-	today := time.Now().UTC().Format("2006-01-02")
-	docsDate := today
-	if docsStore != nil {
-		if _, syncedAt, _ := docsStore.Status(); !syncedAt.IsZero() {
-			docsDate = syncedAt.UTC().Format("2006-01-02")
+	posts := BlogPosts()
+
+	// The docs tree and the blog index are the two listing pages whose content
+	// really does change on their own schedule, so they get a derived lastmod
+	// rather than a hand-maintained one.
+	//
+	// Deliberately not the sync timestamp: we poll the docs repo on a timer, so
+	// syncedAt advances even when nothing changed, and every docs URL would
+	// claim a fresh edit on every poll.
+	docsPageDate := func(path string) string {
+		if docsStore == nil {
+			return docsFallbackDate
+		}
+		if t, ok := docsStore.ModTime(path); ok {
+			return t.UTC().Format("2006-01-02")
+		}
+		return docsFallbackDate
+	}
+	docsDate := docsPageDate("")
+	blogDate := docsFallbackDate
+	for _, p := range posts {
+		d := p.Date
+		if !p.Updated.IsZero() {
+			d = p.Updated
+		}
+		if s := d.UTC().Format("2006-01-02"); s > blogDate {
+			blogDate = s
 		}
 	}
 
@@ -56,19 +89,21 @@ func SitemapXML(c *gin.Context) {
 	}
 
 	for _, p := range marketingPages {
-		write(p.Path, today, p.Priority)
+		write(p.Path, p.LastMod, p.Priority)
 	}
+	write("/docs", docsDate, "0.7")
+	write("/blog", blogDate, "0.7")
 	if docsStore != nil && docsStore.Ready() {
 		for _, entry := range docsStore.Index() {
 			if entry.Path == "" {
 				continue // /docs home already listed
 			}
-			write("/docs/"+entry.Path, docsDate, "0.6")
+			write("/docs/"+entry.Path, docsPageDate(entry.Path), "0.6")
 		}
 	}
 	// Posts carry their own lastmod: a revised post (the regulation pages get
 	// refreshed at each compliance milestone) should say so.
-	for _, p := range BlogPosts() {
+	for _, p := range posts {
 		lastmod := p.Date
 		if !p.Updated.IsZero() {
 			lastmod = p.Updated

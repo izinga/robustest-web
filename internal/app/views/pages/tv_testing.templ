@@ -21,6 +21,17 @@ templ TVTestingPage() {
 		@tvMatrix()
 		@tvPipeline()
 		@tvPerf()
+		@components.FurtherReading(
+			[]components.ReadingLink{
+				{Href: "/docs/hub/hubroku", Title: "Roku", Note: "Driving Roku devices from the hub."},
+				{Href: "/docs/devices/addnewdeviceroku", Title: "Adding Roku devices", Note: "Getting a set onto the lab network."},
+			},
+			[]components.ReadingLink{
+				{Href: "/blog/webos-26-field-guide", Title: "A field guide to webOS 26", Note: "The quirks no document warns you about."},
+				{Href: "/blog/your-tv-test-passed-there-was-no-sound", Title: "Your TV test passed. There was no sound.", Note: "Why the framebuffer is not the whole story."},
+				{Href: "/blog/the-tv-browser-is-frozen-the-day-it-ships", Title: "The TV browser is frozen the day it ships", Note: "Testing against a browser that never updates."},
+			},
+		)
 		@components.CTABand(
 			"Put your OTT app on a real TV wall.",
 			"Tell us which platforms you ship to — we'll spec the TV nodes, capture hardware, and panel list for your lab.",

@@ -8,6 +8,7 @@ import (
 	"path/filepath"
 	"regexp"
 	"strings"
+	"time"
 
 	"github.com/yuin/goldmark"
 	"github.com/yuin/goldmark/extension"
@@ -191,20 +192,13 @@ func (s *Store) Load(urlPath string) (*Page, error) {
 		return v.(*Page), nil
 	}
 
-	rel := urlPath
-	if rel == "" {
-		rel = "README"
+	file, ok := resolveFile(dir, urlPath)
+	if !ok {
+		return nil, os.ErrNotExist
 	}
-	file := filepath.Join(dir, rel+".md")
 	raw, err := os.ReadFile(file)
 	if err != nil {
-		// A directory link may mean section README, e.g. guides/ -> guides/README.md
-		alt := filepath.Join(dir, rel, "README.md")
-		if raw2, err2 := os.ReadFile(alt); err2 == nil {
-			raw = raw2
-		} else {
-			return nil, os.ErrNotExist
-		}
+		return nil, os.ErrNotExist
 	}
 
 	page, err := renderPage(raw, urlPath)
@@ -213,6 +207,50 @@ func (s *Store) Load(urlPath string) (*Page, error) {
 	}
 	s.pageCache.Store(cacheKey, page)
 	return page, nil
+}
+
+// resolveFile maps a docs URL path to the markdown file backing it, following
+// the same rule Load uses: "a/b" is a/b.md, falling back to a/b/README.md for
+// section links, and "" is the tree README.
+func resolveFile(dir, urlPath string) (string, bool) {
+	rel := strings.Trim(urlPath, "/")
+	if rel == "" {
+		rel = "README"
+	}
+	file := filepath.Join(dir, rel+".md")
+	if _, err := os.Stat(file); err == nil {
+		return file, true
+	}
+	alt := filepath.Join(dir, rel, "README.md")
+	if _, err := os.Stat(alt); err == nil {
+		return alt, true
+	}
+	return "", false
+}
+
+// ModTime is when the markdown behind a docs page last changed. The docs tree
+// is extracted from a GitHub tarball, which stamps every entry with its commit
+// time, so this is the content's real date and stays put across re-syncs of the
+// same commit — unlike the sync timestamp, which moves every time we poll.
+func (s *Store) ModTime(urlPath string) (time.Time, bool) {
+	s.mu.RLock()
+	dir := s.dir
+	s.mu.RUnlock()
+	if dir == "" {
+		return time.Time{}, false
+	}
+	if strings.Contains(urlPath, "..") || strings.HasPrefix(strings.Trim(urlPath, "/"), "_") {
+		return time.Time{}, false
+	}
+	file, ok := resolveFile(dir, urlPath)
+	if !ok {
+		return time.Time{}, false
+	}
+	fi, err := os.Stat(file)
+	if err != nil {
+		return time.Time{}, false
+	}
+	return fi.ModTime(), true
 }
 
 var (

@@ -20,6 +20,15 @@ templ NetworkCapturePage() {
 		@ncInspect()
 		@ncMock()
 		@ncLocal()
+		@components.FurtherReading(
+			[]components.ReadingLink{
+				{Href: "/docs/integration/tunnelClientConfig", Title: "Tunneling setup", Note: "Routing device traffic through your network."},
+			},
+			[]components.ReadingLink{
+				{Href: "/blog/what-actually-leaves-your-network", Title: "What actually leaves your network", Note: "Reading the traffic a test session generates."},
+				{Href: "/blog/one-less-connection-to-debug", Title: "One less connection to debug", Note: "Why the capture point matters."},
+			},
+		)
 		@components.CTABand(
 			"See what your app says on the wire.",
 			"Bring a build to a demo session and watch its traffic captured live — then take the HAR file with you.",

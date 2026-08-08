@@ -1,0 +1,56 @@
+package components
+
+// ReadingLink is one entry in a FurtherReading block.
+type ReadingLink struct {
+	Href  string
+	Title string
+	Note  string
+}
+
+// FurtherReading is the bridge from a marketing page into the docs tree and the
+// blog. The marketing pages are the ones search engines actually index, so
+// without a crawlable link out of them the docs and posts are reachable only
+// via /docs and /blog — one narrow path, and every deeper page competes for the
+// crawl budget that trickles through it.
+templ FurtherReading(docs []ReadingLink, posts []ReadingLink) {
+	<section class="border-b border-line bg-surface">
+		<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-16">
+			@SectionTag("Further reading")
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 mt-6">
+				if len(docs) > 0 {
+					<div>
+						<h3 class="font-mono text-xs text-muted tracking-widest uppercase mb-4">Documentation</h3>
+						<ul class="border-t border-line-strong">
+							for _, l := range docs {
+								@readingRow(l)
+							}
+						</ul>
+					</div>
+				}
+				if len(posts) > 0 {
+					<div>
+						<h3 class="font-mono text-xs text-muted tracking-widest uppercase mb-4">From the blog</h3>
+						<ul class="border-t border-line-strong">
+							for _, l := range posts {
+								@readingRow(l)
+							}
+						</ul>
+					</div>
+				}
+			</div>
+		</div>
+	</section>
+}
+
+templ readingRow(l ReadingLink) {
+	<li class="border-b border-line">
+		<a href={ templ.SafeURL(l.Href) } class="block py-4 group">
+			<span class="block font-display font-bold text-base tracking-tight group-hover:text-signal transition-colors">
+				{ l.Title }
+			</span>
+			if l.Note != "" {
+				<span class="block text-sm text-muted mt-1 leading-relaxed">{ l.Note }</span>
+			}
+		</a>
+	</li>
+}

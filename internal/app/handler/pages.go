@@ -18,10 +18,17 @@ func renderPage(c *gin.Context, pageName string, renderFunc func() error) {
 	}
 }
 
+// homeNotesCount is how many recent posts the home page lists.
+const homeNotesCount = 4
+
 // HomePage renders the home page
 func HomePage(c *gin.Context) {
+	posts := BlogPosts()
+	if len(posts) > homeNotesCount {
+		posts = posts[:homeNotesCount]
+	}
 	renderPage(c, "home", func() error {
-		return pages.HomePage().Render(c.Request.Context(), c.Writer)
+		return pages.HomePage(posts).Render(c.Request.Context(), c.Writer)
 	})
 }
 
