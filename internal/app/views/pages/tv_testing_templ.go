@@ -47,7 +47,7 @@ func TVTestingPage() templ.Component {
 			}
 			ctx = templ.InitializeContext(ctx)
 			templ_7745c5c3_Err = components.PageHero(
-				"Smart TV & OTT testing",
+				"Smart TV & OTT app testing",
 				"The TV lab cloud farms never built.",
 				"Real Samsung, LG, Roku, and Apple TV panels on your wall — and the boxes under them: cable set-top boxes, Xbox, PlayStation. Live video and audio over HDMI capture, element-level automation on the platforms that allow it, and remote-control-level testing on every app — including store apps you don't own.",
 			).Render(ctx, templ_7745c5c3_Buffer)
@@ -74,7 +74,7 @@ func TVTestingPage() templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = tvMatrix().Render(ctx, templ_7745c5c3_Buffer)
+			templ_7745c5c3_Err = tvOTT().Render(ctx, templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -82,7 +82,7 @@ func TVTestingPage() templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = tvPipeline().Render(ctx, templ_7745c5c3_Buffer)
+			templ_7745c5c3_Err = tvMatrix().Render(ctx, templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -90,11 +90,19 @@ func TVTestingPage() templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = tvPerf().Render(ctx, templ_7745c5c3_Buffer)
+			templ_7745c5c3_Err = tvPipeline().Render(ctx, templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, " ")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = tvPerf().Render(ctx, templ_7745c5c3_Buffer)
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, " ")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -104,6 +112,8 @@ func TVTestingPage() templ.Component {
 					{Href: "/docs/devices/addnewdeviceroku", Title: "Adding Roku devices", Note: "Getting a set onto the lab network."},
 				},
 				[]components.ReadingLink{
+					{Href: "/blog/smart-tv-app-testing", Title: "Smart TV app testing: what changes when there is no touchscreen", Note: "Focus, remotes, developer mode, and five automation paths."},
+					{Href: "/blog/tvs-dont-turn-themselves-on", Title: "TVs don't turn themselves on", Note: "Why a TV lab needs Wake-on-LAN and a phone lab doesn't."},
 					{Href: "/blog/webos-26-field-guide", Title: "A field guide to webOS 26", Note: "The quirks no document warns you about."},
 					{Href: "/blog/your-tv-test-passed-there-was-no-sound", Title: "Your TV test passed. There was no sound.", Note: "Why the framebuffer is not the whole story."},
 					{Href: "/blog/the-tv-browser-is-frozen-the-day-it-ships", Title: "The TV browser is frozen the day it ships", Note: "Testing against a browser that never updates."},
@@ -112,7 +122,7 @@ func TVTestingPage() templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, " ")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, " ")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -126,8 +136,8 @@ func TVTestingPage() templ.Component {
 			return nil
 		})
 		templ_7745c5c3_Err = layouts.Base(
-			"Smart TV & OTT testing on real panels — RobusTest",
-			"Automate and manually test Samsung Tizen, LG webOS, Roku, Apple TV, Android TV, Fire TV — plus cable boxes, Xbox, and PlayStation — on real hardware in your own lab, with live video and audio over HDMI capture and TV performance vitals.",
+			"Smart TV & OTT app testing on real devices — RobusTest",
+			"Smart TV and OTT app testing on real Samsung Tizen, LG webOS, Roku, Apple TV, Android TV and Fire TV panels in your own lab — automated or manual, with live screen and audio.",
 			"/platform/tv-testing",
 		).Render(templ.WithChildren(ctx, templ_7745c5c3_Var2), templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
@@ -158,7 +168,7 @@ func tvPlatforms() templ.Component {
 			templ_7745c5c3_Var3 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "<section class=\"border-b border-line\"><div class=\"max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 9, "<section class=\"border-b border-line\"><div class=\"max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -166,7 +176,7 @@ func tvPlatforms() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 9, "<h2 class=\"font-display font-bold text-3xl md:text-4xl tracking-tight max-w-2xl\">Every screen in the living room.</h2><p class=\"text-muted mt-4 max-w-2xl leading-relaxed\">Smart TV test automation where the platform exposes an engine, black-box remote-and-video control where it doesn't — every panel and box on one lab network.</p><div class=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-line mt-10 border border-line\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "<h2 class=\"font-display font-bold text-3xl md:text-4xl tracking-tight max-w-2xl\">Every screen in the living room.</h2><p class=\"text-muted mt-4 max-w-2xl leading-relaxed\">Smart TV test automation where the platform exposes an engine, black-box remote-and-video control where it doesn't — every panel and box on one lab network.</p><div class=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-line mt-10 border border-line\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -194,7 +204,7 @@ func tvPlatforms() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "</div><p class=\"text-sm text-muted mt-6 max-w-2xl leading-relaxed\">Chromecast devices are discovered on the lab network automatically and join test sessions for cast-target coverage.</p><p class=\"text-sm text-muted mt-3 max-w-2xl leading-relaxed\">Weighing a cloud vendor for TV? See how RobusTest compares to <a href=\"/compare/robustest-vs-browserstack\" class=\"underline decoration-line-strong underline-offset-2 hover:text-ink\">BrowserStack for smart TV testing</a>.</p></div></section>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 11, "</div><p class=\"text-sm text-muted mt-6 max-w-2xl leading-relaxed\">Chromecast devices are discovered on the lab network automatically and join test sessions for cast-target coverage.</p><p class=\"text-sm text-muted mt-3 max-w-2xl leading-relaxed\">Weighing a cloud vendor for TV? See how RobusTest compares to <a href=\"/compare/robustest-vs-browserstack\" class=\"underline decoration-line-strong underline-offset-2 hover:text-ink\">BrowserStack for smart TV testing</a>.</p></div></section>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -223,46 +233,46 @@ func tvPlatformCard(tag string, title string, desc string) templ.Component {
 			templ_7745c5c3_Var4 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 11, "<div class=\"bg-paper p-6\"><span class=\"tag\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 12, "<div class=\"bg-paper p-6\"><span class=\"tag\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var5 string
 		templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(tag)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/tv_testing.templ`, Line: 70, Col: 25}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/tv_testing.templ`, Line: 73, Col: 25}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 12, "</span><h3 class=\"font-display font-bold text-xl mt-5\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 13, "</span><h3 class=\"font-display font-bold text-xl mt-5\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var6 string
 		templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinStringErrs(title)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/tv_testing.templ`, Line: 71, Col: 57}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/tv_testing.templ`, Line: 74, Col: 57}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var6))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 13, "</h3><p class=\"text-sm text-muted mt-2 leading-relaxed\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 14, "</h3><p class=\"text-sm text-muted mt-2 leading-relaxed\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var7 string
 		templ_7745c5c3_Var7, templ_7745c5c3_Err = templ.JoinStringErrs(desc)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/tv_testing.templ`, Line: 72, Col: 59}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/tv_testing.templ`, Line: 75, Col: 59}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var7))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 14, "</p></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 15, "</p></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -291,7 +301,7 @@ func tvTwoLevels() templ.Component {
 			templ_7745c5c3_Var8 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 15, "<section class=\"border-b border-line bg-surface\"><div class=\"max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 16, "<section class=\"border-b border-line bg-surface\"><div class=\"max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -299,7 +309,7 @@ func tvTwoLevels() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 16, "<h2 class=\"font-display font-bold text-3xl md:text-4xl tracking-tight max-w-2xl\">Black-box for any app. White-box for yours.</h2><div class=\"grid grid-cols-1 md:grid-cols-2 gap-8 mt-10\"><div class=\"border border-line-strong bg-paper p-8\"><span class=\"tag\">Level 1 · Remote + live video</span><h3 class=\"font-display font-bold text-2xl mt-4\">Works on every app</h3><p class=\"text-sm text-muted mt-3 leading-relaxed\">Connect to the TV, launch or close any app — store apps, native apps, or your own — send remote keys and pointer gestures, and watch the live screen with audio in your browser. No debugging access required, so competitor apps and retail content are fair game.</p><ul class=\"space-y-2.5 mt-6\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 17, "<h2 class=\"font-display font-bold text-3xl md:text-4xl tracking-tight max-w-2xl\">Black-box for any app. White-box for yours.</h2><div class=\"grid grid-cols-1 md:grid-cols-2 gap-8 mt-10\"><div class=\"border border-line-strong bg-paper p-8\"><span class=\"tag\">Level 1 · Remote + live video</span><h3 class=\"font-display font-bold text-2xl mt-4\">Works on every app</h3><p class=\"text-sm text-muted mt-3 leading-relaxed\">Connect to the TV, launch or close any app — store apps, native apps, or your own — send remote keys and pointer gestures, and watch the live screen with audio in your browser. No debugging access required, so competitor apps and retail content are fair game.</p><ul class=\"space-y-2.5 mt-6\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -319,7 +329,7 @@ func tvTwoLevels() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 17, "</ul></div><div class=\"border border-line-strong bg-paper p-8\"><span class=\"tag\">Level 2 · Element automation</span><h3 class=\"font-display font-bold text-2xl mt-4\">For your own web apps</h3><p class=\"text-sm text-muted mt-3 leading-relaxed\">Developer-signed, debuggable web apps get element-level control through the Chrome DevTools Protocol: click buttons, type into fields, read page state, run assertions, and capture the in-app DOM — the same white-box precision you expect from browser automation.</p><ul class=\"space-y-2.5 mt-6\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 18, "</ul></div><div class=\"border border-line-strong bg-paper p-8\"><span class=\"tag\">Level 2 · Element automation</span><h3 class=\"font-display font-bold text-2xl mt-4\">For your own web apps</h3><p class=\"text-sm text-muted mt-3 leading-relaxed\">Developer-signed, debuggable web apps get element-level control through the Chrome DevTools Protocol: click buttons, type into fields, read page state, run assertions, and capture the in-app DOM — the same white-box precision you expect from browser automation.</p><ul class=\"space-y-2.5 mt-6\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -339,7 +349,119 @@ func tvTwoLevels() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 18, "</ul><p class=\"text-xs text-muted mt-5\">Requires Developer Mode on the TV. Store and native apps can't be inspected — they're driven black-box instead.</p></div></div></div></section>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 19, "</ul><p class=\"text-xs text-muted mt-5\">Requires Developer Mode on the TV. Store and native apps can't be inspected — they're driven black-box instead.</p></div></div></div></section>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func tvOTT() templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var9 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var9 == nil {
+			templ_7745c5c3_Var9 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 20, "<section class=\"border-b border-line\"><div class=\"max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = components.SectionTag("OTT app testing").Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 21, "<h2 class=\"font-display font-bold text-3xl md:text-4xl tracking-tight max-w-2xl\">Smart TV app testing, answered straight.</h2><p class=\"text-muted mt-4 max-w-2xl leading-relaxed\">The questions every streaming and OTT team asks before they build or buy a TV lab — with the answers the platforms actually allow.</p><div class=\"grid grid-cols-1 md:grid-cols-2 gap-px bg-line border border-line mt-10\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = tvFAQ("Can smart TV app testing be automated?", "Yes, on two levels. Every panel and box takes remote-key automation with the live screen and audio as the oracle. Samsung Tizen and LG webOS panels from 2020 onward, Roku, Apple TV, and Android/Fire TV also take element-level automation — your own web app on Tizen or webOS gets DevTools-grade control, Roku gets its UI tree, tvOS gets XCUITest, Android TV gets the frameworks you already use on phones.").Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = tvFAQ("What is OTT app testing, and how is it different from mobile?", "OTT app testing runs your streaming app on the set-top boxes and smart TVs your subscribers own. Nothing is touched: navigation is focus-driven by a remote, playback and DRM are the core feature rather than an edge case, and the browser engine inside a TV never updates after it ships — so coverage is set by model year, not OS version.").Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = tvFAQ("Can you test an OTT app you don't own?", "Yes. Store apps, a competitor's app, the platform launcher, and DRM-protected playback are all driven black-box: remote keys in, real screen and audio out over HDMI capture. No developer mode or debug access is needed, so nothing about the app has to change.").Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = tvFAQ("Which smart TV platforms can be tested on real devices?", "Samsung Tizen, LG webOS, Roku, Apple TV (tvOS), Android TV and Fire TV as first-class devices, plus any HDMI source — cable set-top boxes, Xbox, PlayStation — as a captured black box. All of it sits on one lab network inside your premises, so unreleased builds and subscriber test accounts never leave the building.").Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 22, "</div></div></section>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func tvFAQ(q string, a string) templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var10 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var10 == nil {
+			templ_7745c5c3_Var10 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 23, "<div class=\"bg-paper p-6\"><h3 class=\"font-display font-bold text-xl\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		var templ_7745c5c3_Var11 string
+		templ_7745c5c3_Var11, templ_7745c5c3_Err = templ.JoinStringErrs(q)
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/tv_testing.templ`, Line: 139, Col: 48}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var11))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 24, "</h3><p class=\"text-sm text-muted mt-3 leading-relaxed\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		var templ_7745c5c3_Var12 string
+		templ_7745c5c3_Var12, templ_7745c5c3_Err = templ.JoinStringErrs(a)
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/tv_testing.templ`, Line: 140, Col: 56}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var12))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 25, "</p></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -363,12 +485,12 @@ func tvMatrix() templ.Component {
 			}()
 		}
 		ctx = templ.InitializeContext(ctx)
-		templ_7745c5c3_Var9 := templ.GetChildren(ctx)
-		if templ_7745c5c3_Var9 == nil {
-			templ_7745c5c3_Var9 = templ.NopComponent
+		templ_7745c5c3_Var13 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var13 == nil {
+			templ_7745c5c3_Var13 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 19, "<section class=\"border-b border-line\"><div class=\"max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 26, "<section class=\"border-b border-line\"><div class=\"max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -376,7 +498,7 @@ func tvMatrix() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 20, "<h2 class=\"font-display font-bold text-3xl md:text-4xl tracking-tight max-w-2xl\">Support you can look up, not guess at.</h2><p class=\"text-muted mt-4 max-w-2xl leading-relaxed\">A TV's browser engine is fixed at manufacture — neither Samsung nor LG updates it — so automation capability is set by model year. Remote control and live video work on every supported year; element automation depends on the engine.</p><div class=\"grid grid-cols-1 lg:grid-cols-2 gap-8 mt-10\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 27, "<h2 class=\"font-display font-bold text-3xl md:text-4xl tracking-tight max-w-2xl\">Support you can look up, not guess at.</h2><p class=\"text-muted mt-4 max-w-2xl leading-relaxed\">A TV's browser engine is fixed at manufacture — neither Samsung nor LG updates it — so automation capability is set by model year. Remote control and live video work on every supported year; element automation depends on the engine.</p><div class=\"grid grid-cols-1 lg:grid-cols-2 gap-8 mt-10\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -396,7 +518,7 @@ func tvMatrix() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 21, "</div><p class=\"text-sm text-muted mt-6\">Recommended baseline for full automation coverage: 2020-or-newer panels — the configuration we validate against.</p></div></section>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 28, "</div><p class=\"text-sm text-muted mt-6\">Recommended baseline for full automation coverage: 2020-or-newer panels — the configuration we validate against.</p></div></section>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -426,74 +548,74 @@ func tvMatrixTable(title string, rows []tvMatrixRow) templ.Component {
 			}()
 		}
 		ctx = templ.InitializeContext(ctx)
-		templ_7745c5c3_Var10 := templ.GetChildren(ctx)
-		if templ_7745c5c3_Var10 == nil {
-			templ_7745c5c3_Var10 = templ.NopComponent
+		templ_7745c5c3_Var14 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var14 == nil {
+			templ_7745c5c3_Var14 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 22, "<div class=\"border border-line-strong\"><h3 class=\"font-display font-bold text-lg px-4 py-3 border-b border-line-strong bg-surface\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 29, "<div class=\"border border-line-strong\"><h3 class=\"font-display font-bold text-lg px-4 py-3 border-b border-line-strong bg-surface\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var11 string
-		templ_7745c5c3_Var11, templ_7745c5c3_Err = templ.JoinStringErrs(title)
+		var templ_7745c5c3_Var15 string
+		templ_7745c5c3_Var15, templ_7745c5c3_Err = templ.JoinStringErrs(title)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/tv_testing.templ`, Line: 151, Col: 101}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/tv_testing.templ`, Line: 179, Col: 101}
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var11))
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var15))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 23, "</h3><table class=\"w-full text-sm\"><thead><tr class=\"border-b border-line\"><th scope=\"col\" class=\"text-left font-mono text-xs uppercase tracking-widest text-muted font-medium px-4 py-2.5\">Model years</th><th scope=\"col\" class=\"text-left font-mono text-xs uppercase tracking-widest text-muted font-medium px-4 py-2.5\">OS</th><th scope=\"col\" class=\"text-left font-mono text-xs uppercase tracking-widest text-muted font-medium px-4 py-2.5\">Support</th></tr></thead> <tbody class=\"divide-y divide-line\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 30, "</h3><table class=\"w-full text-sm\"><thead><tr class=\"border-b border-line\"><th scope=\"col\" class=\"text-left font-mono text-xs uppercase tracking-widest text-muted font-medium px-4 py-2.5\">Model years</th><th scope=\"col\" class=\"text-left font-mono text-xs uppercase tracking-widest text-muted font-medium px-4 py-2.5\">OS</th><th scope=\"col\" class=\"text-left font-mono text-xs uppercase tracking-widest text-muted font-medium px-4 py-2.5\">Support</th></tr></thead> <tbody class=\"divide-y divide-line\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		for _, r := range rows {
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 24, "<tr><td class=\"px-4 py-3 font-medium whitespace-nowrap\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 31, "<tr><td class=\"px-4 py-3 font-medium whitespace-nowrap\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			var templ_7745c5c3_Var12 string
-			templ_7745c5c3_Var12, templ_7745c5c3_Err = templ.JoinStringErrs(r.Years)
+			var templ_7745c5c3_Var16 string
+			templ_7745c5c3_Var16, templ_7745c5c3_Err = templ.JoinStringErrs(r.Years)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/tv_testing.templ`, Line: 163, Col: 67}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/tv_testing.templ`, Line: 191, Col: 67}
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var12))
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 25, "</td><td class=\"px-4 py-3 text-muted whitespace-nowrap\">")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var16))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			var templ_7745c5c3_Var13 string
-			templ_7745c5c3_Var13, templ_7745c5c3_Err = templ.JoinStringErrs(r.OS)
-			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/tv_testing.templ`, Line: 164, Col: 63}
-			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var13))
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 32, "</td><td class=\"px-4 py-3 text-muted whitespace-nowrap\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 26, "</td><td class=\"px-4 py-3 text-muted\">")
+			var templ_7745c5c3_Var17 string
+			templ_7745c5c3_Var17, templ_7745c5c3_Err = templ.JoinStringErrs(r.OS)
+			if templ_7745c5c3_Err != nil {
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/tv_testing.templ`, Line: 192, Col: 63}
+			}
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var17))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			var templ_7745c5c3_Var14 string
-			templ_7745c5c3_Var14, templ_7745c5c3_Err = templ.JoinStringErrs(r.Level)
-			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/tv_testing.templ`, Line: 165, Col: 48}
-			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var14))
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 33, "</td><td class=\"px-4 py-3 text-muted\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 27, "</td></tr>")
+			var templ_7745c5c3_Var18 string
+			templ_7745c5c3_Var18, templ_7745c5c3_Err = templ.JoinStringErrs(r.Level)
+			if templ_7745c5c3_Err != nil {
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/tv_testing.templ`, Line: 193, Col: 48}
+			}
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var18))
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 34, "</td></tr>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 28, "</tbody></table></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 35, "</tbody></table></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -517,12 +639,12 @@ func tvPipeline() templ.Component {
 			}()
 		}
 		ctx = templ.InitializeContext(ctx)
-		templ_7745c5c3_Var15 := templ.GetChildren(ctx)
-		if templ_7745c5c3_Var15 == nil {
-			templ_7745c5c3_Var15 = templ.NopComponent
+		templ_7745c5c3_Var19 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var19 == nil {
+			templ_7745c5c3_Var19 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 29, "<section class=\"border-b border-line bg-surface\"><div class=\"max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 36, "<section class=\"border-b border-line bg-surface\"><div class=\"max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -530,7 +652,7 @@ func tvPipeline() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 30, "<h2 class=\"font-display font-bold text-3xl md:text-4xl tracking-tight max-w-2xl\">One small node per TV wall.</h2><div class=\"grid grid-cols-1 md:grid-cols-3 gap-px bg-line border border-line mt-10\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 37, "<h2 class=\"font-display font-bold text-3xl md:text-4xl tracking-tight max-w-2xl\">One small node per TV wall.</h2><div class=\"grid grid-cols-1 md:grid-cols-3 gap-px bg-line border border-line mt-10\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -546,11 +668,11 @@ func tvPipeline() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 31, "</div><div class=\"mt-10\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 38, "</div><div class=\"mt-10\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Var16 := templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_Var20 := templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 			templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 			templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
 			if !templ_7745c5c3_IsBuffer {
@@ -568,11 +690,11 @@ func tvPipeline() templ.Component {
 			}
 			return nil
 		})
-		templ_7745c5c3_Err = components.Frame("Live TV session — Tizen panel").Render(templ.WithChildren(ctx, templ_7745c5c3_Var16), templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = components.Frame("Live TV session — Tizen panel").Render(templ.WithChildren(ctx, templ_7745c5c3_Var20), templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 32, "</div></div></section>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 39, "</div></div></section>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -596,51 +718,51 @@ func tvStep(num string, title string, desc string) templ.Component {
 			}()
 		}
 		ctx = templ.InitializeContext(ctx)
-		templ_7745c5c3_Var17 := templ.GetChildren(ctx)
-		if templ_7745c5c3_Var17 == nil {
-			templ_7745c5c3_Var17 = templ.NopComponent
+		templ_7745c5c3_Var21 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var21 == nil {
+			templ_7745c5c3_Var21 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 33, "<div class=\"bg-paper p-6\"><span class=\"font-mono text-xs text-signal\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 40, "<div class=\"bg-paper p-6\"><span class=\"font-mono text-xs text-signal\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var18 string
-		templ_7745c5c3_Var18, templ_7745c5c3_Err = templ.JoinStringErrs(num)
+		var templ_7745c5c3_Var22 string
+		templ_7745c5c3_Var22, templ_7745c5c3_Err = templ.JoinStringErrs(num)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/tv_testing.templ`, Line: 194, Col: 51}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/tv_testing.templ`, Line: 222, Col: 51}
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var18))
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 34, "</span><h3 class=\"font-display font-bold text-xl mt-4\">")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var22))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var19 string
-		templ_7745c5c3_Var19, templ_7745c5c3_Err = templ.JoinStringErrs(title)
-		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/tv_testing.templ`, Line: 195, Col: 57}
-		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var19))
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 41, "</span><h3 class=\"font-display font-bold text-xl mt-4\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 35, "</h3><p class=\"text-sm text-muted mt-2 leading-relaxed\">")
+		var templ_7745c5c3_Var23 string
+		templ_7745c5c3_Var23, templ_7745c5c3_Err = templ.JoinStringErrs(title)
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/tv_testing.templ`, Line: 223, Col: 57}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var23))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var20 string
-		templ_7745c5c3_Var20, templ_7745c5c3_Err = templ.JoinStringErrs(desc)
-		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/tv_testing.templ`, Line: 196, Col: 59}
-		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var20))
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 42, "</h3><p class=\"text-sm text-muted mt-2 leading-relaxed\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 36, "</p></div>")
+		var templ_7745c5c3_Var24 string
+		templ_7745c5c3_Var24, templ_7745c5c3_Err = templ.JoinStringErrs(desc)
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/app/views/pages/tv_testing.templ`, Line: 224, Col: 59}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var24))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 43, "</p></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -664,12 +786,12 @@ func tvPerf() templ.Component {
 			}()
 		}
 		ctx = templ.InitializeContext(ctx)
-		templ_7745c5c3_Var21 := templ.GetChildren(ctx)
-		if templ_7745c5c3_Var21 == nil {
-			templ_7745c5c3_Var21 = templ.NopComponent
+		templ_7745c5c3_Var25 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var25 == nil {
+			templ_7745c5c3_Var25 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 37, "<section class=\"border-b border-line\"><div class=\"max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24\"><div class=\"grid grid-cols-1 lg:grid-cols-2 gap-12 items-center\"><div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 44, "<section class=\"border-b border-line\"><div class=\"max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24\"><div class=\"grid grid-cols-1 lg:grid-cols-2 gap-12 items-center\"><div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -677,7 +799,7 @@ func tvPerf() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 38, "<h2 class=\"font-display font-bold text-3xl md:text-4xl tracking-tight\">Web vitals, on a television.</h2><p class=\"text-muted mt-4 leading-relaxed\">OTT performance testing only tells you something when it runs on the real panel. During a live session the node samples your app's actual behavior on the TV — not an emulator — and streams it to the tester once a second.</p><ul class=\"space-y-2.5 mt-6\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 45, "<h2 class=\"font-display font-bold text-3xl md:text-4xl tracking-tight\">Web vitals, on a television.</h2><p class=\"text-muted mt-4 leading-relaxed\">OTT performance testing only tells you something when it runs on the real panel. During a live session the node samples your app's actual behavior on the TV — not an emulator — and streams it to the tester once a second.</p><ul class=\"space-y-2.5 mt-6\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -697,7 +819,7 @@ func tvPerf() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 39, "</ul></div><div class=\"grid grid-cols-2 gap-3\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 46, "</ul></div><div class=\"grid grid-cols-2 gap-3\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -717,7 +839,7 @@ func tvPerf() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 40, "</div></div></div></section>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 47, "</div></div></div></section>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

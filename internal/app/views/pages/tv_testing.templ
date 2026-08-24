@@ -7,17 +7,18 @@ import (
 
 templ TVTestingPage() {
 	@layouts.Base(
-		"Smart TV & OTT testing on real panels — RobusTest",
-		"Automate and manually test Samsung Tizen, LG webOS, Roku, Apple TV, Android TV, Fire TV — plus cable boxes, Xbox, and PlayStation — on real hardware in your own lab, with live video and audio over HDMI capture and TV performance vitals.",
+		"Smart TV & OTT app testing on real devices — RobusTest",
+		"Smart TV and OTT app testing on real Samsung Tizen, LG webOS, Roku, Apple TV, Android TV and Fire TV panels in your own lab — automated or manual, with live screen and audio.",
 		"/platform/tv-testing",
 	) {
 		@components.PageHero(
-			"Smart TV & OTT testing",
+			"Smart TV & OTT app testing",
 			"The TV lab cloud farms never built.",
 			"Real Samsung, LG, Roku, and Apple TV panels on your wall — and the boxes under them: cable set-top boxes, Xbox, PlayStation. Live video and audio over HDMI capture, element-level automation on the platforms that allow it, and remote-control-level testing on every app — including store apps you don't own.",
 		)
 		@tvPlatforms()
 		@tvTwoLevels()
+		@tvOTT()
 		@tvMatrix()
 		@tvPipeline()
 		@tvPerf()
@@ -27,6 +28,8 @@ templ TVTestingPage() {
 				{Href: "/docs/devices/addnewdeviceroku", Title: "Adding Roku devices", Note: "Getting a set onto the lab network."},
 			},
 			[]components.ReadingLink{
+				{Href: "/blog/smart-tv-app-testing", Title: "Smart TV app testing: what changes when there is no touchscreen", Note: "Focus, remotes, developer mode, and five automation paths."},
+				{Href: "/blog/tvs-dont-turn-themselves-on", Title: "TVs don't turn themselves on", Note: "Why a TV lab needs Wake-on-LAN and a phone lab doesn't."},
 				{Href: "/blog/webos-26-field-guide", Title: "A field guide to webOS 26", Note: "The quirks no document warns you about."},
 				{Href: "/blog/your-tv-test-passed-there-was-no-sound", Title: "Your TV test passed. There was no sound.", Note: "Why the framebuffer is not the whole story."},
 				{Href: "/blog/the-tv-browser-is-frozen-the-day-it-ships", Title: "The TV browser is frozen the day it ships", Note: "Testing against a browser that never updates."},
@@ -111,6 +114,31 @@ templ tvTwoLevels() {
 			</div>
 		</div>
 	</section>
+}
+
+templ tvOTT() {
+	<section class="border-b border-line">
+		<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+			@components.SectionTag("OTT app testing")
+			<h2 class="font-display font-bold text-3xl md:text-4xl tracking-tight max-w-2xl">Smart TV app testing, answered straight.</h2>
+			<p class="text-muted mt-4 max-w-2xl leading-relaxed">
+				The questions every streaming and OTT team asks before they build or buy a TV lab — with the answers the platforms actually allow.
+			</p>
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-line border border-line mt-10">
+				@tvFAQ("Can smart TV app testing be automated?", "Yes, on two levels. Every panel and box takes remote-key automation with the live screen and audio as the oracle. Samsung Tizen and LG webOS panels from 2020 onward, Roku, Apple TV, and Android/Fire TV also take element-level automation — your own web app on Tizen or webOS gets DevTools-grade control, Roku gets its UI tree, tvOS gets XCUITest, Android TV gets the frameworks you already use on phones.")
+				@tvFAQ("What is OTT app testing, and how is it different from mobile?", "OTT app testing runs your streaming app on the set-top boxes and smart TVs your subscribers own. Nothing is touched: navigation is focus-driven by a remote, playback and DRM are the core feature rather than an edge case, and the browser engine inside a TV never updates after it ships — so coverage is set by model year, not OS version.")
+				@tvFAQ("Can you test an OTT app you don't own?", "Yes. Store apps, a competitor's app, the platform launcher, and DRM-protected playback are all driven black-box: remote keys in, real screen and audio out over HDMI capture. No developer mode or debug access is needed, so nothing about the app has to change.")
+				@tvFAQ("Which smart TV platforms can be tested on real devices?", "Samsung Tizen, LG webOS, Roku, Apple TV (tvOS), Android TV and Fire TV as first-class devices, plus any HDMI source — cable set-top boxes, Xbox, PlayStation — as a captured black box. All of it sits on one lab network inside your premises, so unreleased builds and subscriber test accounts never leave the building.")
+			</div>
+		</div>
+	</section>
+}
+
+templ tvFAQ(q string, a string) {
+	<div class="bg-paper p-6">
+		<h3 class="font-display font-bold text-xl">{ q }</h3>
+		<p class="text-sm text-muted mt-3 leading-relaxed">{ a }</p>
+	</div>
 }
 
 templ tvMatrix() {

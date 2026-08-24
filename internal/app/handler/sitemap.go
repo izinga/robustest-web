@@ -32,7 +32,7 @@ var marketingPages = []struct {
 	{"/platform/manual-testing", "0.9", "2026-07-14"},
 	{"/platform/test-automation", "0.9", "2026-07-14"},
 	{"/platform/performance-testing", "0.9", "2026-07-14"},
-	{"/platform/tv-testing", "0.9", "2026-07-17"},
+	{"/platform/tv-testing", "0.9", "2026-08-24"},
 	{"/platform/network-capture", "0.9", "2026-07-14"},
 	{"/platform/device-lab", "0.9", "2026-07-18"},
 	{"/platform/integrations", "0.9", "2026-07-17"},

@@ -1,6 +1,6 @@
 ---
 title: "A field guide to webOS 26"
-description: "Bringing a new LG webOS 26 set into an automated lab, we hit a run of quirks no document warns you about. Every one of these cost us real time."
+description: "webOS 26 developer notes: an execute-only /tmp, journalctl that returns nothing, Developer Mode that uninstalls your apps, and two silent socket failures."
 category: FIELD
 author: Om Narayan
 author_role: "Co-founder"
@@ -9,7 +9,7 @@ author_image: "/assets/images/authors/author-om.png"
 author_company: "RobusTest"
 author_company_url: "https://www.linkedin.com/company/robustest/"
 date: 2025-09-30
-updated: 2026-04-02
+updated: 2026-08-24
 sources:
   - title: "LG — Web API and web engine specifications"
     url: "https://webostv.developer.lge.com/develop/specifications/web-api-and-web-engine"
