@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"html/template"
 	"os"
+	"path"
 	"path/filepath"
 	"regexp"
 	"strings"
@@ -18,10 +19,11 @@ import (
 
 // Page is a rendered documentation page.
 type Page struct {
-	Title   string
-	Path    string // URL path under /docs, e.g. "admin/healthpage"
-	Content template.HTML
-	TOC     []TOCItem
+	Title       string
+	Path        string // URL path under /docs, e.g. "admin/healthpage"
+	Description string // meta description, derived from the first paragraph
+	Content     template.HTML
+	TOC         []TOCItem
 }
 
 // TOCItem is one heading in a page's table of contents.
@@ -108,12 +110,29 @@ func parseSidebar(path string) *Nav {
 	return nav
 }
 
+// absLinkRe matches targets that already address somewhere else entirely
+// (http://, https://, mailto:, protocol-relative //host). These must never be
+// rewritten into /docs routes.
+var absLinkRe = regexp.MustCompile(`^(?:[a-zA-Z][a-zA-Z0-9+.-]*:|//)`)
+
 // docPathFromLink converts a sidebar/markdown link target to a /docs URL path.
+// It returns "" for the docs root and for anything that is not a repo-relative
+// page reference.
 func docPathFromLink(target string) string {
 	target = strings.TrimSpace(target)
+	if target == "" || absLinkRe.MatchString(target) {
+		return ""
+	}
 	target = strings.TrimPrefix(target, "/")
 	target = strings.TrimSuffix(target, ".md")
-	if target == "" || target == "README" {
+	// Collapse "./" and "../" segments so a stray relative prefix cannot leak a
+	// literal ".." into the URL. path.Clean keeps leading ".." on escaping
+	// paths, so drop those explicitly rather than emitting a broken link.
+	target = path.Clean(target)
+	for strings.HasPrefix(target, "../") {
+		target = strings.TrimPrefix(target, "../")
+	}
+	if target == "." || target == ".." || target == "" || target == "README" {
 		return ""
 	}
 	return target
@@ -267,6 +286,11 @@ func renderPage(raw []byte, urlPath string) (*Page, error) {
 	src = mdLinkRe.ReplaceAllStringFunc(src, func(m string) string {
 		parts := mdLinkRe.FindStringSubmatch(m)
 		target, frag := strings.TrimPrefix(parts[1], "./"), parts[2]
+		// External targets that merely happen to end in ".md" are left alone;
+		// rewriting them would produce "/docs/https://...".
+		if absLinkRe.MatchString(strings.TrimSpace(target)) {
+			return m
+		}
 		p := docPathFromLink(target)
 		if p == "" {
 			return "](/docs" + frag + ")"
@@ -300,11 +324,76 @@ func renderPage(raw []byte, urlPath string) (*Page, error) {
 		return nil, err
 	}
 	return &Page{
-		Title:   title,
-		Path:    urlPath,
-		Content: template.HTML(buf.String()),
-		TOC:     toc,
+		Title:       title,
+		Path:        urlPath,
+		Description: metaDescription(src, title),
+		Content:     template.HTML(buf.String()),
+		TOC:         toc,
 	}, nil
+}
+
+// metaDescription derives a unique meta description from the page's first
+// prose paragraph, falling back to the title when the page opens with
+// non-prose (a table of contents, a code block, an image).
+func metaDescription(src, title string) string {
+	const maxLen = 155
+
+	var para []string
+	inFence := false
+	for _, line := range strings.Split(src, "\n") {
+		t := strings.TrimSpace(line)
+		if strings.HasPrefix(t, "```") || strings.HasPrefix(t, "~~~") {
+			inFence = !inFence
+			continue
+		}
+		if inFence {
+			continue
+		}
+		// A blank line ends the first paragraph once we have collected some.
+		if t == "" {
+			if len(para) > 0 {
+				break
+			}
+			continue
+		}
+		// Skip headings, list items, tables, quotes, images and raw HTML —
+		// none of them read as a summary.
+		if strings.HasPrefix(t, "#") || strings.HasPrefix(t, ">") ||
+			strings.HasPrefix(t, "|") || strings.HasPrefix(t, "<") ||
+			strings.HasPrefix(t, "!") || strings.HasPrefix(t, "- ") ||
+			strings.HasPrefix(t, "* ") || strings.HasPrefix(t, "+ ") ||
+			listItemRe.MatchString(t) {
+			if len(para) > 0 {
+				break
+			}
+			continue
+		}
+		para = append(para, t)
+	}
+
+	desc := stripMD(strings.Join(para, " "))
+	desc = mdLinkTextRe.ReplaceAllString(desc, "$1")
+	desc = strings.Join(strings.Fields(desc), " ")
+	if desc == "" {
+		return "RobusTest documentation: " + title
+	}
+	// A paragraph that only introduces a following list ends in a colon, which
+	// reads as truncated in a search result.
+	desc = strings.TrimRight(desc, " :")
+	return truncateWords(desc, maxLen)
+}
+
+// truncateWords trims s to at most max characters without splitting a word,
+// appending an ellipsis when content was dropped.
+func truncateWords(s string, max int) string {
+	if len(s) <= max {
+		return s
+	}
+	cut := s[:max-1]
+	if i := strings.LastIndex(cut, " "); i > 0 {
+		cut = cut[:i]
+	}
+	return strings.TrimRight(cut, " ,.;:—-") + "…"
 }
 
 var nonIDChars = regexp.MustCompile(`[^a-z0-9\- ]`)
@@ -319,6 +408,12 @@ func headingID(text string) string {
 }
 
 var mdInline = regexp.MustCompile("[*_`]")
+
+// listItemRe matches ordered list items ("1. ", "2) ").
+var listItemRe = regexp.MustCompile(`^\d+[.)]\s`)
+
+// mdLinkTextRe reduces "[text](target)" to just "text" for descriptions.
+var mdLinkTextRe = regexp.MustCompile(`\[([^\]]*)\]\([^)]*\)`)
 
 func stripMD(s string) string {
 	return strings.TrimSpace(mdInline.ReplaceAllString(s, ""))

@@ -11,7 +11,7 @@ templ DocsPage(page *docs.Page, nav *docs.Nav, currentPath string, prev *docs.Na
 			<meta charset="UTF-8"/>
 			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 			<title>{ page.Title } — RobusTest Docs</title>
-			<meta name="description" content={ "RobusTest documentation: " + page.Title }/>
+			<meta name="description" content={ page.Description }/>
 			<meta name="robots" content="index, follow"/>
 			<link rel="canonical" href={ "https://robustest.com/docs" + slashPath(currentPath) }/>
 			<meta name="theme-color" media="(prefers-color-scheme: light)" content="#f4f7f9"/>
