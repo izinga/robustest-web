@@ -1,0 +1,35 @@
+<svg viewBox="0 0 640 240" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" font-family="'IBM Plex Mono', monospace">
+  <text x="40" y="24" font-size="10" letter-spacing="0.12em" fill="var(--rt-muted)">TWO WAYS TO READ A SCREEN</text>
+
+  <!-- left: the white-box door, locked -->
+  <text x="168" y="52" text-anchor="middle" font-size="11" fill="var(--rt-amber)">CDP · white-box</text>
+  <rect x="60" y="64" width="216" height="118" fill="var(--rt-paper)" stroke="var(--rt-line-strong)" stroke-width="1.25"/>
+  <rect x="76" y="80" width="120" height="12" fill="var(--rt-line)"/>
+  <g stroke="var(--rt-line)" stroke-width="1">
+    <path d="M76 106 H244"/><path d="M76 122 H220"/><path d="M76 138 H236"/>
+  </g>
+  <text x="168" y="168" text-anchor="middle" font-size="10" fill="var(--rt-muted)">someone else's app</text>
+  <!-- padlock over the panel -->
+  <path d="M232 74 v-8 a14 14 0 0 1 28 0 v8" stroke="var(--rt-amber)" stroke-width="2.5" fill="none"/>
+  <rect x="224" y="74" width="44" height="34" fill="var(--rt-paper)" stroke="var(--rt-amber)" stroke-width="2"/>
+  <circle cx="246" cy="89" r="4" fill="var(--rt-amber)"/>
+  <text x="168" y="200" text-anchor="middle" font-size="10" fill="var(--rt-amber)">needs: debug build · dev signing · their keys</text>
+
+  <!-- divider -->
+  <path d="M320 44 V208" stroke="var(--rt-line)" stroke-width="1" stroke-dasharray="2 5"/>
+
+  <!-- right: the tree, readable -->
+  <text x="472" y="52" text-anchor="middle" font-size="11" fill="var(--rt-signal)">accessibility tree · black-box</text>
+  <rect x="364" y="64" width="216" height="118" fill="var(--rt-paper)" stroke="var(--rt-signal)" stroke-width="1.5"/>
+  <text x="380" y="86" font-size="10.5" fill="var(--rt-ink)">&lt;window 1920×1080&gt;</text>
+  <path d="M388 92 v14 h8" stroke="var(--rt-line-strong)" stroke-width="1" fill="none"/>
+  <text x="400" y="110" font-size="10.5" fill="var(--rt-signal)">test_id="…_learnMore"</text>
+  <path d="M388 92 v38 h8" stroke="var(--rt-line-strong)" stroke-width="1" fill="none"/>
+  <text x="400" y="134" font-size="10.5" fill="var(--rt-signal)">test_id="…_title_text"</text>
+  <path d="M388 92 v62 h8" stroke="var(--rt-line-strong)" stroke-width="1" fill="none"/>
+  <text x="400" y="158" font-size="10.5" fill="var(--rt-signal)">test_id="…_touchable_3"</text>
+  <text x="472" y="176" text-anchor="middle" font-size="10" fill="var(--rt-muted)">393 elements · ~130 ms</text>
+  <text x="472" y="200" text-anchor="middle" font-size="10" fill="var(--rt-signal)">needs: nothing — reads what's on screen</text>
+
+  <text x="320" y="230" text-anchor="middle" font-size="11" fill="var(--rt-muted)">a debugger tests your app; the tree tests everyone's</text>
+</svg>

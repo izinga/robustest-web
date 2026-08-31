@@ -20,6 +20,7 @@
   --rt-trace-soft: #e4edf6;
   --rt-amber: #b45309;
   --rt-amber-soft: #f6ead9;
+  --rt-go: #0f9d58;
 }
 
 /* The wordmark PNG has dark-gray glyphs that vanish on dark backgrounds.
@@ -44,6 +45,7 @@
     --rt-trace-soft: #16283a;
     --rt-amber: #e5a158;
     --rt-amber-soft: #2e2213;
+    --rt-go: #3ad07f;
   }
 }
 
@@ -62,6 +64,7 @@
   --rt-trace-soft: #e4edf6;
   --rt-amber: #b45309;
   --rt-amber-soft: #f6ead9;
+  --rt-go: #0f9d58;
 }
 :root[data-theme="dark"] {
   --rt-paper: #0c1318;
@@ -76,6 +79,7 @@
   --rt-trace-soft: #16283a;
   --rt-amber: #e5a158;
   --rt-amber-soft: #2e2213;
+  --rt-go: #3ad07f;
 }
 /* Logo inversion follows the resolved theme, not just the OS preference. */
 :root[data-theme="dark"] .brand-logo { filter: invert(1) hue-rotate(180deg) saturate(1.4); }
@@ -101,6 +105,7 @@
   --color-amber-soft: var(--rt-amber-soft);
 
   --font-display: "Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --font-black: "Archivo", "Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
   --font-sans: "Inter", "Helvetica Neue", Arial, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", monospace;
 
@@ -376,6 +381,32 @@ body {
 .ledger-row:focus-within::before {
   height: 100%;
   top: 0;
+}
+
+/* Post title: heavy Archivo with an optional amber accent word — the
+   frontmatter title's `*word*` arrives here as an <em>. */
+.blog-title {
+  font-family: var(--font-black);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 0.98;
+  text-wrap: balance;
+}
+.blog-title em {
+  font-style: normal;
+  color: var(--rt-amber);
+}
+.blog-title em.go {
+  color: var(--rt-go);
+}
+/* `~word~` in the frontmatter title: a redaction bar. The text stays in the
+   DOM (title tag, index and screen readers get the plain form); only the
+   glyphs are hidden behind an ink-colored bar. */
+.blog-title .rd {
+  background: var(--rt-ink);
+  color: transparent;
+  border-radius: 3px;
+  padding: 0 0.12em;
 }
 
 /* Schematic figure band. The SVG scales inside; the grid sits behind it. */

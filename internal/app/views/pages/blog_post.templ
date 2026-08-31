@@ -99,8 +99,8 @@ templ BlogPost(p *blog.Post, related []*blog.Post) {
 					<a href="/blog" class="inline-flex items-center gap-2 font-mono text-xs text-muted hover:text-signal transition-colors">
 						<span aria-hidden="true">←</span> All notes
 					</a>
-					<h1 class="font-display font-bold text-3xl md:text-5xl tracking-tight max-w-4xl mt-6 leading-[1.1]">
-						{ p.Title }
+					<h1 class="blog-title text-4xl md:text-6xl max-w-4xl mt-6">
+						@templ.Raw(string(p.TitleHTML))
 					</h1>
 					if p.Description != "" {
 						<p class="text-muted mt-5 max-w-2xl text-lg leading-relaxed">{ p.Description }</p>

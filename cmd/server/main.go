@@ -12,10 +12,12 @@ import (
 	"os/signal"
 	"strings"
 	"syscall"
+	"strconv"
 	"time"
 
 	"github.com/gin-gonic/gin"
 	"github.com/izinga/robustest-web/internal/app/handler"
+	"github.com/izinga/robustest-web/internal/app/views/layouts"
 	"github.com/joho/godotenv"
 )
 
@@ -65,6 +67,14 @@ func main() {
 	// Set Gin mode based on environment
 	if os.Getenv("GIN_MODE") == "" {
 		gin.SetMode(gin.ReleaseMode)
+	}
+
+	// Version asset URLs so the immutable /assets cache is busted per build
+	// (per restart in dev, where BuildTime is "unknown").
+	if BuildTime != "unknown" {
+		layouts.AssetVersion = BuildTime
+	} else {
+		layouts.AssetVersion = strconv.FormatInt(time.Now().Unix(), 10)
 	}
 
 	r := gin.New()

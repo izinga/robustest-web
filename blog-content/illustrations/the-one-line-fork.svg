@@ -1,0 +1,26 @@
+<svg viewBox="0 0 640 240" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" font-family="'IBM Plex Mono', monospace">
+  <text x="40" y="24" font-size="10" letter-spacing="0.12em" fill="var(--rt-muted)">VDA vs ADB · THE ENTIRE FORK, ESSENTIALLY</text>
+
+  <!-- the diff panel -->
+  <rect x="40" y="36" width="560" height="164" fill="var(--rt-paper)" stroke="var(--rt-line-strong)" stroke-width="1.25"/>
+
+  <!-- changed pair: the rename -->
+  <rect x="41" y="52" width="558" height="22" fill="var(--rt-amber)" opacity="0.1"/>
+  <text x="60" y="67" font-size="12" fill="var(--rt-amber)">- product   "Android Debug Bridge"</text>
+  <rect x="41" y="76" width="558" height="22" fill="var(--rt-signal)" opacity="0.1"/>
+  <text x="60" y="91" font-size="12" fill="var(--rt-signal)">+ product   "Vega Device Adapter"</text>
+  <text x="580" y="79" text-anchor="end" font-size="10" fill="var(--rt-amber)">changed: the name</text>
+
+  <!-- divider -->
+  <path d="M41 106 H599" stroke="var(--rt-line)" stroke-width="1"/>
+
+  <!-- unchanged lines: the substance -->
+  <text x="60" y="128" font-size="12" fill="var(--rt-muted)">  protocol  Server Version 41</text>
+  <text x="60" y="152" font-size="12" fill="var(--rt-muted)">  authkey   ~/.android/adbkey</text>
+  <text x="60" y="176" font-size="12" fill="var(--rt-muted)">  verbs     shell · push · pull · forward · pair · tcpip</text>
+  <path d="M588 118 v62" stroke="var(--rt-line-strong)" stroke-width="1.25"/>
+  <path d="M588 118 h-6 M588 180 h-6" stroke="var(--rt-line-strong)" stroke-width="1.25"/>
+  <text x="580" y="196" text-anchor="end" font-size="10" fill="var(--rt-muted)">identical: everything else</text>
+
+  <text x="320" y="228" text-anchor="middle" font-size="11" fill="var(--rt-signal)">stock adb, straight from Google, drives the device on the first try</text>
+</svg>

@@ -40,6 +40,11 @@ const (
 type Post struct {
 	Slug        string
 	Title       string
+	// TitleHTML is the display form of Title: `*word*` in the frontmatter
+	// title becomes an <em> accent span in the post header. Title itself is
+	// always the plain-text form (stars stripped) for <title>, metadata and
+	// index listings.
+	TitleHTML   template.HTML
 	Description string
 	Category    string
 	Author          string
@@ -284,7 +289,8 @@ func parsePost(slug string, raw []byte) (*Post, error) {
 
 	return &Post{
 		Slug:        slug,
-		Title:       fm.Title,
+		Title:       stripMD(fm.Title),
+		TitleHTML:   titleHTML(fm.Title),
 		Description: fm.Description,
 		Category:    category,
 		Author:      author,
@@ -307,7 +313,7 @@ func parsePost(slug string, raw []byte) (*Post, error) {
 var (
 	h2Line     = regexp.MustCompile(`(?m)^##\s+(.+?)\s*$`)
 	nonIDChars = regexp.MustCompile(`[^a-z0-9\- ]`)
-	mdInline   = regexp.MustCompile("[*_`]")
+	mdInline   = regexp.MustCompile("[*_`~+]")
 	fenceLine  = regexp.MustCompile("(?m)^```")
 )
 
@@ -343,4 +349,21 @@ func headingID(text string) string {
 
 func stripMD(s string) string {
 	return strings.TrimSpace(mdInline.ReplaceAllString(s, ""))
+}
+
+var (
+	titleEm     = regexp.MustCompile(`\*([^*]+)\*`)
+	titleRedact = regexp.MustCompile(`~([^~]+)~`)
+	titleGo     = regexp.MustCompile(`\+([^+]+)\+`)
+)
+
+// titleHTML renders a frontmatter title for the post header: the text is
+// escaped, `*word*` becomes an <em> the header styles as the amber accent,
+// `+word+` a green one, and `~word~` a redaction bar (the text stays in the
+// DOM for search engines and screen readers; only its color is hidden).
+func titleHTML(s string) template.HTML {
+	esc := template.HTMLEscapeString(strings.TrimSpace(s))
+	esc = titleRedact.ReplaceAllString(esc, `<span class="rd">$1</span>`)
+	esc = titleGo.ReplaceAllString(esc, `<em class="go">$1</em>`)
+	return template.HTML(titleEm.ReplaceAllString(esc, "<em>$1</em>"))
 }

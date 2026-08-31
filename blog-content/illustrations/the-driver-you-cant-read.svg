@@ -1,0 +1,39 @@
+<svg viewBox="0 0 640 240" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" font-family="'IBM Plex Mono', monospace">
+  <text x="40" y="24" font-size="10" letter-spacing="0.12em" fill="var(--rt-muted)">OPEN IN · NOTHING OUT</text>
+
+  <!-- open foundation -->
+  <rect x="36" y="78" width="158" height="56" fill="var(--rt-paper)" stroke="var(--rt-signal)" stroke-width="1.5"/>
+  <text x="115" y="100" text-anchor="middle" font-size="11" fill="var(--rt-ink)">@appium/base-driver</text>
+  <text x="115" y="118" text-anchor="middle" font-size="10" fill="var(--rt-signal)">Apache-2.0 · open</text>
+
+  <!-- open source flows in -->
+  <path d="M194 106 H248" stroke="var(--rt-signal)" stroke-width="1.5"/>
+  <path d="M242 101 l8 5 -8 5" fill="none" stroke="var(--rt-signal)" stroke-width="1.5"/>
+  <text x="221" y="94" text-anchor="middle" font-size="10" fill="var(--rt-signal)">flows in</text>
+
+  <!-- the closed driver: a filled, unreadable box -->
+  <rect x="250" y="70" width="168" height="72" fill="var(--rt-ink)" stroke="var(--rt-line-strong)" stroke-width="1.25"/>
+  <text x="334" y="96" text-anchor="middle" font-size="11" fill="var(--rt-paper)">appium-kepler-driver</text>
+  <rect x="284" y="106" width="100" height="10" fill="var(--rt-muted)" opacity="0.55"/>
+  <rect x="270" y="122" width="128" height="10" fill="var(--rt-muted)" opacity="0.35"/>
+  <g transform="rotate(-4 334 62)">
+    <rect x="302" y="52" width="64" height="20" fill="var(--rt-paper)" stroke="var(--rt-amber)" stroke-width="1.5"/>
+    <text x="334" y="66" text-anchor="middle" font-size="11" font-weight="700" fill="var(--rt-amber)">CLOSED</text>
+  </g>
+
+  <!-- it gates the release -->
+  <path d="M418 106 H472" stroke="var(--rt-line-strong)" stroke-width="1.5"/>
+  <path d="M466 101 l8 5 -8 5" fill="none" stroke="var(--rt-line-strong)" stroke-width="1.5"/>
+  <rect x="474" y="78" width="130" height="56" fill="var(--rt-paper)" stroke="var(--rt-line-strong)" stroke-width="1.25"/>
+  <text x="539" y="100" text-anchor="middle" font-size="11" fill="var(--rt-ink)">your release gate</text>
+  <text x="539" y="118" text-anchor="middle" font-size="10" fill="var(--rt-muted)">CI · pass / fail</text>
+
+  <!-- nothing flows back out -->
+  <path d="M250 168 H130" stroke="var(--rt-amber)" stroke-width="1.25" stroke-dasharray="3 5"/>
+  <path d="M334 142 V168 H250" stroke="var(--rt-amber)" stroke-width="1.25" stroke-dasharray="3 5" fill="none"/>
+  <circle cx="118" cy="168" r="10" fill="none" stroke="var(--rt-amber)" stroke-width="1.25" stroke-dasharray="3 4"/>
+  <text x="118" y="172" text-anchor="middle" font-size="11" fill="var(--rt-amber)">∅</text>
+  <text x="190" y="186" text-anchor="middle" font-size="10" fill="var(--rt-amber)">nothing flows back out</text>
+
+  <text x="320" y="228" text-anchor="middle" font-size="11" fill="var(--rt-muted)">the tool that gates your release is the one you can't open</text>
+</svg>
