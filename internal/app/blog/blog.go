@@ -155,7 +155,9 @@ func (s *Store) Load() error {
 			log.Printf("blog: skipping %s: %v", path, err)
 			continue
 		}
-		if p.Draft {
+		// SHOW_DRAFTS=1 (local review servers only) renders drafts too, so a
+		// future-dated post can be proofed without becoming publishable.
+		if p.Draft && os.Getenv("SHOW_DRAFTS") != "1" {
 			continue
 		}
 		if svg, err := os.ReadFile(filepath.Join(s.dir, "illustrations", slug+".svg")); err == nil {
