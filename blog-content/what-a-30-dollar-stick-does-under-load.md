@@ -10,6 +10,8 @@ author_image: "/assets/images/authors/author-om.png"
 author_company: "RobusTest"
 author_company_url: "https://www.linkedin.com/company/robustest/"
 date: 2026-09-07
+cta_heading: "Vega OS is already in the rack."
+cta_text: "RobusTest runs Amazon Fire TV — sticks included, Fire OS and the new Vega OS — alongside your phones, tablets and other TVs: manual sessions, test automation and performance runs, on real devices inside your own network."
 sources:
   - title: "Perfetto — System profiling and app tracing"
     url: "https://perfetto.dev/docs/"

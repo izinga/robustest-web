@@ -65,6 +65,11 @@ type Post struct {
 	// blog-content/illustrations/<slug>.svg, if present. Inlined (not <img>)
 	// so it inherits the page's theme variables and recolours in light/dark.
 	Illustration template.HTML
+	// CTAHeading/CTAText override the end-of-post demo box so a post can pitch
+	// the capability it just demonstrated (e.g. Vega OS support on the Vega
+	// teardown series). Empty = the default lab pitch.
+	CTAHeading string
+	CTAText    string
 }
 
 // TOCItem is one H2 in a post.
@@ -100,6 +105,8 @@ type frontmatter struct {
 	Date        string   `yaml:"date"`
 	Updated     string   `yaml:"updated"`
 	Draft       bool     `yaml:"draft"`
+	CTAHeading  string   `yaml:"cta_heading"`
+	CTAText     string   `yaml:"cta_text"`
 	Sources     []Source `yaml:"sources"`
 }
 
@@ -304,6 +311,8 @@ func parsePost(slug string, raw []byte) (*Post, error) {
 		Date:        date,
 		Updated:     updated,
 		Draft:       fm.Draft,
+		CTAHeading:  fm.CTAHeading,
+		CTAText:     fm.CTAText,
 		WordCount:   words,
 		ReadingTime: minutes,
 		Content:     template.HTML(buf.String()),

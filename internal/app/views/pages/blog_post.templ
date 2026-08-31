@@ -232,11 +232,19 @@ templ BlogPost(p *blog.Post, related []*blog.Post) {
 							</section>
 						}
 						<div class="mt-16 border border-line-strong bg-surface p-8">
-							<h2 class="font-display font-bold text-xl tracking-tight">Run this in your own building.</h2>
-							<p class="text-sm text-muted mt-2 leading-relaxed max-w-lg">
-								RobusTest is a real device lab — phones, tablets and TVs — installed inside your
-								network. Your devices, your data centre, nothing leaving the building.
-							</p>
+							if p.CTAHeading != "" {
+								<h2 class="font-display font-bold text-xl tracking-tight">{ p.CTAHeading }</h2>
+							} else {
+								<h2 class="font-display font-bold text-xl tracking-tight">Run this in your own building.</h2>
+							}
+							if p.CTAText != "" {
+								<p class="text-sm text-muted mt-2 leading-relaxed max-w-lg">{ p.CTAText }</p>
+							} else {
+								<p class="text-sm text-muted mt-2 leading-relaxed max-w-lg">
+									RobusTest is a real device lab — phones, tablets and TVs — installed inside your
+									network. Your devices, your data centre, nothing leaving the building.
+								</p>
+							}
 							<a href="/contact" class="inline-block mt-5 bg-signal text-paper px-4 py-2 text-sm font-semibold hover:opacity-90 transition-opacity">
 								Book a demo
 							</a>
