@@ -112,6 +112,6 @@ Plus a sixth for everything with only an HDMI port — cable boxes, consoles —
 "automation" is a remote and a capture card, and the assertion is made on the picture.
 
 The honest summary: smart TV app testing is a *lab* problem more than a *framework*
-problem. The framework is the easy part. Keeping forty panels awake, paired,
+problem. The framework is the easy part. Keeping forty panels [awake](/blog/tvs-dont-turn-themselves-on), paired,
 in-session and at known model years — on [a TV wall inside your own
 building](/platform/tv-testing) — is the work.

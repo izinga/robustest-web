@@ -32,7 +32,7 @@ everywhere. Both halves of that rule were learned the expensive way.
 
 Back in 2016 our device nodes were Intel-based Linux boxes, and we hit a
 platform-level bug in the Intel USB host controller on them. After a handful of
-connect/disconnect cycles, USB connections would drop at random: a phone that was
+connect/disconnect cycles, [USB connections would drop at random](/blog/one-less-connection-to-debug): a phone that was
 plugged in and working would simply fall offline mid-test, and only a controller reset
 or a full reboot brought it back. It wasn't our code, our cables, or the phones — it
 was the host silicon and its firmware, and there was nothing we could fix from our

@@ -82,7 +82,7 @@ and behaves like hardware.
 Software businesses scale by adding instances. This one scales by buying physical
 objects, mounting them somewhere, keeping them charged, keeping them cool, keeping
 them on the right OS version, and replacing them when their batteries swell. Every
-phone is a small, depreciating, slowly-failing asset with a USB cable attached to
+phone is [a small, depreciating, slowly-failing asset](/blog/at-indian-scale-the-cheap-phone-breaks) with a USB cable attached to
 it. The gross margin of a software company and the operational reality of a
 warehouse do not sit comfortably together, and the gap between them is where
 companies get into trouble — either by pretending the hardware isn't there, or by

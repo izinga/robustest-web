@@ -23,7 +23,7 @@ sources:
     url: "https://www.w3.org/TR/webrtc/"
 ---
 
-Most TV apps exist to play video. So the single most important thing to verify —
+[Most TV apps](/blog/smart-tv-app-testing) exist to play video. So the single most important thing to verify —
 did playback start, is the picture there, is it smooth — is the one thing a software
 screenshot cannot show you. The moment DRM-protected content begins, your screenshot
 goes **black**.

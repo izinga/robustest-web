@@ -21,7 +21,7 @@ sources:
 Every year for about ten years, someone has explained to us that on-premise is
 over. Usually kindly. Occasionally with a slide.
 
-They were describing a real trend. The device-testing market went to the public
+They were describing a real trend. [The device-testing market](/blog/this-market-eats-companies) went to the public
 cloud almost completely, and the reasons were good ones: no hardware to buy, no
 racks to cool, a credit card instead of a procurement cycle. We watched
 competitors raise against that story and we did not have a better story. We had a

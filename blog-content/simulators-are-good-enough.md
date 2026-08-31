@@ -37,7 +37,7 @@ So let's concede the whole case first, properly.
 
 A simulator boots in seconds, on a machine you already have. You can run a hundred in
 parallel on a CI box for the price of the CI box. It never has a swollen battery, a
-cracked screen, or a cable that came loose. It is scriptable, resettable, and
+cracked screen, or [a cable that came loose](/blog/throw-away-the-cable-that-came-with-the-phone). It is scriptable, resettable, and
 disposable. For the vast bulk of testing — does the button do the thing, does the
 layout hold, does the API call fire — a simulator is not just adequate, it is the
 *correct* tool, and reaching for a real device instead is a waste of money and time.

@@ -58,7 +58,7 @@ When you run your own, you inherit the work the open-source project can't do for
   image-bump releases. Except now it's your team doing the bumping, on your schedule,
   under your deadlines.
 - **The knowledge lives in one person** — the colleague who learned why a device drops
-  offline, why enrolment fails intermittently, which cable batch went bad. When they
+  offline, [why enrolment fails intermittently](/blog/an-mdm-inside-the-test-lab), which cable batch went bad. When they
   leave, the lab starts its slow decline, because the work was never a product, it was
   a person.
 

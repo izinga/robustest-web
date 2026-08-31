@@ -19,7 +19,7 @@ sources:
 ---
 
 Almost every app on a television exists to play something you can hear. Yet the
-default way teams test TV apps checks only the thing you can see: did the screen
+default way teams [test TV apps](/blog/smart-tv-app-testing) checks only the thing you can see: did the screen
 change, is the picture there, did the video start. A test built entirely on the
 picture will report a clean pass while the app is playing to an empty room.
 
