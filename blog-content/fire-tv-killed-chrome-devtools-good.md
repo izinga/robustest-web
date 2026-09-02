@@ -2,14 +2,13 @@
 title: "Fire TV killed Chrome DevTools. +Good.+"
 description: "Vega's React Native dropped classic Chrome DevTools debugging. For testing apps you don't own, that forced the better model: the accessibility tree."
 category: FIELD
-draft: true
 author: Om Narayan
 author_role: "Co-founder"
 author_url: "https://www.linkedin.com/company/robustest/"
 author_image: "/assets/images/authors/author-om.png"
 author_company: "RobusTest"
 author_company_url: "https://www.linkedin.com/company/robustest/"
-date: 2026-09-04
+date: 2026-09-03
 cta_heading: "Vega OS is already in the rack."
 cta_text: "RobusTest runs Amazon Fire TV — sticks included, Fire OS and the new Vega OS — alongside your phones, tablets and other TVs: manual sessions, test automation and performance runs, on real devices inside your own network."
 sources:
