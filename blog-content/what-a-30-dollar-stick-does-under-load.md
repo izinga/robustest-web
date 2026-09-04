@@ -2,14 +2,13 @@
 title: "What a $30 stick does *under load*"
 description: "No SDK, no source — adb and 45 seconds of Perfetto on a Fire TV Stick. A native player vs a webview one, and the tax that shows up under load."
 category: PERF
-draft: true
 author: Om Narayan
 author_role: "Co-founder"
 author_url: "https://www.linkedin.com/company/robustest/"
 author_image: "/assets/images/authors/author-om.png"
 author_company: "RobusTest"
 author_company_url: "https://www.linkedin.com/company/robustest/"
-date: 2026-09-07
+date: 2026-09-04
 cta_heading: "Vega OS is already in the rack."
 cta_text: "RobusTest runs Amazon Fire TV — sticks included, Fire OS and the new Vega OS — alongside your phones, tablets and other TVs: manual sessions, test automation and performance runs, on real devices inside your own network."
 sources:

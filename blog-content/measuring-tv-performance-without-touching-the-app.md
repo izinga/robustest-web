@@ -46,7 +46,7 @@ road. What's left is to measure from the outside in.
 Two vantage points, neither of which touches the app:
 
 - **The system's own view of the process.** A TV runs a real operating system, and
-  that OS knows what every process is doing — how much CPU it's burning, how much
+  that OS knows what every process is doing — [how much CPU it's burning](/blog/what-a-30-dollar-stick-does-under-load), how much
   memory it holds and whether that number only ever climbs. You can read an app's
   resource footprint from the platform without the app's cooperation or knowledge.
 - **The panel itself, as ground truth for smoothness.** Dropped frames and stutter are,
